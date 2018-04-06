@@ -19,5 +19,16 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/userInfoMapper"/>
+		<mapper resource="mapper/timeLineMapper"/>
+		<mapper resource="mapper/ps_WorkMapper"/>
+		<mapper resource="mapper/prjListMapper"/>
+		<mapper resource="mapper/positionMapper"/>
+		<mapper resource="mapper/matchPrjMapper"/>
+		<mapper resource="mapper/horseHeadMapper"/>
+		<mapper resource="mapper/groupMapper"/>
+		<mapper resource="mapper/gp_WorkMapper"/>
+		<mapper resource="mapper/fileInfoMapper"/>
+		<mapper resource="mapper/departmentMapper"/>
+		<mapper resource="mapper/ckListMapper"/>
 	</mappers> 
 </configuration>
