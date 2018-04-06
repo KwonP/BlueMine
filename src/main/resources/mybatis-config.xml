@@ -4,7 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
  	<typeAliases>
+ 		<typeAlias type="com.bluemine.www.vo.CKList" alias="ckList"/>
+ 		<typeAlias type="com.bluemine.www.vo.CP_Department" alias="cpDepartment"/>
+ 		<typeAlias type="com.bluemine.www.vo.CP_Position" alias="cpPosition"/>
+ 		<typeAlias type="com.bluemine.www.vo.FileInfo" alias="fileInfo"/>
+ 		<typeAlias type="com.bluemine.www.vo.GP_Work" alias="gpWork"/>
+ 		<typeAlias type="com.bluemine.www.vo.HorseHead" alias="horseHead"/>
+ 		<typeAlias type="com.bluemine.www.vo.MatchPRJ" alias="matchPrj"/>
+ 		<typeAlias type="com.bluemine.www.vo.PJ_Group" alias="group"/>
+ 		<typeAlias type="com.bluemine.www.vo.PRJList" alias="prjList"/>
+ 		<typeAlias type="com.bluemine.www.vo.PS_Work" alias="psWork"/>
+ 		<typeAlias type="com.bluemine.www.vo.TimeLine" alias="timeLine"/>
+ 		<typeAlias type="com.bluemine.www.vo.UserInfo" alias="userInfo"/>
 	</typeAliases>
 	<mappers>
+		<mapper resource="mapper/userInfoMapper"/>
 	</mappers> 
 </configuration>
