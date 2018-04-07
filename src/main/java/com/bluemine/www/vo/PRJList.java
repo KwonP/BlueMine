@@ -4,7 +4,7 @@ public class PRJList {
 	private int prj_Num;
 	private String prj_Name;
 	private String planner;
-	private String access_Control;
+	private String access_Control;//0 혹은 1만 들어오며 0=private 1=public
 	private String inviteCode;
 	public PRJList(String prj_Name, String planner, String access_Control, String inviteCode) {
 		super();

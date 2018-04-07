@@ -1,1 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 프로젝트 처리 SQL -->
+<mapper namespace="com.bluemine.www.dao.prjListMapper">
+
+<!-- 프로젝트 생성  -->
+<insert id="makePrj" parameterType="prjList">
+INSERT INTO PRJLIST
+(
+    PRJ_NUM
+    ,PRJ_NAME
+    ,PLANNER
+    ,ACCESS_CONTROL
+    ,INVITECODE
+)VALUES(
+    PL_SEQ.NEXTVAL
+    ,#{prj_Name}
+    ,#{planner}
+    ,#{access_Control}
+    ,#{inviteCode}
+);
+</insert>
+
+<!-- 프로젝트 수정 -->
+<update id="updatePrj" >
+UPDATE
+	PRJLIST
+set
+<if test="prj_Name != null">
+,PRJ_NAME = #{prj_Name}
+</if>
+<if test="planner != null">
+,PLANNER = #{planner}
+</if>
+<if test="access_Control != null">
+,ACCESS_CONTROL = #{access_Control}
+</if>
+where
+	PRJ_NUM = #{prj_Num}
+</update>
+
+<!-- 프로젝트 삭제 -->
+<delete id="deletePrj" parameterType="">
+delete
+from
+	PRJLIST
+where
+	PRJ_NUM = #{prj_Num}
+</delete>
+
+<!-- 프로젝트 목록(참여중인 프로젝트) 생성된 순 -->
+<select id="getPrjList">
+
+</select>
+
+
+<!-- 프로젝트 목록(접근 권한 public) -->
+<select id="getPPrjList">
+</select>
+
+</mapper>
