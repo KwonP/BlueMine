@@ -53,12 +53,42 @@ where
 
 <!-- 프로젝트 목록(참여중인 프로젝트) 생성된 순 -->
 <select id="getPrjList">
-
+Select
+    prj_Num
+    ,prj_Name
+    ,planner
+    ,access_Control
+    ,inviteCode
+FROM
+    PRJLIST as pl
+    ,(
+        select prj_Num
+          from USERINFO as ui
+          ,MATCHPRJ as pj
+         where 
+            ui.USERID =#{USERID}
+            AND
+            pj.USERID = ui.USERID
+    ) as re
+Where
+    pl.prj_Num = re.prj_Num
+ORDER BY prj_Num
 </select>
 
 
 <!-- 프로젝트 목록(접근 권한 public) -->
 <select id="getPPrjList">
+Select
+    prj_Num
+    ,prj_Name
+    ,planner
+    ,access_Control
+    ,inviteCode
+FROM
+    PRJLIST
+WHERE
+	inviteCode = 1
+ORDER BY prj_Num
 </select>
 
 </mapper>
