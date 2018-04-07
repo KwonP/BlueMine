@@ -1,12 +1,12 @@
 package com.bluemine.www.vo;
 
 public class TimeLine {
-	private int tl_Num;
-	private int gp_Num;
-	private String writer;
-	private String w_Date;
-	private String tl_Content;
-	private String tag_Title;
+	private int tl_Num;//게시글 번호
+	private int gp_Num;//그룹(일감)번호
+	private String writer;//작성자
+	private String w_Date;//작성일
+	private String tl_Content;//내용
+	private String tag_Title;//말머리
 	public TimeLine(int tl_Num, int gp_Num, String writer, String w_Date, String tl_Content, String tag_Title) {
 		super();
 		this.tl_Num = tl_Num;

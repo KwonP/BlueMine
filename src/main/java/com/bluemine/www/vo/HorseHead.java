@@ -1,9 +1,9 @@
 package com.bluemine.www.vo;
 
 public class HorseHead {
-	private int tagNum;
-	private String tagTitle;
-	private String tagType;
+	private int tagNum;//태그 번호
+	private String tagTitle;//태그
+	private String tagType;//태그 타입 ex)공지사항 1,스케줄관련 2
 	
 	public HorseHead(String tagTitle, String tagType) {
 		super();

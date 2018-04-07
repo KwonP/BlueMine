@@ -1,12 +1,12 @@
 package com.bluemine.www.vo;
 
 public class CKList {
-	private int cl_Num;
-	private String cl_Name;
-	private String memberId;
-	private String ck_Content;
-	private String ck_State;
-	private int loops;
+	private int cl_Num;//체크리스트 번호
+	private String cl_Name;//체크리스트 이름
+	private String memberId;//해당 회원 ID
+	private String ck_Content;//내용
+	private String ck_State;//상태
+	private int loops;//반복횟수 최소값 0
 	
 	
 	public CKList() {

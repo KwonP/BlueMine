@@ -1,8 +1,9 @@
 package com.bluemine.www.vo;
 
+//회원들의 프로젝트 담당현황을 알기위한 VO
 public class MatchPRJ {
-	private String memberId;
-	private int prjNum;
+	private String memberId;//회원ID
+	private int prjNum;//프로젝트 번호
 	
 	public MatchPRJ() {
 		super();

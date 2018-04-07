@@ -1,11 +1,11 @@
 package com.bluemine.www.vo;
 
 public class PRJList {
-	private int prj_Num;
-	private String prj_Name;
-	private String planner;
+	private int prj_Num;//프로젝트 번호
+	private String prj_Name;//프로젝트 이름
+	private String planner;//기획자
 	private String access_Control;//0 혹은 1만 들어오며 0=private 1=public
-	private String inviteCode;
+	private String inviteCode;//초대코드
 	public PRJList(String prj_Name, String planner, String access_Control, String inviteCode) {
 		super();
 		this.prj_Name = prj_Name;

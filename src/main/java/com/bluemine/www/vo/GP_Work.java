@@ -1,17 +1,17 @@
 package com.bluemine.www.vo;
 
 public class GP_Work {
-	private int gs_Num;
-	private String gs_Name;
-	private int gp_Num;
-	private String gs_Content;
-	private String director;
-	private String start_Date;
-	private String deadLine;
-	private String rStart_Date;
-	private String rDeadLine;
-	private int gp_Pri;
-	private int progress;
+	private int gs_Num;//그룹 스케줄 번호
+	private String gs_Name;//그룹 스케줄 이름
+	private int gp_Num;//그룹 번호
+	private String gs_Content;//내용
+	private String director;//담당자
+	private String start_Date;//시작일
+	private String deadLine;//마감일
+	private String rStart_Date;//실제 시작일
+	private String rDeadLine;//실제 마감일
+	private int gp_Pri;//중요도
+	private int progress;//진행도
 	
 	public GP_Work(int gs_Num, String gs_Name, int gp_Num, String gs_Content, String director, String start_Date,
 			String deadLine, String rStart_Date, String rDeadLine, int gp_Pri, int progress) {

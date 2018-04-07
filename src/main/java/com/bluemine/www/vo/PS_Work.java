@@ -1,14 +1,14 @@
 package com.bluemine.www.vo;
 
 public class PS_Work {
-	private int ps_Num;
-	private String ps_Name;
-	private String ps_Content;
-	private String memberId;
-	private String start_Date;
-	private String deadLine;
-	private String rStart_Date;
-	private String rDeadLine;
+	private int ps_Num;//개인 스케줄 번호
+	private String ps_Name;//스케줄 이름
+	private String ps_Content;//내용
+	private String memberId;//회원ID
+	private String start_Date;//시작일
+	private String deadLine;//마감일
+	private String rStart_Date;//실제시작일
+	private String rDeadLine;//실제마감일
 	private int ps_Pri;
 	private int progress;
 	public PS_Work(int ps_Num, String ps_Name, String ps_Content, String memberId, String start_Date, String deadLine,

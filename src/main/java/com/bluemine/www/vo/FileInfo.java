@@ -1,9 +1,9 @@
 package com.bluemine.www.vo;
 
 public class FileInfo {
-	private int tl_Num;
-	private String originalFile;
-	private String saveFile;
+	private int tl_Num;//파일이 올라간 게시글 번호
+	private String originalFile;//파일 이름
+	private String saveFile;//파일 저장경로
 	public FileInfo(int tl_Num, String originalFile, String saveFile) {
 		super();
 		this.tl_Num = tl_Num;

@@ -1,9 +1,9 @@
 package com.bluemine.www.vo;
 
 public class PJ_Group {
-	private int gp_Num;
-	private int prj_Num;
-	private String gp_Name;
+	private int gp_Num;//그룹번호
+	private int prj_Num;//프로젝트 번호
+	private String gp_Name;//그룹 이름
 	public PJ_Group(int gp_Num, int prj_Num, String gp_Name) {
 		super();
 		this.gp_Num = gp_Num;

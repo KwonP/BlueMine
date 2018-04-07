@@ -1,7 +1,7 @@
 package com.bluemine.www.vo;
 
 public class CP_Position {
-	private String positionName;
+	private String positionName;//직함
 
 	public CP_Position(String positionName) {
 		super();

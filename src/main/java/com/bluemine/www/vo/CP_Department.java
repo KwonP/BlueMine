@@ -1,12 +1,12 @@
 package com.bluemine.www.vo;
 
 public class CP_Department {
-	private String depName;
-	private String initial;
-	public CP_Department(String depName, String initial) {
+	private String depName;//부서 이름
+	private String typeAlias;//부서 약자
+	public CP_Department(String depName, String typeAlias) {
 		super();
 		this.depName = depName;
-		this.initial = initial;
+		this.typeAlias = typeAlias;
 	}
 	public CP_Department() {
 		super();
@@ -17,11 +17,11 @@ public class CP_Department {
 	public void setdepName(String depName) {
 		depName = depName;
 	}
-	public String getInitial() {
-		return initial;
+	public String gettypeAlias() {
+		return typeAlias;
 	}
-	public void setInitial(String initial) {
-		this.initial = initial;
+	public void settypeAlias(String typeAlias) {
+		this.typeAlias = typeAlias;
 	}
 	
 	

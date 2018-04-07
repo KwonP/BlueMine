@@ -1,14 +1,14 @@
 package com.bluemine.www.vo;
 
 public class UserInfo {
-	private String userId;
-	private String email;
-	private String name;
-	private String password;
-	private String department;
-	private String position;
-	private String originalFile;
-	private String saveFile;
+	private String userId;//사용자ID
+	private String email;//이메일
+	private String name;//이름
+	private String password;//비밀번호
+	private String department;//부서
+	private String position;//직함
+	private String originalFile;//프로필사진 이름
+	private String saveFile;//프로필 사진 경로
 	
 	public UserInfo(String userId, String email, String name, String password, String department, String position) {
 		super();
