@@ -7,29 +7,57 @@
 <mapper namespace="com.bluemine.www.dao.TimeLineMapper">
 	<!-- 타임 라인 글 추가 -->
 	<insert id="insertTimeLine" parameterType="timeLine">
-		insert into timeline
-		(tl_num, gp_num, writer, w_date, tl_content,tagnum)
-		values(tl_seq.nextval, #{gp_Num}, #{writer}, #{w_Date}, #{tl_content},
-		#{tag_Num}
-	</insert>
-	<!-- 타임 라인 목록 가져오기(그룹번호로) -->
-	<select id="getTimeLineList" parameterType="int"
-		resultType="timeLine">
-		select tl_num, gp_num, writer, w_date, tl_content, tagnum
-		from timeline where
-		tl_num=#{value}
-	</select>
-	<!-- 타임 라인 글 삭제(게시글 번호) -->
-	<delete id="deleteTimeLine" parameterType="int">
-		delete * from timeline
-	</delete>
-	<!-- 타임 라인 글 수정 -->
-	<update id="updateTimeLine" parameterType="timeLine">
-		update timeline set gp_num=gp_num
-		<if test="writer!=null">,writer=#{writer}</if>
-		<if test="tl_Content!=null"> ,tl_content = #{tl_Content}</if>
-		<if test="tagNum!=null">,tagnum=#{tagNum}</if>
-		where
-		tl_num=#{tl_Num}
-	</update>
+insert into timeline(
+	tl_num
+	, gp_num
+	, writer
+	, w_date
+	, tl_content
+	,tagnum
+)values(
+	tl_seq.nextval
+	, #{gp_Num}
+	, #{writer}
+	, #{w_Date}
+	, #{tl_content}
+	,#{tag_Num}
+</insert>
+<!-- 타임 라인 목록 가져오기(그룹번호로) -->
+<select id="getTimeLineList" parameterType="int"
+resultType="timeLine">
+select 
+	tl_num
+	, gp_num
+	, writer
+	, w_date
+	, tl_content
+	, tagnum
+from
+	timeline
+where
+	tl_num=#{value}
+</select>
+<!-- 타임 라인 글 삭제(게시글 번호) -->
+<delete id="deleteTimeLine" parameterType="int">
+delete * 
+from timeline
+where tl_num=#{tl_num}
+</delete>
+<!-- 타임 라인 글 수정 -->
+<update id="updateTimeLine" parameterType="timeLine">
+update timeline
+set 
+	gp_num=gp_num
+	<if test="writer!=null">
+	,writer=#{writer}
+	</if>
+	<if test="tl_Content!=null"> 
+	,tl_content = #{tl_Content}
+	</if>
+	<if test="tagNum!=null">
+	,tagnum=#{tagNum}
+	</if>
+where
+	tl_num=#{tl_Num}
+</update>
 </mapper>

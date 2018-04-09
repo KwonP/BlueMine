@@ -1,1 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bulemine.www.interfaces/ckListMapper">
+<!-- 체크리스트 추가 -->
+<insert id="" parameterType="ckList">
+ INSERT INTO CKLIST(
+    CL_NUM
+    ,CL_NAME
+    ,MEMBERID
+    ,CK_CONTENT
+    ,LOOPS
+)VALUES(
+    CL_SEQ.NEXTVAL
+    ,#{cl_Name}
+    ,#{memberId}
+    ,#{ck_content}
+    ,#{loops}
+);
+</insert>
+<!-- 체크리스트 업데이트 -->
+<update id="" parameterType="ckList">
+UPDATE
+	CKLIST
+SET
+	<if test="cl_Name != null">
+	cl_Name=#{cl_Name}
+	</if>
+	<if test="cl_Content != null">
+	cl_Content=#{cl_Content}
+	</if>
+	<if test="cl_State != null">
+	cl_State=#{cl_State}
+	</if>
+	<if test="loops != null">
+	loops=#{loops}
+	</if>
+WHERE
+	memberId=#{memberId}
+</update>
+
+<!-- 체크리스트 삭제 -->
+<delete id="" parameterType="string">
+DLELTE
+FROM CKLIST
+WHERE
+	memberId=#{memberId}
+	AND
+	cl_Num=#{cl_Num}
+</delete>
+</mapper>

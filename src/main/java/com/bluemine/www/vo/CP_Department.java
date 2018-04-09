@@ -1,7 +1,7 @@
 package com.bluemine.www.vo;
 
 public class CP_Department {
-
+	private int depNum;//부서 번호
 	private String depNameEn;//부서 이름(영)
 	private String depNameKr;//부서 이름(한)
 	private String typeAlias;//부서 약자
@@ -9,12 +9,21 @@ public class CP_Department {
 	public CP_Department() {
 		super();
 	}
-	
-	public CP_Department(String depNameEn, String depNameKr, String typeAlias) {
+
+	public CP_Department(int depNum, String depNameEn, String depNameKr, String typeAlias) {
 		super();
+		this.depNum = depNum;
 		this.depNameEn = depNameEn;
 		this.depNameKr = depNameKr;
 		this.typeAlias = typeAlias;
+	}
+
+	public int getDepNum() {
+		return depNum;
+	}
+
+	public void setDepNum(int depNum) {
+		this.depNum = depNum;
 	}
 
 	public String getDepNameEn() {
@@ -43,9 +52,11 @@ public class CP_Department {
 
 	@Override
 	public String toString() {
-		return "depNameEn=" + depNameEn + ", depNameKr=" + depNameKr + ", typeAlias=" + typeAlias + "]";
+		return "depNum=" + depNum + ", depNameEn=" + depNameEn + ", depNameKr=" + depNameKr
+				+ ", typeAlias=" + typeAlias + "]";
 	}
-
+	
+	
 	
 	
 }

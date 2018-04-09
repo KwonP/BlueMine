@@ -8,11 +8,13 @@
 <insert id="" parameterType="cpDepartment">
 INSERT INTO CP_DEPARTMENT
 (
-    DEPNameEN
-    ,DEPNAMEKR
-    ,typeAlias
+	depNum
+	,depNameEn
+	,depNameKr
+	,typeAlias
 )VALUES(
-    #{depNameEn}
+	DP_SEQ.nextval()
+    ,#{depNameEn}
     ,#{depNameKr}
     ,#{typeAlias}
 );
@@ -22,9 +24,18 @@ INSERT INTO CP_DEPARTMENT
 <!-- 부서 조회 -->
 <select id="" resultType="cpDepartment">
 SELECT 
-	depNameEn
+	depNum
+	,depNameEn
 	,depNameKr
-	, typeAlias
+	,typeAlias
 FROM CP_DEPARTMENT
-</select>  
+</select> 
+<!-- 부서 삭제 -->
+<delete id="" >
+DELETE
+FROM CP_DEPARTMENT
+WHERE
+	depNum=#{depNum}
+</delete>	
+
 </mapper>

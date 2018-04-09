@@ -37,7 +37,7 @@ INSERT INTO PS_WORK(
 );
 </insert>
 
-<!-- 스케줄 조회 -->
+<!-- 스케줄 조회 예상 시작일 순-->
 <select id="" parameterType="string" resultType="psWork">
 Select
     ps_Name
@@ -55,6 +55,7 @@ FROM
     PS_WORK
 Where
     memberId = #{memberId}
+Order by start_Date ASC
 </select>
 
 </mapper>

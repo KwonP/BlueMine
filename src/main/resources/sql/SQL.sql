@@ -27,22 +27,42 @@ INSERT INTO USERINFO(
 --부서 추가
 INSERT INTO CP_DEPARTMENT
 (
-    DEPNameEN
+    DEPNum
+    ,DEPNameEN
     ,DEPNAMEKR
     ,typeAlias
 )VALUES(
-    #{depNameEn}
+    DP_SEQ.nextval
+    ,#{depNameEn}
     ,#{depNameKr}
     ,#{typeAlias}
 );
-
+--부서 조회
+SELECT 
+	depNum
+	,depNameEn
+	,depNameKr
+	,typeAlias
+FROM CP_DEPARTMENT
+--부서 삭제
+DELETE
+FROM CP_DEPARTMENT
+WHERE
+	depNum=#{depNum}
 --직함 추가
 INSERT INTO CP_POSITION(
-    POSITIONNAME
+    PositionNum
+    ,POSITIONNAME
 )VALUES(
-    #{positionName}
+	posi_seq.nextval
+    ,#{positionName}
 );
-
+--직급 조회
+SELECT 
+	positionNum
+	,positionName
+FROM CP_POSITION
+Order By positionNum
 --태그 추가
 INSERT INTO HORSEHEAD(
     TAGNUM
@@ -53,6 +73,14 @@ INSERT INTO HORSEHEAD(
     ,#{tagTitle}
     ,#{tagType}
 );
+--태그 가져오기
+SELECT
+    TAGNUM
+    ,TAGTITLE
+    ,TAGTYPE
+FROM
+    HORSEHEAD
+ORDER BY TAGNUM ASC
 
 --프로젝트 추가
 INSERT INTO PRJLIST
@@ -119,9 +147,19 @@ INSERT INTO FILEINFO(
 )VALUES(
     #{tl_Num}
     ,#{originalFile}
-    ,#{svaeFile}
+    ,#{saveFile}
 );
-
+--타임라인 내 파일 호출
+select
+    tl_Num
+    ,originalFile
+    ,saveFile
+from
+    FILEINFO
+Where
+    tl_Num=#{tl_Num}
+order by
+    saveFile
 --프로젝트 그룹스케줄 추가
 INSERT INTO GP_WORK(
     GS_NUM
@@ -204,14 +242,6 @@ INSERT INTO CKLIST(
     ,#{ck_content}
     ,#{loops}
 );
-
---부서 관리 테이블에서 부서 가져오기
-SELECT depNameEn,depNameKr, typeAlias
-FROM CP_DEPARTMENT
-
---직급 관리 테이블에서 직급 가져오기
-SELECT POSITIONNAME
-FROM CP_POSITION
 
 --개인 스케줄 호출
 Select
@@ -312,14 +342,3 @@ where
     gp_Num=#{gp_Num}
 order by w_Date
 
---타임라인 내 파일 호출
-select
-    tl_Num
-    ,originalFile
-    ,svaeFile
-from
-    FILEINFO
-Where
-    tl_Num=#{tl_Num}
-order by
-    svaeFile

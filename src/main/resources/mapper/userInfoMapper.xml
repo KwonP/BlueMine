@@ -3,73 +3,81 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.bulemine.www.interfaces/UserInfoMapper">
-  <insert id="join" parameterType="userInfo">
-	INSERT INTO USERINFO(
-	    userId
-	    , email
-	    , name
-	    , password
-	    , department
-	    , position
-	    <if test="originalFile != null AND saveFile != null">
-	    , originalFile
-	    , saveFile
-	     </if>
-	)VALUES(
-	    CONCAT(#{userId},UI_SEQ.nextval)
-	    , #{email}
-	    , #{name}
-	    , #{password}
-	    , #{department}
-	    , #{position}
-	    <if test="originalFile != null AND svaeFile != null">
-	    , #{originalFile}
-	    , #{svaeFile}
-	    </if>
-	);
-  </insert>
-  <select id="emailCheck" resultType="string">
-  SELECT email
-  FROM UserInfo
-  WHERE email = #{email}
-  </select>
-  <select id="findPw" resultType="string">
-  SELECT password
-  FROM UserInfo
-  WHERE email = #{email}
-  </select>
-  <select id="getInfo" resultType="userInfo">
-  SELECT *
-  FROM UserInfo
-  WHERE userId = #{userId}
-  </select>
-  <select id="getProfile" resultType="userInfo">
-  SELECT originalFile,saveFile
-  FROM UserInfo
-  WHERE userId = #{userId}
-  </select>
-  <update id="updateUser" parameterType="userInfo">
-  UPDATE UserInfo
-  SET	name = #{name},
-  		email = #{email},
-  		password = #{password},
-  		department = #{department},
-  		position = #{position}
-  WHERE userId = #{userId}
-  </update>
-  <update id="updateProfile" parameterType="userInfo">
-  UPDATE UserInfo
-  SET	originalFile = #{originalFile},
-  		saveFile = #{saveFile}
-  WHERE userId = #{userId}
-  </update>
-  <select id="login" resultType="string">
-  SELECT id
-  FROM UserInfo
-  WHERE email = #{email} and password = #{password}
-  </select>
-  <delete id="leave">
-  DELETE UserInfo
-  WHERE password = #{password}
-  </delete>
-  </mapper>
+<insert id="join" parameterType="userInfo">
+INSERT INTO USERINFO(
+	userId
+	, email
+	, name
+	, password
+	, department
+	, position
+	<if test="originalFile != null AND saveFile != null">
+	, originalFile
+	, saveFile
+	</if>
+)VALUES(
+	CONCAT(#{userId},UI_SEQ.nextval)
+	, #{email}
+	, #{name}
+	, #{password}
+	, #{department}
+	, #{position}
+	<if test="originalFile != null AND svaeFile != null">
+	, #{originalFile}
+	, #{svaeFile}
+	</if>
+);
+</insert>
+<select id="emailCheck" resultType="string">
+ SELECT email
+ FROM UserInfo
+ WHERE email = #{email}
+ </select>
+ <select id="findPw" resultType="string">
+ SELECT password
+ FROM UserInfo
+ WHERE email = #{email}
+ </select>
+ <select id="getInfo" resultType="userInfo">
+ SELECT *
+ FROM UserInfo
+ WHERE userId = #{userId}
+ </select>
+ <select id="getProfile" resultType="userInfo">
+ SELECT originalFile,saveFile
+ FROM UserInfo
+ WHERE userId = #{userId}
+ </select>
+ <update id="updateUser" parameterType="userInfo">
+ UPDATE UserInfo
+ SET
+ 	name = #{name},
+	email = #{email},
+	password = #{password},
+	department = #{department},
+	position = #{position}
+WHERE
+	userId = #{userId}
+</update>
+<update id="updateProfile" parameterType="userInfo">
+UPDATE UserInfo
+SET	
+	originalFile = #{originalFile}
+	,saveFile = #{saveFile}
+WHERE 
+	userId = #{userId}
+</update>
+<select id="login" resultType="string">
+SELECT id
+FROM UserInfo
+WHERE
+	email = #{email}
+	and
+	password = #{password}
+</select>
+<delete id="leave">
+DELETE
+FROM UserInfo
+WHERE password = #{password}
+</delete>
+</mapper>

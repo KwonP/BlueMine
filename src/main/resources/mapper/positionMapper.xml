@@ -8,15 +8,20 @@
 <!-- 직급추가 -->
 <insert id="" parameterType="cpPosition">
 INSERT INTO CP_POSITION(
-    POSITIONNAME
+    PositionNum
+    ,POSITIONNAME
 )VALUES(
-    #{positionName}
+	posi_seq.nextval
+    ,#{positionName}
 );
 </insert>
 <!-- 직함명 조회 -->
 <select id="" resultType="cpPosition">
-SELECT positionName
+SELECT 
+	positionNum
+	,positionName
 FROM CP_POSITION
+Order By positionNum
 </select>
 
 </mapper>
