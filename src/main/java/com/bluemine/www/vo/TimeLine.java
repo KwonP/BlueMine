@@ -6,15 +6,15 @@ public class TimeLine {
 	private String writer;//작성자
 	private String w_Date;//작성일
 	private String tl_Content;//내용
-	private String tag_Title;//말머리
-	public TimeLine(int tl_Num, int gp_Num, String writer, String w_Date, String tl_Content, String tag_Title) {
+	private int tagNum;//말머리
+	public TimeLine(int tl_Num, int gp_Num, String writer, String w_Date, String tl_Content, int tagNum) {
 		super();
 		this.tl_Num = tl_Num;
 		this.gp_Num = gp_Num;
 		this.writer = writer;
 		this.w_Date = w_Date;
 		this.tl_Content = tl_Content;
-		this.tag_Title = tag_Title;
+		this.tagNum = tagNum;
 	}
 	public int getTl_Num() {
 		return tl_Num;
@@ -46,16 +46,16 @@ public class TimeLine {
 	public void setTl_Content(String tl_Content) {
 		this.tl_Content = tl_Content;
 	}
-	public String getTag_Title() {
-		return tag_Title;
+	public int gettagNum() {
+		return tagNum;
 	}
-	public void setTag_Title(String tag_Title) {
-		this.tag_Title = tag_Title;
+	public void settagNum(int tagNum) {
+		this.tagNum = tagNum;
 	}
 	@Override
 	public String toString() {
 		return "TimeLine [tl_Num=" + tl_Num + ", gp_Num=" + gp_Num + ", writer=" + writer + ", w_Date=" + w_Date
-				+ ", tl_Content=" + tl_Content + ", tag_Title=" + tag_Title + "]";
+				+ ", tl_Content=" + tl_Content + ", tagNum=" + tagNum + "]";
 	}
 	
 	

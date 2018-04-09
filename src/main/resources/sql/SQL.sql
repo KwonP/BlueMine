@@ -27,10 +27,12 @@ INSERT INTO USERINFO(
 --부서 추가
 INSERT INTO CP_DEPARTMENT
 (
-    DEPName
+    DEPNameEN
+    ,DEPNAMEKR
     ,typeAlias
 )VALUES(
-    #{depName}
+    #{depNameEn}
+    ,#{depNameKr}
     ,#{typeAlias}
 );
 
@@ -204,7 +206,7 @@ INSERT INTO CKLIST(
 );
 
 --부서 관리 테이블에서 부서 가져오기
-SELECT DEPName, typeAlias
+SELECT depNameEn,depNameKr, typeAlias
 FROM CP_DEPARTMENT
 
 --직급 관리 테이블에서 직급 가져오기

@@ -1,1 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 개인스케줄 sql -->
+<mapper namespace="com.bulemine.www.interfaces/psWorkMapper">
+
+<!-- 스케줄 추가 -->
+<insert id="" parameterType="psWork">
+INSERT INTO PS_WORK(
+    PS_NUM
+    ,PS_NAME
+    ,PS_CONTENT
+    ,MEMBERID
+    ,START_DATE
+    ,DEADLINE
+    <if test='rStart_Date != null'>
+    ,RSTART_DATE
+    </if>
+    <if test='rDeadLine != null'>
+    ,RDEADLINE
+    </if>
+)VALUES(
+    PS_SEQ.NEXTVAL
+    ,#{PS_NAME}
+    ,#{PS_CONTENT}
+    ,#{MEMBERID}
+    ,#{START_DATE}
+    ,#{DEADLINE}
+    <if test='rStart_Date != null'>
+    ,#{rStart_Date}
+    </if>
+    <if test='rDeadLine != null'>
+    ,#{rDeadLine}
+    </if>
+);
+</insert>
+
+<!-- 스케줄 조회 -->
+<select id="" parameterType="string" resultType="psWork">
+Select
+    ps_Name
+    ,ps_Content
+    ,memberId
+    ,start_Date
+    ,deadLine
+    <if test='rStart_Date != null'>
+    ,rStart_Date
+    </if>
+    <if test='rDeadLine != null'>
+    ,rDeadLine
+    </if>
+FROM
+    PS_WORK
+Where
+    memberId = #{memberId}
+</select>
+
+</mapper>

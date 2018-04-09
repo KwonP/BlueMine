@@ -1,1 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 프로젝트 처리 SQL -->
+<mapper namespace="com.bluemine.www.dao.matchPrjMapper">
+
+<!-- 회원, 프로젝트 관계 세팅 -->
+<insert id="" parameterType="matchPrj">
+INSERT INTO(
+	MEMBERID
+	,PRJ_NUM
+)VALUES(
+	#{memberId}
+	,#{prjNum}
+);
+</insert>
+</mapper>
