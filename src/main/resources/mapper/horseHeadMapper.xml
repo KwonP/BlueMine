@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bluemine.www.interfaces.horseHeadMapper">
 <!-- 말머리 추가 -->
-<insert id="" parameterType="horseHead">
+<insert id="addHorseHead" parameterType="horseHead">
 INSERT INTO HORSEHEAD(
     TAGNUM
     ,TAGTITLE
@@ -16,7 +16,7 @@ INSERT INTO HORSEHEAD(
 );
 </insert>
 <!-- 말머리 가져오기 -->
-<select id="" resultType="horseHead">
+<select id="getAll" resultType="horseHead">
 SELECT
     TAGNUM
     ,TAGTITLE
@@ -26,7 +26,7 @@ FROM
 ORDER BY TAGNUM ASC
 </select>
 <!-- 한종류의 말머리 가져오기 -->
-<select id="" resultType="horseHead">
+<select id="getOneType" resultType="horseHead">
 SELECT
     TAGNUM
     ,TAGTITLE
@@ -36,6 +36,5 @@ FROM
 WHERE
 	TAGTYPE=#{tagType}
 ORDER BY TAGNUM ASC
-
 </select>
 </mapper>
