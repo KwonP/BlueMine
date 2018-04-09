@@ -242,7 +242,17 @@ INSERT INTO CKLIST(
     ,#{ck_content}
     ,#{loops}
 );
-
+--체크리스트 조회
+SELECT
+    CL_NUM
+    ,CL_NAME
+    ,MEMBERID
+    ,CK_CONTENT
+    ,LOOPS
+FROM   
+    CKLIST
+WHERE
+    memberId=#{memberId}
 --개인 스케줄 호출
 Select
     ps_Name

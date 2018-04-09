@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 직급 SQL -->
-<mapper namespace="com.bluemine.www.dao.positionMapper">
+<mapper namespace="com.bluemine.www.interfaces.positionMapper">
 <!-- 직급추가 -->
 <insert id="" parameterType="cpPosition">
 INSERT INTO CP_POSITION(

@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 부서 sql -->
-<mapper namespace="com.bulemine.www.interfaces/departmentMapper">
+<mapper namespace="com.bluemine.www.interfaces.departmentMapper">
 <!-- 부서추가 -->
-<insert id="" parameterType="cpDepartment">
+<insert id="addDep" parameterType="cpDepartment">
 INSERT INTO CP_DEPARTMENT
 (
 	depNum
@@ -22,7 +22,7 @@ INSERT INTO CP_DEPARTMENT
   
   
 <!-- 부서 조회 -->
-<select id="" resultType="cpDepartment">
+<select id="getList" resultType="cpDepartment">
 SELECT 
 	depNum
 	,depNameEn
@@ -31,7 +31,7 @@ SELECT
 FROM CP_DEPARTMENT
 </select> 
 <!-- 부서 삭제 -->
-<delete id="" >
+<delete id="delDep" parameterType="cpDepartment">
 DELETE
 FROM CP_DEPARTMENT
 WHERE

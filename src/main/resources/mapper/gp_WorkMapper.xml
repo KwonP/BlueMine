@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 프로젝트 처리 SQL -->
-<mapper namespace="com.bluemine.www.dao.GP_WorkMapper">
+<mapper namespace="com.bluemine.www.interfaces..GP_WorkMapper">
 <!-- 그룹 스케줄 생성 -->
 <insert id="insertGP_Work" parameterType="gpWork">
 insert into gp_work (

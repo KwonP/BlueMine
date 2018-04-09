@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 프로젝트 처리 SQL -->
-<mapper namespace="com.bluemine.www.dao.matchPrjMapper">
+<mapper namespace="com.bluemine.www.interfaces.matchPrjMapper">
 
 <!-- 회원, 프로젝트 관계 세팅 -->
-<insert id="" parameterType="matchPrj">
+<insert id="setRelation" parameterType="matchPrj">
 INSERT INTO(
 	MEMBERID
 	,PRJ_NUM

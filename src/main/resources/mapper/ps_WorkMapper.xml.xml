@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 개인스케줄 sql -->
-<mapper namespace="com.bulemine.www.interfaces/psWorkMapper">
+<mapper namespace="com.bluemine.www.interfaces.psWorkMapper">
 
 <!-- 스케줄 추가 -->
-<insert id="" parameterType="psWork">
+<insert id="addPsWork" parameterType="psWork">
 INSERT INTO PS_WORK(
     PS_NUM
     ,PS_NAME
@@ -38,7 +38,7 @@ INSERT INTO PS_WORK(
 </insert>
 
 <!-- 스케줄 조회 예상 시작일 순-->
-<select id="" parameterType="string" resultType="psWork">
+<select id="getPsWList" parameterType="string" resultType="psWork">
 Select
     ps_Name
     ,ps_Content

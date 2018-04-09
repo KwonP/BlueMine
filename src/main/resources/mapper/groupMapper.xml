@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 프로젝트 처리 SQL -->
-<mapper namespace="com.bluemine.www.dao.groupMapper">
+<mapper namespace="com.bluemine.www.interfaces.groupMapper">
 
 <!-- 그룹 생성 -->
-<insert id="" parameterType="group">
+<insert id="addGroup" parameterType="group">
 INSERT INTO PJ_GROUP(
     GP_NUM
     ,PRJ_NUM
@@ -20,7 +20,7 @@ INSERT INTO PJ_GROUP(
 </insert>
 
 <!-- 그룹 이름 업데이트 -->
-<update id="" parameterType="group">
+<update id="updateGroup" parameterType="group">
 UPDATE
 	PJ_GROUP
 set
@@ -32,7 +32,7 @@ where
 </update>
 
 <!-- 그룹 생성순으로 조회 -->
-<select id="">
+<select id="getGpList">
 SELECT 
 	gp_Num
 	,prj_Num

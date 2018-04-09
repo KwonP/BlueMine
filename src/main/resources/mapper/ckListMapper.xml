@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bulemine.www.interfaces/ckListMapper">
+<mapper namespace="com.bluemine.www.interfaces.ckListMapper">
 <!-- 체크리스트 추가 -->
-<insert id="" parameterType="ckList">
+<insert id="addCkList" parameterType="ckList">
  INSERT INTO CKLIST(
     CL_NUM
     ,CL_NAME
@@ -49,4 +49,17 @@ WHERE
 	AND
 	cl_Num=#{cl_Num}
 </delete>
+<!-- 체크리스트 가져오기 -->
+<select id="">
+SELECT
+    CL_NUM
+    ,CL_NAME
+    ,MEMBERID
+    ,CK_CONTENT
+    ,LOOPS
+FROM   
+    CKLIST
+WHERE
+    memberId=#{memberId}
+</select>
 </mapper>
