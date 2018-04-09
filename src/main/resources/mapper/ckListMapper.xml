@@ -20,7 +20,7 @@
 );
 </insert>
 <!-- 체크리스트 업데이트 -->
-<update id="" parameterType="ckList">
+<update id="updateCkList" parameterType="ckList">
 UPDATE
 	CKLIST
 SET
@@ -41,7 +41,7 @@ WHERE
 </update>
 
 <!-- 체크리스트 삭제 -->
-<delete id="" parameterType="string">
+<delete id="delCkList" parameterType="ckList">
 DLELTE
 FROM CKLIST
 WHERE
@@ -50,7 +50,7 @@ WHERE
 	cl_Num=#{cl_Num}
 </delete>
 <!-- 체크리스트 가져오기 -->
-<select id="">
+<select id="getCKList" resultType="ckList">
 SELECT
     CL_NUM
     ,CL_NAME
