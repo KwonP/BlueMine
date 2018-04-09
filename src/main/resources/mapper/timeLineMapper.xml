@@ -1,1 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 프로젝트 처리 SQL -->
+<mapper namespace="com.bluemine.www.dao.TimeLineMapper">
+<insert id="insertTimeLine" parameterType="timeLine">
+insert into timeline (tl_num, gp_num, writer, w_date, tl_content,tagnum)
+values(tl_seq.nextval, #{gp_Num}, #{writer}, #{w_Date}, #{tl_content}, #{tag_Num}
+</insert>
+<select id="getTimeLineList" parameterType="int" resultType="timeLine">
+select tl_num, gp_num, writer, w_date, tl_content,tagnum from timeline where tl_num=#{value}
+</select>
+
+</mapper>
