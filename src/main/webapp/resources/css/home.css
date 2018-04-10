@@ -7,11 +7,7 @@
 	font-family: Athletic;
 	src: url("../font/Athletic.ttf") format('truetype');
 }
-
-body{
-	margin: 0;
-	height: 760px;
-}
+html, body { height:100%; overflow:hidden; margin: 0; }
 #wrap{
     width: 100%;
     height: 100%;
@@ -92,11 +88,10 @@ h1{
 	background-color: #ffffff66;
 }
 .loginForm tr,td,th{
-	top: 30px;
     position: relative;
 }
 .loginBtn{
-    top: 50px;
+    top: 15px;
     left: 3%;
     width: 94%;
     position: relative;
