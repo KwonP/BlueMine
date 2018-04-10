@@ -3,10 +3,12 @@ package com.bluemine.www.dao;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.UserInfoMapper;
 import com.bluemine.www.vo.UserInfo;
 
+@Repository
 public class UserInfoDAO implements UserInfoMapper{
 
 	@Inject

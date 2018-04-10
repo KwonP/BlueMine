@@ -20,7 +20,7 @@ import com.bluemine.www.vo.UserInfo;
 @Controller
 public class UserInfoController {
 
-	@Inject
+	@Autowired
 	UserInfoDAO uDao;
 	
 	@ResponseBody
