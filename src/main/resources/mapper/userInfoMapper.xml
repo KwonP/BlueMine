@@ -68,7 +68,7 @@ WHERE
 	userId = #{userId}
 </update>
 <select id="login" resultType="string">
-SELECT id
+SELECT userId
 FROM UserInfo
 WHERE
 	email = #{email}

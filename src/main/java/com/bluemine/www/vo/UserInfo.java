@@ -20,6 +20,12 @@ public class UserInfo {
 		this.position = position;
 	}
 	
+	// 로그인을 위한 생성자
+	public UserInfo(String email,String password){
+		this.email = email;
+		this.password = password;
+	}
+	
 	public UserInfo() {
 		super();
 	}
