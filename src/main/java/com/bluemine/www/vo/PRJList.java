@@ -6,12 +6,18 @@ public class PRJList {
 	private String planner;//기획자
 	private String access_Control;//0 혹은 1만 들어오며 0=private 1=public
 	private String inviteCode;//초대코드
-	public PRJList(String prj_Name, String planner, String access_Control, String inviteCode) {
+	private String background;//배경 색 ex)#ffffff
+	
+	
+	public PRJList(int prj_Num, String prj_Name, String planner, String access_Control, String inviteCode,
+			String background) {
 		super();
+		this.prj_Num = prj_Num;
 		this.prj_Name = prj_Name;
 		this.planner = planner;
 		this.access_Control = access_Control;
 		this.inviteCode = inviteCode;
+		this.background = background;
 	}
 	public PRJList() {
 		super();
@@ -47,12 +53,18 @@ public class PRJList {
 	public void setPrj_Num(int prj_Num) {
 		this.prj_Num = prj_Num;
 	}
+	public String getBackground() {
+		return background;
+	}
+	public void setBackground(String background) {
+		this.background = background;
+	}
 	@Override
 	public String toString() {
 		return "PRJList [prj_Num=" + prj_Num + ", prj_Name=" + prj_Name + ", planner=" + planner + ", access_Control="
-				+ access_Control + ", inviteCode=" + inviteCode + "]";
+				+ access_Control + ", inviteCode=" + inviteCode + ", background=" + background + "]";
 	}
-	
+
 	
 	
 }

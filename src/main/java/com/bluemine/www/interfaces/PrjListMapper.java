@@ -9,7 +9,7 @@ public interface PrjListMapper {
 	//프로젝트 생성
 	public int makePrj(PRJList list);
 	
-	//프로젝트 수정
+	//프로젝트 수정,배경도 포함
 	public int updatePrj(PRJList list);
 	
 	//프로젝트 삭제

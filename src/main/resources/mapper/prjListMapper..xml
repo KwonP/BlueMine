@@ -15,12 +15,18 @@ INSERT INTO PRJLIST
     ,PLANNER
     ,ACCESS_CONTROL
     ,INVITECODE
+    <if test="background != null">
+    ,BACKGROUND
+    </if>
 )VALUES(
     PL_SEQ.NEXTVAL
     ,#{prj_Name}
     ,#{planner}
     ,#{access_Control}
     ,#{inviteCode}
+    <if test="background != null">
+    ,#{background}
+    </if>
 );
 </insert>
 
@@ -37,6 +43,9 @@ set
 </if>
 <if test="access_Control != null">
 ,ACCESS_CONTROL = #{access_Control}
+</if>
+<if test="background != null">
+,BACKGROUND = #{background}
 </if>
 where
 	PRJ_NUM = #{prj_Num}
@@ -59,6 +68,7 @@ Select
     ,planner
     ,access_Control
     ,inviteCode
+    ,background
 FROM
     PRJLIST as pl
     ,(
@@ -84,6 +94,7 @@ Select
     ,planner
     ,access_Control
     ,inviteCode
+    ,background
 FROM
     PRJLIST
 WHERE
