@@ -20,3 +20,51 @@ html, body { height:100%; overflow:hidden; margin: 0; }
 	background-image: url('../img/background5.jpg') ;
 	background-size: cover;
 }
+.menuDiv{
+    top: -10px;
+    height: 60px;
+    position: relative;
+    margin-top: 0px;
+    margin-left: -65px;
+    color: aliceblue;
+	font-size: 30px;
+    font-family: 'concert one';
+    background-color: #52585ede;
+}
+.menuDiv ul li{
+	list-style: none;
+	float: left;
+	line-height: 30px;
+	text-align: center;
+	margin-top: 10px;
+}
+.menu {
+	width: 150px;
+}
+.menu:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.glyphicon-th-list:before{
+    content: "\e012";
+    left: 985px;
+    position: absolute;
+    top: -25px;
+}
+.profileBar{
+    margin: 0;
+    width: 290px;
+	height: 100%;
+    top: 0;
+    right: -290px;
+    position: absolute;
+    background-color: #ffe4cd;
+}
+#proBtn{
+	cursor: pointer;
+	font-size: 30px;
+    right: 40px;
+    color: #9E9E9E;
+    text-shadow: 3px 3px 2px black;
+}
+/* 여기위에까지는 상단 메뉴 [menu페이지 모두 고정] */
