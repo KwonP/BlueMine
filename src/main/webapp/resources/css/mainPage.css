@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+html, body { height:100%; overflow:hidden; margin: 0; }
+.wrap{
+    width: 100%;
+    height: 100%;
+    z-index:1;
+	position:relative;
+	overflow: hidden;
+
+}
+.wrap:after{
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	filter: blur(3px);
+	z-index:-1;
+	content:"";
+	position:absolute;
+	background-image: url('../img/background5.jpg') ;
+	background-size: cover;
+}
