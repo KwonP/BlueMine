@@ -2,7 +2,6 @@
  * 
  */
 $(document).ready(function(){
-	alert('적용');
 	var hei =  $(window).height() / 2;
 	$('#proBtn').css('top',hei);
 	$('#proBtn').click(togglePro);

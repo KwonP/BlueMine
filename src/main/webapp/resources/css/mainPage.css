@@ -58,7 +58,7 @@ html, body { height:100%; overflow:hidden; margin: 0; }
     top: 0;
     right: -290px;
     position: absolute;
-    background-color: #ffe4cd;
+    background-color: #18191adb;
 }
 #proBtn{
 	cursor: pointer;
