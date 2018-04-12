@@ -44,6 +44,15 @@ SELECT
 	,depNameKr
 	,typeAlias
 FROM CP_DEPARTMENT
+--특정 부서만 조회
+SELECT
+    depNameEn
+    ,depNameKr
+    ,typeAlias
+FROM
+    CP_DEPARTMENT
+WHERE
+    depNum=#{depNum}
 --부서 삭제
 DELETE
 FROM CP_DEPARTMENT
@@ -90,12 +99,18 @@ INSERT INTO PRJLIST
     ,PLANNER
     ,ACCESS_CONTROL
     ,INVITECODE
+    <if test='background != null'>
+    ,BACKGROUND
+    </if>
 )VALUES(
     PL_SEQ.NEXTVAL
     ,#{prj_Name}
     ,#{planner}
     ,#{access_Control}
     ,#{inviteCode}
+    <if test='background != null'>
+    ,#{background}
+    </if>
 );
 
 --회원의 프로젝트 참여현황 추가
@@ -169,12 +184,6 @@ INSERT INTO GP_WORK(
     ,DIRECTOR
     ,START_DATE
     ,DEADLINE
-    <if test="RSTART_DATE != null">
-    ,RSTART_DATE
-    </if>
-    <if test="RDEADLINE != null">
-    ,RDEADLINE
-    </if>
     ,GP_PRI
     <if test="PROGRESS != null">
     ,PROGRESS
@@ -186,13 +195,6 @@ INSERT INTO GP_WORK(
     ,#{gs_Content}
     ,#{direcotor}
     ,#{start_Date}
-    ,#{deadLine}
-    <if test="rStart_Date != null">
-    ,#{rStart_Date}
-    </if>
-    <if test="rDeadLine != null">
-    ,#{rDeadLine}
-    </if>
     ,#{gp_Pri}
     <if test="PROGRESS != null">
     ,#{progress}
@@ -207,12 +209,6 @@ INSERT INTO PS_WORK(
     ,MEMBERID
     ,START_DATE
     ,DEADLINE
-    <if test='rStart_Date != null'>
-    ,RSTART_DATE
-    </if>
-    <if test='rDeadLine != null'>
-    ,RDEADLINE
-    </if>
 )VALUES(
     PS_SEQ.NEXTVAL
     ,#{PS_NAME}
@@ -220,12 +216,6 @@ INSERT INTO PS_WORK(
     ,#{MEMBERID}
     ,#{START_DATE}
     ,#{DEADLINE}
-    <if test='rStart_Date != null'>
-    ,#{rStart_Date}
-    </if>
-    <if test='rDeadLine != null'>
-    ,#{rDeadLine}
-    </if>
 );
 
 --체크리스트 생성
@@ -260,12 +250,6 @@ Select
     ,memberId
     ,start_Date
     ,deadLine
-    <if test='rStart_Date != null'>
-    ,rStart_Date
-    </if>
-    <if test='rDeadLine != null'>
-    ,rDeadLine
-    </if>
 FROM
     PS_WORK
 Where
