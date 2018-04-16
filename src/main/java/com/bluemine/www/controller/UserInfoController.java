@@ -75,9 +75,5 @@ public class UserInfoController {
 		return result;
 	}
 	
-	// 메인페이지로 이동
-	@RequestMapping("/goToMain")
-	public String goToMail(){
-		return "inside/mainPage";
-	}
+	
 }

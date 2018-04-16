@@ -2,22 +2,18 @@
  * 
  */
 $(document).ready(function(){
-	var hei =  $(window).height() / 2;
-	$('#proBtn').css('top',hei);
-	$('#proBtn').click(togglePro);
-	$('.menu').click(menuPage);
+	$('.companyInfo').click(menuPage);
+	$('#schedule').click(mySchedule);
+	$('.panel-primary').click(projectMain);
 });
-function togglePro(){
-	var getRight = $('.profileBar').css('right').replace(/[^0-9]/g, "");
-	if (getRight == 290) {
-		$('.profileBar').animate({right : '0px'},500);
-		$('#proBtn').attr('class','glyphicon glyphicon-chevron-right');
-	}else {
-		$('.profileBar').animate({right : '-290px'},500);
-		$('#proBtn').attr('class','glyphicon glyphicon-chevron-left');
-	}
-}
 function menuPage(){
 	var menuPage = $(this).attr('value');
 	location.href = menuPage;
+}
+function mySchedule(){
+	location.href="mySchedule/main";
+}
+function projectMain(){
+	var getNum = $(this).attr('value');
+	location.href = "project/sendNum?prj_Num="+getNum;
 }

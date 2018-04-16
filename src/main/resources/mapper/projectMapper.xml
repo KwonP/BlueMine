@@ -62,27 +62,14 @@ where
 
 <!-- 프로젝트 목록(참여중인 프로젝트) 생성된 순 -->
 <select id="getPrjList" resultType="prjList">
-Select
-    prj_Num
-    ,prj_Name
-    ,planner
-    ,access_Control
-    ,inviteCode
-    ,background
-FROM
-    PRJLIST as pl
-    ,(
-        select prj_Num
-          from USERINFO as ui
-          ,MATCHPRJ as pj
-         where 
-            ui.USERID =#{USERID}
-            AND
-            pj.USERID = ui.USERID
-    ) as re
-Where
-    pl.prj_Num = re.prj_Num
-ORDER BY prj_Num
+Select pl.prj_Num, prj_Name, planner, access_Control, invite_Code, background
+FROM PRJList pl,
+	(SELECT pj.prj_Num
+ 	 FROM UserInfo ui, MatchPRJ pj
+ 	 WHERE ui.userId=#{userId} AND pj.memberId = ui.userId
+ 	 ) re
+ WHERE pl.prj_Num = re.prj_Num
+ ORDER BY pl.prj_Num
 </select>
 
 
