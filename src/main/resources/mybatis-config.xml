@@ -23,6 +23,6 @@
 		<mapper resource="mapper/positionMapper.xml"/>
 		<mapper resource="mapper/horseHeadMapper.xml"/>
 		<mapper resource="mapper/groupMapper.xml"/>
-		<mapper resource="mapper/ProjectMapper.xml"/>
+		<mapper resource="mapper/projectMapper.xml"/>
 	</mappers> 
 </configuration>
