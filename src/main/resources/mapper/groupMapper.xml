@@ -4,8 +4,46 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 프로젝트 처리 SQL -->
-<mapper namespace="com.bluemine.www.interfaces..GP_WorkMapper">
-	<!-- 그룹 스케줄 생성 -->
+<mapper namespace="com.bluemine.www.interfaces.groupMapper">
+
+<!-- 그룹 생성 -->
+<insert id="addGroup" parameterType="group">
+INSERT INTO PJ_GROUP(
+    GP_NUM
+    ,PRJ_NUM
+    ,GP_NAME
+)VALUES(
+    GP_SEQ.NEXTVAL
+    ,#{prj_Num}
+    ,#{gp_Name}
+);
+</insert>
+
+<!-- 그룹 이름 업데이트 -->
+<update id="updateGroup" parameterType="group">
+UPDATE
+	PJ_GROUP
+set
+<if test="prj_Name != null">
+,GP_NAME = #{gp_Name}
+</if>
+where
+	gp_NUM = #{gp_Num}
+</update>
+
+<!-- 그룹 생성순으로 조회 -->
+<select id="getGpList">
+SELECT 
+	gp_Num
+	,prj_Num
+	,gp_Name
+FROM
+	group
+WHERE
+	prj_Num=#{prj_Num}
+ORDER BY gp_Num ASC
+</select>
+<!-- 그룹 스케줄 생성 -->
 	<insert id="insertGP_Work" parameterType="gpWork">
 		insert into gp_work (
 		gs_num,
@@ -76,5 +114,4 @@
 			<if test="sort=null">gs_num</if>
 		
 		</select>
-		
 </mapper>
