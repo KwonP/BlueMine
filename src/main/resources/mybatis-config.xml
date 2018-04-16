@@ -20,15 +20,10 @@
 	<mappers>
 		<mapper resource="mapper/userInfoMapper.xml"/>
 		<mapper resource="mapper/timeLineMapper.xml"/>
-		<mapper resource="mapper/ps_WorkMapper.xml"/>
-		<mapper resource="mapper/prjListMapper..xml"/>
 		<mapper resource="mapper/positionMapper.xml"/>
-		<mapper resource="mapper/matchPrjMapper.xml"/>
 		<mapper resource="mapper/horseHeadMapper.xml"/>
 		<mapper resource="mapper/groupMapper.xml"/>
-		<mapper resource="mapper/gp_WorkMapper.xml"/>
-		<mapper resource="mapper/fileInfoMapper.xml"/>
+		<mapper resource="mapper/ProjectMapper.xml"/>
 		<mapper resource="mapper/departmentMapper.xml"/>
-		<mapper resource="mapper/ckListMapper.xml"/>
 	</mappers> 
 </configuration>
