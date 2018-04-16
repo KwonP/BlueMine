@@ -17,7 +17,7 @@ public interface groupMapper {
 	// 그룹 스케줄 생성
 	public int insertGP_Work(GP_Work gpw);
 	// 그룹 스케줄 수정
-	public int updateGP_Work(GP_Work qpw);
+	public int updateGP_Work(GP_Work gpw);
 	// 그룹 스케줄 삭제
 	public int deleteGP_Work(GP_Work gpw);
 	// 그룹 스케줄 목록

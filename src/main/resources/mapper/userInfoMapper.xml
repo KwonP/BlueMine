@@ -28,12 +28,12 @@ INSERT INTO USERINFO(
 	</if>
 );
 </insert>
-<select id="emailCheck" resultType="string">
+<select id="emailCheck" resultType="String">
  SELECT email
  FROM UserInfo
  WHERE email = #{email}
  </select>
- <select id="findPw" resultType="string">
+ <select id="findPw" resultType="String">
  SELECT password
  FROM UserInfo
  WHERE email = #{email}
@@ -100,7 +100,7 @@ WHERE password = #{password}
 	</insert>
 	
 	<!-- 개인스케줄 조회 예상 시작일 순-->
-	<select id="getPsWList" parameterType="string" resultType="psWork">
+	<select id="getPsWList" parameterType="String" resultType="psWork">
 	Select
 	    ps_Name
 	    ,ps_Content
@@ -160,7 +160,7 @@ WHERE password = #{password}
 		cl_Num=#{cl_Num}
 	</delete>
 	<!-- 체크리스트 가져오기 -->
-	<select id="getCKList" resultType="ckList">
+	<select id="getCKList" resultType="ckList" parameterType="String">
 	SELECT
 	    CL_NUM
 	    ,CL_NAME

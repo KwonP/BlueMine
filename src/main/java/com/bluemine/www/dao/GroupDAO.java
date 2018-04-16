@@ -8,10 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 
 import com.bluemine.www.interfaces.groupMapper;
-import com.bluemine.www.vo.CKList;
 import com.bluemine.www.vo.GP_Work;
 import com.bluemine.www.vo.PJ_Group;
-import com.bluemine.www.vo.PS_Work;
 
 //개인,그룹스케줄 및 체크리스트 관리
 public class GroupDAO implements groupMapper {
@@ -21,20 +19,23 @@ public class GroupDAO implements groupMapper {
 	//그룹생성
 	@Override
 	public int addGroup(PJ_Group group) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		result=session.getMapper(groupMapper.class).addGroup(group);
+		return result;
 	}
 	//그룹수정
 	@Override
 	public int updateGroup(PJ_Group group) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		result=session.getMapper(groupMapper.class).updateGroup(group);
+		return result;
 	}
 	//그룹리스트 가져오기
 	@Override
 	public ArrayList<PJ_Group> getGpList(int prj_Num) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<PJ_Group> list=new ArrayList<>();
+		list=session.getMapper(groupMapper.class).getGpList(prj_Num);
+		return list;
 	}
 	// 그룹 스케줄 생성
 	@Override
