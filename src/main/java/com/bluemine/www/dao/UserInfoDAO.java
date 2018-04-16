@@ -1,11 +1,15 @@
 package com.bluemine.www.dao;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.UserInfoMapper;
+import com.bluemine.www.vo.CKList;
+import com.bluemine.www.vo.PS_Work;
 import com.bluemine.www.vo.UserInfo;
 
 @Repository
@@ -57,6 +61,42 @@ public class UserInfoDAO implements UserInfoMapper{
 	@Override
 	public int leave(String password) {
 		return session.getMapper(UserInfoMapper.class).leave(password);
+	}
+
+	@Override
+	public int addPsWork(PS_Work work) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<PS_Work> getPsWList(String memberId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int addCkList(CKList cl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateCkList(CKList cl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delCkList(CKList cl) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<CKList> getCKList(String memberId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

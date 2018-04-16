@@ -5,8 +5,8 @@
 
 <!-- 프로젝트 처리 SQL -->
 <mapper namespace="com.bluemine.www.interfaces.TimeLineMapper">
-	<!-- 타임 라인 글 추가 -->
-	<insert id="insertTimeLine" parameterType="timeLine">
+<!-- 타임 라인 글 추가 -->
+<insert id="insertTimeLine" parameterType="timeLine">
 insert into timeline(
 	tl_num
 	, gp_num
@@ -60,4 +60,28 @@ set
 where
 	tl_num=#{tl_Num}
 </update>
+<!-- 파일 업로드 -->
+<insert id="addFile" parameterType="fileInfo">
+INSERT INTO FILEINFO(
+    TL_NUM,
+    ORIGINALFILE,
+    SAVEFILE
+)VALUES(
+    #{tl_Num}
+    ,#{originalFile}
+    ,#{svaeFile}
+);
+</insert>
+<!-- 파일 목록 -->
+<select id="getFileList" resultType="fileInfo">
+select
+    tl_Num
+    ,originalFile
+    ,saveFile
+from
+    FILEINFO
+Where
+    tl_Num=#{tl_Num}
+order by saveFile
+</select>
 </mapper>

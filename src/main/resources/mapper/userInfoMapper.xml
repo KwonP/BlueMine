@@ -80,4 +80,96 @@ DELETE
 FROM UserInfo
 WHERE password = #{password}
 </delete>
+<!-- 개인스케줄 추가 -->
+	<insert id="addPsWork" parameterType="psWork">
+	INSERT INTO PS_WORK(
+	    PS_NUM
+	    ,PS_NAME
+	    ,PS_CONTENT
+	    ,MEMBERID
+	    ,START_DATE
+	    ,DEADLINE
+	)VALUES(
+	    PS_SEQ.NEXTVAL
+	    ,#{ps_Name}
+	    ,#{ps_Content}
+	    ,#{memberId}
+	    ,#{start_Date}
+	    ,#{deadLine}
+	);
+	</insert>
+	
+	<!-- 개인스케줄 조회 예상 시작일 순-->
+	<select id="getPsWList" parameterType="string" resultType="psWork">
+	Select
+	    ps_Name
+	    ,ps_Content
+	    ,memberId
+	    ,start_Date
+	    ,deadLine
+	FROM
+	    PS_WORK
+	Where
+	    memberId = #{memberId}
+	Order by start_Date ASC
+	</select>
+	<!-- 체크리스트 추가 -->
+	<insert id="addCkList" parameterType="ckList">
+	 INSERT INTO CKLIST(
+	    CL_NUM
+	    ,CL_NAME
+	    ,MEMBERID
+	    ,CK_CONTENT
+	    ,LOOPS
+	)VALUES(
+	    CL_SEQ.NEXTVAL
+	    ,#{cl_Name}
+	    ,#{memberId}
+	    ,#{ck_content}
+	    ,#{loops}
+	);
+	</insert>
+	<!-- 체크리스트 업데이트 -->
+	<update id="updateCkList" parameterType="ckList">
+	UPDATE
+		CKLIST
+	SET
+		<if test="cl_Name != null">
+		cl_Name=#{cl_Name}
+		</if>
+		<if test="cl_Content != null">
+		cl_Content=#{cl_Content}
+		</if>
+		<if test="cl_State != null">
+		cl_State=#{cl_State}
+		</if>
+		<if test="loops != null">
+		loops=#{loops}
+		</if>
+	WHERE
+		memberId=#{memberId}
+	</update>
+	
+	<!-- 체크리스트 삭제 -->
+	<delete id="delCkList" parameterType="ckList">
+	DLELTE
+	FROM CKLIST
+	WHERE
+		memberId=#{memberId}
+		AND
+		cl_Num=#{cl_Num}
+	</delete>
+	<!-- 체크리스트 가져오기 -->
+	<select id="getCKList" resultType="ckList">
+	SELECT
+	    CL_NUM
+	    ,CL_NAME
+	    ,MEMBERID
+	    ,CK_CONTENT
+	    ,LOOPS
+	FROM   
+	    CKLIST
+	WHERE
+	    memberId=#{memberId}
+	</select>
 </mapper>

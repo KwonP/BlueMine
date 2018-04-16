@@ -101,5 +101,15 @@ WHERE
 	inviteCode = 1
 ORDER BY prj_Num
 </select>
+<!-- 회원, 프로젝트 관계 세팅 -->
+<insert id="setRelation" parameterType="matchPrj">
+INSERT INTO(
+	MEMBERID
+	,PRJ_NUM
+)VALUES(
+	#{memberId}
+	,#{prjNum}
+)
+</insert>
 
 </mapper>

@@ -2,6 +2,7 @@ package com.bluemine.www.interfaces;
 
 import java.util.ArrayList;
 
+import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.TimeLine;
 
 public interface TimeLineMapper {
@@ -14,4 +15,8 @@ public ArrayList<TimeLine> getTimeLineList(int gp_Num);
 public int deleteTimeLine(int tl_Num);
 //타임 라인 글 수정
 public int updateTimeLine(TimeLine t);
+//파일 업로드
+public int addFile(FileInfo file);
+//파일 목록
+public ArrayList<FileInfo> getFileList(int tl_Num);
 }

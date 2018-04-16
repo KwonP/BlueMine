@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 
 import com.bluemine.www.interfaces.TimeLineMapper;
+import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.TimeLine;
 
 public class TimeLineDAO implements TimeLineMapper{
@@ -37,6 +38,18 @@ public class TimeLineDAO implements TimeLineMapper{
 	public int updateTimeLine(TimeLine t) {
 		int result = session.getMapper(TimeLineMapper.class).updateTimeLine(t);
 		return result;
+	}
+	//파일 업로드
+	@Override
+	public int addFile(FileInfo file) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	//파일리스트
+	@Override
+	public ArrayList<FileInfo> getFileList(int tl_Num) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

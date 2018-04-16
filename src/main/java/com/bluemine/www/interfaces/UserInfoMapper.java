@@ -1,5 +1,9 @@
 package com.bluemine.www.interfaces;
 
+import java.util.ArrayList;
+
+import com.bluemine.www.vo.CKList;
+import com.bluemine.www.vo.PS_Work;
 import com.bluemine.www.vo.UserInfo;
 
 public interface UserInfoMapper {
@@ -22,4 +26,16 @@ public interface UserInfoMapper {
 		public String login(UserInfo user);
 		// 탈퇴
 		public int leave(String password);
+		//개인 스케줄 추가
+		public int addPsWork(PS_Work work);
+		//개인 스케줄 조회(시작일순)
+		public ArrayList<PS_Work> getPsWList(String memberId);
+		//체크리스트 추가
+		public int addCkList(CKList cl);
+		//체크리스트 수정
+		public int updateCkList(CKList cl);
+		//체크리스트 삭제
+		public int delCkList(CKList cl);
+		//체크리스트 조회
+		public ArrayList<CKList> getCKList(String memberId);
 }
