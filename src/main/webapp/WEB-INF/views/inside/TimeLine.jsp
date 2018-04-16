@@ -22,7 +22,7 @@
 			<div id="TimeLineMiddle">
 				<div id="TimeLineLeft">TimeLineLeft</div>
 				<div id="TimeLineMain">TimeLineMain</div>
-				<div id="TimeLineRight">TimeLineRight</div>
+				
 			</div>
 			<div id="TimeLineBottom">TimeLineBottom</div>
 		</div>
