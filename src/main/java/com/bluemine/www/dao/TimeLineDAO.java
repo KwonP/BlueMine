@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.TimeLineMapper;
 import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.TimeLine;
 
+@Repository
 public class TimeLineDAO implements TimeLineMapper{
 
 	@Inject

@@ -17,7 +17,7 @@ public interface ProjectMapper {
 	public int deletePrj(PRJList list);
 	
 	//프로젝트 목록(참여중인 프로젝트) 생성된 순
-	public ArrayList<PRJList> getPrjList();
+	public ArrayList<PRJList> getPrjList(String userId);
 	
 	//프로젝트 목록(접근 권한 public)
 	public ArrayList<PRJList> getPPrjList();

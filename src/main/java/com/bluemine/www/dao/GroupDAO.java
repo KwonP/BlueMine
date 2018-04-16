@@ -6,12 +6,14 @@ import java.util.HashMap;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.groupMapper;
 import com.bluemine.www.vo.GP_Work;
 import com.bluemine.www.vo.PJ_Group;
 
 //개인,그룹스케줄 및 체크리스트 관리
+@Repository
 public class GroupDAO implements groupMapper {
 	@Inject
 	SqlSession session;

@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.ProjectMapper;
 import com.bluemine.www.vo.PRJList;
 
+@Repository
 public class ProjectDAO{
 	
 	@Inject
@@ -33,9 +35,9 @@ public class ProjectDAO{
 		return result;
 	}
 	//프로젝트 목록(참여중인 프로젝트) 생성된 순
-	public ArrayList<PRJList> getPrjList() {
+	public ArrayList<PRJList> getPrjList(String userId) {
 		ArrayList<PRJList> list=new ArrayList<>();
-		list=session.getMapper(ProjectMapper.class).getPrjList();
+		list=session.getMapper(ProjectMapper.class).getPrjList(userId);
 		return list;
 	}
 	//프로젝트 목록(접근 권한 public)

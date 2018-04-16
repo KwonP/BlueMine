@@ -2,6 +2,7 @@ package com.bluemine.www.controller;
 
 import java.io.FileInputStream;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 import javax.servlet.ServletOutputStream;
@@ -15,7 +16,9 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bluemine.www.dao.ProjectDAO;
 import com.bluemine.www.dao.UserInfoDAO;
+import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.UserInfo;
 
 
@@ -24,10 +27,17 @@ public class MainPageController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MainPageController.class);
 
-	// 메인페이지로 이동
-		@RequestMapping("/goToMain")
-		public String goToMail(){
-			return "inside/mainPage";
+	@Inject
+	ProjectDAO prjDao;
+	
+	@RequestMapping("/goToMain")
+	public String goToMail(HttpSession session){
+		String getId = (String)session.getAttribute("loginId");
+		UserInfo user = uDao.getInfo(getId);
+		session.setAttribute("user", user);
+		ArrayList<PRJList> getList = prjDao.getPrjList(getId);
+		session.setAttribute("pro_list", getList);
+		return "inside/mainPage";
 	}
 		
 	@Inject

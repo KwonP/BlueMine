@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.PositionMapper;
 import com.bluemine.www.vo.CP_Department;
 import com.bluemine.www.vo.CP_Position;
 
+@Repository
 public class PositionDAO implements PositionMapper{
 
 	@Inject

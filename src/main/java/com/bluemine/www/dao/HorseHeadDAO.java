@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.horseHeadMapper;
 import com.bluemine.www.vo.HorseHead;
 
+@Repository
 public class HorseHeadDAO implements horseHeadMapper{
 
 	@Inject

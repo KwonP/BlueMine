@@ -39,9 +39,9 @@ INSERT INTO USERINFO(
  WHERE email = #{email}
  </select>
  <select id="getInfo" resultType="userInfo">
- SELECT UserId,email,name,originalFile,saveFile,cp.depnameKr,position
- FROM userInfo u,cp_department cp
- WHERE userid = #{userId} and u.department = cp.depNum;
+ SELECT userId,email,name,originalFile,saveFile,position
+ FROM userInfo
+ WHERE userId = #{userId}
  </select>
  <select id="getProfile" resultType="userInfo">
  SELECT originalFile,saveFile
