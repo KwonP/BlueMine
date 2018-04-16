@@ -3,7 +3,6 @@ package com.bluemine.www.controller;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;

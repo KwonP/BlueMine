@@ -3,7 +3,6 @@ package com.bluemine.www.interfaces;
 import java.util.ArrayList;
 
 import com.bluemine.www.vo.MatchPRJ;
-import com.bluemine.www.vo.PJ_Group;
 import com.bluemine.www.vo.PRJList;
 
 public interface ProjectMapper {

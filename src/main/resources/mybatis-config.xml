@@ -24,6 +24,5 @@
 		<mapper resource="mapper/horseHeadMapper.xml"/>
 		<mapper resource="mapper/groupMapper.xml"/>
 		<mapper resource="mapper/ProjectMapper.xml"/>
-		<mapper resource="mapper/departmentMapper.xml"/>
 	</mappers> 
 </configuration>
