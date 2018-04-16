@@ -42,14 +42,15 @@ public class TimeLineDAO implements TimeLineMapper{
 	//파일 업로드
 	@Override
 	public int addFile(FileInfo file) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = session.getMapper(TimeLineMapper.class).addFile(file);
+		return result;
 	}
 	//파일리스트
 	@Override
 	public ArrayList<FileInfo> getFileList(int tl_Num) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<FileInfo> list=new ArrayList<>();
+		list=session.getMapper(TimeLineMapper.class).getFileList(tl_Num);
+		return list;
 	}
 
 }
