@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+html{ height: 100%; }
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+.navbar-header {padding: 10px 15px; float: left;}
+.navbar-brand {font-size: 25px;}
+#profileImg{padding: 10px 0px 0px 0px;}
+#profileImg:hover{background-color: none;}
+#page-wrapper{margin: 0; height: 90%;}
+.companyInfo{
+	float: left;
+    height: 50px;
+    padding: 15px 15px;
+    line-height: 20px;
+    cursor: pointer;
+}
+/* 여기까지는 기본 틀 */

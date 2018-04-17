@@ -72,8 +72,6 @@ public class UserInfoController {
 		}
 		return result;
 	}
-	
-	
 	// 로그인
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -88,6 +86,16 @@ public class UserInfoController {
 		}
 		return result;
 	}
-	
+	//로그아웃
+	@RequestMapping(value="/logout")
+	public String logout(HttpSession session){
+		session.invalidate();
+		return "redirect:./";
+	}
+	//수정페이지로 이동
+	@RequestMapping(value="/profilePage")
+	public String prifilePage(){
+		return "inside/profilePage";
+	}
 	
 }
