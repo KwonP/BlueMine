@@ -6,7 +6,7 @@ import java.util.HashMap;
 import com.bluemine.www.vo.GP_Work;
 import com.bluemine.www.vo.PJ_Group;
 
-public interface groupMapper {
+public interface GroupMapper {
 
 	//그룹추가
 	public int addGroup(PJ_Group group);

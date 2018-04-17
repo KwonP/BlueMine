@@ -7,11 +7,11 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.bluemine.www.interfaces.horseHeadMapper;
+import com.bluemine.www.interfaces.HorseHeadMapper;
 import com.bluemine.www.vo.HorseHead;
 
 @Repository
-public class HorseHeadDAO implements horseHeadMapper{
+public class HorseHeadDAO implements HorseHeadMapper{
 
 	@Inject
 	SqlSession session;
@@ -20,7 +20,7 @@ public class HorseHeadDAO implements horseHeadMapper{
 	@Override
 	public int addHorseHead(HorseHead hoHead) {
 		int result=0;
-		result = session.getMapper(horseHeadMapper.class).addHorseHead(hoHead);
+		result = session.getMapper(HorseHeadMapper.class).addHorseHead(hoHead);
 		return result;
 	}
 
@@ -28,7 +28,7 @@ public class HorseHeadDAO implements horseHeadMapper{
 	@Override
 	public ArrayList<HorseHead> getAll() {
 		ArrayList<HorseHead> list = new ArrayList<>();
-		list = session.getMapper(horseHeadMapper.class).getAll();
+		list = session.getMapper(HorseHeadMapper.class).getAll();
 		return list;
 	}
 
@@ -36,7 +36,7 @@ public class HorseHeadDAO implements horseHeadMapper{
 	@Override
 	public ArrayList<HorseHead> getOneType(int tagType) {
 		ArrayList<HorseHead> list = new ArrayList<>();
-		list = session.getMapper(horseHeadMapper.class).getOneType(tagType);
+		list = session.getMapper(HorseHeadMapper.class).getOneType(tagType);
 		return list;
 	}
 

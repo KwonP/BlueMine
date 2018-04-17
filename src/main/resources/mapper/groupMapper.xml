@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 프로젝트 처리 SQL -->
-<mapper namespace="com.bluemine.www.interfaces.groupMapper">
+<mapper namespace="com.bluemine.www.interfaces.GroupMapper">
 
 <!-- 그룹 생성 -->
 <insert id="addGroup" parameterType="group">
@@ -24,6 +24,7 @@ INSERT INTO PJ_GROUP(
 UPDATE
 	PJ_GROUP
 set
+GP_Num = gp_Num
 <if test="prj_Name != null">
 ,GP_NAME = #{gp_Name}
 </if>
@@ -38,80 +39,85 @@ SELECT
 	,prj_Num
 	,gp_Name
 FROM
-	group
+	Pj_group
 WHERE
 	prj_Num=#{prj_Num}
 ORDER BY gp_Num ASC
 </select>
 <!-- 그룹 스케줄 생성 -->
-	<insert id="insertGP_Work" parameterType="gpWork">
-		insert into gp_work (
-		gs_num,
-		gs_name,
-		gp_num,
-		gs_content,
-		director,
-		start_date,
-		deadline,
-		gp_pri,
-		progress
-		)values(
-		gs_seq.nextval,
-		#{gs_Name},
-		#{gp_Num},
-		#{gs_Content},
-		#{director},
-		#{start_Date},
-		#{deadLine},
-		#{gp_Pri},
-		#{progress}
-		)
-	</insert>
-	<!-- 그룹 스케줄 수정 -->
-	<update id="updateGP_Work" parameterType="gpWork">
-		update gp_work
-		set
-		gp_num=gp_num
-		<if test="gs_Name!=null">
-			, gs_name=#{gs_Name}
-		</if>
-		<if test="gs_Content!=null">
-			, gs_content=#{gs_Content}
-		</if>
-		<if test="director!=null">
-			, director=#{director}
-		</if>
-		<if test="start_Date!=null">
-			, start_date=#{start_Date}
-		</if>
-		<if test="deadLine!=null">
-			, deadline=#{deadLine}
-		</if>
-		<if test="gp_Pri!=null">
-			, gp_pri=#{gp_Pri}
-		</if>
-		<if test="progress!=null">
-			, progress=#{progress}
-		</if>
-		where
-		gs_Num=#{value}
-	</update>
-	<!-- 그룹 스케줄 목록 ex) 디폴트 {'gs_Num':gs_Num, 'sort':null} 진행도순 {'gs_Num':gs_Num, 
-		'sort':'progress'} -->
-	<select id="getListGP_Work" parameterType="map" resultType="gpWork">
-			select gs_num
-			gs_name,
-			gp_num,
-			gs_content,
-			director,
-			start_date,
-			deadline,
-			gp_pri,
-			progress from gp_work
-			where gs_num=#{gs_num}
-			order by
-			<if test="sort!=null">#{sort}</if>
-			<if test="sort=null">gs_num</if>
-		
-		</select>
+<insert id="insertGP_Work" parameterType="gpWork">
+insert into gp_work (
+	gs_num,
+	gs_name,
+	gp_num,
+	gs_content,
+	director,
+	start_date,
+	deadline,
+	gp_pri,
+	progress
+)values(
+	gs_seq.nextval,
+	#{gs_Name},
+	#{gp_Num},
+	#{gs_Content},
+	#{director},
+	#{start_Date},
+	#{deadLine},
+	#{gp_Pri},
+	#{progress}
+)
+</insert>
+<!-- 그룹 스케줄 수정 -->
+<update id="updateGP_Work" parameterType="gpWork">
+update gp_work
+set
+	gp_num=gp_num
+	<if test="gs_Name!=null">
+	, gs_name=#{gs_Name}
+	</if>
+	<if test="gs_Content!=null">
+	, gs_content=#{gs_Content}
+	</if>
+	<if test="director!=null">
+	, director=#{director}
+	</if>
+	<if test="start_Date!=null">
+	, start_date=#{start_Date}
+	</if>
+	<if test="deadLine!=null">
+	, deadline=#{deadLine}
+	</if>
+	<if test="gp_Pri!=null">
+	, gp_pri=#{gp_Pri}
+	</if>
+	<if test="progress!=null">
+	, progress=#{progress}
+	</if>
+where
+	gs_Num=#{value}
+</update>
+<!-- 그룹 스케줄 목록 ex) 디폴트 {'gs_Num':gs_Num, 'sort':null} 
+진행도순 {'gs_Num':gs_Num, 	'sort':'progress'} -->
+<select id="getListGP_Work" parameterType="map" resultType="gpWork">
+select gs_num
+	gs_name,
+	gp_num,
+	gs_content,
+	director,
+	start_date,
+	deadline,
+	gp_pri,
+	progress 
+from gp_work
+where
+	gs_num=#{gs_num}
+order by
+	<if test="sort!=null">
+	#{sort}
+	</if>
+	<if test="sort=null">
+	gs_num
+	</if>		
+</select>
 </mapper>

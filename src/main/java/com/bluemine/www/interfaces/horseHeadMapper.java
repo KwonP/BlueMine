@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.bluemine.www.vo.HorseHead;
 
-public interface horseHeadMapper {
+public interface HorseHeadMapper {
 
 	//말머리 추가
 	public int addHorseHead(HorseHead hoHead);
