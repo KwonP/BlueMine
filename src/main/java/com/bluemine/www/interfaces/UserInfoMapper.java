@@ -3,12 +3,14 @@ package com.bluemine.www.interfaces;
 import java.util.ArrayList;
 
 import com.bluemine.www.vo.CKList;
+import com.bluemine.www.vo.CP_Department;
+import com.bluemine.www.vo.CP_Position;
 import com.bluemine.www.vo.PS_Work;
 import com.bluemine.www.vo.UserInfo;
 
 public interface UserInfoMapper {
 	
-	// 가입
+		// 가입
 		public int join(UserInfo user);
 		// 이메일 중복체크
 		public String emailCheck(String email);
@@ -38,4 +40,8 @@ public interface UserInfoMapper {
 		public int delCkList(CKList cl);
 		//체크리스트 조회
 		public ArrayList<CKList> getCKList(String memberId);
+		// 부서명 불러오기
+		public ArrayList<CP_Department> getDepartmentList();
+		// 직급 불러오기
+		public ArrayList<CP_Position> getPositionList();
 }

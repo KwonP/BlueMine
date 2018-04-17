@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.UserInfoMapper;
 import com.bluemine.www.vo.CKList;
+import com.bluemine.www.vo.CP_Department;
+import com.bluemine.www.vo.CP_Position;
 import com.bluemine.www.vo.PS_Work;
 import com.bluemine.www.vo.UserInfo;
 
@@ -103,6 +105,16 @@ public class UserInfoDAO implements UserInfoMapper{
 		ArrayList<CKList> list=new ArrayList<>();
 		list=session.getMapper(UserInfoMapper.class).getCKList(memberId);
 		return list;
+	}
+
+	@Override
+	public ArrayList<CP_Department> getDepartmentList() {
+		return session.getMapper(UserInfoMapper.class).getDepartmentList();
+	}
+
+	@Override
+	public ArrayList<CP_Position> getPositionList() {
+		return session.getMapper(UserInfoMapper.class).getPositionList();
 	}
 
 }
