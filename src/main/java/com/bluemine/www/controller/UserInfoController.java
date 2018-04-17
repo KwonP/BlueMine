@@ -60,6 +60,16 @@ public class UserInfoController {
 		return code;
 	}
 	
+	// 회원가입
+	@ResponseBody
+	@RequestMapping(value="/join", method = RequestMethod.POST)
+	public String join(UserInfo user, String alias){
+		System.out.println(user);
+		System.out.println(alias);
+		return null;
+	}
+	
+	
 	// 로그인
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
