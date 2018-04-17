@@ -66,16 +66,16 @@
 			  <table class="joinForm">
 			  	<tr>
 			  	  <td>E-mail : </td>
-			  	  <td><input type="text" name="email" id="email" value="" readonly="readonly"></td>
+			  	  <td><input type="text" id="email" value="" readonly="readonly"></td>
 			  	  <td><a onclick="another();" class="another">다른 이메일 고르기</a></td>
 			  	</tr>  
 				<tr>
 				  <td>Name ： </td>
-				  <td><input type="text" name="name" id="name"></td>
+				  <td><input type="text" id="name"></td>
 				</tr>
 				<tr>
 				  <td>Password ： </td>
-				  <td><input type="password" name="password" id="password"></td>
+				  <td><input type="password" id="password"></td>
 				</tr>
 				<tr>
 				  <td>Password ： <span>(check)</span></td>
@@ -94,7 +94,7 @@
 				<tr>
 				  <td>Position ：</td>
 				   <td>
-				  	<select id="position">
+				  	<select id="position"> 
 				  	  <c:forEach items="${position}" var="position">
 				  	  	<option class="options">${position.positionName}</option>
 				  	  </c:forEach>
@@ -102,7 +102,7 @@
 				  </td>
 				</tr>
 				<tr style="text-align: center;">
-				  <td colspan="3"><button id="joinUser">Join</button></td>
+				  <td colspan="3"><a onclick="joinUser()">Join</a></td>
 				</tr>
 			  </table>
 			 </form>

@@ -6,7 +6,6 @@ $(document).ready(function() {
     animate({top: '50%', marginTop: '-255px',opacity: 1}, 1500);
     $('.selection').css({top: '250px',opacity: 0}).
     animate({top: '50%',marginTop: '-100px',opacity: 1}, 1500);
-    $('#joinUser').click(joinUser);
   });
 // selection 창으로 이동
 function moveL(){
@@ -162,15 +161,14 @@ function joinUser(){
 	}
 	if (password != passwordC) {
 		alert('패스워드가 맞지 않습니다.');
-		return;
+		return ;
 	}
-	
-	var user = $('form[name=join]').serialize();
-	
+
 	$.ajax({
 		url : 'join',
 		type : 'post',
-		data : {user : user, alias : alias},
+		data : {email:email, name:name, password:password, department:department,
+				position:position,alias:alias},
 		success : function(result){
 			if (result == 'ok') {
 				alert('가입이 완료되었습니다 !');
@@ -180,7 +178,7 @@ function joinUser(){
 		error : function(){
 			alert('서버 오류');
 		}
-	})
+	});
 }
 
 // 로그인

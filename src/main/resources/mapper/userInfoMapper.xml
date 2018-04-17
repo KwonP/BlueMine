@@ -11,8 +11,10 @@ INSERT INTO USERINFO(
 	, password
 	, department
 	, position
-	<if test="originalFile != null AND saveFile != null">
+	<if test="originalFile != null">
 	, originalFile
+	</if>
+	<if test="saveFile != null">
 	, saveFile
 	</if>
 )VALUES(
@@ -22,9 +24,11 @@ INSERT INTO USERINFO(
 	, #{password}
 	, #{department}
 	, #{position}
-	<if test="originalFile != null AND svaeFile != null">
+	<if test="originalFile != null">
 	, #{originalFile}
-	, #{svaeFile}
+	</if>
+	<if test=" saveFile != null">
+	, #{saveFile}
 	</if>
 )
 </insert>
