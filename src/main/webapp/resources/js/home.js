@@ -6,6 +6,7 @@ $(document).ready(function() {
     animate({top: '50%', marginTop: '-255px',opacity: 1}, 1500);
     $('.selection').css({top: '250px',opacity: 0}).
     animate({top: '50%',marginTop: '-100px',opacity: 1}, 1500);
+    $('#joinUser').click(joinUser);
   });
 // selection 창으로 이동
 function moveL(){
@@ -141,6 +142,47 @@ function another(){
 	$('.joinFormDiv').fadeOut(1000);
 	$('#code').removeAttr('value');
 }
+// 회원가입 실행
+function joinUser(){
+	var email = $('#email').val();
+	var name = $('#name').val();
+	var password = $('#password').val();
+	var passwordC = $('#passwordC').val();
+	var department = $('#department option:selected').text();
+	var alias = $('#department option:selected').val();
+	var position = $('#position option:selected').text();
+	
+	if (name == "") {
+		alert('이름을 입력해 주세요.');
+		return;
+	}
+	if (password == "") {
+		alert('패스워드를 입력해 주세요.');
+		return;
+	}
+	if (password != passwordC) {
+		alert('패스워드가 맞지 않습니다.');
+		return;
+	}
+	
+	var user = $('form[name=join]').serialize();
+	
+	$.ajax({
+		url : 'join',
+		type : 'post',
+		data : {user : user, alias : alias},
+		success : function(result){
+			if (result == 'ok') {
+				alert('가입이 완료되었습니다 !');
+				reload();
+			}
+		},
+		error : function(){
+			alert('서버 오류');
+		}
+	})
+}
+
 // 로그인
 function login(){
 	var email = document.getElementById('LoginEmail').value;

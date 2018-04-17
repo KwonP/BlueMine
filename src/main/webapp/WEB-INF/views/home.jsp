@@ -6,8 +6,8 @@
 <head>
 	<title>Home</title>
 	<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
-	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
-	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<link href="resources/templet/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet"> <!-- 구글 Font -->
 	<link href="resources/css/home.css" rel="stylesheet">
 	<script type="text/javascript" src="resources/js/home.js"></script>
@@ -62,6 +62,7 @@
 		
 			<!-- Show the join form step2-->
 			<div class="joinFormDiv">
+			 <form name="join">
 			  <table class="joinForm">
 			  	<tr>
 			  	  <td>E-mail : </td>
@@ -77,24 +78,34 @@
 				  <td><input type="password" name="password" id="password"></td>
 				</tr>
 				<tr>
+				  <td>Password ： <span>(check)</span></td>
+				  <td><input type="password" id="passwordC"></td>
+				</tr>
+				<tr>
 				  <td> Department ： </td>
 				  <td>
-				  	<select>
-				  		<option>marketing</option>
-				  		<option>test</option>
+				  	<select id="department">
+				  	  <c:forEach var="dep" items="${dep_list}">
+				  	  	<option class="options" value="${dep.typeAlias}" selected="selected">${dep.depNameKr}</option>
+				  	  </c:forEach>
 				  	</select>
 				  </td>
 				</tr>
 				<tr>
 				  <td>Position ：</td>
-				  <td>
-				  	<select>
-				  		<option>staff</option>
-				  		<option>boss</option>
+				   <td>
+				  	<select id="position">
+				  	  <c:forEach items="${position}" var="position">
+				  	  	<option class="options">${position.positionName}</option>
+				  	  </c:forEach>
 				  	</select>
 				  </td>
 				</tr>
+				<tr style="text-align: center;">
+				  <td colspan="3"><button id="joinUser">Join</button></td>
+				</tr>
 			  </table>
+			 </form>
 			</div>
         </div>
         

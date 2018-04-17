@@ -139,12 +139,12 @@ h1{
     top: 50%;
     left: 50%;
     width: 735px;
-    height: 580px;
+    height: 635px;
     padding: 16px;
     background-color: #dbdbdbe6;
     z-index: 1002;
     overflow: auto;
-    margin-top: -285px;
+    margin-top: -325px;
     margin-left: -355px;
     border-radius: 15px;
     border: solid 5px #757373;
@@ -222,10 +222,23 @@ h1{
 .joinForm td,th {
 	font-family: 'Concert One', cursive;
     height: 80px;
+    width: 220px;
 }
 .another{
+	position: relative;
 	font-size: 20px;
     font-family: NanumGothic;
     font-weight: bold;
     left: 15px;
+}
+.options{
+	font-family: NanumGothic;
+	font-weight: bold;
+	font-size: 20px;
+}
+#department, #position{
+	font-family: NanumGothic;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 7px
 }
