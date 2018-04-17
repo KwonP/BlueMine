@@ -6,6 +6,7 @@ $(document).ready(function() {
     animate({top: '50%', marginTop: '-255px',opacity: 1}, 1500);
     $('.selection').css({top: '250px',opacity: 0}).
     animate({top: '50%',marginTop: '-100px',opacity: 1}, 1500);
+    $('#joinUser').click(joinUser);
   });
 // selection 창으로 이동
 function moveL(){
