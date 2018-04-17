@@ -26,7 +26,7 @@ INSERT INTO USERINFO(
 	, #{originalFile}
 	, #{svaeFile}
 	</if>
-);
+)
 </insert>
 <select id="emailCheck" resultType="String">
  SELECT email
@@ -39,10 +39,21 @@ INSERT INTO USERINFO(
  WHERE email = #{email}
  </select>
  <select id="getInfo" resultType="userInfo">
- SELECT userId,email,name,originalFile,saveFile,position
- FROM userInfo
- WHERE userId = #{userId}
- </select>
+ SELECT 
+ 	UserId
+ 	,email
+ 	,name
+ 	,originalFile
+ 	,saveFile
+ 	,cp.depnameKr as department
+ 	,position 
+ FROM 
+ 	userInfo u,cp_department cp 
+ WHERE 
+ 	userid = #{userId} 
+ 	and 
+ 	u.department = cp.depNum; 
+</select>
  <select id="getProfile" resultType="userInfo">
  SELECT originalFile,saveFile
  FROM UserInfo
@@ -96,7 +107,7 @@ INSERT INTO PS_WORK(
     ,#{memberId}
     ,#{start_Date}
     ,#{deadLine}
-);
+)
 </insert>
 
 <!-- 개인스케줄 조회 예상 시작일 순-->
@@ -127,7 +138,7 @@ INSERT INTO CKLIST(
     ,#{memberId}
     ,#{ck_content}
     ,#{loops}
-);
+)
 </insert>
 <!-- 체크리스트 업데이트 -->
 <update id="updateCkList" parameterType="ckList">

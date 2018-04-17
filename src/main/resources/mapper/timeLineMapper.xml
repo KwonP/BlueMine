@@ -71,7 +71,7 @@ INSERT INTO FILEINFO(
     #{tl_Num}
     ,#{originalFile}
     ,#{svaeFile}
-);
+)
 </insert>
 <!-- 파일 목록 -->
 <select id="getFileList" resultType="fileInfo">
