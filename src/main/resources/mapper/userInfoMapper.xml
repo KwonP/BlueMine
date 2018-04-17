@@ -45,14 +45,12 @@ INSERT INTO USERINFO(
  	,name
  	,originalFile
  	,saveFile
- 	,cp.depnameKr as department
- 	,position 
+ 	,department
+ 	,position
  FROM 
- 	userInfo u,cp_department cp 
+ 	userInfo u
  WHERE 
  	userid = #{userId} 
- 	and 
- 	u.department = cp.depNum; 
 </select>
  <select id="getProfile" resultType="userInfo">
  SELECT originalFile,saveFile
