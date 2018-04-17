@@ -21,6 +21,7 @@ insert into timeline(
 	, #{w_Date}
 	, #{tl_content}
 	,#{tag_Num}
+)
 </insert>
 <!-- 타임 라인 목록 가져오기(그룹번호로) -->
 <select id="getTimeLineList" parameterType="int"
