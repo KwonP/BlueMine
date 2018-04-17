@@ -6,7 +6,6 @@ $(document).ready(function() {
     animate({top: '50%', marginTop: '-255px',opacity: 1}, 1500);
     $('.selection').css({top: '250px',opacity: 0}).
     animate({top: '50%',marginTop: '-100px',opacity: 1}, 1500);
-    $('#joinUser').click(joinUser);
   });
 // selection 창으로 이동
 function moveL(){
@@ -28,6 +27,15 @@ function popupClose(){
 	if (confirm('Are you sure to quit joining?')) {
 		$('#joinPopup').slideUp('fast');
 		$('#popupBack').fadeOut(300);
+		$('.step1').fadeIn(1000);
+		$('.joinFormDiv').fadeOut(1000);
+		$('#email').val('');
+		$('#name').val('');
+		$('#password').val('');
+		$('#passwordC').val('');
+		$('#emailC').val('');
+		$('#code').val('');
+		$('#inputCode').val('');
 	}
 }
 // 메일 중복체크
@@ -136,7 +144,7 @@ function checkCode(){
 function checkAgain(){
 	$('#again').attr('value',false);
 }
-// 인증절차 뒤 보여지는 회원가입 다음 절차
+// 다른 이메일 선택하기
 function another(){
 	$('.step1').fadeIn(1000);
 	$('.joinFormDiv').fadeOut(1000);

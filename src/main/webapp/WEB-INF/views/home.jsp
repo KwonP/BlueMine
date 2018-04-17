@@ -44,7 +44,7 @@
 	<div class="join">
         <div id="joinPopup" class="white_content">
           <a href = "#" onclick="popupClose();">
-        	<span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>
+        	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           </a>
           <div class="step1">
             <div class="mailForm">
