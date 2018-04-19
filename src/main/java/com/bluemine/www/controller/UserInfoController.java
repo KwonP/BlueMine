@@ -67,13 +67,15 @@ public class UserInfoController {
 	// 회원가입
 	@ResponseBody
 	@RequestMapping(value="/join", method = RequestMethod.POST)
-	public String join(String email,String name,String password,String department,String position, String alias){
+	public String join(String email,String name,String password,String department,String position, String alias,HttpSession session){
 		String result = null;
 		String userId = alias;
 		UserInfo join = new UserInfo(userId, email, name, password, department, position);
 		if (uDao.join(join) == 1) {
 			result = "ok";
 		}
+		String getId = uDao.login(join);
+		session.setAttribute("loginId", getId);
 		return result;
 	}
 	// 로그인

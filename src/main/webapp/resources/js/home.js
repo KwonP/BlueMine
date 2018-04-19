@@ -187,7 +187,7 @@ function joinUser(){
 		success : function(result){
 			if (result == 'ok') {
 				alert('가입이 완료되었습니다 !');
-				reload();
+				location.href = "goToMain";
 			}
 		},
 		error : function(){

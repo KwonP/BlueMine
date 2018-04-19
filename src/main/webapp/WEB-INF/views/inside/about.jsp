@@ -16,19 +16,19 @@
     <title>BLUE MINE</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../resources/templet/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./resources/templet/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../resources/templet/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="./resources/templet/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../resources/templet/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="./resources/templet/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../resources/templet/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="./resources/templet/vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../resources/templet/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="./resources/templet/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,9 +38,18 @@
     <![endif]-->
 
 	<!-- modified CSS -->
-	<link href="../resoures/css/basic.css">
+ <link href="./resources/css/basic.css" rel="stylesheet">
 	<!-- JS -->
-	<script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('.companyInfo').click(menuPage);
+	});
+	function menuPage(){
+		var menuPage = $(this).attr('value');
+		location.href = menuPage;
+	}
+	</script>
 </head>
 
 <body>
@@ -56,7 +65,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">BLUE MINE</a>
+				<a class="navbar-brand" href="goToMain">BLUE MINE</a>
 				<a class="companyInfo" value="about">About</a>
 				<a class="companyInfo" value="contact">Contact Us</a>
 				<a class="companyInfo" value="help">Help</a>
@@ -256,14 +265,14 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profileImg">
-                      <img src="../showProfile?id=${sessionScope.loginId}" width="50px">
+                      <img src="showProfile" width="50px">
 					  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -337,19 +346,19 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../resources/templet/vendor/jquery/jquery.min.js"></script>
+    <script src="./resources/templet/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="./resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="../resources/templet/vendor/raphael/raphael.min.js"></script>
+    <script src="./resources/templet/vendor/raphael/raphael.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../resources/templet/dist/js/sb-admin-2.js"></script>
+    <script src="./resources/templet/dist/js/sb-admin-2.js"></script>
 
 </body>
 
