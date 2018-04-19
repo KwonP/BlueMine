@@ -24,5 +24,6 @@
 		<mapper resource="mapper/horseHeadMapper.xml"/>
 		<mapper resource="mapper/groupMapper.xml"/>
 		<mapper resource="mapper/projectMapper.xml"/>
+		<mapper resource="mapper/myScheduleMapper.xml"/>
 	</mappers> 
 </configuration>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bluemine.www.interfaces.MyScheduleMapper">
+<select id="getCKList" resultType="ckList">
+SELECT cl_Num, cl_Name, memberid, ck_Content, ck_State, loops
+FROM CKList
+WHERE memberId = #{memberId}
+</select>
+<update id="updateLoops">
+UPDATE CKList
+SET	   loops = #{loops}
+WHERE cl_Num = #{cl_Num}
+</update>
+<update id="updateCKList" parameterType="ckList">
+UPDATE CKList
+SET		cl_Name = #{cl_Name},
+		ck_Content = #{ck_Content},
+		loops = #{loops}
+WHERE cl_num = ${cl_num}
+</update>
+<delete id="deleteCKList">
+DELETE CKList
+WHERE cl_Num = #{cl_Num}
+</delete>
+</mapper>

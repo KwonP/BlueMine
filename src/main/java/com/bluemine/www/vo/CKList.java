@@ -6,13 +6,13 @@ public class CKList {
 	private String memberId;//해당 회원 ID
 	private String ck_Content;//내용
 	private String ck_State;//상태
-	private int loops;//반복횟수 최소값 0
+	private String loops;//반복횟수 최소값 0
 	
 	
 	public CKList() {
 		super();
 	}
-	public CKList(int cl_Num, String cl_Name, String memberId, String ck_Content, String ck_State, int loops) {
+	public CKList(int cl_Num, String cl_Name, String memberId, String ck_Content, String ck_State, String loops) {
 		super();
 		this.cl_Num = cl_Num;
 		this.cl_Name = cl_Name;
@@ -51,10 +51,10 @@ public class CKList {
 	public void setCk_State(String ck_State) {
 		this.ck_State = ck_State;
 	}
-	public int getLoops() {
+	public String getLoops() {
 		return loops;
 	}
-	public void setLoops(int loops) {
+	public void setLoops(String loops) {
 		this.loops = loops;
 	}
 	@Override

@@ -39,10 +39,8 @@
 
 	<!-- modified CSS -->
 	<link href="../resources/css/basic.css" rel="stylesheet">
-	<link href="../resources/css/myScheduleMain.css" rel="stylesheet">
 	<!-- JS -->
 	<script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="../resources/js/myScheduleMain.js"></script>
 </head>
 
 <body>
@@ -58,7 +56,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
+				<a class="navbar-brand" href="#">BLUE MINE</a>
 				<a class="companyInfo" value="../about">About</a>
 				<a class="companyInfo" value="../contact">Contact Us</a>
 				<a class="companyInfo" value="../help">Help</a>
@@ -272,59 +270,43 @@
                 </li>
                 <!-- /.dropdown -->
             </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-list-alt fa-fw"></i> My works</a>
+                        </li>
+                        <li>
+                        	<a href="checkList"><i class="fa fa-check-square-o fa-fw"></i> Check List</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-comments fa-fw"></i> Chats</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
         </nav>
 
         <div id="page-wrapper">
-          <div class="createDiv">
-          	<h3>My Work <span class="label label-default" id="createWork" onclick="popup()">Create</span></h3>
-          	<div class="newWork">
-			  <div id="workPopup" class="white_content">
-			   <a href = "#" onclick="popupClose();">
-        	  	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-               </a>
-                 <form name="createWork">
-                 	<table>
-                 	  <tr>
-                 	  	<td>Title : </td>
-                 	  	<td><input type="text" id="ps_Name" name="ps_Name"></td>
-                 	  </tr>
-                 	  <tr>
-                 	    <td>Content : </td>
-                 	    <td><input type="text" id="ps_Content" name="ps_Content"></td>
-                 	  </tr>
-                 	  <tr>
-                 	    <td>Start Date : </td>
-                 	    <td><p>Date: <input type="text" id="datepicker"></p></td>
-                 	  </tr>
-                 	  <tr>
-                 	  	<td>End Date : </td>
-                 	  	<td><input type="text" id="deadLine" name="deadLine"></td>
-                 	  </tr>
-                 	</table>
-                 </form>
-			  </div>
-			  <div id="popupBack" class="black_overlay"></div>
-			</div>
-          	
-          </div>
-          <div class="checkList">
-          	<h2>Check List</h2>
-          	<div class="days">
-          	 <ul>
-          	  <c:forEach begin="1" end="7" varStatus="status">
-          	   <div class="day" number="${status.current}" style="display: inline-block;">
-          	   	<c:if test="${status.current == 1}">월요일</c:if>
-          	   	<c:if test="${status.current == 2}">화요일</c:if>
-          	   	<c:if test="${status.current == 3}">수요일</c:if>
-          	   	<c:if test="${status.current == 4}">목요일</c:if>
-          	   	<c:if test="${status.current == 5}">금요일</c:if>
-          	   	<c:if test="${status.current == 6}">토요일</c:if>
-          	   	<c:if test="${status.current == 7}">일요일</c:if>
-          	   </div>
-          	  </c:forEach>
-          	 </ul> 
-          	</div>
-          </div>
+  		  <h1>${loginId}</h1>
         </div>
         <!-- /#page-wrapper -->
 
