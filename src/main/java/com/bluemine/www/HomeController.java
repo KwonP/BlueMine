@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,7 @@ public class HomeController {
 	@Inject
 	UserInfoDAO uDao;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model,HttpSession session) {
 		logger.debug("홈 컨트롤러 실행");
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -45,8 +46,8 @@ public class HomeController {
 		
 		ArrayList<CP_Department> dep_list = uDao.getDepartmentList();
 		ArrayList<CP_Position> positionList = uDao.getPositionList();
-		model.addAttribute("dep_list", dep_list);
-		model.addAttribute("position", positionList);
+		session.setAttribute("dep_list", dep_list);
+		session.setAttribute("position", positionList);
 		return "home";
 	}
 	

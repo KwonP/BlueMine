@@ -7,6 +7,8 @@ $(document).ready(function() {
     $('.selection').css({top: '250px',opacity: 0}).
     animate({top: '50%',marginTop: '-100px',opacity: 1}, 1500);
   });
+
+var timer;		/*clearInterval을 위한 전역변수 선언*/
 // selection 창으로 이동
 function moveL(){
 	$('.loginFormDiv').animate({left : '130%', opacity : 0 }, 1000);
@@ -25,10 +27,12 @@ function popup(){
 // 팝업 종료
 function popupClose(){
 	if (confirm('Are you sure to quit joining?')) {
+		var showTime = document.getElementById('showTime');
 		$('#joinPopup').slideUp('fast');
 		$('#popupBack').fadeOut(300);
 		$('.step1').fadeIn(1000);
 		$('.joinFormDiv').fadeOut(1000);
+		$('.sendForm').fadeOut(1000);
 		$('#email').val('');
 		$('#name').val('');
 		$('#password').val('');
@@ -36,6 +40,8 @@ function popupClose(){
 		$('#emailC').val('');
 		$('#code').val('');
 		$('#inputCode').val('');
+		clearInterval(timer);
+		showTime.innerHTML = "";
 	}
 }
 // 메일 중복체크
@@ -74,7 +80,7 @@ function mailCheck(){
 
 }
 /* 인증코드 발송 */
-var timer;		/*clearInterval을 위한 전역변수 선언*/
+
 function sendCode(){
 	var check = $('#again').val();
 	if (check == 'false') {

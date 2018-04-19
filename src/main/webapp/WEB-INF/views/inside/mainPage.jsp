@@ -232,7 +232,7 @@
 				<!-- /.dropdown -->
 				<li class="dropdown">
 				  <a class="dropdown-toggle"data-toggle="dropdown" href="#" id="profileImg"> 
-					<img src="showProfile?id=${sessionScope.loginId}" width="50px">
+					<img src="showProfile" width="50px">
 					<i class="fa fa-caret-down"></i>
 				  </a>
 					<ul class="dropdown-menu dropdown-user">

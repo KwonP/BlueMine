@@ -2,6 +2,7 @@ package com.bluemine.www.controller;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,8 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.bluemine.www.dao.UserInfoDAO;
+import com.bluemine.www.util.FileService;
 import com.bluemine.www.vo.UserInfo;
 
 @Controller
@@ -94,8 +98,67 @@ public class UserInfoController {
 	}
 	//수정페이지로 이동
 	@RequestMapping(value="/profilePage")
-	public String prifilePage(){
+	public String prifilePage(HttpSession session){
+		String getId = (String)session.getAttribute("loginId");
+		System.out.println(getId);
+		UserInfo update_user = uDao.getInfo(getId);
+		session.setAttribute("updateUser", update_user);
+		System.out.println(update_user);
 		return "inside/profilePage";
 	}
 	
+	// 프로필 사진 파일경로
+	private final String PF_UPLOAD_PATH = "/spring/springws/BlueMine/profileImg";
+
+	// 프로필 사진 수정
+	@ResponseBody
+	@RequestMapping("/pfUpload")
+	public String pfUpload(HttpSession session,MultipartHttpServletRequest request){
+		UserInfo update_pf = (UserInfo)session.getAttribute("updateUser");
+		System.out.println(update_pf.getOriginalFile());
+		System.out.println(update_pf.getSaveFile());
+		System.out.println(update_pf);
+		Iterator<String> itr = request.getFileNames();
+		String fullpath = "";
+		if (itr.hasNext()) {
+			MultipartFile mpf = request.getFile(itr.next());
+			System.out.println(request.getServletContext().getRealPath(PF_UPLOAD_PATH));
+			try{
+				System.out.println("file length : " + mpf.getBytes().length);
+				System.out.println("file name : " + mpf.getOriginalFilename());
+				if (!mpf.isEmpty()) {
+					
+					String deleteFile = update_pf.getSaveFile();
+					fullpath = PF_UPLOAD_PATH + "/" + deleteFile;
+					System.out.println("fullpath : " + fullpath);
+					System.out.println(FileService.deleteFile(fullpath));
+					
+					String saveFile = FileService.saveFile(mpf, PF_UPLOAD_PATH);
+					String originalFile = mpf.getOriginalFilename();
+					update_pf.setSaveFile(saveFile);
+					update_pf.setOriginalFile(originalFile);
+					System.out.println("iDDDDD : " +update_pf.getUserId());
+					uDao.updateProfile(update_pf);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return fullpath;
+		} else {
+			fullpath = PF_UPLOAD_PATH + "/null.png";
+			System.out.println("fullpath : "+ fullpath);
+			return fullpath;
+		}
+	}
+			
+			@ResponseBody
+			@RequestMapping(value="/updateUser", method=RequestMethod.POST)
+			public String updateUser(UserInfo updateUser){
+				String result = null;
+				System.out.println("똑바로 가져오나"+updateUser);
+				if (uDao.updateUser(updateUser)==1) {
+					result = "ok";
+				}
+				return result;
+			}	
 }
