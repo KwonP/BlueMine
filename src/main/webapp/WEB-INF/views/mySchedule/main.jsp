@@ -49,12 +49,6 @@
 	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	  <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
 	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-  $( function() {
-    $("#startDate").datepicker();
-    $("#deadLine").datepicker();
-  } );
-  </script>
 	</head>
 
 <body>
@@ -287,15 +281,15 @@
         </nav>
 
         <div id="page-wrapper">
-          <div class="createDiv">
+          <div class="myWork">
           	<h3>My Work <span class="label label-default" id="createWork" onclick="popup()">Create</span></h3>
-          	<div class="newWork">
+          	<div class=popupWrap>
 			  <div id="workPopup" class="white_content">
 			   <a href = "#" onclick="popupClose();">
         	  	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                </a>
-                 <form action="createWork" onsubmit="check()" method="post">
-                 	<table id="workForm">
+                 <form action="createWork" method="post" onsubmit="return check();">
+                 	<table class="workForm">
                  	  <tr>
                  	  	<td>Title </td>
                  	  	<td><input type="text" id="ps_Name" name="ps_Name"></td>
@@ -315,10 +309,10 @@
                  	  <tr>
                  	    <td>Importance </td>
                  	    <td> 
-                 	     <select style="height: 30px;" id="ps_Pri" name="ps_Pri" onchange="selected()">
-                 	     	<option> 매우 중요</option>
-                 	     	<option> 중요</option>
-                 	     	<option> 보통</option>
+                 	     <select style="height: 30px;" id="ps_Pri" name="ps_Pri">
+                 	     	<option value="1"> 매우 중요</option>
+                 	     	<option value="2"> 중요</option>
+                 	     	<option value="3"> 보통</option>
                  	     </select>
                  	    </td> 
                  	  </tr>

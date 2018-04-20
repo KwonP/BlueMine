@@ -5,8 +5,10 @@ $(document).ready(function(){
 	$('.companyInfo').click(menuPage);
 	var getHeight = $('#page-wrapper').css('height').replace(/[^0-9]/g, "");
 	getHeight /= 2;
-	$('.createDiv').css('height',getHeight);
+	$('.myWork').css('height',getHeight);
 	$('.checkList').css('height',getHeight);
+    $("#startDate").datepicker({ dateFormat: "yy-mm-dd" }).val();
+    $("#deadLine").datepicker({ dateFormat: "yy-mm-dd" }).val();
 });
 function menuPage(){
 	var menuPage = $(this).attr('value');
@@ -22,16 +24,19 @@ function popupClose(){
 	$('#popupBack').fadeOut(300);
 }
 function check(){
-	var title = $('#ps_Name').val();
-	var content = $('#ps_Content').val();
-	if (title == "") {
-		alert('제목을 입력해 주세요');
+	var ps_Name = $('#ps_Name').val();
+	var ps_Content = $('#ps_Content').val();
+	var startDate = $('#startDate').val();
+	var deadLine = $('#deadLine').val();
+	var ps_Pri = $('#ps_Pri').val();
+	if (ps_Name == "") {
+		alert('제목을 입력해 주세요.');
 		return false;
 	}
-	if (content == "") {
-		alert('내용을 입력해 주세요');
+	if (ps_Content == "") {
+		alert('내용을 입력해 주세요.');
 		return false;
 	}
-	alert('전부 통과!');
+	alert('오꼐');
 	return true;
 }

@@ -52,7 +52,7 @@
     position: absolute;
     font-size: 40px;
 }
-table#workForm tr, td, th { padding: 10px 15px 10px 5px;}
+table.workForm tr, td, th { padding: 10px 15px 10px 5px;}
 textarea{
 	margin: 0px;
     width: 540px;

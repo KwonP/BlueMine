@@ -9,6 +9,7 @@ public class PS_Work {
 	private String deadLine;//마감일
 	private int ps_Pri;	// 중요도
 	private int progress;	//진행상황
+	
 	public PS_Work(int ps_Num, String ps_Name, String ps_Content, String memberId, String startDate, String deadLine,
 			int ps_Pri, int progress) {
 		super();
@@ -20,6 +21,14 @@ public class PS_Work {
 		this.deadLine = deadLine;
 		this.ps_Pri = ps_Pri;
 		this.progress = progress;
+	}
+	
+	public PS_Work(String ps_Name, String ps_Content,String memberId,String startDate,String deadLine,int ps_Pri){
+		this.ps_Name = ps_Name;
+		this.ps_Content = ps_Content;
+		this.startDate = startDate;
+		this.deadLine = deadLine;
+		this.ps_Pri = ps_Pri;
 	}
 	
 	public PS_Work() {
@@ -50,10 +59,10 @@ public class PS_Work {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public String getStart_Date() {
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStart_Date(String startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 	public String getDeadLine() {

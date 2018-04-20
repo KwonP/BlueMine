@@ -33,21 +33,19 @@ INSERT INTO PS_Work (
 	,PS_Name
 	,PS_Content
 	,memberId
-<if test="startDate != null">
 	,start_Date
-</if>
 	,deadLine
-	,Ps_Pri)
-VAUES (
-	#{ps_Num}
+	,Ps_Pri
+	)
+VALUES (
+	ps_seq.nextval
 	,#{ps_Name}
 	,#{ps_Content}
 	,#{memberId}
-<if test="startDate != null">
 	,#{startDate}
-</if>
 	,#{deadLine}
-	,#{ps_Pri})
+	,#{ps_Pri}
+	)
 </insert>
 <update id="updateWork" parameterType="psWork">
 UPDATE PS_Work
