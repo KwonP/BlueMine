@@ -5,18 +5,18 @@ public class PS_Work {
 	private String ps_Name;//스케줄 이름
 	private String ps_Content;//내용
 	private String memberId;//회원ID
-	private String start_Date;//시작일
+	private String startDate;//시작일
 	private String deadLine;//마감일
-	private int ps_Pri;
-	private int progress;
-	public PS_Work(int ps_Num, String ps_Name, String ps_Content, String memberId, String start_Date, String deadLine,
+	private int ps_Pri;	// 중요도
+	private int progress;	//진행상황
+	public PS_Work(int ps_Num, String ps_Name, String ps_Content, String memberId, String startDate, String deadLine,
 			int ps_Pri, int progress) {
 		super();
 		this.ps_Num = ps_Num;
 		this.ps_Name = ps_Name;
 		this.ps_Content = ps_Content;
 		this.memberId = memberId;
-		this.start_Date = start_Date;
+		this.startDate = startDate;
 		this.deadLine = deadLine;
 		this.ps_Pri = ps_Pri;
 		this.progress = progress;
@@ -51,10 +51,10 @@ public class PS_Work {
 		this.memberId = memberId;
 	}
 	public String getStart_Date() {
-		return start_Date;
+		return startDate;
 	}
-	public void setStart_Date(String start_Date) {
-		this.start_Date = start_Date;
+	public void setStart_Date(String startDate) {
+		this.startDate = startDate;
 	}
 	public String getDeadLine() {
 		return deadLine;
@@ -77,7 +77,7 @@ public class PS_Work {
 	@Override
 	public String toString() {
 		return "PS_Work [ps_Num=" + ps_Num + ", ps_Name=" + ps_Name + ", ps_Content=" + ps_Content + ", memberId="
-				+ memberId + ", start_Date=" + start_Date + ", deadLine=" + deadLine + ", ps_Pri=" + ps_Pri
+				+ memberId + ", startDate=" + startDate + ", deadLine=" + deadLine + ", ps_Pri=" + ps_Pri
 				+ ", progress=" + progress + "]";
 	}
 	

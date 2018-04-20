@@ -3,6 +3,7 @@ package com.bluemine.www.interfaces;
 import java.util.ArrayList;
 
 import com.bluemine.www.vo.CKList;
+import com.bluemine.www.vo.PS_Work;
 
 public interface MyScheduleMapper {
 	
@@ -14,4 +15,12 @@ public interface MyScheduleMapper {
 	public int updateCKList(CKList ckList);
 	// 체크리스트 삭제
 	public int deleteCKList(int cl_num);
+	// work 만들기
+	public int createWork(PS_Work work);
+	// 작업수정
+	public int updateWork(PS_Work work);
+	// 작업 삭제
+	public int deleteWork(int ps_Num);
+	// 작업 완료
+	public int finishWork(int ps_Num);
 }

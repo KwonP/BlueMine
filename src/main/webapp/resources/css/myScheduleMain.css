@@ -34,12 +34,12 @@
     top: 50%;
     left: 50%;
     width: 735px;
-    height: 635px;
+    height: 655px;
     padding: 16px;
     background-color: #fffdfd;
     z-index: 1002;
     overflow: auto;
-    margin-top: -325px;
+    margin-top: -335px;
     margin-left: -355px;
     border-radius: 15px;
     border: solid 5px #f1b9b9;
@@ -51,4 +51,17 @@
     z-index: 1;
     position: absolute;
     font-size: 40px;
+}
+table#workForm tr, td, th { padding: 10px 15px 10px 5px;}
+textarea{
+	margin: 0px;
+    width: 540px;
+    height: 300px;
+}
+.submitWork{
+	border-style: groove;
+    font-size: 22px;
+    background-color: inherit;
+    border-color: #e27d7d;
+    border-radius: 10px;
 }

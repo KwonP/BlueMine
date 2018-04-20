@@ -7,9 +7,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bluemine.www.dao.MyScheduleDAO;
 import com.bluemine.www.vo.CKList;
+import com.bluemine.www.vo.PS_Work;
 
 @Controller
 @RequestMapping(value="/mySchedule")
@@ -30,5 +33,11 @@ public class MyScheduleController {
 	@RequestMapping(value="/checkList")
 	public String checkList(HttpSession session){
 		return "mySchedule/checkList";
+	}
+	@RequestMapping(value="/createWork")
+	public String createWork(PS_Work psWork){
+		String result = null;
+		System.out.println(psWork);
+		return result;
 	}
 }

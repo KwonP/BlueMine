@@ -15,6 +15,7 @@
     <meta name="author" content="">
     <title>BLUE MINE</title>
 
+	
     <!-- Bootstrap Core CSS -->
     <link href="../resources/templet/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,7 +44,18 @@
 	<!-- JS -->
 	<script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../resources/js/myScheduleMain.js"></script>
-</head>
+	
+	<!-- datepicker -->
+	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	  <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+  $( function() {
+    $("#startDate").datepicker();
+    $("#deadLine").datepicker();
+  } );
+  </script>
+	</head>
 
 <body>
 
@@ -282,24 +294,39 @@
 			   <a href = "#" onclick="popupClose();">
         	  	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                </a>
-                 <form name="createWork">
-                 	<table>
+                 <form action="createWork" onsubmit="check()" method="post">
+                 	<table id="workForm">
                  	  <tr>
-                 	  	<td>Title : </td>
+                 	  	<td>Title </td>
                  	  	<td><input type="text" id="ps_Name" name="ps_Name"></td>
                  	  </tr>
                  	  <tr>
-                 	    <td>Content : </td>
-                 	    <td><input type="text" id="ps_Content" name="ps_Content"></td>
+                 	    <td>Content </td>
+                 	    <td><textarea type="text" id="ps_Content" name="ps_Content"></textarea></td>
                  	  </tr>
                  	  <tr>
-                 	    <td>Start Date : </td>
-                 	    <td><p>Date: <input type="text" id="datepicker"></p></td>
+                 	    <td>Start Date </td>
+                 	    <td><input type="text" id="startDate" name="startDate"></td>
                  	  </tr>
                  	  <tr>
-                 	  	<td>End Date : </td>
+                 	  	<td>End Date </td>
                  	  	<td><input type="text" id="deadLine" name="deadLine"></td>
                  	  </tr>
+                 	  <tr>
+                 	    <td>Importance </td>
+                 	    <td> 
+                 	     <select style="height: 30px;" id="ps_Pri" name="ps_Pri" onchange="selected()">
+                 	     	<option> 매우 중요</option>
+                 	     	<option> 중요</option>
+                 	     	<option> 보통</option>
+                 	     </select>
+                 	    </td> 
+                 	  </tr>
+                 	  <tr>
+                 	    <td colspan="2" style="text-align: center;">
+                 	    <input type="submit" value="Create" class="submitWork">
+                 	    </td>
+                 	  </tr>  
                  	</table>
                  </form>
 			  </div>
@@ -330,9 +357,6 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="../resources/templet/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>

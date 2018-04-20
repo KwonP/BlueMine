@@ -13,13 +13,25 @@ function menuPage(){
 	location.href = menuPage;
 }
 function popup(){
-	$('#createDiv').slideDown('fast');
+	$('#workPopup').slideDown('fast');
 	$('#popupBack').fadeIn(300);
 }
 // 팝업 종료
 function popupClose(){
-	if (confirm('Are you sure to quit joining?')) {
-		$('#createDiv').slideUp('fast');
-		$('#popupBack').fadeOut(300);
+	$('#workPopup').slideUp('fast');
+	$('#popupBack').fadeOut(300);
+}
+function check(){
+	var title = $('#ps_Name').val();
+	var content = $('#ps_Content').val();
+	if (title == "") {
+		alert('제목을 입력해 주세요');
+		return false;
 	}
+	if (content == "") {
+		alert('내용을 입력해 주세요');
+		return false;
+	}
+	alert('전부 통과!');
+	return true;
 }
