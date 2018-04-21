@@ -9,7 +9,6 @@
  		<typeAlias type="com.bluemine.www.vo.CP_Position" alias="cpPosition"/>
  		<typeAlias type="com.bluemine.www.vo.FileInfo" alias="fileInfo"/>
  		<typeAlias type="com.bluemine.www.vo.GP_Work" alias="gpWork"/>
- 		<typeAlias type="com.bluemine.www.vo.HorseHead" alias="horseHead"/>
  		<typeAlias type="com.bluemine.www.vo.MatchPRJ" alias="matchPrj"/>
  		<typeAlias type="com.bluemine.www.vo.PJ_Group" alias="group"/>
  		<typeAlias type="com.bluemine.www.vo.PRJList" alias="prjList"/>
@@ -21,7 +20,6 @@
 		<mapper resource="mapper/userInfoMapper.xml"/>
 		<mapper resource="mapper/timeLineMapper.xml"/>
 		<mapper resource="mapper/positionMapper.xml"/>
-		<mapper resource="mapper/horseHeadMapper.xml"/>
 		<mapper resource="mapper/groupMapper.xml"/>
 		<mapper resource="mapper/projectMapper.xml"/>
 		<mapper resource="mapper/myScheduleMapper.xml"/>

@@ -46,17 +46,7 @@ INSERT INTO CP_DEPARTMENT
     ,#{typeAlias}
 )
 </insert>
-  
-  
-<!-- 부서 조회 -->
-<select id="getList" resultType="cpDepartment">
-SELECT 
-	depNum
-	,depNameEn
-	,depNameKr
-	,typeAlias
-FROM CP_DEPARTMENT
-</select> 
+
 <!-- 부서 삭제 -->
 <delete id="delDep" parameterType="cpDepartment">
 DELETE

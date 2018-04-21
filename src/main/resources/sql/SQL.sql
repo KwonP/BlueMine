@@ -72,24 +72,6 @@ SELECT
 	,positionName
 FROM CP_POSITION
 Order By positionNum
---태그 추가
-INSERT INTO HORSEHEAD(
-    TAGNUM
-    ,TAGTITLE
-    ,TAGTYPE
-)VALUES(
-    HH_SEQ.NEXTVAL
-    ,#{tagTitle}
-    ,#{tagType}
-);
---태그 가져오기
-SELECT
-    TAGNUM
-    ,TAGTITLE
-    ,TAGTYPE
-FROM
-    HORSEHEAD
-ORDER BY TAGNUM ASC
 
 --프로젝트 추가
 INSERT INTO PRJLIST
@@ -98,7 +80,6 @@ INSERT INTO PRJLIST
     ,PRJ_NAME
     ,PLANNER
     ,ACCESS_CONTROL
-    ,INVITECODE
     <if test='background != null'>
     ,BACKGROUND
     </if>
@@ -107,7 +88,6 @@ INSERT INTO PRJLIST
     ,#{prj_Name}
     ,#{planner}
     ,#{access_Control}
-    ,#{inviteCode}
     <if test='background != null'>
     ,#{background}
     </if>
@@ -140,18 +120,12 @@ INSERT INTO TIMELINE(
     ,WRITER
     ,W_DATE
     ,TL_CONTENT
-    <if test="tagTitle != null">
-    ,TAGTITLE
-    </if>
 )VALUES(
     TL_SEQ.NEXTVAL
     ,#{gp_Num}
     ,#{writer}
     ,#{w_Date}
     ,#{tl_Content}
-    <if test="tagTitle != null">
-    ,#{tagTitle}
-    </if>
 );
 
 --타임라인내의 파일처리
@@ -261,7 +235,6 @@ Select
     ,prj_Name
     ,planner
     ,access_Control
-    ,inviteCode
 FROM
     PRJLIST as pl
     ,(
@@ -284,8 +257,6 @@ select
     ,direcotor
     ,start_Date
     ,deadLine
-    ,rStart_Date
-    ,rDeadLine
     ,gp_Pri
     ,progress
     ,gs_Content
