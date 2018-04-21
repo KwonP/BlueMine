@@ -23,10 +23,10 @@ public class MyScheduleController {
 	
 	@RequestMapping(value="/main")
 	public String scheduleMain(HttpSession session){
-		String id = (String)session.getAttribute("loginId");
-		ArrayList<CKList> ckList = myDao.getCKList(id);
-		System.out.println(ckList);
-		session.setAttribute("ckList", ckList);
+		String userId = (String)session.getAttribute("loginId");
+		ArrayList<PS_Work> workList = myDao.getWorkList(userId);
+		session.setAttribute("workList", workList);
+		System.out.println(workList);
 		return "mySchedule/main";
 	}
 	
@@ -39,7 +39,7 @@ public class MyScheduleController {
 	public String createWork(PS_Work psWork,HttpSession session){
 		String memberId = (String)session.getAttribute("loginId");
 		psWork.setMemberId(memberId);
-		
+		myDao.createWork(psWork);
 		return "redirect:./main";
 	}
 }

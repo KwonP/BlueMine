@@ -23,4 +23,6 @@ public interface MyScheduleMapper {
 	public int deleteWork(int ps_Num);
 	// 작업 완료
 	public int finishWork(int ps_Num);
+	// 작업리스트 가져오기
+	public ArrayList<PS_Work> getWorkList(String userId);
 }

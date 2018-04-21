@@ -37,6 +37,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <!-- swiper -->  
+	<link href="../resources/css/layout.css" rel="stylesheet">
+	<link href="../resources/css/swiper.css" rel="stylesheet">	  
+	<script type="text/javascript" src="../resources/js/swiper.js"></script>
 
 	<!-- modified CSS -->
 	<link href="../resources/css/basic.css" rel="stylesheet">
@@ -281,8 +286,28 @@
         </nav>
 
         <div id="page-wrapper">
-          <div class="myWork">
+         <div class="myWork">
           	<h3>My Work <span class="label label-default" id="createWork" onclick="popup()">Create</span></h3>
+          	<section class="feature">
+          	<div class="inWrap">
+          	  <div class="fInner swiper-container">
+          	  	<ul class="swiper-wrapper">
+          	  		<c:forEach items="${workList}" var="list">
+          	  		  <li class="swiper-slide">
+          	  		  	<div class="work" onclick="getDetail(${list.ps_Num})">
+          	  		  	  ${list.ps_Name} <br>
+          	  		  	  ${list.ps_Content}
+          	  		  	</div>
+          	  		  </li>
+          	  		</c:forEach>
+          	  	</ul>
+          	  	<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+			  </div>
+          	  </div>
+          	</section>
+          	</div>
+          	
           	<div class=popupWrap>
 			  <div id="workPopup" class="white_content">
 			   <a href = "#" onclick="popupClose();">
@@ -327,7 +352,6 @@
 			  <div id="popupBack" class="black_overlay"></div>
 			</div>
           	
-          </div>
           <div class="checkList">
           	<h2>Check List</h2>
           	<div class="days">

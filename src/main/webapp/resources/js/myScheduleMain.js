@@ -7,8 +7,21 @@ $(document).ready(function(){
 	getHeight /= 2;
 	$('.myWork').css('height',getHeight);
 	$('.checkList').css('height',getHeight);
+	$('.swiper-container').css('height',getHeight);
+	$('.fInner swiper-container').css('height',getHeight);
+	$('.swiper-slide-active').css('height',getHeight);
     $("#startDate").datepicker({ dateFormat: "yy-mm-dd" }).val();
     $("#deadLine").datepicker({ dateFormat: "yy-mm-dd" }).val();
+    var swiper = new Swiper('.swiper-container', {
+		 pagination: '.swiper-pagination',
+		 paginationType: 'progress',
+		 slidesPerView: 'auto',
+		 paginationClickable: true,
+		 spaceBetween: 0,
+		 freeMode: true,
+		 nextButton: '.next',
+		 prevButton: '.back'
+   });
 });
 function menuPage(){
 	var menuPage = $(this).attr('value');
@@ -37,6 +50,5 @@ function check(){
 		alert('내용을 입력해 주세요.');
 		return false;
 	}
-	alert('오꼐');
 	return true;
 }

@@ -57,4 +57,8 @@ public class MyScheduleDAO implements MyScheduleMapper{
 		return session.getMapper(MyScheduleMapper.class).finishWork(ps_Num);
 	}
 
+	@Override
+	public ArrayList<PS_Work> getWorkList(String userId) {
+		return session.getMapper(MyScheduleMapper.class).getWorkList(userId);
+	}
 }

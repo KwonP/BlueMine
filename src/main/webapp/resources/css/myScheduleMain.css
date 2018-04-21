@@ -65,3 +65,12 @@ textarea{
     border-color: #e27d7d;
     border-radius: 10px;
 }
+.feature .swiper-pagination{margin-top:0px;}
+.feature .swiper-pagination{top: -20px;}
+.feature .fInner{ width: 100%;}
+.work{
+	border: solid;
+    border-radius: 15px;
+    padding: 10px;
+    height: 80%;
+}

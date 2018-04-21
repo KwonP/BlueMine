@@ -63,4 +63,10 @@ UPDATE PS_Work
 SET		progress = 1
 WHERE ps_Num = #{ps_Num}
 </update>
+<select id="getWorkList" resultType="psWork">
+SELECT ps_Num,ps_Name,ps_Content,start_Date,deadLine,ps_Pri,progress
+FROM PS_Work
+WHERE memberId = #{memberId}
+ORDER BY ps_Num
+</select>
 </mapper>
