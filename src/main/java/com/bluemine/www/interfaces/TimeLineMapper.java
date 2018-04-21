@@ -1,16 +1,22 @@
 package com.bluemine.www.interfaces;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.ibatis.session.RowBounds;
 
 import com.bluemine.www.vo.FileInfo;
+import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
+import com.bluemine.www.vo.UserInfo;
 
 public interface TimeLineMapper {
 	
 //타임 라인 글 추가	
 public int insertTimeLine(TimeLine t);
 //타임 라인 목록 가져오기(그룹 번호로)
-public ArrayList<TimeLine> getTimeLineList(int gp_Num);
+public ArrayList<TimeLine> getTimeLineList(Map<String, Integer> map,RowBounds rb);
 //타임 라인 글 삭제(게시글 번호로)
 public int deleteTimeLine(int tl_Num);
 //타임 라인 글 수정
@@ -19,4 +25,11 @@ public int updateTimeLine(TimeLine t);
 public int addFile(FileInfo file);
 //파일 목록
 public ArrayList<FileInfo> getFileList(int tl_Num);
+//그룹별 타임라인 갯수
+public int getTotal(int prj_Num);
+//프로젝트 참가인원 가져오기
+public ArrayList<UserInfo> getUserList(int prj_Num);
+//프로젝트 정보 가져오기
+public ArrayList<PRJList> getProjectInfo();
+
 }
