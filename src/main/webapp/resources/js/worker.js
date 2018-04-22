@@ -36,7 +36,7 @@ function deleteNotifications(trigger_Num){
 	$.ajax({
 		url : 'deletenotifications',
 		tpue : 'get',
-		data : {trigger_Num : trigger_Num}
+		data : {trigger_Num : trigger_Num},
 		dataType : 'text',
 		async : false,
 		success : function() {

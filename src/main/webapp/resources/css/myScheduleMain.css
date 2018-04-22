@@ -74,3 +74,11 @@ textarea{
     padding: 10px;
     height: 80%;
 }
+.cancel{
+	display: none;
+	border-style: groove;
+    font-size: 22px;
+    background-color: inherit;
+    border-color: #e27d7d;
+    border-radius: 10px;
+}

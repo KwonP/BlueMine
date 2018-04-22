@@ -11,7 +11,7 @@
 }
 
 .feature li {
-	float: left; width: 188px; height: 282px; list-style: none;margin-right: 20px;
+	float: left; width: 180px; height: 282px; list-style: none;margin-right: 10px;
 }
 
 .feature li a {

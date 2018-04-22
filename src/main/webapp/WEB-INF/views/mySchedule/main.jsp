@@ -313,7 +313,7 @@
 			   <a href = "#" onclick="popupClose();">
         	  	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                </a>
-                 <form action="createWork" method="post" onsubmit="return check();">
+                 <form action="createWork" method="post" onsubmit="return check();" id="formAction">
                  	<table class="workForm">
                  	  <tr>
                  	  	<td>Title </td>
@@ -343,7 +343,8 @@
                  	  </tr>
                  	  <tr>
                  	    <td colspan="2" style="text-align: center;">
-                 	    <input type="submit" value="Create" class="submitWork">
+                 	    <input type="button" value="Create" class="submitWork" onclick="submitType()">
+                 	    <input type="button" value="Cancel" class="cancel" onclick="cancel()">
                  	    </td>
                  	  </tr>  
                  	</table>

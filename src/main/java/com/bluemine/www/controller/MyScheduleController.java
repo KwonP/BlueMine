@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bluemine.www.dao.MyScheduleDAO;
 import com.bluemine.www.vo.CKList;
@@ -41,5 +42,13 @@ public class MyScheduleController {
 		psWork.setMemberId(memberId);
 		myDao.createWork(psWork);
 		return "redirect:./main";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getWork",method=RequestMethod.POST)
+	public PS_Work getWork(int ps_Num){
+		PS_Work getWork = myDao.getWork(ps_Num);
+		System.out.println(getWork);
+		return getWork;
 	}
 }
