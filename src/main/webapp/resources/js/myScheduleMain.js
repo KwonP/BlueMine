@@ -36,16 +36,16 @@ function createPopup(){
 	$('#deadLine').val('');
 	$('#ps_Pri').val(1);
 	$('#workPopup').slideDown('fast');
-	$('#popupBack').fadeIn(300);
+	$('.black_overlay').fadeIn(300);
 	canModify();
 }
 function popup(){
 	$('#workPopup').slideDown('fast');
-	$('#popupBack').fadeIn(300);
+	$('.black_overlay').fadeIn(300);
 	readOnly();
 }
 // 팝업 종료
-function popupClose(){
+function workPopupClose(){
 	var check = $('.submitWork').val();
 	if (check == 'Update') {
 		if (!confirm('Are you suer to cancel updating?')) {
@@ -53,7 +53,7 @@ function popupClose(){
 		}
 	}
 	$('#workPopup').slideUp('fast');
-	$('#popupBack').fadeOut(300);
+	$('.black_overlay').fadeOut(300);
 	$('.cancel').css('display','none');
 }
 function check(){
@@ -71,6 +71,36 @@ function check(){
 		return false;
 	}
 	return true;
+}
+function delWork(ps_Num){
+	if (confirm('삭제하시겠습니까?')) {
+		$.ajax({
+			url : 'delWork',
+			type : 'post',
+			data : {ps_Num : ps_Num},
+			success : function(){
+				window.location.reload();
+			},
+			error : function(){
+				alert('서버 오류');
+			}
+		});
+	}
+}
+function endWork(ps_Num){
+	if (confirm('완료하시겠습니까?')) {
+		$.ajax({
+			url : 'endWork',
+			type : 'post',
+			data : {ps_Num : ps_Num},
+			success : function(){
+				window.location.reload();
+			},
+			error : function(){
+				alert('서버 오류');
+			}
+		});
+	}
 }
 function getDetail(ps_Num){
 	$('.submitWork').val('Modify');
@@ -143,34 +173,4 @@ function getOriginalValue(){
 	$('#startDate').val(startDateO);
 	$('#deadLine').val(deadLineO);
 	$('#ps_Pri').val(ps_PriO);
-}
-function delWork(ps_Num){
-	if (confirm('삭제하시겠습니까?')) {
-		$.ajax({
-			url : 'delWork',
-			type : 'post',
-			data : {ps_Num : ps_Num},
-			success : function(){
-				window.location.reload();
-			},
-			error : function(){
-				alert('서버 오류');
-			}
-		});
-	}
-}
-function endWork(ps_Num){
-	if (confirm('완료하시겠습니까?')) {
-		$.ajax({
-			url : 'endWork',
-			type : 'post',
-			data : {ps_Num : ps_Num},
-			success : function(){
-				window.location.reload();
-			},
-			error : function(){
-				alert('서버 오류');
-			}
-		});
-	}
 }

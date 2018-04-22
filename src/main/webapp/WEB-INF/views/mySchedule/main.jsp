@@ -319,7 +319,7 @@
           	
           	<div class=popupWrap>
 			  <div id="workPopup" class="white_content">
-			   <a href = "#" onclick="popupClose();">
+			   <a href = "#" onclick="workPopupClose();">
         	  	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                </a>
                  <form action="createWork" method="post" onsubmit="return check();" id="formAction">
@@ -359,7 +359,7 @@
                  	</table>
                  </form>
 			  </div>
-			  <div id="popupBack" class="black_overlay"></div>
+			  <div class="black_overlay"></div>
 			</div>
           	
           <div class="checkList">
