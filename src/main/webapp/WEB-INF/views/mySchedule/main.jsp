@@ -52,7 +52,6 @@
 	
 	<!-- datepicker -->
 	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	  <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
 	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	</head>
 
@@ -287,16 +286,26 @@
 
         <div id="page-wrapper">
          <div class="myWork">
-          	<h3>My Work <span class="label label-default" id="createWork" onclick="popup()">Create</span></h3>
+          	<h3>My Work <span class="label label-default" id="createWork" onclick="createPopup()">Create</span></h3>
           	<section class="feature">
           	<div class="inWrap">
           	  <div class="fInner swiper-container">
           	  	<ul class="swiper-wrapper">
           	  		<c:forEach items="${workList}" var="list">
           	  		  <li class="swiper-slide">
-          	  		  	<div class="work" onclick="getDetail(${list.ps_Num})">
-          	  		  	  ${list.ps_Name} <br>
-          	  		  	  ${list.ps_Content}
+          	  		  	<div class="work" onclick="getDetail(${list.ps_Num})" >
+          	  		  	  ${list.ps_Name} <br><br>
+          	  		  	  <i>${list.startDate}</i><br>
+          	  		  	  ~<br>
+          	  		  	  <i>${list.deadLine}</i> <br>
+          	  		  	  <c:if test="${list.progress == 0}">
+          	  		  	    미완료<br>
+          	  		  	   <button onclick="endWork(${list.ps_Num})" class="endWork">Finish</button>
+          	  		  	  </c:if>
+          	  		  	  <c:if test="${list.progress == 1}">
+          	  		  	  완료<br>
+          	  		  	  <button onclick="delWork(${list.ps_Num})" class="delWork">Delete</button>
+          	  		  	  </c:if>
           	  		  	</div>
           	  		  </li>
           	  		</c:forEach>

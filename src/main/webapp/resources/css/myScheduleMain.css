@@ -73,6 +73,17 @@ textarea{
     border-radius: 15px;
     padding: 10px;
     height: 80%;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    z-index: 2;
+}
+.work:hover{
+	box-shadow: 3px 3px 3px darkgray;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    transition: 0.3s ease-in-out;
+    transform: translate(-5px); 
 }
 .cancel{
 	display: none;
@@ -81,4 +92,21 @@ textarea{
     background-color: inherit;
     border-color: #e27d7d;
     border-radius: 10px;
+}
+.feature{
+	top: 5px;
+    position: relative;
+}
+i{
+	font-style: normal;
+}
+.endWork,.delWork {
+    border-style: unset;
+    background: #687eba;
+    margin-top: 5px;
+    color: white;
+    z-index: 10;
+}
+.endWork:hover,.delWork:hover{
+	text-decoration: underline;
 }

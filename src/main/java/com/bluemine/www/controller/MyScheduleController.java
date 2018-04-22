@@ -51,4 +51,16 @@ public class MyScheduleController {
 		System.out.println(getWork);
 		return getWork;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="delWork",method=RequestMethod.POST)
+	public void delWork(int ps_Num){
+		System.out.println(myDao.deleteWork(ps_Num));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="endWork",method=RequestMethod.POST)
+	public void endWork(int ps_Num){
+		System.out.println(myDao.finishWork(ps_Num));
+	}
 }

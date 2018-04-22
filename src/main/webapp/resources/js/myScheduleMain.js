@@ -86,7 +86,7 @@ function getDetail(ps_Num){
 	});
 }
 function setValues(work){
-	$('#ps_Name').val(work.ps_Num);
+	$('#ps_Name').val(work.ps_Name);
 	$('#ps_Content').val(work.ps_Content);
 	$('#startDate').val(work.startDate);
 	$('#deadLine').val(work.deadLine);
@@ -143,4 +143,34 @@ function getOriginalValue(){
 	$('#startDate').val(startDateO);
 	$('#deadLine').val(deadLineO);
 	$('#ps_Pri').val(ps_PriO);
+}
+function delWork(ps_Num){
+	if (confirm('삭제하시겠습니까?')) {
+		$.ajax({
+			url : 'delWork',
+			type : 'post',
+			data : {ps_Num : ps_Num},
+			success : function(){
+				window.location.reload();
+			},
+			error : function(){
+				alert('서버 오류');
+			}
+		});
+	}
+}
+function endWork(ps_Num){
+	if (confirm('완료하시겠습니까?')) {
+		$.ajax({
+			url : 'endWork',
+			type : 'post',
+			data : {ps_Num : ps_Num},
+			success : function(){
+				window.location.reload();
+			},
+			error : function(){
+				alert('서버 오류');
+			}
+		});
+	}
 }

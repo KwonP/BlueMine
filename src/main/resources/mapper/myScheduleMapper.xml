@@ -64,7 +64,7 @@ SET		progress = 1
 WHERE ps_Num = #{ps_Num}
 </update>
 <select id="getWorkList" resultType="psWork">
-SELECT ps_Num,ps_Name,ps_Content,startDate,deadLine,ps_Pri,progress
+SELECT ps_Num,ps_Name,ps_Content,TO_CHAR(startDate,'YYYY-MM-DD')as startDate,TO_CHAR(deadLine,'YYYY-MM-DD')as deadLine,ps_Pri,progress
 FROM PS_Work
 WHERE memberId = #{memberId}
 ORDER BY ps_Num
