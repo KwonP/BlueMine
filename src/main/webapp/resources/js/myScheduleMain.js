@@ -102,7 +102,9 @@ function endWork(ps_Num){
 		});
 	}
 }
-function getDetail(ps_Num){
+function getDetail(ps_Num,event){
+	event.stopPropagation();
+
 	$('.submitWork').val('Modify');
 	$('#formAction').attr('action','updateWork');
 	$.ajax({
