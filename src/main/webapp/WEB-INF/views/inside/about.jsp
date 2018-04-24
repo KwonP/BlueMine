@@ -296,7 +296,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a>
+                            <a href="goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline<span class="fa arrow"></span></a>

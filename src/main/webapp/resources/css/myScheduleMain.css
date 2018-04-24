@@ -108,7 +108,7 @@ i{
 .endWork:hover,.delWork:hover{
 	text-decoration: underline;
 }
-.days,ul{
+.days ul{
 	height: 100%;
 }
 .day {
