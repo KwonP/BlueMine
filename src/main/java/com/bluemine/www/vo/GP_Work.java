@@ -5,7 +5,6 @@ public class GP_Work {
 	private String gs_Name;// 그룹 스케줄 이름
 	private int gp_Num;// 그룹 번호
 	private String gs_Content;// 내용
-	private String director;// 담당자
 	private String start_Date;// 시작일
 	private String deadLine;// 마감일
 	private int gp_Pri;// 중요도
@@ -13,14 +12,13 @@ public class GP_Work {
 	private String category;//유형
 	
 	
-	public GP_Work(int gs_Num, String gs_Name, int gp_Num, String gs_Content, String director, String start_Date,
+	public GP_Work(int gs_Num, String gs_Name, int gp_Num, String gs_Content,String start_Date,
 			String deadLine, int gp_Pri, int progress, String category) {
 		super();
 		this.gs_Num = gs_Num;
 		this.gs_Name = gs_Name;
 		this.gp_Num = gp_Num;
 		this.gs_Content = gs_Content;
-		this.director = director;
 		this.start_Date = start_Date;
 		this.deadLine = deadLine;
 		this.gp_Pri = gp_Pri;
@@ -56,12 +54,7 @@ public class GP_Work {
 	public void setGs_Content(String gs_Content) {
 		this.gs_Content = gs_Content;
 	}
-	public String getDirector() {
-		return director;
-	}
-	public void setDirector(String director) {
-		this.director = director;
-	}
+
 	public String getStart_Date() {
 		return start_Date;
 	}
@@ -98,7 +91,7 @@ public class GP_Work {
 	@Override
 	public String toString() {
 		return "GP_Work [gs_Num=" + gs_Num + ", gs_Name=" + gs_Name + ", gp_Num=" + gp_Num + ", gs_Content="
-				+ gs_Content + ", director=" + director + ", start_Date=" + start_Date + ", deadLine=" + deadLine
+				+ gs_Content + ", start_Date=" + start_Date + ", deadLine=" + deadLine
 				+ ", gp_Pri=" + gp_Pri + ", progress=" + progress + ", category=" + category + "]";
 	}
 
