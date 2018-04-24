@@ -48,6 +48,11 @@
 <!-- JS -->
 <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../resources/js/timeline.js"></script>
+<%--알림 js --%>
+	<script src="../resources/toastr/toastr.min.js"></script>
+	<link href="../resources/toastr/toastr.css" rel="stylesheet">
+	<script src="../resources/js/webWorkerStart.js"></script>
+	<script src="../resources/js/worker.js"></script>
 </head>
 
 <body>
@@ -236,7 +241,7 @@
 						<i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-user">
-						<li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> User
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
 								Profile</a></li>
 						<li class="divider"></li>
 						<li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i>
@@ -251,7 +256,7 @@
 					<ul class="nav" id="side-menu">
 						<li class="sidebar-search">
 							<div class="input-group custom-search-form">
-								<input type="text" cㅌlass="form-control" placeholder="Search...">
+								<input type="text" class="form-control" placeholder="Search...">
 								<span class="input-group-btn">
 									<button class="btn btn-default" type="button">
 										<i class="fa fa-search"></i>
@@ -447,6 +452,8 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="../resources/templet/dist/js/sb-admin-2.js"></script>
+	
+	
 
 	<script type="text/javascript">
 	$(document).ready(function() {
@@ -461,7 +468,25 @@
 		    });
 	    	$('#btn-add').on('click',insertTimeLine);
 	    	$('#tlDelete').on('click',);
+	    	workerStart(${loginId});
      });
+	function workerStart(){
+		var w;
+		console.log('webwork실행');
+		if(typeof(Worker)!='nudefined'){
+			console.log('Webwork가 정의된 상태(webworker 사용가능 브라우저)');
+			if(typeof(w)=='nudefined'){
+				console.log('webwork 생성');
+				w = new Worker('worker.js');
+			}
+			w.onmessage = function(response){
+				console.log('알림정보 가져옴');
+				alert("postmessage동작" + response);
+			};
+		}else{
+			alert("웹 워커를 사용할 수 없습니다.");
+		}
+	}
 	
 	function updateStep($href,tl_Num){
         $('#timeLineContent').val($('#tlText'+tl_Num).text());

@@ -29,6 +29,7 @@ import com.bluemine.www.dao.TimeLineDAO;
 import com.bluemine.www.util.PageNavigator;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
+import com.bluemine.www.vo.TriggerInfo;
 import com.bluemine.www.vo.UserInfo;
 
 @Controller
@@ -171,6 +172,39 @@ public class TimeLineController {
 
 		tlDAO.deleteTimeLine(tl_Num);
 		return "삭제 성공";
+	}
+
+	// 알림 가져오기
+	@ResponseBody
+	@RequestMapping(value = "checknotifications", method = RequestMethod.GET)
+	public ArrayList<TriggerInfo> checkNotifications() throws InterruptedException {
+		while (true) {
+
+			ArrayList<TriggerInfo> list = new ArrayList<>();
+			list = tlDAO.getTriggerInfo();
+			logger.info(list.toString());
+			if (list != null || list.size() > 0) {
+				for (int i = 0; i < list.size(); i++) {
+					logger.info(i + "반복");
+					// tlDAO.deleteTriggerInfo(list.get(i).getTrigger_Num());
+				}
+				return list;
+			}
+			Thread.sleep(500);
+		}
+
+	}
+
+	// 알림 가져오기
+	@ResponseBody
+	@RequestMapping(value = "chekcproject", method = RequestMethod.GET)
+	public PRJList checkPoject(int gs_Num) {
+
+		PRJList prj = new PRJList();
+	
+
+		return prj;
+
 	}
 
 }

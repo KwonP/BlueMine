@@ -16,6 +16,7 @@
  		<typeAlias type="com.bluemine.www.vo.TimeLine" alias="timeLine"/>
  		<typeAlias type="com.bluemine.www.vo.UserInfo" alias="userInfo"/>
  		<typeAlias type="com.bluemine.www.vo.CK_Show" alias="ckShow"/>
+ 		<typeAlias type="com.bluemine.www.vo.TriggerInfo" alias="triggerInfo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/userInfoMapper.xml"/>

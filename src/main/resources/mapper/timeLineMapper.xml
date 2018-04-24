@@ -13,14 +13,14 @@ insert into timeline(
 	, writer
 	, w_date
 	, tl_content
-	,tagnum
+
 )values(
 	tl_seq.nextval
 	, #{prj_Num}
 	, #{writer}
 	, sysdate
 	, #{tl_Content}
-	,#{tagNum}
+	
 )
 </insert>
 <!-- 타임 라인 목록 가져오기(프로젝트번호로) -->
@@ -32,11 +32,9 @@ select
 	, writer
 	, w_date
 	, tl_content
-	, tagnum
 from
 	timeline
 where prj_num=prj_num
-	<if test="tagNum!=0">AND tagnum=#{tagNum}</if>
 order by w_date desc
 </select>
 <!-- 프로젝트 정보 가져오기 -->
@@ -61,9 +59,7 @@ set
 	<if test="tl_Content!=null"> 
 	,tl_content = #{tl_Content}
 	</if>
-	<if test="tagNum!=null">
-	,tagnum=#{tagNum}
-	</if>
+
 where
 	tl_num=#{tl_Num}
 </update>
@@ -103,4 +99,12 @@ u.DEPARTMENT, u.CHATLIST,
 u.POSITION, u.SAVEFILE, u.ORIGINALFILE
 from userinfo u, matchprj m where u.userid = m.memberid AND m.prj_num = #{value}
 </select>
+<!-- 알림 정보 가져오기 -->
+<select id="getTriggerInfo" resultType="triggerInfo">
+select * from triggerinfo order by update_date asc
+</select>
+<!-- 알림 정보 삭제 -->
+<delete id="deleteTriggerInfo" parameterType="int">
+delete from triggerinfo where trigger_num=#{value}
+</delete>
 </mapper>

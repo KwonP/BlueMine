@@ -9,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
+import com.bluemine.www.vo.TriggerInfo;
 import com.bluemine.www.vo.UserInfo;
 
 public interface TimeLineMapper {
@@ -31,5 +32,8 @@ public int getTotal(int prj_Num);
 public ArrayList<UserInfo> getUserList(int prj_Num);
 //프로젝트 정보 가져오기
 public ArrayList<PRJList> getProjectInfo();
-
+//알림 정보 가져오기
+public ArrayList<TriggerInfo> getTriggerInfo();
+//알림 정보 삭제
+public int deleteTriggerInfo(int trigger_Num);
 }

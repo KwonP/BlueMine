@@ -19,6 +19,7 @@ public class TimeLine{
 		this.writer = writer;
 		this.w_Date = w_Date;
 		this.tl_Content = tl_Content;
+		
 	}
 
 	public int getTl_Num() {
@@ -61,10 +62,12 @@ public class TimeLine{
 		this.tl_Content = tl_Content;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "TimeLine [tl_Num=" + tl_Num + ", prj_Num=" + prj_Num + ", writer=" + writer + ", w_Date=" + w_Date
-				+ ", tl_Content=" + tl_Content +"]";
+				+ ", tl_Content=" + tl_Content + "]";
 	}
 
 }

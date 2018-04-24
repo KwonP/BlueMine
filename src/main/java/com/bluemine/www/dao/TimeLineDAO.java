@@ -17,6 +17,7 @@ import com.bluemine.www.interfaces.TimeLineMapper;
 import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
+import com.bluemine.www.vo.TriggerInfo;
 import com.bluemine.www.vo.UserInfo;
 
 @Repository
@@ -84,6 +85,17 @@ public class TimeLineDAO implements TimeLineMapper{
 		ArrayList<PRJList> prj = new ArrayList<>();
 		prj = session.getMapper(TimeLineMapper.class).getProjectInfo();
 		return prj;
+	}
+	@Override
+	public ArrayList<TriggerInfo> getTriggerInfo() {
+		ArrayList<TriggerInfo> list = session.getMapper(TimeLineMapper.class).getTriggerInfo();
+		return list;
+	}
+	@Override
+	public int deleteTriggerInfo(int trigger_Num) {
+		int result = session.getMapper(TimeLineMapper.class).deleteTriggerInfo(trigger_Num);
+		logger.info("트리거 번호:"+trigger_Num+"결과 : "+result);
+		return result;
 	}
 
 }
