@@ -328,7 +328,7 @@
                         <li>
                         	<a href="#"><i class="fa fa-calendar fa-fw"></i>Work Schedule</a>
                         <li>
-                            <a href="#"><i class="fa fa-comments fa-fw"></i> Chats</a>
+                            <a href="inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a>
                         </li>
                     </ul>
                 </div>
