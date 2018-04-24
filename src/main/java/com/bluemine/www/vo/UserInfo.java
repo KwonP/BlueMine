@@ -9,7 +9,17 @@ public class UserInfo {
 	private String position;//직함
 	private String originalFile;//프로필사진 이름
 	private String saveFile;//프로필 사진 경로
-	private String loginOk;
+	private String loginOk;	// 로그인 체크 여부
+	
+	public UserInfo(String userId, String email, String name, String password, String department, String position) {
+		super();
+		this.userId = userId;
+		this.email = email;
+		this.name = name;
+		this.password = password;
+		this.department = department;
+		this.position = position;
+	}
 	
 	public UserInfo(String userId, String email, String name, String password, String department, String position,String loginOk) {
 		super();
