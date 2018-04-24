@@ -9,6 +9,7 @@ public class UserInfo {
 	private String position;//직함
 	private String originalFile;//프로필사진 이름
 	private String saveFile;//프로필 사진 경로
+	private String loginOk;	// 로그인 체크 여부
 	
 	public UserInfo(String userId, String email, String name, String password, String department, String position) {
 		super();
@@ -18,6 +19,17 @@ public class UserInfo {
 		this.password = password;
 		this.department = department;
 		this.position = position;
+	}
+	
+	public UserInfo(String userId, String email, String name, String password, String department, String position,String loginOk) {
+		super();
+		this.userId = userId;
+		this.email = email;
+		this.name = name;
+		this.password = password;
+		this.department = department;
+		this.position = position;
+		this.loginOk = loginOk;
 	}
 	
 	// 로그인을 위한 생성자
@@ -77,6 +89,14 @@ public class UserInfo {
 	}
 	public void setSaveFile(String saveFile) {
 		this.saveFile = saveFile;
+	}
+
+	public String getLoginOk() {
+		return loginOk;
+	}
+
+	public void setLoginOk(String loginOk) {
+		this.loginOk = loginOk;
 	}
 
 	@Override
