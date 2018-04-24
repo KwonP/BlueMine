@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+#page-wrapper{ min-height: 0px;}
+#imgDiv{
+    left: 720px;
+    top: -580px;
+    width: 485px;
+	position: relative;
+    text-align: center;
+}
+.updateForm{
+	top: 60px;
+    left: 120px;
+    position: relative;
+}
+.updateForm table tr, td, th {
+    font-size: 25px;
+    padding: 15px 0px;
+}
+.form-group { margin-bottom: 30px;}
+.form-control{
+	width: 400px;
+	height: 40px;
+	font-size: 20px;
+	margin-top: 5px;
+}
+.form-horizontal{
+    top: 75px;
+    left: 150px;
+	width: 900px;
+	height: 600px;
+    position: relative;
+    font-size: 25px;
+    text-align: center;
+}
+input[type="file"]{
+    left: 100px;
+    position: relative;
+	font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+span{ font-weight: bold; }
+#showImg{ margin-top: 15px; }
+#updateUser{    
+    left: -145px;
+    font-size: 25px;
+	position: relative;
+}

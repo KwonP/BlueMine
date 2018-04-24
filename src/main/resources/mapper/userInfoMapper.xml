@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bluemine.www.interfaces.UserInfoMapper">
+<insert id="join" parameterType="userInfo">
+INSERT INTO USERINFO(
+	userId
+	, email
+	, name
+	, password
+	, department
+	, position
+	<if test="originalFile != null">
+	, originalFile
+	</if>
+	<if test="saveFile != null">
+	, saveFile
+	</if>
+)VALUES(
+	CONCAT(#{userId},UI_SEQ.nextval)
+	, #{email}
+	, #{name}
+	, #{password}
+	, #{department}
+	, #{position}
+	<if test="originalFile != null">
+	, #{originalFile}
+	</if>
+	<if test=" saveFile != null">
+	, #{saveFile}
+	</if>
+)
+</insert>
+<select id="emailCheck" resultType="String">
+ SELECT email
+ FROM UserInfo
+ WHERE email = #{email}
+ </select>
+ <select id="findPw" resultType="String">
+ SELECT password
+ FROM UserInfo
+ WHERE email = #{email}
+ </select>
+ <select id="getInfo" resultType="userInfo">
+ SELECT 
+ 	UserId
+ 	,email
+ 	,name
+ 	,originalFile
+ 	,saveFile
+ 	,department
+ 	,position
+ FROM 
+ 	userInfo u
+ WHERE 
+ 	userid = #{userId} 
+</select>
+ <select id="getProfile" resultType="userInfo">
+ SELECT originalFile,saveFile
+ FROM UserInfo
+ WHERE userId = #{userId}
+ </select>
+ <update id="updateUser" parameterType="userInfo">
+ UPDATE UserInfo
+ SET
+ 	name = #{name},
+	email = #{email},
+	password = #{password},
+	department = #{department},
+	position = #{position}
+WHERE
+	userId = #{userId}
+</update>
+<update id="updateProfile" parameterType="userInfo">
+UPDATE UserInfo
+SET	
+	originalFile = #{originalFile}
+	,saveFile = #{saveFile}
+WHERE 
+	userId = #{userId}
+</update>
+<select id="login" resultType="string">
+SELECT userId
+FROM UserInfo
+WHERE
+	email = #{email}
+	and
+	password = #{password}
+</select>
+<delete id="leave">
+DELETE
+FROM UserInfo
+WHERE password = #{password}
+</delete>
+<!-- 개인스케줄 추가 -->
+<insert id="addPsWork" parameterType="psWork">
+INSERT INTO PS_WORK(
+    PS_NUM
+    ,PS_NAME
+    ,PS_CONTENT
+    ,MEMBERID
+    ,START_DATE
+    ,DEADLINE
+)VALUES(
+    PS_SEQ.NEXTVAL
+    ,#{ps_Name}
+    ,#{ps_Content}
+    ,#{memberId}
+    ,#{start_Date}
+    ,#{deadLine}
+)
+</insert>
+
+<!-- 개인스케줄 조회 예상 시작일 순-->
+<select id="getPsWList" parameterType="String" resultType="psWork">
+Select
+    ps_Name
+    ,ps_Content
+    ,memberId
+    ,start_Date
+    ,deadLine
+FROM
+    PS_WORK
+Where
+    memberId = #{memberId}
+Order by start_Date ASC
+</select>
+<!-- 체크리스트 추가 -->
+<insert id="addCkList" parameterType="ckList">
+INSERT INTO CKLIST(
+    CL_NUM
+    ,CL_NAME
+    ,MEMBERID
+    ,CK_CONTENT
+    ,LOOPS
+)VALUES(
+    CL_SEQ.NEXTVAL
+    ,#{cl_Name}
+    ,#{memberId}
+    ,#{ck_content}
+    ,#{loops}
+)
+</insert>
+<!-- 체크리스트 업데이트 -->
+<update id="updateCkList" parameterType="ckList">
+UPDATE
+	CKLIST
+SET
+	cl_Num=cl_Num
+	<if test="cl_Name != null">
+	,cl_Name=#{cl_Name}
+	</if>
+	<if test="cl_Content != null">
+	,cl_Content=#{cl_Content}
+	</if>
+	<if test="cl_State != null">
+	,cl_State=#{cl_State}
+	</if>
+	<if test="loops != null">
+	,loops=#{loops}
+	</if>
+WHERE
+	memberId=#{memberId}
+</update>
+
+<!-- 체크리스트 삭제 -->
+<delete id="delCkList" parameterType="ckList">
+DELETE
+FROM CKLIST
+WHERE
+	memberId=#{memberId}
+	AND
+	cl_Num=#{cl_Num}
+</delete>
+<!-- 체크리스트 가져오기 -->
+<select id="getCKList" resultType="ckList" parameterType="String">
+SELECT
+    CL_NUM
+    ,CL_NAME
+    ,MEMBERID
+    ,CK_CONTENT
+    ,LOOPS
+FROM   
+    CKLIST
+WHERE
+    memberId=#{memberId}
+</select>
+<!-- 부서 리스트 가져오기 -->
+<select id="getDepartmentList" resultType="cpDepartment">
+SELECT depNum, depNameKr, typeAlias
+FROM CP_Department
+</select>
+<!-- 직급 리스트 가져오기 -->
+<select id="getPositionList" resultType="cpPosition">
+SELECT positionName
+FROM CP_Position
+</select>
+</mapper>

@@ -1,0 +1,110 @@
+@CHARSET "UTF-8";
+#page-wrapper{max-height: 1000px;}
+.day{
+    width: 190px;
+    text-align: center;
+}
+#createWork{
+    top: -2px;
+    left: 20px;
+    cursor: pointer;
+	position: relative;
+    font-size: 17px;
+}
+#createWork:hover{
+	background-color: #e83e3e;
+}
+.black_overlay{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #7c79798f;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=60);
+}
+
+.white_content {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 735px;
+    height: 655px;
+    padding: 16px;
+    background-color: #fffdfd;
+    z-index: 1002;
+    overflow: auto;
+    margin-top: -335px;
+    margin-left: -355px;
+    border-radius: 15px;
+    border: solid 5px #f1b9b9;
+}
+.glyphicon-remove:before {
+	content: "\e014";
+    top: -10px;
+    right: -695px;
+    z-index: 1;
+    position: absolute;
+    font-size: 40px;
+}
+table.workForm tr, td, th { padding: 10px 15px 10px 5px;}
+textarea{
+	margin: 0px;
+    width: 540px;
+    height: 300px;
+}
+.submitWork{
+	border-style: groove;
+    font-size: 22px;
+    background-color: inherit;
+    border-color: #e27d7d;
+    border-radius: 10px;
+}
+.feature .swiper-pagination{margin-top:0px;}
+.feature .swiper-pagination{top: -20px;}
+.feature .fInner{ width: 100%;}
+.work{
+	border: solid;
+    border-radius: 15px;
+    padding: 10px;
+    height: 80%;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.work:hover{
+	box-shadow: 3px 3px 3px darkgray;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    transition: 0.3s ease-in-out;
+    transform: translate(-5px); 
+}
+.cancel{
+	display: none;
+	border-style: groove;
+    font-size: 22px;
+    background-color: inherit;
+    border-color: #e27d7d;
+    border-radius: 10px;
+}
+.feature{
+	top: 5px;
+    position: relative;
+}
+i{
+	font-style: normal;
+}
+.endWork,.delWork {
+    border-style: unset;
+    background: #687eba;
+    margin-top: 5px;
+    color: white;
+}
+.endWork:hover,.delWork:hover{
+	text-decoration: underline;
+}

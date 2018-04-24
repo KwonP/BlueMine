@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bluemine.www.interfaces.MyScheduleMapper">
+<select id="getCKList" resultType="ckList">
+SELECT cl_Num, cl_Name, memberid, ck_Content, ck_State, loops
+FROM CKList
+WHERE memberId = #{memberId}
+</select>
+<update id="updateLoops">
+UPDATE CKList
+SET	   loops = #{loops}
+WHERE cl_Num = #{cl_Num}
+</update>
+<!-- 체크리스트 변경 -->
+<update id="updateCKList" parameterType="ckList">
+UPDATE CKList
+SET		cl_Name = #{cl_Name},
+		ck_Content = #{ck_Content},
+		loops = #{loops}
+WHERE cl_num = ${cl_num}
+</update>
+<!-- 체크리스트 삭제 -->
+<delete id="deleteCKList">
+DELETE CKList
+WHERE cl_Num = #{cl_Num}
+</delete>
+<!-- 내 스케쥴 추가 -->
+<insert id="createWork" parameterType="psWork">
+INSERT INTO PS_Work (
+	PS_Num
+	,PS_Name
+	,PS_Content
+	,memberId
+	,startDate
+	,deadLine
+	,Ps_Pri
+	)
+VALUES (
+	ps_seq.nextval
+	,#{ps_Name}
+	,#{ps_Content}
+	,#{memberId}
+	,#{startDate}
+	,#{deadLine}
+	,#{ps_Pri}
+	)
+</insert>
+<update id="updateWork" parameterType="psWork">
+UPDATE PS_Work
+SET		ps_Num = #{ps_Num},
+		ps_Content = #{ps_Content},
+		ps_Pri = #{ps_Pri}
+WHERE ps_Num = #{ps_Num}
+</update>
+<delete id="deleteWork">
+DELETE PS_Work
+WHERE ps_Num = #{ps_Num}
+</delete>
+<update id="finishWork">
+UPDATE PS_Work
+SET		progress = 1
+WHERE ps_Num = #{ps_Num}
+</update>
+<select id="getWorkList" resultType="psWork">
+SELECT ps_Num,ps_Name,ps_Content,TO_CHAR(startDate,'YYYY-MM-DD')as startDate,TO_CHAR(deadLine,'YYYY-MM-DD')as deadLine,ps_Pri,progress
+FROM PS_Work
+WHERE memberId = #{memberId}
+ORDER BY ps_Num
+</select>
+<select id="getWork" resultType="psWork">
+SELECT ps_Num,ps_Name,ps_Content,TO_CHAR(startDate,'YYYY-MM-DD')as startDate,TO_CHAR(deadLine,'YYYY-MM-DD')as deadLine,ps_Pri,progress
+FROM PS_Work
+WHERE ps_Num = #{ps_Num}
+</select>
+</mapper>

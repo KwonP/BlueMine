@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 프로젝트 처리 SQL -->
+<mapper namespace="com.bluemine.www.interfaces.ProjectMapper">
+
+<!-- 프로젝트 생성  -->
+<insert id="makePrj" parameterType="prjList">
+INSERT INTO PRJLIST
+(
+    PRJ_NUM
+    ,PRJ_NAME
+    ,PLANNER
+    ,ACCESS_CONTROL
+    <if test="background != null">
+    ,BACKGROUND
+    </if>
+)VALUES(
+    PL_SEQ.NEXTVAL
+    ,#{prj_Name}
+    ,#{planner}
+    ,#{access_Control}
+    <if test="background != null">
+    ,#{background}
+    </if>
+)
+</insert>
+
+<!-- 프로젝트 수정 -->
+<update id="updatePrj" >
+UPDATE
+	PRJLIST
+set
+PRJ_Num = prj_Num
+<if test="prj_Name != null">
+,PRJ_NAME = #{prj_Name}
+</if>
+<if test="planner != null">
+,PLANNER = #{planner}
+</if>
+<if test="access_Control != null">
+,ACCESS_CONTROL = #{access_Control}
+</if>
+<if test="background != null">
+,BACKGROUND = #{background}
+</if>
+where
+	PRJ_NUM = #{prj_Num}
+</update>
+
+<!-- 프로젝트 삭제 -->
+<delete id="deletePrj" parameterType="int">
+delete
+from
+	PRJLIST
+where
+	PRJ_NUM = #{prj_Num}
+</delete>
+
+<!-- 프로젝트 목록(참여중인 프로젝트) 생성된 순 -->
+<select id="getPrjList" resultType="prjList">
+Select
+	pl.prj_Num
+	, prj_Name
+	, planner
+	, access_Control
+	, background
+FROM PRJList pl,
+	(
+	SELECT
+		pj.prj_Num
+ 	FROM 
+ 		UserInfo ui, MatchPRJ pj
+ 	WHERE
+ 		ui.userId=#{userId}
+ 		AND
+ 		pj.memberId = ui.userId
+ 	 ) re
+ WHERE pl.prj_Num = re.prj_Num
+ ORDER BY pl.prj_Num
+</select>
+
+<!-- 회원, 프로젝트 관계 세팅 -->
+<insert id="setRelation" parameterType="matchPrj">
+INSERT INTO matchPrj(
+	MEMBERID
+	,PRJ_NUM
+)VALUES(
+	#{memberId}
+	,#{prjNum}
+)
+</insert>
+
+</mapper>

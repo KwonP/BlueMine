@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bluemine.www.interfaces.HorseHeadMapper">
+<!-- 말머리 추가 -->
+<insert id="addHorseHead" parameterType="horseHead">
+INSERT INTO HORSEHEAD(
+    TAGNUM
+    ,TAGTITLE
+    ,TAGTYPE
+)VALUES(
+    HH_SEQ.NEXTVAL
+    ,#{tagTitle}
+    ,#{tagType}
+)
+</insert>
+<!-- 말머리 가져오기 -->
+<select id="getAll" resultType="horseHead">
+SELECT
+    TAGNUM
+    ,TAGTITLE
+    ,TAGTYPE
+FROM
+    HORSEHEAD
+ORDER BY TAGNUM ASC
+</select>
+<!-- 한종류의 말머리 가져오기 -->
+<select id="getOneType" resultType="horseHead">
+SELECT
+    TAGNUM
+    ,TAGTITLE
+    ,TAGTYPE
+FROM
+    HORSEHEAD
+WHERE
+	TAGTYPE=#{tagType}
+ORDER BY TAGNUM ASC
+</select>
+</mapper>

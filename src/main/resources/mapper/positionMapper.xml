@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 직급 SQL -->
+<mapper namespace="com.bluemine.www.interfaces.PositionMapper">
+<!-- 직급추가 -->
+<insert id="addPosition" parameterType="cpPosition">
+INSERT INTO CP_POSITION(
+    PositionNum
+    ,POSITIONNAME
+)VALUES(
+	posi_seq.nextval
+    ,#{positionName}
+)
+</insert>
+<!-- 직함명 조회 -->
+<select id="getPosiList" resultType="cpPosition">
+SELECT 
+	positionNum
+	,positionName
+FROM CP_POSITION
+Order By positionNum
+</select>
+<!-- 직함 삭제 -->
+<delete id="deletePosition">
+DELETE
+FROM
+	CP_POSITION
+WHERE
+	positionNum=#{positionNum}
+</delete>
+<!-- 부서추가 -->
+<insert id="addDep" parameterType="cpDepartment">
+INSERT INTO CP_DEPARTMENT
+(
+	depNum
+	,depNameEn
+	,depNameKr
+	,typeAlias
+)VALUES(
+	DP_SEQ.nextval()
+    ,#{depNameEn}
+    ,#{depNameKr}
+    ,#{typeAlias}
+)
+</insert>
+
+<!-- 부서 삭제 -->
+<delete id="delDep" parameterType="cpDepartment">
+DELETE
+FROM CP_DEPARTMENT
+WHERE
+	depNum=#{depNum}
+</delete>	
+</mapper>

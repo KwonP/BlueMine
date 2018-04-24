@@ -1,0 +1,250 @@
+@CHARSET "UTF-8";
+@font-face {
+	font-family: NanumGothic;
+	src: url("../font/NanumGothic.ttf") format('truetype');
+}
+@font-face {
+	font-family: Athletic;
+	src: url("../font/Athletic.ttf") format('truetype');
+}
+html, body { height:100%; overflow:hidden; margin: 0; }
+#wrap{
+    width: 100%;
+    height: 100%;
+    z-index:1;
+	position:relative;
+	overflow: hidden;
+
+}
+#wrap:after{
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	filter: blur(3px);
+	z-index:-1;
+	content:"";
+	position:absolute;
+	background-image: url('../img/background.jpg') ;
+	background-size: cover;
+}
+h1{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    font-size: 100px;
+    margin-top: -255px;
+    margin-left: -450px;
+    font-family: Athletic;
+}
+.highlight{
+	color: #2d7cc8;
+}
+.selection{
+	top: 50%;
+    left: 50%;
+    width: 675px;
+    height: 250px;
+    position: absolute;
+    margin-top: -100px;
+    margin-left: -320px;
+    border-radius: 25px;
+    /* background-color: #72471282; */
+}
+.selectBtn{
+    left: 160px;
+    width: 350px;
+    height: 80px;
+    position: relative;
+	font-size: 40px;
+    margin-top: 30px;
+    font-family: Athletic;
+    border-style: none;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px slategrey;
+}
+.loginFormDiv{
+    top: 50%;
+	width: 675px;
+    height: 250px;
+    opacity: 0;
+    position: relative;
+    margin-top: -100px;
+    margin-left: -320px;
+    border-radius: 25px;
+    background-color: #72471282;
+}
+.loginForm{
+	width: 100%;
+	font-size: 50px;
+    font-family: Athletic;
+    text-align: center;
+}
+.loginForm input{
+	height: 50px;
+	width: 350px;
+	font-size: 30px;
+	font-family: 'Concert One', cursive;
+	background-color: #ffffff66;
+}
+.loginForm tr,td,th{
+    position: relative;
+}
+.loginBtn{
+    top: 15px;
+    left: 3%;
+    width: 94%;
+    position: relative;
+    font-size: 40px;
+    font-family: Athletic;
+    text-align: center;
+    border-style: none;
+    border-radius: 15px;
+	background-color: #7b572e;
+}
+.findPw{
+    top: 40px;
+    right: -400px;
+    color: #d42e66d4;
+    font-size: 35px;
+    font-family: Athletic;
+    position: relative;
+    text-shadow: 2px 2px 1px #332c2cc4;
+}
+.glyphicon-chevron-left:before {
+    top: 90px;
+    left: -60px;
+    cursor: pointer;
+    content: "\e079";
+    position: absolute;
+    font-size: 55px;
+}
+.black_overlay{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #7c79798f;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=60);
+}
+
+.white_content {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 735px;
+    height: 635px;
+    padding: 16px;
+    background-color: #dbdbdbe6;
+    z-index: 1002;
+    overflow: auto;
+    margin-top: -325px;
+    margin-left: -355px;
+    border-radius: 15px;
+    border: solid 5px #757373;
+}
+.glyphicon-remove:before {
+	content: "\e014";
+    top: -10px;
+    right: -695px;
+    z-index: 1;
+    position: absolute;
+    font-size: 40px;
+}
+.nextP {
+    position: absolute;
+    top: 50%;
+    left: 130%;
+    width: 735px;
+    height: 580px;
+    padding: 16px;
+    background-color: white;
+    z-index: 1002;
+    overflow: auto;
+    margin-top: -285px;
+    margin-left: -355px;
+    border-radius: 15px;
+    border: solid 5px #757373;
+    opacity: 0;
+}
+.step1 {
+    top: 175px;
+    left: 110px;
+    position: absolute;
+	font-size: 30px;
+    font-family: Athletic;
+}
+.sendForm { 
+	left: 87px;
+	display: none;
+    position: absolute;
+}
+.sendCode {
+	left: 70px;
+    position: absolute;
+    font-size: 25px;
+    font-family: NanumGothic;
+    font-weight: bold;
+}
+#inputCode {
+    position: relative;
+    left: 45px;
+    width: 200px;
+    font-size: 25px;
+    text-align: center;
+    font-family: NanumGothic;
+    font-weight: bold;
+} 
+.next {
+	left: 110px;
+    position: relative;
+}
+#emailC {
+	font-family: 'Concert One', cursive;
+}
+#showTime{
+	left: -90px;
+	display: inline-block;
+    position: absolute;
+}
+.joinFormDiv{
+	display: none;
+}
+.joinForm{
+	font-size: 30px;
+	font-family: Athletic;
+}
+.joinForm td,th {
+	font-family: 'Concert One', cursive;
+    height: 80px;
+    width: 220px;
+}
+.another{
+	position: relative;
+	font-size: 20px;
+    font-family: NanumGothic;
+    font-weight: bold;
+    left: 15px;
+}
+.options{
+	font-family: NanumGothic;
+	font-weight: bold;
+	font-size: 20px;
+}
+#name{
+	font-family: NanumGothic;
+	font-weight: bold;
+	font-size: 27px;
+}
+#department, #position{
+	font-family: NanumGothic;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 7px
+}
