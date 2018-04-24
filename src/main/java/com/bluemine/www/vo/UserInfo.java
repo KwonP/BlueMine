@@ -81,6 +81,14 @@ public class UserInfo {
 		this.saveFile = saveFile;
 	}
 
+	public String getLoginOk() {
+		return loginOk;
+	}
+
+	public void setLoginOk(String loginOk) {
+		this.loginOk = loginOk;
+	}
+
 	@Override
 	public String toString() {
 		return "UserInfo [userId=" + userId + ", email=" + email + ", name=" + name + ", password=" + password
