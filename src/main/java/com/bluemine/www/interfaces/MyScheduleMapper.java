@@ -3,16 +3,21 @@ package com.bluemine.www.interfaces;
 import java.util.ArrayList;
 
 import com.bluemine.www.vo.CKList;
+import com.bluemine.www.vo.CK_Show;
 import com.bluemine.www.vo.PS_Work;
 
 public interface MyScheduleMapper {
 	
 	// 체크리스트 가져오기
 	public ArrayList<CKList> getCKList(String id);
-	// 체크리스트 루프 수정 (요일체크, 혹은 초기화를 위해)
-	public int updateLoops(int cl_num);
-	// 체크리스트 수정(이름,내용,요일까지)
-	public int updateCKList(CKList ckList);
+	// 체크리스트 보여주기(요일에 따라)
+	public ArrayList<CK_Show> showCKList(String userId);
+	// 체크리스트 요일별 완료
+	public int checkLoop(int loopNum);
+	// 체크리스트 요일별 완료 취소
+	public int uncheckLoop(int loopNum);
+	// 체크리스트 완료 초기화
+	public int resetLoop(int cl_Num);
 	// 체크리스트 삭제
 	public int deleteCKList(int cl_num);
 	// work 만들기

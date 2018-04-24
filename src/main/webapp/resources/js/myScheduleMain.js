@@ -44,7 +44,7 @@ function popup(){
 	$('.black_overlay').fadeIn(300);
 	readOnly();
 }
-// 팝업 종료
+//work팝업 종료
 function workPopupClose(){
 	var check = $('.submitWork').val();
 	if (check == 'Update') {
@@ -175,4 +175,42 @@ function getOriginalValue(){
 	$('#startDate').val(startDateO);
 	$('#deadLine').val(deadLineO);
 	$('#ps_Pri').val(ps_PriO);
+}
+//체크리스트 관리 팝업 띄우기
+function managePopup(){
+	$('#managePopup').slideDown('fast');
+	$('.black_overlay').fadeIn(300);
+}
+// 체크리스트 관리 팝업 닫기
+function ckPopupClose(){
+	$('#managePopup').slideUp('fast');
+	$('.black_overlay').fadeOut(300);
+}
+function endCklist(loopNum){
+	var getClass = $("li[value="+loopNum+"]").attr('class');
+	if (getClass == 'unChecked') {
+		$.ajax({
+			url : 'checkLoop',
+			type : 'post',
+			data : {loopNum : loopNum},
+			success : function(){
+				$("li[value="+loopNum+"]").attr('class','checked');
+			},
+			error : function(){
+				alert('서버 오류');
+			}
+		});
+	} else {
+		$.ajax({
+			url : 'uncheckLoop',
+			type : 'post',
+			data : {loopNum : loopNum},
+			success : function(){
+				$("li[value="+loopNum+"]").attr('class','unChecked');
+			},
+			error : function(){
+				alert('서버 오류');
+			}
+		});
+	}
 }

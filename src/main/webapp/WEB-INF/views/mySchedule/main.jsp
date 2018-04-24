@@ -362,24 +362,47 @@
 			  <div class="black_overlay"></div>
 			</div>
           	
+           <!-- 체크리스트 부분 -->		
           <div class="checkList">
-          	<h2>Check List</h2>
+          	<h3>Check List<span class="label label-default" id="manageCK" onclick="managePopup()">Manage</span></h3>
           	<div class="days">
-          	 <ul>
           	  <c:forEach begin="1" end="7" varStatus="status">
           	   <div class="day" number="${status.current}" style="display: inline-block;">
-          	   	<c:if test="${status.current == 1}">월요일</c:if>
-          	   	<c:if test="${status.current == 2}">화요일</c:if>
-          	   	<c:if test="${status.current == 3}">수요일</c:if>
-          	   	<c:if test="${status.current == 4}">목요일</c:if>
-          	   	<c:if test="${status.current == 5}">금요일</c:if>
-          	   	<c:if test="${status.current == 6}">토요일</c:if>
-          	   	<c:if test="${status.current == 7}">일요일</c:if>
+          	   <!-- 요일 div 생성 -->
+          	   	<c:if test="${status.current == 1}"><b>월요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 2}"><b>화요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 3}"><b>수요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 4}"><b>목요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 5}"><b>금요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 6}"><b>토요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 7}"><b>일요일</b><br><br></c:if>
+          	   	 <c:forEach items="${CL_Show}" var="show">
+          	   	  <c:if test="${show.loopDay == status.current && show.loop_State == 0}">
+          	   	  <li class="unChecked" value="${show.loopNum}">
+	          	   	   <input type="checkbox"class="checkBox" aria-label="..." onchange="endCklist(${show.loopNum})">
+	          	   	   	  <span class="test" number="${show.loopNum}">${show.cl_Name}</span>
+          	   	  </li>
+          	   	  </c:if>
+          	   	  <c:if test="${show.loopDay == status.current && show.loop_State == 1}">
+          	   	  <li class="checked" value="${show.loopNum}">
+	          	   	   <input type="checkbox" checked="checked" class="checkBox" aria-label="..." onchange="endCklist(${show.loopNum})">
+	          	   	   	  <span class="test" number="${show.loopNum}">${show.cl_Name}</span>
+          	   	  </li>
+          	   	  </c:if>
+          	   	 </c:forEach>
           	   </div>
           	  </c:forEach>
-          	 </ul> 
           	</div>
+          	<!-- checkList Management Popup -->
+          	<div id="managePopup" class="white_content">
+          	 <a href = "#" onclick="ckPopupClose();">
+        	  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        	 </a>
+        	 
+          	</div>
+           <div class="black_overlay"></div>
           </div>
+          <!-- checkList Div End -->
         </div>
         <!-- /#page-wrapper -->
 

@@ -3,23 +3,38 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bluemine.www.interfaces.MyScheduleMapper">
+<!-- 체크리스트 가져오기(관리용) -->
 <select id="getCKList" resultType="ckList">
-SELECT cl_Num, cl_Name, memberid, ck_Content, ck_State, loops
+SELECT cl_Num, cl_Name, memberid
 FROM CKList
 WHERE memberId = #{memberId}
 </select>
-<update id="updateLoops">
-UPDATE CKList
-SET	   loops = #{loops}
-WHERE cl_Num = #{cl_Num}
+<!-- 체크리스트 가져오기(보여주기용) -->
+<select id="showCKList" resultType="ckShow">
+SELECT 
+	loops.loopNum
+	,ckl.cl_Name
+	,loops.loop_State
+	,loops.loopDay
+FROM CKList ckl, CK_Loops loops
+WHERE memberId = #{memberId} and ckl.cl_Num = loops.cl_Num
+</select>
+<!-- 체크리스트 요일별 완료 -->
+<update id="checkLoop">
+UPDATE ck_loops
+SET		loop_state = 1
+WHERE loopNum = #{loopNum}
 </update>
-<!-- 체크리스트 변경 -->
-<update id="updateCKList" parameterType="ckList">
-UPDATE CKList
-SET		cl_Name = #{cl_Name},
-		ck_Content = #{ck_Content},
-		loops = #{loops}
-WHERE cl_num = ${cl_num}
+<update id="uncheckLoop">
+UPDATE ck_loops
+SET		loop_state = 0
+WHERE loopNum = #{loopNum}
+</update>
+<!-- 체크리스트 완료 초기화 -->
+<update id="resetLoop">
+UPDATE ck_loops
+SET		loop_state = 0
+WHERE cl_Num = #{cl_Num}
 </update>
 <!-- 체크리스트 삭제 -->
 <delete id="deleteCKList">

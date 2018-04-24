@@ -8,11 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bluemine.www.dao.MyScheduleDAO;
 import com.bluemine.www.vo.CKList;
+import com.bluemine.www.vo.CK_Show;
 import com.bluemine.www.vo.PS_Work;
 
 @Controller
@@ -28,6 +28,13 @@ public class MyScheduleController {
 		ArrayList<PS_Work> workList = myDao.getWorkList(userId);
 		session.setAttribute("workList", workList);
 		System.out.println(workList);
+		
+		// 체크리스트 요일별로 보여주기 위한 리스트 가져오기
+		ArrayList<CK_Show> cl_show = myDao.showCKList(userId);
+		System.out.println(cl_show);
+		session.setAttribute("CL_Show", cl_show);
+		ArrayList<CKList> getCKList = myDao.getCKList(userId);
+		System.out.println(getCKList);
 		return "mySchedule/main";
 	}
 	
@@ -62,5 +69,18 @@ public class MyScheduleController {
 	@RequestMapping(value="endWork",method=RequestMethod.POST)
 	public void endWork(int ps_Num){
 		System.out.println(myDao.finishWork(ps_Num));
+	}
+	
+	// 요일별 체크리스트 완료 
+	@ResponseBody
+	@RequestMapping(value="checkLoop",method=RequestMethod.POST)
+	public void checkLoop(int loopNum){
+		System.out.println("완료 : "+myDao.checkLoop(loopNum));
+	}
+	// 요일별 체크리스트 완료 취소
+	@ResponseBody
+	@RequestMapping(value="uncheckLoop",method=RequestMethod.POST)
+	public void uncheckLoop(int loopNum){
+		System.out.println("완료 : "+myDao.uncheckLoop(loopNum));
 	}
 }
