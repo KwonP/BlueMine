@@ -21,6 +21,10 @@ DROP SEQUENCE UI_SEQ;
 DROP SEQUENCE DP_SEQ;
 DROP SEQUENCE POSI_SEQ;
 DROP SEQUENCE LOOP_SEQ;
+DROP table triggerinfo;
+DROP SEQUENCE trigger_seq;
+DROP TRIGGER project_tg;
+DROP TRIGGER gp_work_tg;
 --USE USERINFO
 CREATE SEQUENCE UI_SEQ 
 START WITH 0000001
@@ -105,6 +109,8 @@ MAXVALUE 0999999
 INCREMENT BY 1
 NOCACHE
 NOCYCLE;
+
+create SEQUENCE trigger_seq;
 
 CREATE TABLE CP_DEPARTMENT
 (
@@ -238,20 +244,75 @@ CREATE TABLE CKLIST
  CL_NUM NUMBER(7) PRIMARY KEY
  ,CL_NAME VARCHAR2(30) NOT NULL
  ,MEMBERID VARCHAR2(30) NOT NULL
- ,CK_CONTENT VARCHAR2(300) NOT NULL
- ,CK_STATE VARCHAR2(10) DEFAULT('F')
- ,LOOPS varchar2(10)
  ,CONSTRAINT FK_CK_ID FOREIGN KEY(MEMBERID)
   REFERENCES USERINFO(USERID)
   ON DELETE CASCADE
  ,CONSTRAINT CK_CL_CS CHECK(CK_STATE IN('T','F'))
 );
 
-CREATE TABLE LOOPS(
-LOOP_SEQ NUMBER(7) PRIMARY KEY
-,LOOP_NUM NUMBER() NOT NULL
-,CL_NUM NUMBER(7)
-,CONSTRAINT FK_LP_CN FOREIGN KEY(CL_NUM)
-REFERENCES CKLIST(CL_NUM) ON DELETE CASCADE
-,
+CREATE TABLE CK_LOOPS(	
+  LOOPNUM NUMBER(7,0) PRIMARY KEY
+  ,LOOPDAY NUMBER(7,0) NOT NULL
+  ,LOOP_STATE NUMBER(7,0) NOT NULL
+  ,CL_NUM NUMBER(7,0) NOT NULL
+  ,CONSTRAINT FK_LP_CN FOREIGN KEY(CL_NUM)
+  REFERENCES CKLIST(CL_NUM) ON DELETE CASCADE
 );
+
+
+
+
+CREATE table triggerinfo(
+trigger_num number PRIMARY KEY,--트리거 번호(알림번호)
+info_type varchar2(200) not null,--알림 종류
+info_num number not null,--알림의 고유번호
+info_content varchar2(200),--알림 내용
+update_date date DEFAULT sysdate,--발생일
+command_check varchar2(200)--알림내용(동작체크용)
+);
+
+
+create OR REPLACE trigger project_tg
+ BEFORE
+  INSERT OR UPDATE OR DELETE ON prjlist
+  FOR EACH ROW
+BEGIN
+INSERT INTO TRIGGERINFO(
+  trigger_num
+  ,info_type
+  ,info_num
+  ,info_content
+  ,update_date
+  ,command_check
+) values(
+  trigger_seq.nextval
+  ,'prjList'
+  ,:new.prj_num
+  ,:new.prj_name
+  ,sysdate
+  ,:old.prj_name
+);
+END;
+     
+     
+     
+create or replace trigger gp_work_tg
+BEFORE
+  INSERT OR UPDATE OR DELETE ON gp_work
+  FOR EACH ROW
+BEGIN
+INSERT INTO TRIGGERINFO(
+  trigger_num
+  ,info_type
+  ,info_num
+  ,info_content
+  ,update_date
+  ,command_check
+) values (
+  trigger_seq.nextval
+  ,'gp_Work'
+  ,:new.gs_num
+  ,:new.gs_name
+  ,sysdate
+  ,:old.gs_name);
+END;
