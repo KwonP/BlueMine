@@ -2,61 +2,80 @@ package com.bluemine.www.vo;
 
 public class TriggerInfo {
 
-     
-    private int triggerNum;// 트리거번호(알림번호)
-    private String infoType;// 알림종류 
-    private int infoNum;// 알림고유번호
-    private String infoContent;// 알림 내용
-    private String updateDate;// 발생일
-    private String commandCheck;// 알림내용(동작체크용)
-    
-    public int getTriggerNum() {
-        return triggerNum;
-    }
+	private int trigger_Num;// 트리거번호(알림번호)
+	private String info_Type;// 알림종류
+	private int info_Num;// 알림고유번호
+	private String info_Content;// 알림 내용
+	private String update_Date;// 발생일
+	private String command_check;// 알림내용(동작체크용)
 
-    public void setTriggerNum(int triggerNum) {
-        this.triggerNum = triggerNum;
-    }
+	public TriggerInfo(int trigger_Num, String info_Type, int info_Num, String info_Content, String update_Date,
+			String command_check) {
+		super();
+		this.trigger_Num = trigger_Num;
+		this.info_Type = info_Type;
+		this.info_Num = info_Num;
+		this.info_Content = info_Content;
+		this.update_Date = update_Date;
+		this.command_check = command_check;
+	}
 
-    public String getInfoType() {
-        return infoType;
-    }
+	public TriggerInfo() {
+		super();
+	}
 
-    public void setInfoType(String infoType) {
-        this.infoType = infoType;
-    }
+	public int getTrigger_Num() {
+		return trigger_Num;
+	}
 
-    public int getInfoNum() {
-        return infoNum;
-    }
+	public void setTrigger_Num(int trigger_Num) {
+		this.trigger_Num = trigger_Num;
+	}
 
-    public void setInfoNum(int infoNum) {
-        this.infoNum = infoNum;
-    }
+	public String getInfo_Type() {
+		return info_Type;
+	}
 
-    public String getInfoContent() {
-        return infoContent;
-    }
+	public void setInfo_Type(String info_Type) {
+		this.info_Type = info_Type;
+	}
 
-    public void setInfoContent(String infoContent) {
-        this.infoContent = infoContent;
-    }
+	public int getInfo_Num() {
+		return info_Num;
+	}
 
-    public String getUpdateDate() {
-        return updateDate;
-    }
+	public void setInfo_Num(int info_Num) {
+		this.info_Num = info_Num;
+	}
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
-    }
+	public String getInfo_Content() {
+		return info_Content;
+	}
 
-    public String getCommandCheck() {
-        return commandCheck;
-    }
+	public void setInfo_Content(String info_Content) {
+		this.info_Content = info_Content;
+	}
 
-    public void setCommandCheck(String commandCheck) {
-        this.commandCheck = commandCheck;
-    }
+	public String getUpdate_Date() {
+		return update_Date;
+	}
 
-    
+	public void setUpdate_Date(String update_Date) {
+		this.update_Date = update_Date;
+	}
+
+	public String getCommand_check() {
+		return command_check;
+	}
+
+	public void setCommand_check(String command_check) {
+		this.command_check = command_check;
+	}
+
+	@Override
+	public String toString() {
+		return "trigger_Num=" + trigger_Num + ", info_Type=" + info_Type + ", info_Num=" + info_Num
+				+ ", info_Content=" + info_Content + ", update_Date=" + update_Date + ", command_check=" + command_check;
+	}
+
 }
