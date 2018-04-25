@@ -50,17 +50,17 @@
 <!-- JS -->
 <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../resources/js/timeline.js"></script>
-<%--알림 js --%>
+<%-- <%--알림 js 
 	<script src="../resources/toastr/toastr.min.js"></script>
 	<link href="../resources/toastr/toastr.css" rel="stylesheet">
 	<script src="../resources/js/webWorkerStart.js"></script>
-	<script src="../resources/js/worker.js"></script>
-	
+	<script src="../resources/js/worker.js"></script> --%>
+	<!-- 
 	<style>
 <script src="../resources/toastr/toastr.min.js"></script>
 <link href="../resources/toastr/toastr.css" rel="stylesheet">
 <script src="../resources/js/webWorkerStart.js"></script>
-<script src="../resources/js/worker.js"></script>
+<script src="../resources/js/worker.js"></script> -->
 
 <style>
 #orgFile {
@@ -141,7 +141,9 @@ img{
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+				<a class="navbar-brand" href="#">BLUE MINE</a> <a
+					class="companyInfo" value="about">About</a> <a class="companyInfo"
+					value="contact">Contact Us</a> <a class="companyInfo" value="help">Help</a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -386,22 +388,8 @@ img{
 		<div id="page-wrapper" class="user-table">
 			<div class="row">
 				<div class="col-lg-12">
-					<form action="project" id="fileForm" method="post" enctype="multipart/form-data">
-						<table>
-							<tr>
-								<th>제목</th>
-								<td>
-									<input type="text" name="title" id="title" style="width:400px;">
-								</td>
-							</tr>
-							<tr>
-								<th>내용</th> 
-								<td>
-									<textarea name="content" id="content" style="width:400px;height:200px;resize:none;"></textarea>
-								</td>
-							</tr>
-						</table>
-					
+					<form action="../data/fileUpload" id="fileForm" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="prj_Num" value="${prj_Num }">
 						<input type="file" multiple="multiple" id="orgFile" name="upload" onchange="submitFile()" size="30">
 						<button style="margin-top: 23px;" class="btn btn-default" type="button" onclick="check()">
 							<i class="fa fa-upload" style="margin-right: 10px;"></i>File Upload
@@ -519,7 +507,7 @@ img{
 	
 	
 
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 	$(document).ready(function() {
         /* $(".dropdown img.flag").addClass("flagvisibility");*/
 	    	$('.btn-example').click(function(){
@@ -609,7 +597,7 @@ img{
 
 	    }
 	    
-		</script>
+		</script> -->
 </body>
 
 </html>

@@ -3,7 +3,47 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 프로젝트 처리 SQL -->
+<!-- 자료실 처리 SQL -->
 <mapper namespace="com.bluemine.www.interfaces.DataDownloadMapper">
-
+	<!-- 파일 저장 -->
+	<insert id="insertFile" parameterType="fileInfo">
+		insert into FileInfo (
+			prj_Num
+			, originalFile
+			, saveFile
+		)
+		values (
+			#{prj_Num}
+			, #{originalFile}
+			, #{saveFile}
+		)
+	</insert>
+	
+	<!-- 해당 프로젝트에 있는 파일 전부 가져오기 -->
+	<select id="selectPrjFiles" parameterType="int" resultType="fileInfo">
+		select
+			prj_Num
+			, originalFile
+			, saveFile
+		from
+			FileInfo
+		where
+			prj_Num = #{prj_Num}
+		order by
+			prj_Num DESC
+	</select>
+	
+	<!-- 해당 프로젝트에 있는 파일 전부 가져오기 -->
+	<select id="listFiles" parameterType="String" resultType="fileInfo">
+		select
+			prj_Num
+			, originalFile
+			, saveFile
+		from
+			FileInfo
+		where
+			originalfile = #{originalfile}
+		order by
+			prj_Num DESC
+	</select>
 </mapper>

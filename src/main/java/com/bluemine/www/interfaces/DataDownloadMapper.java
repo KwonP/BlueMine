@@ -12,6 +12,17 @@ import com.bluemine.www.vo.TimeLine;
 import com.bluemine.www.vo.TriggerInfo;
 import com.bluemine.www.vo.UserInfo;
 
+/**
+ * 자료실 관련 Mybatis 사용 메서드
+ */
 public interface DataDownloadMapper {
+	//자료 저장
+	public int insertFile(FileInfo file);
+
+	//파일 가져오기
+	public ArrayList<FileInfo> selectPrjFiles(int prj_Num);
+
+	//오리지날 파일을 이용해서 파일 리스트 가져오기
+	public ArrayList<FileInfo> listFiles(String originalfile);
 	
 }

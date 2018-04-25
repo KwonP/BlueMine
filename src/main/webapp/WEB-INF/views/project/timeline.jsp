@@ -48,11 +48,11 @@
 <!-- JS -->
 <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../resources/js/timeline.js"></script>
-<%--알림 js --%>
+<%--알림 js 
 	<script src="../resources/toastr/toastr.min.js"></script>
 	<link href="../resources/toastr/toastr.css" rel="stylesheet">
 	<script src="../resources/js/webWorkerStart.js"></script>
-	<script src="../resources/js/worker.js"></script>
+	<script src="../resources/js/worker.js"></script>--%>
 </head>
 
 <body>
@@ -271,7 +271,7 @@
 								<li><a href="#">My Timeline</a></li>
 								<li><a href="#">Company Timeline</a></li>
 							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="../project/datadownload"><i class="fa fa-edit fa-fw"></i> Data Download</a></li>
+						<li><a href="../data/filePrint?prjNum=${prjNum }"><i class="fa fa-edit fa-fw"></i> Data Download</a></li>
 						<li><a href="#"><i class="fa fa-paste fa-fw"></i>
 								Progress<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
