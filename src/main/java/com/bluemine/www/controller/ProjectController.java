@@ -19,4 +19,8 @@ public class ProjectController {
 	public String projectPage(HttpSession session){
 		return "project/timeline";
 	}
+	@RequestMapping(value="/datadownload")
+	public String datadownload(HttpSession session){
+		return "project/datadownload";
+	}
 }

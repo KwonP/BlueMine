@@ -25,5 +25,6 @@
 		<mapper resource="mapper/groupMapper.xml"/>
 		<mapper resource="mapper/projectMapper.xml"/>
 		<mapper resource="mapper/myScheduleMapper.xml"/>
+		<mapper resource="mapper/dataDownloadMapper.xml"/>
 	</mappers> 
 </configuration>

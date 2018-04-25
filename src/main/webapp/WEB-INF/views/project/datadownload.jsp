@@ -15,6 +15,10 @@
 <meta name="author" content="">
 <title>BLUE MINE</title>
 
+<!-- jQuery -->
+	<script
+		src="../resources/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+
 <!-- Bootstrap Core CSS -->
 <link href="../resources/templet/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -25,10 +29,6 @@
 
 <!-- Custom CSS -->
 <link href="../resources/templet/dist/css/sb-admin-2.css"
-	rel="stylesheet">
-
-<!-- Morris Charts CSS -->
-<link href="../resources/templet/vendor/morrisjs/morris.css"
 	rel="stylesheet">
 
 <!-- Custom Fonts -->
@@ -53,6 +53,69 @@
 	<link href="../resources/toastr/toastr.css" rel="stylesheet">
 	<script src="../resources/js/webWorkerStart.js"></script>
 	<script src="../resources/js/worker.js"></script>
+	
+	<style>
+#orgFile {
+	display: none;
+}
+
+.panel-body {
+	width: 240px;
+	height: 240px;
+}
+.col-lg-4 {
+    width: unset;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+
+#a{
+	margin-right: 18px;
+	margin-left: 18px;
+}
+</style>
+	<script>
+	$(document).ready(function() {
+    	$("#keyword").keyup(function() {
+    		var k = $(this).val();
+        	$(".user-table > .row > #a > #b").hide();
+        	var temp = $(".user-table > .row > #a > #b > .panel-heading:contains('" + k + "')");
+
+        	$(temp).parent().show();
+    	});
+	});
+
+	/**이벤트 발생 (크롬,파이어폭스,사파이어 OK!) **/
+	function eventOccur(evEle, evType) {
+		if (evEle.fireEvent) {
+			evEle.fireEvent('on' + evType);
+		} else {
+			//MouseEvents가 포인트 그냥 Events는 안됨~ ??
+			var mouseEvent = document.createEvent('MouseEvents');
+			/* API문서 initEvent(type,bubbles,cancelable) */
+			mouseEvent.initEvent(evType, true, false);
+			var transCheck = evEle.dispatchEvent(mouseEvent);
+			if (!transCheck) {
+				//만약 이벤트에 실패했다면
+				console.log("클릭 이벤트 발생 실패!");
+			}
+		}
+	}
+	
+	/** 대체버튼 클릭시 강제 이벤트 발생**/
+	function check() {
+		eventOccur(document.getElementById('orgFile'), 'click');
+		/* alert(orgFile.value); 이벤트 처리가 끝나지 않은 타이밍이라 값 확인 안됨! 시간차 문제 */
+	}
+	
+	function submitFile() {
+		document.getElementById("fileForm").submit();
+	}
+
+	</script>
 </head>
 
 <body>
@@ -68,9 +131,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">BLUE MINE</a> <a
-					class="companyInfo" value="about">About</a> <a class="companyInfo"
-					value="contact">Contact Us</a> <a class="companyInfo" value="help">Help</a>
+				<a class="navbar-brand" href="index.html">SB Admin v2.0</a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -235,15 +296,16 @@
 					</ul> <!-- /.dropdown-alerts --></li>
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" id="profileImg"> <img
-						src="../showProfile?id=${sessionScope.loginId}" width="50px">
+					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
 						<i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-user">
 						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
 								Profile</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+						</li>
 						<li class="divider"></li>
-						<li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i>
+						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
 								Logout</a></li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
@@ -263,189 +325,184 @@
 								</span>
 							</div> <!-- /input-group -->
 						</li>
-						<li><a href="../goToMain"><i class="fa fa-desktop fa-fw"></i>
-								Main Page</a></li>
-						<li><a href="#"><i class="fa fa-paper-plane-o fa-fw"></i>
-								Timeline<span class="fa arrow"></span></a>
+						<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
+								Dashboard</a></li>
+						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
+								Charts<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#">My Timeline</a></li>
-								<li><a href="#">Company Timeline</a></li>
+								<li><a href="flot.html">Flot Charts</a></li>
+								<li><a href="morris.html">Morris.js Charts</a></li>
 							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="../project/datadownload"><i class="fa fa-edit fa-fw"></i> Data Download</a></li>
-						<li><a href="#"><i class="fa fa-paste fa-fw"></i>
-								Progress<span class="fa arrow"></span></a>
+						<li><a href="tables.html"><i class="fa fa-table fa-fw"></i>
+								Tables</a></li>
+						<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i>
+								Forms</a></li>
+						<li><a href="#"><i class="fa fa-wrench fa-fw"></i> UI
+								Elements<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#">My tasks</a></li>
-								<li><a href="#">Project</a></li>
+								<li><a href="panels-wells.html">Panels and Wells</a></li>
+								<li><a href="buttons.html">Buttons</a></li>
+								<li><a href="notifications.html">Notifications</a></li>
+								<li><a href="typography.html">Typography</a></li>
+								<li><a href="icons.html"> Icons</a></li>
+								<li><a href="grid.html">Grid</a></li>
 							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="#"><i class="fa fa-calendar fa-fw"></i>Work
-								Schedule</a>
-						<li><a href="#"><i class="fa fa-comments fa-fw"></i>
-								Chats</a></li>
+						<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>
+								Multi-Level Dropdown<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="#">Second Level Item</a></li>
+								<li><a href="#">Second Level Item</a></li>
+								<li><a href="#">Third Level <span class="fa arrow"></span></a>
+									<ul class="nav nav-third-level">
+										<li><a href="#">Third Level Item</a></li>
+										<li><a href="#">Third Level Item</a></li>
+										<li><a href="#">Third Level Item</a></li>
+										<li><a href="#">Third Level Item</a></li>
+									</ul> <!-- /.nav-third-level --></li>
+							</ul> <!-- /.nav-second-level --></li>
+						<li><a href="#"><i class="fa fa-files-o fa-fw"></i>
+								Sample Pages<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="blank.html">Blank Page</a></li>
+								<li><a href="login.html">Login Page</a></li>
+							</ul> <!-- /.nav-second-level --></li>
 					</ul>
 				</div>
 				<!-- /.sidebar-collapse -->
 			</div>
 			<!-- /.navbar-static-side -->
 		</nav>
-		
-		<div id="page-wrapper">
-			<div id="timeLineDiv"></div>
-			<input type="hidden" id="getPrjNum" value="${prjNum}"> <input
-				type="hidden" id="getUserId" value="${loginId}"> <input
-				type="hidden" id="getSession" value="${sessionScope.loginId }">
-			<div id="userTest"></div>
-			<div id="addTimeLineDiv">
-				<div class="col-lg-3 col-md-6">
-				<a href="#layer1" class="btn-example">
-					<div class="panel panel-yellow">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-plus fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="timeLineFont">타임라인 추가<br>테스트용</div>
-									<div></div>
+			
+		<div id="page-wrapper" class="user-table">
+			<div class="row">
+				<div class="col-lg-12">
+					<form action="project" id="fileForm" method="post" enctype="multipart/form-data">
+						<table>
+							<tr>
+								<th>제목</th>
+								<td>
+									<input type="text" name="title" id="title" style="width:400px;">
+								</td>
+							</tr>
+							<tr>
+								<th>내용</th> 
+								<td>
+									<textarea name="content" id="content" style="width:400px;height:200px;resize:none;"></textarea>
+								</td>
+							</tr>
+						</table>
+					
+						<input type="file" multiple="multiple" id="orgFile" name="upload" onchange="submitFile()" size="30">
+						<button style="margin-top: 23px;" class="btn btn-default" type="button" onclick="check()">
+							<i class="fa fa-upload" style="margin-right: 10px;"></i>File Upload
+						</button>
+					</form>
+					<span style="float: center;"><input type="text" style="margin-top: 23px;" class="form-control" placeholder="Search..." id="keyword" /></span>					
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Image Files</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			<%-- 프로젝트마다의 파일을 가져오기 --%>
+			<div class="row">
+				<c:forEach var="i" items="${imagelist}">
+					<div id="a" class="col-lg-4">
+						<div id="b" class="panel panel-primary">
+							<div class="panel-heading">${sessionScope.loginId }</div>  
+							<div class="panel-body">
+								<img src="download?originalfile=${i.originalfile}">
+							</div>
+							<div class="panel-footer" >
+								<div class="btn-group" data-toggle="buttons">
+									<button class="btn btn-default" onclick="location.href='download?originalfile=${i.originalfile}'">다운로드</button>
 								</div>
 							</div>
 						</div>
-						 <span class="pull-left">ADD
-								TIME LINE</span> <span class="pull-right"><i
-								class="fa fa-arrow-circle-right"></i></span>
-							<div class="clearfix"></div>
 					</div>
-					</a>
-				</div>
+				</c:forEach>
 			</div>
-			<!--<table><tr><td>-->
-			<div id="selectTest">
-				<dl id="selectKinds" class="dropdown">
-					<dt>
-						<a href="#"><span><i class="fa fa-columns"></i>전체 조회</span></a>
-					</dt>
-					<dd>
-						<ul>
-						<li><a href="#"><i class="fa fa-columns"></i>전체 조회<span class="value">0</span></a></li>
-							<li><a href="#"><i class="fa fa-info-circle"></i>공지 조회<span class="value">1</span></a></li>
-							<li><a href="#"><i class="fa fa-calendar-o"></i>작업 조회<span class="value">2</span></a></li>
-						</ul>
-					</dd>
-				</dl>
-				<span id="result"></span>
-				
-			</div>
-			<!--  </td><td><select id="searchType"><option selected="selected" value="writer">작성자</option><option value="content">내용</option> </select> </td></tr></table>-->
-
+			<!-- /.row -->
 		</div>
-
-
 		<!-- /#page-wrapper -->
-
-	</div>
-	
-	<div class="dim-layer">
-		<div class="dimBg"></div>
-		<div id="layer1" class="pop-layer">
-			<div class="pop-container">
-				<div class="pop-conts">
-					<!--content //-->
-					<table id="timeLineTable">
-						<thead>
-							<tr>
-								<th>말머리</th>
-								<td><select id="horseHead"><option value="1">공지사항</option>
-										<option value="2">스케줄</option>
-								</select></td>
-							</tr>
-							<tr>
-								<th>작성자</th>
-								<td>${sessionScope.user.name}<input type="hidden"
-									value="${loginId}" id="writer"></td>
-							</tr>
-
-
-						</thead>
-						<tbody>
-							<tr>
-								<th>내용</th>
-								<td><textarea id="timeLineContent" class="timeLineContent"
-										rows="5" cols="60" placeholder="타임라인 내용"></textarea></td>
-							</tr>
-						</tbody>
-						<tfoot><tr><td><input type="hidden" value="" id="TLNumber"> </td></tr></tfoot>
-					</table>
-					<p class="ctxt mb20"></p>
-
-					<div class="btn-r">
-						<a href="#" class="btn-add" id="btn-add">Add</a> <a href="#"
-							class="btn-layerClose">Close</a>
-					</div>
-					<!--// content-->
+		
+		<div id="page-wrapper" class="user-table">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Text Files</h1>
 				</div>
+				<!-- /.col-lg-12 -->
 			</div>
-		</div>
-		
-		
-	</div>
-	<div class="dim-layer2">
-		<div class="dimBg"></div>
-		<div id="layer2" class="pop-layer">
-			<div class="pop-container">
-				<div class="pop-conts">
-					<!--content //-->
-					<table id="timeLineTable">
-						<thead>
-							<tr>
-								<th>말머리</th>
-								<td><select id="horseHead"><option value="1">공지사항</option>
-										<option value="2">스케줄</option>
-								</select></td>
-							</tr>
-							<tr>
-								<th>작성자</th>
-								<td>${sessionScope.user.name}<input type="hidden"
-									value="${loginId}" id="writer"></td>
-							</tr>
-
-
-						</thead>
-						<tbody>
-							<tr>
-								<th>내용</th>
-								<td><textarea id="timeLineContent" class="timeLineContent"
-										rows="5" cols="60" placeholder="타임라인 내용"></textarea></td>
-							</tr>
-						</tbody>
-						<tfoot><tr><td><input type="hidden" id="TLNumber" value=""> </td></tr></tfoot>
-					</table>
-					<p class="ctxt mb20"></p>
-
-					<div class="btn-r">
-						<a href="#" class="btn-add" id="btn-add">Add</a> <a href="#"
-							class="btn-layerClose">Close</a>
+			<!-- /.row -->
+			<%-- 프로젝트마다의 파일을 가져오기 --%>
+			<div class="row">
+				<c:forEach var="i" items="${textlist}">
+					<div id="a" class="col-lg-4">
+						<div id="b" class="panel panel-primary">
+							<div class="panel-heading">${sessionScope.loginId }</div>
+							<div class="panel-body">
+								<img src="../resources/image/text.png" width="50%" height="50%">
+							</div>
+							<div class="panel-footer" >
+								<div class="btn-group" data-toggle="buttons">
+									<label class="btn btn-default"> 
+										<a href="download?originalfile=${i.originalfile}">다운로드</a>
+									</label>
+								</div>
+							</div>
+						</div>
 					</div>
-					<!--// content-->
-				</div>
+				</c:forEach>
 			</div>
+			<!-- /.row -->
 		</div>
+		<!-- /#page-wrapper -->
 		
-		
+		<div id="page-wrapper" class="user-table">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Mp3 Files</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			<%-- 프로젝트마다의 파일을 가져오기 --%>
+			<div class="row">
+				<c:forEach var="i" items="${mp3list}">
+					<div id="a" class="col-lg-4">
+						<div id="b" class="panel panel-primary">
+							<div class="panel-heading">${sessionScope.loginId }</div>
+							<div class="panel-body">
+								<img src="../resources/image/mp3.png" width="50%" height="50%">
+							</div>
+							<div class="panel-footer" >
+								<div class="btn-group" data-toggle="buttons">
+									<label class="btn btn-default"> 
+										<a href="download?originalfile=${i.originalfile}">다운로드</a>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /#page-wrapper -->
 	</div>
-	
 	<!-- /#wrapper -->
-
-	<!-- jQuery -->
-	<script src="../resources/templet/vendor/jquery/jquery.min.js"></script>
-
+	
 	<!-- Bootstrap Core JavaScript -->
 	<script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
 	<script src="../resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- Morris Charts JavaScript -->
-	<script src="../resources/templet/vendor/raphael/raphael.min.js"></script>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="../resources/templet/dist/js/sb-admin-2.js"></script>
