@@ -14,9 +14,11 @@ if ($('#addBehaviorOnToastClick').prop('checked')) {
 }
 
 function checkNotifications(){
+	loginId='';//!!!!!!!!!!!!!!!!!!!나중에 수정할 것
 	$.ajax({
 		url : 'checknotifications',
 		tpue : 'get',
+		data : {loginId:loginId},
 		dataType : 'JSON',
 		async : false,
 		success : function(list) {
@@ -37,9 +39,9 @@ function postNotifications(list){
 		var type='';
 		var command = '';
 		if(list[i].info_Type=='prjList'){
-			type='Project';
+			type='프로젝트 ';
 		}else if(list[i].info_Type=='gp_Work'){
-			tpye='';
+			type='일감 ';
 		}
 		toastr.options = {
 				  "closeButton": true,
@@ -64,14 +66,15 @@ function postNotifications(list){
 		if(list[i].command_Check==null&&list[i].info_Content!=null){
 			//INSERT
 			toastr.options.onclick=null;
-			toastr.info(JSON.stringify(list[i])+'<button type="button" class="btn clear" onclick="alert('+"'test입니다.'"+');">Yes</button>', list[i].info_Content+'(이)가 생성되었습니다.');
+			toastr.info(''+'<button type="button" class="btn clear" onclick="alert('+"'test입니다.'"+');">Yes</button>',type+ list[i].info_Content+'(이)가 생성되었습니다.');
 		}else if(list[i].command_Check!=null&&list[i].info_Content==null){
 			//DELETE
 			toastr.options.onclick=null;
-			toastr.error(JSON.stringify(list[i]), list[i].command_Check+'(이)가 삭제되었습니다.');
+			toastr.error('', type+list[i].command_Check+'(이)가 삭제되었습니다.');
 		}else{
 			//UPDATE
-			toastr.success(JSON.stringify(list[i]), list[i].info_Content+'(이)가 수정되었습니다.');
+			//JSON.stringify(list[i])
+			toastr.success('', type+list[i].info_Content+'(이)가 수정되었습니다.');
 		}
 		
 	}

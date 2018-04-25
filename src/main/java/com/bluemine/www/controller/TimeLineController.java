@@ -179,7 +179,7 @@ public class TimeLineController {
 			logger.info(list.toString());
 			if (list != null || list.size() > 0) {
 				for (int i = 0; i < list.size(); i++) {
-					boolean check = true;
+					/*boolean check = true;
 					if(list.get(i).getInfo_Type().equals("gp_Work")) {
 						PRJList prj = tlDAO.getProject(list.get(i).getInfo_Num());
 						ArrayList<UserInfo> uList = tlDAO.getUserList(prj.getPrj_Num());
@@ -201,7 +201,7 @@ public class TimeLineController {
 					}
 					if(check) {
 						list.remove(list.get(i));
-					}
+					}*/
 			
 					logger.info(i + "반복");
 					// tlDAO.deleteTriggerInfo(list.get(i).getTrigger_Num());
