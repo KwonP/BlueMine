@@ -18,6 +18,8 @@
 <!-- jQuery -->
 	<script
 		src="../resources/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+<script
+	src="../resources/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core CSS -->
 <link href="../resources/templet/vendor/bootstrap/css/bootstrap.min.css"
@@ -55,6 +57,12 @@
 	<script src="../resources/js/worker.js"></script>
 	
 	<style>
+<script src="../resources/toastr/toastr.min.js"></script>
+<link href="../resources/toastr/toastr.css" rel="stylesheet">
+<script src="../resources/js/webWorkerStart.js"></script>
+<script src="../resources/js/worker.js"></script>
+
+<style>
 #orgFile {
 	display: none;
 }
@@ -63,8 +71,10 @@
 	width: 240px;
 	height: 240px;
 }
+
 .col-lg-4 {
     width: unset;
+	width: unset;
 }
 
 img{
