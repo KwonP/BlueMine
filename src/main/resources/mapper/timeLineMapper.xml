@@ -24,7 +24,7 @@ insert into timeline(
 )
 </insert>
 <!-- 타임 라인 목록 가져오기(프로젝트번호로) -->
-<select id="getTimeLineList" parameterType="map"
+<select id="getTimeLineList"
 resultType="timeLine">
 select 
 	tl_num
@@ -34,12 +34,11 @@ select
 	, tl_content
 from
 	timeline
-where prj_num=prj_num
 order by w_date desc
 </select>
 <!-- 프로젝트 정보 가져오기 -->
 <select id="getProjectInfo" parameterType="int" resultType="prjList">
-select * from prjlist
+select * from prjlist where prj_num=#{value}
 </select>
 <!-- 타임 라인 글 삭제(게시글 번호) -->
 <delete id="deleteTimeLine" parameterType="int">
@@ -88,8 +87,8 @@ Where
 order by saveFile
 </select>
 <!-- 프로젝트별 타임라인 갯수 -->
-<select id="getTotal" parameterType="int" resultType="int">
-select count(*) from timeline where prj_num=#{value}
+<select id="getTotal" resultType="int">
+select count(*) from timeline
 </select>
 <!-- 프로젝트에 참가한 인원 -->
 <select id="getUserList" parameterType="int" resultType="userInfo">

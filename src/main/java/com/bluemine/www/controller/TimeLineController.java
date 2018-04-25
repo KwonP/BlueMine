@@ -52,35 +52,16 @@ public class TimeLineController {
 	// 타임라인 리스트 가져오기
 	@ResponseBody
 	@RequestMapping("/gettimelinelist")
-	public ArrayList<TimeLine> getTimeLineList(int prj_Num, int page, int tagNum, Model model) {
+	public ArrayList<TimeLine> getTimeLineList( int page, Model model) {
 		logger.info("타임라인 : 리스트 가져오는 메소드 실행");
-		logger.info("타임라인 : prj_Num :" + prj_Num + ", page :" + page);
-		int total = tlDAO.getTotal(prj_Num);
+		
+		int total = tlDAO.getTotal();
 
 		ArrayList<TimeLine> list = new ArrayList<>();
 		ArrayList<UserInfo> uList = new ArrayList<>();
-		ArrayList<PRJList> pList = new ArrayList<>();
-		ArrayList<Object[]> objList = new ArrayList<>();
-		pList = tlDAO.getProjectInfo();
+		
 
-		for (int i = 0; i < pList.size(); i++) {
-			int projectNum = pList.get(i).getPrj_Num();
-			String prj_Name = pList.get(i).getPrj_Name();
-			String names = "참여인원 : ";
-			uList = tlDAO.getUserList(projectNum);
-			for (int j = 0; j < uList.size(); j++) {
-				if (j == 0) {
-					names += uList.get(j).getName();
-				} else {
-					names += ", " + uList.get(j).getName();
-				}
-			}
-			Object[] obj = new Object[3];
-			obj[0] = projectNum; // 프로젝트 번호
-			obj[1] = prj_Name; // 프로젝트 이름
-			obj[2] = names; // 프로젝트의 참여한 인원들
-			objList.add(obj);
-		}
+		
 		logger.info(uList.toString());
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
 		if (navi.getCurrentPage() != page) {
@@ -88,21 +69,35 @@ public class TimeLineController {
 		}
 		logger.info("total : " + total);
 		RowBounds rd = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
-		Map<String, Integer> map = new HashMap<>();
-		if (prj_Num != 0) {
-			map.put("prj_Num", prj_Num);
-		}
-		if (tagNum < 1) {
-			tagNum = 0;
-		}
-		map.put("tagNum", tagNum);
-		list = tlDAO.getTimeLineList(map, rd);
+		list = tlDAO.getTimeLineList(rd);
 
 		Calendar cal = Calendar.getInstance();
 		int nowTime = (int) (cal.getTimeInMillis() / 1000);
 		for (int i = 0; i < list.size(); i++) { // 작성(수정)시간과 현재 시간계산
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			try {
+				
+					PRJList prj = tlDAO.getProject(list.get(i).getPrj_Num());
+					int projectNum = prj.getPrj_Num();
+					String prj_Name = prj.getPrj_Name();
+					String names = "참여인원 : ";
+					uList = tlDAO.getUserList(projectNum);
+					for (int j = 0; j < uList.size(); j++) {
+						if (j == 0) {
+							names += uList.get(j).getName();
+						} else {
+							names += ", " + uList.get(j).getName();
+						}
+					}
+					Object[] obj = new Object[3];
+					obj[0] = projectNum; // 프로젝트 번호
+					obj[1] = prj_Name; // 프로젝트 이름
+					obj[2] = names; // 프로젝트의 참여한 인원들
+					if ((int) obj[0] == list.get(i).getPrj_Num()) {
+						list.get(i).setTl_Content((String) obj[1] + "///" + (String) obj[2]);
+					}
+				
+				
 				String result = "";
 				Date date = df.parse(list.get(i).getW_Date());
 				Calendar dCal = Calendar.getInstance();
@@ -120,12 +115,9 @@ public class TimeLineController {
 					result = list.get(i).getW_Date();
 				}
 				list.get(i).setW_Date(list.get(i).getW_Date() + "<br>  " + result);
-				for (int j = 0; j < objList.size(); j++) {
-					Object[] obj = objList.get(j);
-					if ((int) obj[0] == list.get(i).getPrj_Num()) {
-						list.get(i).setTl_Content((String) obj[1] + "///" + (String) obj[2]);
-					}
-				}
+				
+					
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				logger.info(e.getStackTrace().toString());
@@ -177,34 +169,48 @@ public class TimeLineController {
 	// 알림 가져오기
 	@ResponseBody
 	@RequestMapping(value = "checknotifications", method = RequestMethod.GET)
-	public ArrayList<TriggerInfo> checkNotifications() throws InterruptedException {
+	public ArrayList<TriggerInfo> checkNotifications(String userId) throws InterruptedException {
 		while (true) {
 
 			ArrayList<TriggerInfo> list = new ArrayList<>();
 			list = tlDAO.getTriggerInfo();
+			
+			
 			logger.info(list.toString());
 			if (list != null || list.size() > 0) {
 				for (int i = 0; i < list.size(); i++) {
+					boolean check = true;
+					if(list.get(i).getInfo_Type().equals("gp_Work")) {
+						PRJList prj = tlDAO.getProject(list.get(i).getInfo_Num());
+						ArrayList<UserInfo> uList = tlDAO.getUserList(prj.getPrj_Num());
+						for(int j=0;j<uList.size();j++) {
+							if(userId.equals(uList.get(j).getUserId())) {
+								logger.info(list.get(i).toString());
+								check=false;
+							}
+						}
+						
+					}else if(list.get(i).getInfo_Type().equals("prjList")) {
+						ArrayList<UserInfo> uList = tlDAO.getUserList(list.get(i).getInfo_Num());
+						for(int j=0;j<uList.size();j++) {
+							if(userId.equals(uList.get(j).getUserId())) {
+								logger.info(list.get(i).toString());
+								check=false;
+							}
+						}
+					}
+					if(check) {
+						list.remove(list.get(i));
+					}
+			
 					logger.info(i + "반복");
 					// tlDAO.deleteTriggerInfo(list.get(i).getTrigger_Num());
 				}
+				logger.info(list.toString());
 				return list;
 			}
 			Thread.sleep(500);
 		}
 
 	}
-
-	// 알림 가져오기
-	@ResponseBody
-	@RequestMapping(value = "chekcproject", method = RequestMethod.GET)
-	public PRJList checkPoject(int gs_Num) {
-
-		PRJList prj = new PRJList();
-	
-
-		return prj;
-
-	}
-
 }

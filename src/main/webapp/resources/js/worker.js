@@ -58,11 +58,13 @@ function postNotifications(list){
 				  "showEasing": "swing",
 				  "hideEasing": "linear",
 				  "showMethod": "fadeIn",
-				  "hideMethod": "fadeOut"
+				  "hideMethod": "fadeOut",
+				  "tapToDismiss": false
 				}
 		if(list[i].command_Check==null&&list[i].info_Content!=null){
 			//INSERT
-			toastr.info(JSON.stringify(list[i]), list[i].info_Content+'(이)가 생성되었습니다.');
+			toastr.options.onclick=null;
+			toastr.info(JSON.stringify(list[i])+'<button type="button" class="btn clear" onclick="alert('+"'test입니다.'"+');">Yes</button>', list[i].info_Content+'(이)가 생성되었습니다.');
 		}else if(list[i].command_Check!=null&&list[i].info_Content==null){
 			//DELETE
 			toastr.options.onclick=null;

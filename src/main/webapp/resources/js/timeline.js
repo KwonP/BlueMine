@@ -231,9 +231,8 @@ function menuPage() {
 			url : 'gettimelinelist',
 			tpue : 'get',
 			data : {
-				prj_Num : prj_Num,
-				page : page,
-				tagNum : tagNum
+				page : page
+			
 			},
 			dataType : 'JSON',
 			async : false,

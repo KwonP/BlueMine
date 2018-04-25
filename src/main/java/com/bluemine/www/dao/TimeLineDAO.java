@@ -34,9 +34,9 @@ public class TimeLineDAO implements TimeLineMapper{
 	}
 	//타임 라인 글목록 가져오기(그룹 번호로)
 	@Override
-	public ArrayList<TimeLine> getTimeLineList(Map<String, Integer> map,RowBounds rb) {
-		logger.info(map.toString()+"\n "+rb.getLimit()+"  "+rb.getOffset());
-		ArrayList<TimeLine> list = session.getMapper(TimeLineMapper.class).getTimeLineList(map,rb);
+	public ArrayList<TimeLine> getTimeLineList(RowBounds rb) {
+		
+		ArrayList<TimeLine> list = session.getMapper(TimeLineMapper.class).getTimeLineList(rb);
 		logger.info("select Time Line Count : "+list.size());
 		return list;
 	}
@@ -67,9 +67,9 @@ public class TimeLineDAO implements TimeLineMapper{
 	}
 	//전체  타임라인 갯수(프로젝트 번호로)
 	@Override
-	public int getTotal(int prj_Num) {
+	public int getTotal() {
 		
-		int total = session.getMapper(TimeLineMapper.class).getTotal(prj_Num);
+		int total = session.getMapper(TimeLineMapper.class).getTotal();
 		return total;
 	}
 	//프로젝트에 참가중인 인원 가져오기
@@ -81,9 +81,9 @@ public class TimeLineDAO implements TimeLineMapper{
 	}
 	//프로젝트 정보 가져오기
 	@Override
-	public ArrayList<PRJList> getProjectInfo() {
+	public ArrayList<PRJList> getProjectInfo(int prj_Num) {
 		ArrayList<PRJList> prj = new ArrayList<>();
-		prj = session.getMapper(TimeLineMapper.class).getProjectInfo();
+		prj = session.getMapper(TimeLineMapper.class).getProjectInfo(prj_Num);
 		return prj;
 	}
 	@Override
@@ -96,6 +96,12 @@ public class TimeLineDAO implements TimeLineMapper{
 		int result = session.getMapper(TimeLineMapper.class).deleteTriggerInfo(trigger_Num);
 		logger.info("트리거 번호:"+trigger_Num+"결과 : "+result);
 		return result;
+	}
+	//gs_Num으로 매칭되는 프로젝트 가져오기
+	@Override
+	public PRJList getProject(int gs_Num) {
+		PRJList prj = session.getMapper(TimeLineMapper.class).getProject(gs_Num);
+		return prj;
 	}
 
 }
