@@ -1,6 +1,7 @@
 package com.bluemine.www.interfaces;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.bluemine.www.vo.CKList;
 import com.bluemine.www.vo.CP_Department;
@@ -44,4 +45,6 @@ public interface UserInfoMapper {
 		public ArrayList<CP_Department> getDepartmentList();
 		// 직급 불러오기
 		public ArrayList<CP_Position> getPositionList();
+		//ajax자동완성 기능을 위한 목록 부르기
+		public ArrayList<UserInfo> getUser(HashMap<String, String> map);
 }

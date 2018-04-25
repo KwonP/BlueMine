@@ -1,6 +1,7 @@
 package com.bluemine.www.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -115,6 +116,14 @@ public class UserInfoDAO implements UserInfoMapper{
 	@Override
 	public ArrayList<CP_Position> getPositionList() {
 		return session.getMapper(UserInfoMapper.class).getPositionList();
+	}
+
+	//ajax자동완성 기능을 위한 목록 부르기
+	@Override
+	public ArrayList<UserInfo> getUser(HashMap<String, String> map) {
+		ArrayList<UserInfo> list = new ArrayList<>();
+		list = session.getMapper(UserInfoMapper.class).getUser(map);
+		return list;
 	}
 
 }

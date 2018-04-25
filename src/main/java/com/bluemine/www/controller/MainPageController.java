@@ -3,6 +3,7 @@ package com.bluemine.www.controller;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 import javax.servlet.ServletOutputStream;
@@ -13,11 +14,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bluemine.www.dao.PositionDAO;
 import com.bluemine.www.dao.ProjectDAO;
 import com.bluemine.www.dao.UserInfoDAO;
+import com.bluemine.www.vo.MatchPRJ;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.UserInfo;
 
@@ -29,6 +34,10 @@ public class MainPageController {
 
 	@Inject
 	ProjectDAO prjDao;
+	@Inject
+	PositionDAO posiDao;
+	@Inject
+	UserInfoDAO uDao;
 	
 	@RequestMapping("/goToMain")
 	public String goToMail(HttpSession session){
@@ -40,8 +49,7 @@ public class MainPageController {
 		return "inside/mainPage";
 	}
 		
-	@Inject
-	UserInfoDAO uDao;
+	
 	// 프로필 사진 파일경로
 	private final String PF_UPLOAD_PATH = "/spring/springws/BlueMine/profileImg";
 	// 프로필 사진 띄워주기
@@ -64,7 +72,7 @@ public class MainPageController {
 			resp.setHeader("Content-Disposition", "attachment;filename=" +
 							 URLEncoder.encode(originalFile,"UTF-8"));
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		// 4. 파일을 끌어오기
@@ -83,7 +91,7 @@ public class MainPageController {
 			sos = resp.getOutputStream();
 			FileCopyUtils.copy(fis, sos);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} finally {
 			if (fis != null) {
 				try{
@@ -118,4 +126,53 @@ public class MainPageController {
 		return "inside/help";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/getUser",method=RequestMethod.POST)
+	public ArrayList<UserInfo> getUser(@RequestBody HashMap<String, String> user) {
+		logger.debug("ajax 연결:현재 서버");
+		logger.debug(user.get("position"));
+		if((user.get("position").length()<=1)) {
+			user.remove("position");
+		}
+		logger.debug(user.get("department"));
+		if (user.get("department").length()<=1) {
+			user.remove("department");
+		}
+		ArrayList<UserInfo> list = new ArrayList<>();
+		list = uDao.getUser(user);
+		for (int i = 0; i < list.size(); i++) {
+			logger.debug(list.get(i).getName());
+			logger.debug(list.get(i).getEmail());
+		}
+		return list;
+	}
+	@ResponseBody
+	@RequestMapping(value="/makePrj",method=RequestMethod.POST)
+	public String makePrj(String ps_name,String planner,int access_Control){
+		logger.debug("프로젝트 생성");
+		PRJList prj=new PRJList();
+		logger.debug(ps_name);
+		logger.debug(planner);
+		logger.debug(access_Control+"");
+		prj.setPrj_Name(ps_name);
+		prj.setPlanner(planner);
+		prj.setAccess_Control(access_Control);
+		logger.debug(prj.toString());
+		prjDao.makePrj(prj);
+		logger.debug(prj.toString());
+		return prj.getPrj_Num()+"";
+	}
+	@ResponseBody
+	@RequestMapping(value="/setRelation",method=RequestMethod.POST)
+	public int makePrj(int prj_Num, String userId){
+		int result = 0;
+		logger.debug("관계 설정");
+		logger.debug("Prj_Num"+prj_Num);
+		MatchPRJ mp = new MatchPRJ();
+		mp.setMemberId(userId);
+		mp.setPrjNum(prj_Num);
+		result=prjDao.setRelation(mp);
+		logger.debug("관계 설정 완료");
+		return result;
+	}
 }

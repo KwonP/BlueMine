@@ -196,4 +196,23 @@ FROM CP_Department
 SELECT positionName
 FROM CP_Position
 </select>
+<!-- ajax자동완성을 위한 코드 -->
+<select id="getUser" parameterType="map" resultType="userInfo">
+SELECT
+	name
+	,email
+FROM
+	USERINFO
+<where>
+	<if test="department != null">
+		department = #{department}
+	</if>
+	<if test="department != null and position != null">
+	AND
+	</if>
+	<if test="position != null">
+		position = #{position}
+	</if>
+</where>
+</select>
 </mapper>
