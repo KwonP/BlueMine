@@ -123,7 +123,5 @@ function addPrj() {
       });
       
       
-      
-      location.href = 'goToMain';
    }
 }
