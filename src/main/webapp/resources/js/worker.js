@@ -66,7 +66,14 @@ function postNotifications(list){
 		if(list[i].command_Check==null&&list[i].info_Content!=null){
 			//INSERT
 			toastr.options.onclick=null;
-			toastr.info(''+'<button type="button" class="btn clear" onclick="alert('+"'test입니다.'"+');">Yes</button>',type+ list[i].info_Content+'(이)가 생성되었습니다.');
+			if(list[i].info_Type=='prjList'){
+				type='프로젝트 ';
+				toastr.info(''+'<button type="button" class="btn clear" onclick="goProjectMain('+list[i].info_Num+')"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'(이)가 생성되었습니다.');
+			}else if(list[i].info_Type=='gp_Work'){
+				type='일감 ';
+				toastr.info(''+'<button type="button" class="btn clear" onclick="alert('+"'이동 주소를 설정해 주세요.'"+');">Yes</button>',type+ list[i].info_Content+'(이)가 생성되었습니다.');
+			}
+			
 		}else if(list[i].command_Check!=null&&list[i].info_Content==null){
 			//DELETE
 			toastr.options.onclick=null;
@@ -78,6 +85,11 @@ function postNotifications(list){
 		}
 		
 	}
+}
+function goProjectMain(prj_Num){
+	alert('이동합니다.');
+	location.href = "../project/sendNum?prj_Num="+prj_Num;
+
 }
 
 function deleteNotifications(trigger_Num){

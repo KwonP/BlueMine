@@ -62,8 +62,8 @@ public class UserInfoDAO implements UserInfoMapper{
 	}
 
 	@Override
-	public int leave(String password) {
-		return session.getMapper(UserInfoMapper.class).leave(password);
+	public int leave(UserInfo user) {
+		return session.getMapper(UserInfoMapper.class).leave(user);
 	}
 
 	@Override

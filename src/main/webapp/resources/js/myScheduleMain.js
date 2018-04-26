@@ -59,8 +59,23 @@ function workPopupClose(){
 function check(){
 	var ps_Name = $('#ps_Name').val();
 	var ps_Content = $('#ps_Content').val();
-	var startDate = $('#startDate').val();
-	var deadLine = $('#deadLine').val();
+	
+	// 날짜 비교
+	var startValue = $('#startDate').val();
+	startValue = startValue.split('-');
+	var startDate = new Date();
+	startDate.setFullYear(startValue[0],(startValue[1]-1),startValue[2]);
+	
+	var endValue = $('#deadLine').val();
+	endValue = endValue.split('-');
+	var deadLine = new Date();
+	deadLine.setFullYear(endValue[0],(endValue[1]-1),endValue[2]);
+	if (startDate > deadLine) {
+		alert("시작날짜와 마감날짜를 확인해주세요");
+		return false;
+	}
+	startDate = $('#startDate').val();
+	deadLine = $('#deadLine').val();
 	var ps_Pri = $('#ps_Pri').val();
 	if (ps_Name == "") {
 		alert('제목을 입력해 주세요.');
@@ -102,11 +117,12 @@ function endWork(ps_Num){
 		});
 	}
 }
-function getDetail(ps_Num,event){
-	event.stopPropagation();
+function getDetail(ps_Num){
+	//event.stopPropagation();
 
 	$('.submitWork').val('Modify');
 	$('#formAction').attr('action','updateWork');
+	$('#ps_Num').val(ps_Num);
 	$.ajax({
 		url : 'getWork',
 		type : 'post',
@@ -128,13 +144,14 @@ function setValues(work){
 function submitType(){
 	var getVal = $('.submitWork').val();
 	if (getVal == 'Create') {
+		$('#ps_Num').remove();
 		$('#formAction').submit();
 	} else if( getVal == 'Modify'){
 		$('.submitWork').val('Update');
 		canModify();
 		$('.cancel').css('display','inline-block');
 	} else {
-		alert($('.submitWork').val());
+		$('#formAction').submit();
 	}
 }
 function cancel(){
@@ -212,5 +229,51 @@ function endCklist(loopNum){
 				alert('서버 오류');
 			}
 		});
+	}
+}
+function updateList(cl_Num){
+	$.ajax({
+		url : 'getOneList',
+		type : 'post',
+		data : {cl_Num : cl_Num},
+		dataType : 'json',
+		success : function(getOne){
+			getOneInfo(getOne);
+		},
+		error : function(){
+			alert('서버 오류');
+		}
+	});
+}
+function addList(){
+	var childDiv = '';
+	childDiv += '<table class="getCKList" id="getCKList">';
+	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="getOneName" value=""></td></tr>';
+	childDiv += '<tr><td>Day </td><td> : </td><td>';
+	childDiv += '<c:forEach begin="1" end="7" varStatus="status">';
+	childDiv += '<c:if test="${status.current == 1}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="1">월</i></c:if>';
+	childDiv += '<c:if test="${status.current == 2}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="2">화</i></c:if>';
+	childDiv += '<c:if test="${status.current == 3}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="3">수</i></c:if>';
+	childDiv += '<c:if test="${status.current == 4}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="4">목</i></c:if>';
+	childDiv += '<c:if test="${status.current == 5}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="5">금</i></c:if>';
+	childDiv += '<c:if test="${status.current == 6}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="6">토</i></c:if>';
+	childDiv += '<c:if test="${status.current == 7}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="7">일</i></c:if>';
+	childDiv += '</c:forEach></td></tr>';
+	childDiv += '<tr><td colspan="3">';
+	childDiv += '<a onclick="addOne()">Add List</a></td></tr></table>';
+
+	var parentDiv = document.getElementById('addSpan');
+	parentDiv.innerHTML = childDiv;
+}
+function getOneInfo(getOne){
+	for(var i = 0; i < getOne.length; i++){
+		alert(getOne[i].cl_Name+"/"+getOne[i].loopDay+"/"+getOne[i].loopNum);
 	}
 }

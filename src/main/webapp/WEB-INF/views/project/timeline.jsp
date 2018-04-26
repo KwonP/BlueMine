@@ -48,11 +48,11 @@
 <!-- JS -->
 <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../resources/js/timeline.js"></script>
-<%--알림 js 
+<%--알림 js --%>
 	<script src="../resources/toastr/toastr.min.js"></script>
 	<link href="../resources/toastr/toastr.css" rel="stylesheet">
 	<script src="../resources/js/webWorkerStart.js"></script>
-	<script src="../resources/js/worker.js"></script>--%>
+	<script src="../resources/js/worker.js"></script>
 </head>
 
 <body>
@@ -290,7 +290,7 @@
 		</nav>
 		
 		<div id="page-wrapper">
-			<h1>프로젝트 No.${prjNum}</h1>
+		<h1>프로젝트 No.${prjNum}</h1>
 			<div id="timeLineDiv"></div>
 			<input type="hidden" id="getPrjNum" value="${prjNum}"> <input
 				type="hidden" id="getUserId" value="${loginId}"> <input

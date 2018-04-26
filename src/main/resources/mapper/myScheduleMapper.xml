@@ -19,6 +19,15 @@ SELECT
 FROM CKList ckl, CK_Loops loops
 WHERE memberId = #{memberId} and ckl.cl_Num = loops.cl_Num
 </select>
+<!-- 체크리스트 하나 가져오기(수정용) -->
+<select id="getOneList" resultType="ckShow">
+SELECT
+	loops.loopNum
+	,ckl.cl_Name
+	,loops.loopDay
+FROM CKList ckl, CK_Loops loops
+WHERE ckl.cl_Num = loops.cl_Num and ckl.cl_Num = #{cl_Num}
+</select>
 <!-- 체크리스트 요일별 완료 -->
 <update id="checkLoop">
 UPDATE ck_loops
@@ -64,8 +73,10 @@ VALUES (
 </insert>
 <update id="updateWork" parameterType="psWork">
 UPDATE PS_Work
-SET		ps_Num = #{ps_Num},
+SET		ps_Name = #{ps_Name},
 		ps_Content = #{ps_Content},
+		startDate = #{startDate},
+		deadLine = #{deadLine},
 		ps_Pri = #{ps_Pri}
 WHERE ps_Num = #{ps_Num}
 </update>

@@ -2,6 +2,7 @@ package com.bluemine.www.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
+import java.io.Console;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,48 +57,52 @@ public class TimeLineController {
 		logger.info("타임라인 : 리스트 가져오는 메소드 실행");
 		
 		int total = tlDAO.getTotal();
-
+		logger.info("타임라인 : 리스트 가져오는 메소드 실행1");
 		ArrayList<TimeLine> list = new ArrayList<>();
 		ArrayList<UserInfo> uList = new ArrayList<>();
-		
-
-		
-		logger.info(uList.toString());
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
 		if (navi.getCurrentPage() != page) {
 			return null;
 		}
-		logger.info("total : " + total);
+		logger.info("타임라인 : 리스트 가져오는 메소드 실행2");
 		RowBounds rd = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
+		logger.info("타임라인 : 리스트 가져오는 메소드 실행3");
 		list = tlDAO.getTimeLineList(rd);
-
+		logger.info("list : " + list);
 		Calendar cal = Calendar.getInstance();
 		int nowTime = (int) (cal.getTimeInMillis() / 1000);
-		for (int i = 0; i < list.size(); i++) { // 작성(수정)시간과 현재 시간계산
+		for (int i = 0; i < list.size(); i++) { 
+			PRJList prj = tlDAO.getProjectInfo(list.get(i).getPrj_Num());
+			//private면 보여주지 않는다.
+			if(prj.getAccess_Control()==0) {
+				list.remove(i);
+				i--;
+				continue;
+				
+			}
+			logger.info("::프로젝트 정보::"+prj.toString());
+			int projectNum = prj.getPrj_Num();
+			String prj_Name = prj.getPrj_Name();
+			String names = "참여인원 : ";
+			uList = tlDAO.getUserList(projectNum);
+			for (int j = 0; j < uList.size(); j++) {
+				if (j == 0) {
+					names += uList.get(j).getName();
+				} else {
+					names += ", " + uList.get(j).getName();
+				}
+			}
+			Object[] obj = new Object[3];
+			obj[0] = projectNum; // 프로젝트 번호
+			obj[1] = prj_Name; // 프로젝트 이름
+			obj[2] = names; // 프로젝트의 참여한 인원들
+			if ((int) obj[0] == list.get(i).getPrj_Num()) {
+				list.get(i).setTl_Content((String) obj[1] + "///" + (String) obj[2]);
+			}
+			
+			// 작성(수정)시간과 현재 시간계산
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			try {
-				
-					PRJList prj = tlDAO.getProject(list.get(i).getPrj_Num());
-					int projectNum = prj.getPrj_Num();
-					String prj_Name = prj.getPrj_Name();
-					String names = "참여인원 : ";
-					uList = tlDAO.getUserList(projectNum);
-					for (int j = 0; j < uList.size(); j++) {
-						if (j == 0) {
-							names += uList.get(j).getName();
-						} else {
-							names += ", " + uList.get(j).getName();
-						}
-					}
-					Object[] obj = new Object[3];
-					obj[0] = projectNum; // 프로젝트 번호
-					obj[1] = prj_Name; // 프로젝트 이름
-					obj[2] = names; // 프로젝트의 참여한 인원들
-					if ((int) obj[0] == list.get(i).getPrj_Num()) {
-						list.get(i).setTl_Content((String) obj[1] + "///" + (String) obj[2]);
-					}
-				
-				
+			try {	
 				String result = "";
 				Date date = df.parse(list.get(i).getW_Date());
 				Calendar dCal = Calendar.getInstance();
@@ -120,10 +125,10 @@ public class TimeLineController {
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				logger.info(e.getStackTrace().toString());
+				logger.info(e.toString());
 			}
 		}
-
+		logger.info(list.toString());
 		return list;
 	}
 

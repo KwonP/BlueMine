@@ -34,6 +34,7 @@ select
 	, tl_content
 from
 	timeline
+
 order by w_date desc
 </select>
 <!-- 프로젝트 정보 가져오기 -->
@@ -94,7 +95,7 @@ select count(*) from timeline
 <select id="getUserList" parameterType="int" resultType="userInfo">
 select u.userid, u.EMAIL,
 u.NAME, u.PASSWORD, 
-u.DEPARTMENT, u.CHATLIST, 
+u.DEPARTMENT,
 u.POSITION, u.SAVEFILE, u.ORIGINALFILE
 from userinfo u, matchprj m where u.userid = m.memberid AND m.prj_num = #{value}
 </select>

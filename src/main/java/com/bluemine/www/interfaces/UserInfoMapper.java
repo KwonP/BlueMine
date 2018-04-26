@@ -28,7 +28,7 @@ public interface UserInfoMapper {
 		// 로그인
 		public String login(UserInfo user);
 		// 탈퇴
-		public int leave(String password);
+		public int leave(UserInfo user);
 		//개인 스케줄 추가
 		public int addPsWork(PS_Work work);
 		//개인 스케줄 조회(시작일순)
