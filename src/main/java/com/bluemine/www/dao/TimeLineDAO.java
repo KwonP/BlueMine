@@ -81,8 +81,8 @@ public class TimeLineDAO implements TimeLineMapper{
 	}
 	//프로젝트 정보 가져오기
 	@Override
-	public ArrayList<PRJList> getProjectInfo(int prj_Num) {
-		ArrayList<PRJList> prj = new ArrayList<>();
+	public PRJList getProjectInfo(int prj_Num) {
+		PRJList prj = new PRJList();
 		prj = session.getMapper(TimeLineMapper.class).getProjectInfo(prj_Num);
 		return prj;
 	}

@@ -31,7 +31,7 @@ public int getTotal();
 //프로젝트 참가인원 가져오기
 public ArrayList<UserInfo> getUserList(int prj_Num);
 //프로젝트 정보 가져오기
-public ArrayList<PRJList> getProjectInfo(int prj_Num);
+public PRJList getProjectInfo(int prj_Num);
 //알림 정보 가져오기
 public ArrayList<TriggerInfo> getTriggerInfo();
 //알림 정보 삭제
