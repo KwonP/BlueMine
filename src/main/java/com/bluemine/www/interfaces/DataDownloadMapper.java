@@ -20,7 +20,7 @@ public interface DataDownloadMapper {
 	public int insertFile(FileInfo file);
 
 	//파일 가져오기
-	public ArrayList<FileInfo> selectPrjFiles(int prj_Num);
+	public ArrayList<FileInfo> selectPrjFiles(int prjNum);
 
 	//오리지날 파일을 이용해서 파일 리스트 가져오기
 	public ArrayList<FileInfo> listFiles(String originalfile);

@@ -17,9 +17,9 @@
 
 <!-- jQuery -->
 	<script
-		src="../resources/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+		src="../resources/templet/vendor/jquery/jquery.min.js"></script>
 <script
-	src="../resources/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+	src="../resources/templet/vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core CSS -->
 <link href="../resources/templet/vendor/bootstrap/css/bootstrap.min.css"
@@ -46,10 +46,10 @@
     <![endif]-->
 
 <!-- modified CSS -->
-<link href="../resources/css/timeline.css" rel="stylesheet">
+<!-- <link href="../resources/css/timeline.css" rel="stylesheet"> -->
 <!-- JS -->
-<script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../resources/js/timeline.js"></script>
+<!-- <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../resources/js/timeline.js"></script> -->
 <%-- <%--알림 js 
 	<script src="../resources/toastr/toastr.min.js"></script>
 	<link href="../resources/toastr/toastr.css" rel="stylesheet">
@@ -123,6 +123,7 @@ img{
 	
 	function submitFile() {
 		document.getElementById("fileForm").submit();
+		
 	}
 
 	</script>
@@ -388,8 +389,8 @@ img{
 		<div id="page-wrapper" class="user-table">
 			<div class="row">
 				<div class="col-lg-12">
-					<form action="../data/fileUpload" id="fileForm" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="prj_Num" value="${prj_Num }">
+					<form action="fileUpload" id="fileForm" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="prjNum" value="${prjNum }">
 						<input type="file" multiple="multiple" id="orgFile" name="upload" onchange="submitFile()" size="30">
 						<button style="margin-top: 23px;" class="btn btn-default" type="button" onclick="check()">
 							<i class="fa fa-upload" style="margin-right: 10px;"></i>File Upload
@@ -415,11 +416,11 @@ img{
 						<div id="b" class="panel panel-primary">
 							<div class="panel-heading">${sessionScope.loginId }</div>  
 							<div class="panel-body">
-								<img src="download?originalfile=${i.originalfile}">
+								<img src="download?originalFile=${i.originalFile}">
 							</div>
 							<div class="panel-footer" >
 								<div class="btn-group" data-toggle="buttons">
-									<button class="btn btn-default" onclick="location.href='download?originalfile=${i.originalfile}'">다운로드</button>
+									<button class="btn btn-default" onclick="location.href='download?originalFile=${i.originalFile}'">다운로드</button>
 								</div>
 							</div>
 						</div>
@@ -445,12 +446,12 @@ img{
 						<div id="b" class="panel panel-primary">
 							<div class="panel-heading">${sessionScope.loginId }</div>
 							<div class="panel-body">
-								<img src="../resources/image/text.png" width="50%" height="50%">
+								<img src="../resources/img/text.png" width="50%" height="50%">
 							</div>
 							<div class="panel-footer" >
 								<div class="btn-group" data-toggle="buttons">
 									<label class="btn btn-default"> 
-										<a href="download?originalfile=${i.originalfile}">다운로드</a>
+										<a href="download?originalFile=${i.originalFile}">다운로드</a>
 									</label>
 								</div>
 							</div>
@@ -477,12 +478,12 @@ img{
 						<div id="b" class="panel panel-primary">
 							<div class="panel-heading">${sessionScope.loginId }</div>
 							<div class="panel-body">
-								<img src="../resources/image/mp3.png" width="50%" height="50%">
+								<img src="../resources/img/mp3.png" width="50%" height="50%">
 							</div>
 							<div class="panel-footer" >
 								<div class="btn-group" data-toggle="buttons">
 									<label class="btn btn-default"> 
-										<a href="download?originalfile=${i.originalfile}">다운로드</a>
+										<a href="download?originalFile=${i.originalFile}">다운로드</a>
 									</label>
 								</div>
 							</div>

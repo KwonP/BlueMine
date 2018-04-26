@@ -30,7 +30,7 @@
 		where
 			prj_Num = #{prj_Num}
 		order by
-			prj_Num DESC
+			saveFile DESC
 	</select>
 	
 	<!-- 해당 프로젝트에 있는 파일 전부 가져오기 -->
@@ -42,7 +42,7 @@
 		from
 			FileInfo
 		where
-			originalfile = #{originalfile}
+			originalFile = #{originalFile}
 		order by
 			prj_Num DESC
 	</select>

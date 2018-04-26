@@ -290,6 +290,7 @@
 		</nav>
 		
 		<div id="page-wrapper">
+			<h1>프로젝트 No.${prjNum}</h1>
 			<div id="timeLineDiv"></div>
 			<input type="hidden" id="getPrjNum" value="${prjNum}"> <input
 				type="hidden" id="getUserId" value="${loginId}"> <input
@@ -452,7 +453,7 @@
 	
 	
 
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 	$(document).ready(function() {
         /* $(".dropdown img.flag").addClass("flagvisibility");*/
 	    	$('.btn-example').click(function(){
@@ -542,7 +543,7 @@
 
 	    }
 	    
-		</script>
+		</script> -->
 </body>
 
 </html>

@@ -56,6 +56,6 @@ public class DataDownloadDAO implements DataDownloadMapper{
 	public ArrayList<FileInfo> listFiles(String originalfile) {
 		DataDownloadMapper mapper = sqlSession.getMapper(DataDownloadMapper.class);
 		ArrayList<FileInfo> filelist = mapper.listFiles(originalfile);
-		return null;
+		return filelist;
 	}	
 }

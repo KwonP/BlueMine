@@ -65,26 +65,24 @@ public class DataDownloadController {
 	 */
 	@RequestMapping (value="/fileUpload", method=RequestMethod.POST)
 	public String fileUpload(
-			FileInfo file, 
+			String prjNum, 
 			MultipartFile[] upload,
 			HttpSession session, 
 			Model model) {
-		System.out.println(file);
-		System.out.println(upload);
+		int throwNum = Integer.parseInt(prjNum);
 		//첨부파일이 있는 경우 지정된 경로에 저장
 		if (upload.length != 0) {
 			for(int i = 0; i < upload.length; i++) {
 				FileInfo fileinfo = new FileInfo();
 				String savedfile = FileService.saveFile(upload[i], uploadPath);
-				fileinfo.setPrj_Num(file.getPrj_Num());
+				fileinfo.setPrj_Num(throwNum);
 				fileinfo.setOriginalFile(upload[i].getOriginalFilename());
 				fileinfo.setSaveFile(savedfile);
 				dao.insertFile(fileinfo);
 			}
 		}
 		
-		int throwNum = file.getPrj_Num();
-		return "redirect:filePrint?prjNum=" + throwNum;
+		return "redirect:filePrint?prjNum=" + prjNum;
 	}
 	
 	/**
@@ -92,7 +90,7 @@ public class DataDownloadController {
 	 */
 	@RequestMapping (value="filePrint", method=RequestMethod.GET)
 	public String filePrint(int prjNum, HttpSession session, Model model) {
-		
+		System.out.println(prjNum);
 		ArrayList<FileInfo> tempList = dao.selectPrjFiles(prjNum);
 		
 		//파일 타입 추가
@@ -132,11 +130,11 @@ public class DataDownloadController {
 	 * @param originalfile 파일을 다운하기 위함
 	 */
 	@RequestMapping(value = "download", method = RequestMethod.GET)
-	public String fileDownload(String originalfile, Model model, HttpServletResponse response) {
+	public String fileDownload(String originalFile, Model model, HttpServletResponse response) {
 		
 		ArrayList<FileInfo> filelist = null;
 		
-		filelist = dao.listFiles(originalfile);
+		filelist = dao.listFiles(originalFile);
 		
 		for(int i = 0; i < filelist.size(); i++) {
 			//원래의 파일명
