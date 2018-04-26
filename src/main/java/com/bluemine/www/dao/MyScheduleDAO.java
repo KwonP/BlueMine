@@ -30,7 +30,7 @@ public class MyScheduleDAO implements MyScheduleMapper{
 	}
 	
 	@Override
-	public CK_Loops getOneList(int cl_Num) {
+	public ArrayList<CK_Show> getOneList(int cl_Num) {
 		return session.getMapper(MyScheduleMapper.class).getOneList(cl_Num);
 	}
 

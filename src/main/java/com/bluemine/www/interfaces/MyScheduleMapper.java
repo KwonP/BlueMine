@@ -14,7 +14,7 @@ public interface MyScheduleMapper {
 	// 체크리스트 보여주기(요일에 따라)
 	public ArrayList<CK_Show> showCKList(String userId);
 	// 체크리스트 하나 가져오기(수정용)
-	public CK_Loops getOneList(int cl_Num);
+	public ArrayList<CK_Show> getOneList(int cl_Num);
 	// 체크리스트 요일별 완료
 	public int checkLoop(int loopNum);
 	// 체크리스트 요일별 완료 취소

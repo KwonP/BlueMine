@@ -165,3 +165,12 @@ i{
 }
 .btns{float: right;}
 .btns a{padding: 5px;}
+#getCKList {
+    background-color: mistyrose;
+    border-radius: 20px;
+    text-align: center;
+    margin: 5px;
+}
+#getOneName{width:100%;}
+#getCKList td,tr,th{padding: 10px;}
+.getDays{padding:10px;}

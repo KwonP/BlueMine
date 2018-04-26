@@ -20,13 +20,13 @@ FROM CKList ckl, CK_Loops loops
 WHERE memberId = #{memberId} and ckl.cl_Num = loops.cl_Num
 </select>
 <!-- 체크리스트 하나 가져오기(수정용) -->
-<select id="getOneList" resultMap="ckShow">
+<select id="getOneList" resultType="ckShow">
 SELECT
 	loops.loopNum
 	,ckl.cl_Name
 	,loops.loopDay
 FROM CKList ckl, CK_Loops loops
-WHERE ckl.cl_Num = #{cl_Num}
+WHERE ckl.cl_Num = loops.cl_Num and ckl.cl_Num = #{cl_Num}
 </select>
 <!-- 체크리스트 요일별 완료 -->
 <update id="checkLoop">
