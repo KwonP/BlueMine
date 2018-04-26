@@ -51,6 +51,14 @@ public class MyScheduleController {
 		return "redirect:./main";
 	}
 	
+	@RequestMapping(value="/updateWork",method=RequestMethod.POST)
+	public String updateWork(PS_Work psWork,HttpSession session,int ps_Num){
+		System.out.println(ps_Num);
+		System.out.println(psWork);
+		myDao.updateWork(psWork);
+		return "redirect:./main";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="/getWork",method=RequestMethod.POST)
 	public PS_Work getWork(int ps_Num){

@@ -64,8 +64,10 @@ VALUES (
 </insert>
 <update id="updateWork" parameterType="psWork">
 UPDATE PS_Work
-SET		ps_Num = #{ps_Num},
+SET		ps_Name = #{ps_Name},
 		ps_Content = #{ps_Content},
+		startDate = #{startDate},
+		deadLine = #{deadLine},
 		ps_Pri = #{ps_Pri}
 WHERE ps_Num = #{ps_Num}
 </update>

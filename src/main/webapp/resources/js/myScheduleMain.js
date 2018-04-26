@@ -103,10 +103,11 @@ function endWork(ps_Num){
 	}
 }
 function getDetail(ps_Num,event){
-	event.stopPropagation();
+	//event.stopPropagation();
 
 	$('.submitWork').val('Modify');
 	$('#formAction').attr('action','updateWork');
+	$('#ps_Num').val(ps_Num);
 	$.ajax({
 		url : 'getWork',
 		type : 'post',
@@ -134,7 +135,7 @@ function submitType(){
 		canModify();
 		$('.cancel').css('display','inline-block');
 	} else {
-		alert($('.submitWork').val());
+		$('#formAction').submit();
 	}
 }
 function cancel(){
@@ -213,4 +214,7 @@ function endCklist(loopNum){
 			}
 		});
 	}
+}
+function addList(){
+	alert('add');
 }

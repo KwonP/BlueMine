@@ -323,6 +323,7 @@
         	  	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                </a>
                  <form action="createWork" method="post" onsubmit="return check();" id="formAction">
+                   <input type="hidden" value="" name="ps_Num" id="ps_Num">
                  	<table class="workForm">
                  	  <tr>
                  	  	<td>Title </td>
@@ -398,6 +399,7 @@
           	 <a href = "#" onclick="ckPopupClose();">
         	  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         	 </a>
+        	  My CheckList<button class="addList" onclick="addList()">Add</button>
         	 
           	</div>
            <div class="black_overlay"></div>
