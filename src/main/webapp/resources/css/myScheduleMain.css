@@ -147,3 +147,21 @@ i{
 	left: -20px;
     position: relative;
 }
+.ckList{
+	padding: 0px;
+	margin-top: 20px;
+}
+.ckList li {
+    list-style: none;
+    border: solid 2px darkorange;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 15px;
+}
+.addList{
+	position: absolute;
+    left: 190px;
+    top: 60px;
+}
+.btns{float: right;}
+.btns a{padding: 5px;}

@@ -55,7 +55,7 @@ function updateUser(){
 		data : updateUser,
 		success : function(result){
 			if (result == "ok") {
-				alert('회원정보가 수정되었습니다');
+				alert('회원정보가 수정되었습니다.');
 				location.href = "goToMain";
 			} else {
 				alert('회원정보 수정에 실패하였습니다.');
@@ -66,4 +66,33 @@ function updateUser(){
 		}
 	})
 	return false;
+}
+function leaveForm(){
+	if (confirm('정말 탈퇴하시겠습니까?')) {
+		$('.passwordCheck').fadeIn(1000);
+		$('#leavePassword').focus();
+	}
+}
+function cancelLeave(){
+	$('.passwordCheck').fadeOut(1000);
+	$('#leavePassword').val('');
+}
+function leaveMember(){
+	var password = $('#leavePassword').val();
+	$.ajax({
+		url : 'leave',
+		type : 'post',
+		data : {password : password},
+		success : function(result){
+			if (result == "ok") {
+				alert('탈퇴되었습니다.');
+				location.href = "./";
+			} else {
+				alert('비밀번호가 맞지 않습니다.');
+			}
+		},
+		error : function(){
+			alert('서버 오류');
+		}
+	});
 }

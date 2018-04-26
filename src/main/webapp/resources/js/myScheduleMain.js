@@ -59,8 +59,23 @@ function workPopupClose(){
 function check(){
 	var ps_Name = $('#ps_Name').val();
 	var ps_Content = $('#ps_Content').val();
-	var startDate = $('#startDate').val();
-	var deadLine = $('#deadLine').val();
+	
+	// 날짜 비교
+	var startValue = $('#startDate').val();
+	startValue = startValue.split('-');
+	var startDate = new Date();
+	startDate.setFullYear(startValue[0],(startValue[1]-1),startValue[2]);
+	
+	var endValue = $('#deadLine').val();
+	endValue = endValue.split('-');
+	var deadLine = new Date();
+	deadLine.setFullYear(endValue[0],(endValue[1]-1),endValue[2]);
+	if (startDate > deadLine) {
+		alert("시작날짜와 마감날짜를 확인해주세요");
+		return false;
+	}
+	startDate = $('#startDate').val();
+	deadLine = $('#deadLine').val();
 	var ps_Pri = $('#ps_Pri').val();
 	if (ps_Name == "") {
 		alert('제목을 입력해 주세요.');
@@ -102,7 +117,7 @@ function endWork(ps_Num){
 		});
 	}
 }
-function getDetail(ps_Num,event){
+function getDetail(ps_Num){
 	//event.stopPropagation();
 
 	$('.submitWork').val('Modify');
@@ -129,6 +144,7 @@ function setValues(work){
 function submitType(){
 	var getVal = $('.submitWork').val();
 	if (getVal == 'Create') {
+		$('#ps_Num').remove();
 		$('#formAction').submit();
 	} else if( getVal == 'Modify'){
 		$('.submitWork').val('Update');
@@ -215,6 +231,6 @@ function endCklist(loopNum){
 		});
 	}
 }
-function addList(){
-	alert('add');
+function updateList(cl_Num){
+	alert(cl_Num);
 }

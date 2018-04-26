@@ -323,7 +323,7 @@
         	  	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                </a>
                  <form action="createWork" method="post" onsubmit="return check();" id="formAction">
-                   <input type="hidden" value="" name="ps_Num" id="ps_Num">
+                  <input type="hidden" value="" name="ps_Num" id="ps_Num">
                  	<table class="workForm">
                  	  <tr>
                  	  	<td>Title </td>
@@ -381,13 +381,13 @@
           	   	  <c:if test="${show.loopDay == status.current && show.loop_State == 0}">
           	   	  <li class="unChecked" value="${show.loopNum}">
 	          	   	   <input type="checkbox"class="checkBox" aria-label="..." onchange="endCklist(${show.loopNum})">
-	          	   	   	  <span class="test" number="${show.loopNum}">${show.cl_Name}</span>
+	          	   	   	  <span number="${show.loopNum}">${show.cl_Name}</span>
           	   	  </li>
           	   	  </c:if>
           	   	  <c:if test="${show.loopDay == status.current && show.loop_State == 1}">
           	   	  <li class="checked" value="${show.loopNum}">
 	          	   	   <input type="checkbox" checked="checked" class="checkBox" aria-label="..." onchange="endCklist(${show.loopNum})">
-	          	   	   	  <span class="test" number="${show.loopNum}">${show.cl_Name}</span>
+	          	   	   	  <span number="${show.loopNum}">${show.cl_Name}</span>
           	   	  </li>
           	   	  </c:if>
           	   	 </c:forEach>
@@ -399,8 +399,22 @@
           	 <a href = "#" onclick="ckPopupClose();">
         	  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         	 </a>
-        	  My CheckList<button class="addList" onclick="addList()">Add</button>
-        	 
+        	  <h3>My CheckList</h3>
+        	  <button class="addList" onclick="addList()">Add</button>
+        	   <ul class="ckList">
+        	    <c:forEach items="${ckList}" var="list">
+        	 	  <li number="${list.cl_Num}">
+        	 	  	${list.cl_Name}
+        	 	  	<div class="btns">
+        	 	  	  <a onclick="updateList(${list.cl_Num})">Modify</a>
+        	 	  	  <a>Delete</a>
+        	 	  	</div>
+        	 	  </li>
+        	 	</c:forEach>
+        	   </ul>
+<%--잠시보류       	   <div class="getCKList" id="getCKList">
+				Name : ${getOne.cl_Name} <br>
+        	   </div> --%>
           	</div>
            <div class="black_overlay"></div>
           </div>

@@ -35,6 +35,7 @@ public class MyScheduleController {
 		session.setAttribute("CL_Show", cl_show);
 		ArrayList<CKList> getCKList = myDao.getCKList(userId);
 		System.out.println(getCKList);
+		session.setAttribute("ckList", getCKList);
 		return "mySchedule/main";
 	}
 	
@@ -53,8 +54,6 @@ public class MyScheduleController {
 	
 	@RequestMapping(value="/updateWork",method=RequestMethod.POST)
 	public String updateWork(PS_Work psWork,HttpSession session,int ps_Num){
-		System.out.println(ps_Num);
-		System.out.println(psWork);
 		myDao.updateWork(psWork);
 		return "redirect:./main";
 	}
@@ -63,7 +62,6 @@ public class MyScheduleController {
 	@RequestMapping(value="/getWork",method=RequestMethod.POST)
 	public PS_Work getWork(int ps_Num){
 		PS_Work getWork = myDao.getWork(ps_Num);
-		System.out.println(getWork);
 		return getWork;
 	}
 	
