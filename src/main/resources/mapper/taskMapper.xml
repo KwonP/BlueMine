@@ -16,7 +16,6 @@
 		where
 			prj_Num = #{prjNum}
 	</select>
-	public ArrayList<PJ_Group> printTask(int gp_Num);
 	
 	<!-- Task 가져오기 -->
 	<select id="selectGroup" parameterType="int" resultType="group">

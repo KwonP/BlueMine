@@ -45,15 +45,14 @@ public interface UserInfoMapper {
 		public ArrayList<CP_Department> getDepartmentList();
 		// 직급 불러오기
 		public ArrayList<CP_Position> getPositionList();
-<<<<<<< HEAD
+
 		//로그인 중인 회원 목록
 		public ArrayList<UserInfo> selectLoginUsers(String userId);
 		//로그인 체크
 		public void loginCheck(String id);
 		//로그 아웃
 		public void logOut(String id);
-=======
 		//ajax자동완성 기능을 위한 목록 부르기
 		public ArrayList<UserInfo> getUser(HashMap<String, String> map);
->>>>>>> master
+
 }

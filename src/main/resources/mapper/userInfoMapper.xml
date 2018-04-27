@@ -197,7 +197,6 @@ FROM CP_Department
 SELECT positionName
 FROM CP_Position
 </select>
-<<<<<<< HEAD
 
 <!-- 로그인 중인 회원들  -->
 <select id="selectLoginUsers"  resultType="userInfo">
@@ -230,7 +229,7 @@ FROM CP_Position
 	and
 		loginOk = 1		
 	</update>
-=======
+
 <!-- ajax자동완성을 위한 코드 -->
 <select id="getUser" parameterType="map" resultType="userInfo">
 SELECT
@@ -250,5 +249,4 @@ FROM
 	</if>
 </where>
 </select>
->>>>>>> master
 </mapper>
