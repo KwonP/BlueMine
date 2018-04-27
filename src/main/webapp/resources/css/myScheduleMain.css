@@ -179,3 +179,6 @@ i{
 #getOneName{width:100%;}
 #getCKList td,tr,th{padding: 10px;}
 .getDays{padding:10px;}
+#setCKList{width:100%;}
+#setCKList a:hover{cursor: pointer;}
+.btns a:hover{cursor: pointer;}

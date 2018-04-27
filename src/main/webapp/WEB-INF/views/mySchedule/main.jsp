@@ -404,7 +404,7 @@
         	  <span id="addSpan"></span>
         	   <ul class="ckList">
         	    <c:forEach items="${ckList}" var="list">
-        	 	  <li id="${list.cl_Num}" value="test">
+        	 	  <li id="${list.cl_Num}">
         	 	  	${list.cl_Name}
         	 	  	<div class="btns">
         	 	  	  <a onclick="updateList(${list.cl_Num})" >Modify</a>

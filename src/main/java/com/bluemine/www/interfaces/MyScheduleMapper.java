@@ -19,6 +19,10 @@ public interface MyScheduleMapper {
 	public ArrayList<CK_Show> showCKList(String userId);
 	// 체크리스트 하나 가져오기(수정용)
 	public ArrayList<CK_Show> getOneList(int cl_Num);
+	// 체크리스트 이름 변경
+	public int changeListName(CKList ckList);
+	// 체크리스트 요일 전체 삭제(재생성을 위한)
+	public int deleteLoops(int cl_Num);
 	// 체크리스트 요일별 완료
 	public int checkLoop(int loopNum);
 	// 체크리스트 요일별 완료 취소

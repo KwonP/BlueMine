@@ -23,6 +23,7 @@ $(document).ready(function(){
 		 prevButton: '.back'
    });
 });
+var count = 0; // 체크리스트 업데이트 1개이상 불가능
 function menuPage(){
 	var menuPage = $(this).attr('value');
 	location.href = menuPage;
@@ -267,13 +268,18 @@ function cancelAdd(){
 	$('.addList').attr('onclick','addList()');
 }
 function updateList(cl_Num){
-
+if (count == 1) {
+	alert('현재의 체크리스트 업데이트를 먼저 처리해 주세요.');
+	return;
+}
+	
 	$.ajax({
 		url : 'getOneList',
 		type : 'post',
 		data : {cl_Num : cl_Num},
 		dataType : 'json',
 		success : function(getOne){
+			count = 1;
 			getOneInfo(getOne);
 		},
 		error : function(){
@@ -299,7 +305,7 @@ function addOne(){
 		error : function(){
 			alert('서버 오류');
 		}
-	})
+	});
 }
 function deleteList(cl_Num){
 	if (!confirm('삭제하시겠습니까?')) return;
@@ -316,11 +322,14 @@ function deleteList(cl_Num){
 	});
 }
 // 여기 보류
+var saveName;
+var saveNum;
 function getOneInfo(getOne){
-
+	saveName = getOne[0].cl_Name;
+	saveNum = getOne[0].cl_Num;
 	var childDiv = '';
 	childDiv += '<table class="getCKList" id="setCKList">';
-	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="updateName" value="'+getOne[0].cl_Name+'"></td>';
+	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="updateName" value="'+saveName+'"></td>';
 	childDiv += '<td><a onclick="updateOne()">Update List</a></td></tr>';
 	childDiv += '<tr><td>Day </td><td> : </td><td>';
 	childDiv += '<c:forEach begin="1" end="7" varStatus="status">';
@@ -340,6 +349,7 @@ function getOneInfo(getOne){
 	childDiv += '<i class="getDays"><input type="checkbox" value="7" name="setDays">일</i></c:if>';
 	childDiv += '</c:forEach></td>';
 	childDiv += '<td><a onclick="cancelOne()">Cancel</a></td></tr></table>';
+	childDiv += '<input type="hidden" id="hideNum" value="'+saveNum+'">';
 	var parentDiv = document.getElementById(getOne[0].cl_Num);
 	parentDiv.innerHTML = childDiv;
 	var count = $('input[name=setDays]').length;
@@ -353,4 +363,35 @@ function getOneInfo(getOne){
 	}
 	return false;
 	
+}
+function cancelOne(){
+	count = 0;
+	var childDiv = '';
+	childDiv += saveName;
+	childDiv += '<div class="btns">';
+	childDiv += '<a onclick="updateList('+saveNum+')">Modify</a>';
+	childDiv += '<a onclick="deleteList('+saveNum+')">Delete</a></div>';
+	var parentDiv = document.getElementById(saveNum);
+	parentDiv.innerHTML = childDiv;
+}
+function updateOne(){
+	var cl_Name = $('#updateName').val();
+	var cl_Num = $('#hideNum').val();
+	var loopDay = new Array();
+	$("input[name=setDays]:checked").each(function() {
+		  var test = $(this).val();
+		  loopDay += test;
+	});
+	$.ajax({
+		url : 'updateCKList',
+		type : 'post',
+		data : {cl_Name : cl_Name, loopDay : loopDay,cl_Num : cl_Num},
+		dataType : 'json',
+		success : function(getList){
+			window.location.reload();
+		},
+		error : function(){
+			alert('서버 오류');
+		}
+	});
 }

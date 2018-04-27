@@ -43,6 +43,17 @@ SELECT
 FROM CKList ckl, CK_Loops loops
 WHERE ckl.cl_Num = loops.cl_Num and ckl.cl_Num = #{cl_Num}
 </select>
+<!-- 체크리스트 이름 변경 -->
+<update id="changeListName" parameterType="ckList">
+UPDATE CKList
+SET		cl_Name = #{cl_Name}
+WHERE cl_Num = #{cl_Num}
+</update>
+<!-- 체크리스트 요일 삭제 -->
+<delete id="deleteLoops">
+DELETE CK_Loops
+WHERE cl_Num = #{cl_Num}
+</delete>
 <!-- 체크리스트 요일별 완료 -->
 <update id="checkLoop">
 UPDATE ck_loops

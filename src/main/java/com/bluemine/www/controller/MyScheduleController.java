@@ -131,5 +131,28 @@ public class MyScheduleController {
 		System.out.println(getOne);
 		return getOne;
 	}
-	
+	// 체크리스트 수정
+	@ResponseBody
+	@RequestMapping(value="/updateCKList",method=RequestMethod.POST)
+	public ArrayList<CK_Show> updateCKList(String cl_Name,String loopDay,int cl_Num,HttpSession session){
+		CKList ckList = new CKList();
+		ckList.setCl_Num(cl_Num);
+		ckList.setCl_Name(cl_Name);
+		myDao.changeListName(ckList);
+
+		// 요일전체 삭제후 다시 재생성
+		myDao.deleteLoops(cl_Num);
+		CK_Loops loops = new CK_Loops();
+		loops.setCl_Num(cl_Num);
+		// 요일별로 넣어주기
+		for(int i = 0; i < loopDay.length(); i++){
+			char getloop = loopDay.charAt(i);
+			int loop = getloop - 48;
+			System.out.println(loop);
+			loops.setLoopDay(loop);
+			myDao.createLoops(loops);
+		}
+		ArrayList<CK_Show> getOne = myDao.getOneList(cl_Num);
+		return getOne;
+	}
 }

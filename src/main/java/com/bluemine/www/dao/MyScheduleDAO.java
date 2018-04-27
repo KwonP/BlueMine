@@ -45,6 +45,16 @@ public class MyScheduleDAO implements MyScheduleMapper{
 	}
 
 	@Override
+	public int changeListName(CKList ckList) {
+		return session.getMapper(MyScheduleMapper.class).changeListName(ckList);
+	}
+	
+	@Override
+	public int deleteLoops(int cl_Num) {
+		return session.getMapper(MyScheduleMapper.class).deleteLoops(cl_Num);
+	}
+	
+	@Override
 	public int checkLoop(int loopNum) {
 		return session.getMapper(MyScheduleMapper.class).checkLoop(loopNum);
 	}
