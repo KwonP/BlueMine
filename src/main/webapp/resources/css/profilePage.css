@@ -46,3 +46,35 @@ span{ font-weight: bold; }
     font-size: 25px;
 	position: relative;
 }
+.leave{
+    top: 75px;
+    right: -20px;
+	position: absolute;
+    font-size: 25px;
+}
+.leave span{
+	width: 300px;
+}
+.passwordCheck {
+	display: none;
+    top: 50%;
+    left: 50%;
+    width: 530px;
+    padding: 40px;
+    position: absolute;
+    font-size: 25px;
+    text-align: center;
+    margin-top: -150px;
+    margin-left: -195px;
+    background-color: #53829e;
+}
+.passwordCheck span {
+    top: 5px;
+    right: 5px;
+    color:black;
+    cursor: pointer;
+    position: absolute;
+}
+.passwordCheck a{
+	color: black;
+}

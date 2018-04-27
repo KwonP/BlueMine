@@ -50,7 +50,7 @@
 </head>
 
 <body>
-
+<input type="hidden" id="userId" value="${sessionScope.loginId}">
 	<div id="wrapper">
 
 		<!-- Navigation -->
@@ -257,12 +257,12 @@
 		
 		  <!-- 본인이 가진 project수 만큼 div 뿌려주기 -->
 		 <div class="panel panel-default">
-		  <div class="panel-heading">My Projects</div>
+		  <div class="panel-heading">My Projects<div class="btn" id="make">생성</div></div>
 		   <div class="panel-body" id="listWrap">
 			<c:forEach items="${pro_list}" var="list">
 			  <div class="panel panel-primary" value="${list.prj_Num}">
 			  	<div class="panel-heading" style="background-color: ${list.background};" >
-			  	 ${list.prj_Num}<span>Planner : ${list.planner}</span>
+			  	 ${list.prj_Num}<span style="float: right;">Planner : ${list.planner}</span>
 			  	</div>
 			  	<div class="panel-body">
 			  	 <a href="#" class="hvr-outline-in">${list.prj_Name}</a>
@@ -286,6 +286,86 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="./resources/templet/dist/js/sb-admin-2.js"></script>
 </div>
+<div id="layer" ></div>
+<!-- ポップアップ -->
+<div id="popup" class="white_content"
+	style="width: 800px; height: 570px;">
+	<div id="wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">프로젝트 생성</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Basic Form Elements</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<!-- <form role="form" action="makePrj" method="get" enctype="multipart/form-data" onsubmit=""> -->
+									<div class="form-group col-lg-12">
+										<label>제목</label> <input class="form-control" name="prj_Name"
+											id="prj_Name" placeholder="Title">
+									</div>
+									<div class="form-group col-lg-12">
+										<label>책임자</label>
+										<div class="row">
+										<div class="col-lg-4">
+										<select class="form-control" name="cp_dep"
+											id="cp_dep">
+											<option value=""  selected="selected">부서</option>
+											<c:forEach  items="${sessionScope.dep_list}" var="list">
+											<option value="${list.depNameKr}">${list.depNameKr}</option>
+											</c:forEach>
+										</select>
+										</div>
+										<div class="col-lg-4 ">
+										<select class="form-control" name="cp_posi"
+											id="cp_posi" onselect="">
+											<option value="" selected="selected">직급</option>
+											<c:forEach items="${sessionScope.posi_list}" var="list">
+											<option value="${list.positionName}">${list.positionName}</option>
+											</c:forEach>
+										</select>
+										</div>
+								 		<div class="col-lg-4">
+										<input class="form-control" name="planner"
+											id="planner" placeholder="성명">
+										</div>
+										</div>
+									</div>
+									<div class="form-group col-lg-12">
+										<label>접근권한</label> <select class="form-control"
+											name="access_Control" id="access_Control">
+											<option value="1" selected="selected">공개</option>
+											<option value="0">비공개</option>
+										</select>
+									</div>
+									<div class="row">
+									<div class="btn col-lg-1" style="margin-right: 30px;">취소</div>
+								
+									<div class="btn col-lg-2"  id="makePrj" >생성</div>
+									<div></div>
+									</div>
+									<!-- </form> -->
+							</div>
+							
+								<!-- /.col-lg-6 (nested) -->
+							</div>
+							<!-- /.row (nested) -->
+						</div>
+						<!-- /.panel-body -->
+					</div>
+					<!-- /.panel -->
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+
+
+		</div>
+		
+	</div>
 </body>
 
 </html>

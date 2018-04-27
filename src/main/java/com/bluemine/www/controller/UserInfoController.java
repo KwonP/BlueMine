@@ -85,17 +85,24 @@ public class UserInfoController {
 		String result = null;
 		UserInfo login = new UserInfo(email, password);
 		String loginId = uDao.login(login);
+		
 		System.out.println(loginId);
 		if (loginId != null) {
+			uDao.loginCheck(loginId);
 			session.setAttribute("loginId", loginId);
 			result = "login";
 		}
+		
 		return result;
 	}
 	//로그아웃
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session){
+		
+		String getId = (String)session.getAttribute("loginId");
+		uDao.logOut(getId);
 		session.invalidate();
+	
 		return "redirect:./";
 	}
 	//수정페이지로 이동
@@ -153,14 +160,28 @@ public class UserInfoController {
 		}
 	}
 			
-			@ResponseBody
-			@RequestMapping(value="/updateUser", method=RequestMethod.POST)
-			public String updateUser(UserInfo updateUser){
-				String result = null;
-				System.out.println("똑바로 가져오나"+updateUser);
-				if (uDao.updateUser(updateUser)==1) {
-					result = "ok";
-				}
-				return result;
-			}	
+	@ResponseBody
+	@RequestMapping(value="/updateUser", method=RequestMethod.POST)
+	public String updateUser(UserInfo updateUser){
+		String result = null;
+		System.out.println("똑바로 가져오나"+updateUser);
+		if (uDao.updateUser(updateUser)==1) {
+			result = "ok";
+		}
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/leave", method=RequestMethod.POST)
+	public String leave(String password,HttpSession session){
+		String result = null;
+		String userId = (String)session.getAttribute("loginId");
+		UserInfo leave = new UserInfo();
+		leave.setUserId(userId);
+		leave.setPassword(password);
+		if (uDao.leave(leave) == 1) {
+			result = "ok";
+		}
+		return result;
+	}
 }

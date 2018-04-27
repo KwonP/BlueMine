@@ -108,3 +108,69 @@ i{
 .endWork:hover,.delWork:hover{
 	text-decoration: underline;
 }
+.days ul{
+	height: 100%;
+}
+.day {
+    width: 190px;
+    text-align: center;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;	
+}
+#manageCK{
+    top: -2px;
+    left: 20px;
+    cursor: pointer;
+	position: relative;
+    font-size: 17px;
+    z-index: 5;
+}
+#manageCK:hover{
+	background-color: #e83e3e;
+}
+.unChecked{
+    border: solid;
+	list-style: none;
+	margin-bottom: 5px;
+    border-radius: 15px;
+    border-color: #687eba;
+}
+.checked{
+	background-color: #e17db5;
+	list-style: none;
+    border-color: #ffffff;
+    border-radius: 15px;
+    color: white;
+}
+.checkBox{
+	left: -20px;
+    position: relative;
+}
+.ckList{
+	padding: 0px;
+	margin-top: 20px;
+}
+.ckList li {
+    list-style: none;
+    border: solid 2px darkorange;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 15px;
+}
+.addList{
+	position: absolute;
+    left: 190px;
+    top: 60px;
+}
+.btns{float: right;}
+.btns a{padding: 5px;}
+#getCKList {
+    background-color: mistyrose;
+    border-radius: 20px;
+    text-align: center;
+    margin: 5px;
+}
+#getOneName{width:100%;}
+#getCKList td,tr,th{padding: 10px;}
+.getDays{padding:10px;}

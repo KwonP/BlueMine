@@ -8,6 +8,12 @@
 
 <!-- 프로젝트 생성  -->
 <insert id="makePrj" parameterType="prjList">
+<selectKey resultType="int" keyProperty="prj_Num" order="BEFORE">
+SELECT
+	PL_SEQ.NEXTVAL
+FROM 
+	dual
+</selectKey>
 INSERT INTO PRJLIST
 (
     PRJ_NUM
@@ -18,7 +24,7 @@ INSERT INTO PRJLIST
     ,BACKGROUND
     </if>
 )VALUES(
-    PL_SEQ.NEXTVAL
+    #{prj_Num}
     ,#{prj_Name}
     ,#{planner}
     ,#{access_Control}
@@ -26,6 +32,7 @@ INSERT INTO PRJLIST
     ,#{background}
     </if>
 )
+
 </insert>
 
 <!-- 프로젝트 수정 -->
@@ -89,7 +96,7 @@ INSERT INTO matchPrj(
 	,PRJ_NUM
 )VALUES(
 	#{memberId}
-	,#{prjNum}
+	,#{prj_Num}
 )
 </insert>
 

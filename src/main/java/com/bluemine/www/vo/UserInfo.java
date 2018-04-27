@@ -103,8 +103,7 @@ public class UserInfo {
 	public String toString() {
 		return "UserInfo [userId=" + userId + ", email=" + email + ", name=" + name + ", password=" + password
 				+ ", department=" + department + ", position=" + position + ", originalFile=" + originalFile
-				+ ", saveFile=" + saveFile + "]";
+				+ ", saveFile=" + saveFile + ", loginOk=" + loginOk + "]";
 	}
-	
-	
+
 }

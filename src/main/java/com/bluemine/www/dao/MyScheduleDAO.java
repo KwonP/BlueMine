@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.MyScheduleMapper;
 import com.bluemine.www.vo.CKList;
+import com.bluemine.www.vo.CK_Loops;
+import com.bluemine.www.vo.CK_Show;
 import com.bluemine.www.vo.PS_Work;
 
 @Repository
@@ -23,13 +25,28 @@ public class MyScheduleDAO implements MyScheduleMapper{
 	}
 
 	@Override
-	public int updateLoops(int cl_num) {
-		return session.getMapper(MyScheduleMapper.class).updateLoops(cl_num);
+	public ArrayList<CK_Show> showCKList(String userId) {
+		return session.getMapper(MyScheduleMapper.class).showCKList(userId);
+	}
+	
+	@Override
+	public ArrayList<CK_Show> getOneList(int cl_Num) {
+		return session.getMapper(MyScheduleMapper.class).getOneList(cl_Num);
 	}
 
 	@Override
-	public int updateCKList(CKList ckList) {
-		return session.getMapper(MyScheduleMapper.class).updateCKList(ckList);
+	public int checkLoop(int loopNum) {
+		return session.getMapper(MyScheduleMapper.class).checkLoop(loopNum);
+	}
+
+	@Override
+	public int uncheckLoop(int loopNum) {
+		return session.getMapper(MyScheduleMapper.class).uncheckLoop(loopNum);
+	}
+
+	@Override
+	public int resetLoop(int cl_Num) {
+		return session.getMapper(MyScheduleMapper.class).resetLoop(cl_Num);
 	}
 
 	@Override
@@ -66,4 +83,6 @@ public class MyScheduleDAO implements MyScheduleMapper{
 	public PS_Work getWork(int ps_Num) {
 		return session.getMapper(MyScheduleMapper.class).getWork(ps_Num);
 	}
+
+
 }

@@ -1,6 +1,7 @@
 package com.bluemine.www.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -61,8 +62,8 @@ public class UserInfoDAO implements UserInfoMapper{
 	}
 
 	@Override
-	public int leave(String password) {
-		return session.getMapper(UserInfoMapper.class).leave(password);
+	public int leave(UserInfo user) {
+		return session.getMapper(UserInfoMapper.class).leave(user);
 	}
 
 	@Override
@@ -115,6 +116,21 @@ public class UserInfoDAO implements UserInfoMapper{
 	@Override
 	public ArrayList<CP_Position> getPositionList() {
 		return session.getMapper(UserInfoMapper.class).getPositionList();
+	}
+
+	@Override
+	public void loginCheck(String id) {
+		session.getMapper(UserInfoMapper.class).loginCheck(id);
+	}
+
+	@Override
+	public void logOut(String id) {
+		session.getMapper(UserInfoMapper.class).logOut(id);
+	}
+
+	@Override
+	public ArrayList<UserInfo> selectLoginUsers(String userId) {
+		return session.getMapper(UserInfoMapper.class).selectLoginUsers(userId);
 	}
 
 }

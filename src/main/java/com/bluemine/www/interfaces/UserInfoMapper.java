@@ -1,6 +1,7 @@
 package com.bluemine.www.interfaces;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.bluemine.www.vo.CKList;
 import com.bluemine.www.vo.CP_Department;
@@ -27,7 +28,7 @@ public interface UserInfoMapper {
 		// 로그인
 		public String login(UserInfo user);
 		// 탈퇴
-		public int leave(String password);
+		public int leave(UserInfo user);
 		//개인 스케줄 추가
 		public int addPsWork(PS_Work work);
 		//개인 스케줄 조회(시작일순)
@@ -44,4 +45,10 @@ public interface UserInfoMapper {
 		public ArrayList<CP_Department> getDepartmentList();
 		// 직급 불러오기
 		public ArrayList<CP_Position> getPositionList();
+		//로그인 중인 회원 목록
+		public ArrayList<UserInfo> selectLoginUsers(String userId);
+		//로그인 체크
+		public void loginCheck(String id);
+		//로그 아웃
+		public void logOut(String id);
 }

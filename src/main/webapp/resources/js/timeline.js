@@ -17,18 +17,8 @@ $(document).ready(function() {
 
 	moreScroll(); //스크롤 로딩 스크립트 등록
 	selectDesign(); //select디자인
-	test();
 });
-function test(){
-	if(window.Worker){
-	    alert('웹 워커 사용 가능');
-	}
-	else{
-		alert('웹 워커 사용 불가능');
-	    //웹 워커 사용 불가능
-	}
 
-}
 //select 동작
 function selectDesign() { 
 	$(".dropdown dt a").click(function() {
@@ -98,14 +88,10 @@ function menuPage() {
 				timeLine += ' class="timeline-inverted"';
 			}
 			timeLine += '><div class="timeline-badge"';
-			if (list[i].tagNum == 1) {
-				timeLine += ' style="background-color:blue;"><i class="fa fa-info-circle">';
-				timeLine += '</i></div><div class="timeline-panel" style="border: 2px blue solid">';
-			}
-			if (list[i].tagNum == 2) {
+			
 				timeLine += ' style="background-color:green"><i class="fa fa-calendar-o">';
 				timeLine += '</i></div><div class="timeline-panel" style="border: 2px green solid">';
-			}
+		
 			timeLine += '<div class="timeline-heading"><h4 class="timeline-title">';
 			timeLine += splitArray[0];
 			timeLine += '</h4><p><small class="text-muted"><i class="fa fa-clock-o"></i>';
@@ -245,9 +231,8 @@ function menuPage() {
 			url : 'gettimelinelist',
 			tpue : 'get',
 			data : {
-				prj_Num : prj_Num,
-				page : page,
-				tagNum : tagNum
+				page : page
+			
 			},
 			dataType : 'JSON',
 			async : false,

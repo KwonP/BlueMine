@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.ProjectMapper;
+import com.bluemine.www.vo.MatchPRJ;
 import com.bluemine.www.vo.PRJList;
 
 @Repository
@@ -46,5 +47,10 @@ public class ProjectDAO{
 		list=session.getMapper(ProjectMapper.class).getPPrjList();
 		return list;
 	}
-	
+	//회원, 프로젝트 관계 세팅
+	public int setRelation(MatchPRJ mp) {
+		int result = 0;
+		result= session.getMapper(ProjectMapper.class).setRelation(mp);
+		return result;
+	}
 }

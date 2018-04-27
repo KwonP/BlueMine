@@ -51,6 +51,7 @@ INSERT INTO USERINFO(
  	,saveFile
  	,department
  	,position
+ 	,loginOk
  FROM 
  	userInfo u
  WHERE 
@@ -88,10 +89,10 @@ WHERE
 	and
 	password = #{password}
 </select>
-<delete id="leave">
+<delete id="leave" parameterType="userInfo">
 DELETE
 FROM UserInfo
-WHERE password = #{password}
+WHERE userId = #{userId} and password = #{password}
 </delete>
 <!-- 개인스케줄 추가 -->
 <insert id="addPsWork" parameterType="psWork">
@@ -196,4 +197,36 @@ FROM CP_Department
 SELECT positionName
 FROM CP_Position
 </select>
+
+<!-- 로그인 중인 회원들  -->
+<select id="selectLoginUsers"  resultType="userInfo">
+	select 
+		userId,
+		name
+	from 
+		USERINFO
+	where
+		loginOk = 1
+	</select>
+<update id="loginCheck" parameterType="String">
+	update
+		USERINFO
+	set
+		loginOk = 1
+	where
+		userId = #{userId}
+	and
+		loginOk = 0		
+</update>
+	
+<update id="logOut" parameterType="String">
+	update
+		USERINFO
+	set
+		loginOk = 0
+	where
+		userId = #{userId}
+	and
+		loginOk = 1		
+	</update>
 </mapper>

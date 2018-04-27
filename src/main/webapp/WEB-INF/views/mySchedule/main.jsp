@@ -323,6 +323,7 @@
         	  	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                </a>
                  <form action="createWork" method="post" onsubmit="return check();" id="formAction">
+                  <input type="hidden" value="" name="ps_Num" id="ps_Num">
                  	<table class="workForm">
                  	  <tr>
                  	  	<td>Title </td>
@@ -362,24 +363,95 @@
 			  <div class="black_overlay"></div>
 			</div>
           	
+           <!-- 체크리스트 부분 -->		
           <div class="checkList">
-          	<h2>Check List</h2>
+          	<h3>Check List<span class="label label-default" id="manageCK" onclick="managePopup()">Manage</span></h3>
           	<div class="days">
-          	 <ul>
           	  <c:forEach begin="1" end="7" varStatus="status">
           	   <div class="day" number="${status.current}" style="display: inline-block;">
-          	   	<c:if test="${status.current == 1}">월요일</c:if>
-          	   	<c:if test="${status.current == 2}">화요일</c:if>
-          	   	<c:if test="${status.current == 3}">수요일</c:if>
-          	   	<c:if test="${status.current == 4}">목요일</c:if>
-          	   	<c:if test="${status.current == 5}">금요일</c:if>
-          	   	<c:if test="${status.current == 6}">토요일</c:if>
-          	   	<c:if test="${status.current == 7}">일요일</c:if>
+          	   <!-- 요일 div 생성 -->
+          	   	<c:if test="${status.current == 1}"><b>월요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 2}"><b>화요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 3}"><b>수요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 4}"><b>목요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 5}"><b>금요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 6}"><b>토요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 7}"><b>일요일</b><br><br></c:if>
+          	   	 <c:forEach items="${CL_Show}" var="show">
+          	   	  <c:if test="${show.loopDay == status.current && show.loop_State == 0}">
+          	   	  <li class="unChecked" value="${show.loopNum}">
+	          	   	   <input type="checkbox"class="checkBox" aria-label="..." onchange="endCklist(${show.loopNum})">
+	          	   	   	  <span number="${show.loopNum}">${show.cl_Name}</span>
+          	   	  </li>
+          	   	  </c:if>
+          	   	  <c:if test="${show.loopDay == status.current && show.loop_State == 1}">
+          	   	  <li class="checked" value="${show.loopNum}">
+	          	   	   <input type="checkbox" checked="checked" class="checkBox" aria-label="..." onchange="endCklist(${show.loopNum})">
+	          	   	   	  <span number="${show.loopNum}">${show.cl_Name}</span>
+          	   	  </li>
+          	   	  </c:if>
+          	   	 </c:forEach>
           	   </div>
           	  </c:forEach>
-          	 </ul> 
           	</div>
+          	<!-- checkList Management Popup -->
+          	<div id="managePopup" class="white_content">
+          	 <a href = "#" onclick="ckPopupClose();">
+        	  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        	 </a>
+        	  <h3>My CheckList</h3>
+        	  <button class="addList" onclick="addList()">Add</button>
+        	  <span id="addSpan"></span>
+        	   <ul class="ckList">
+        	    <c:forEach items="${ckList}" var="list">
+        	 	  <li number="${list.cl_Num}">
+        	 	  	${list.cl_Name}
+        	 	  	<div class="btns">
+        	 	  	  <a onclick="updateList(${list.cl_Num})">Modify</a>
+        	 	  	  <a>Delete</a>
+        	 	  	</div>
+        	 	  </li>
+        	 	</c:forEach>
+        	   </ul>
+       	  <%--  <table class="getCKList" id="getCKList">
+       	   		<tr>
+					<td>Name </td>
+					<td>:</td>
+					<td><input type="text" id="getOneName" value=""></td>
+				</tr>
+				<tr>
+					<td>Day  </td>
+					<td>:</td>
+					<td><c:forEach begin="1" end="7" varStatus="status">
+					<c:if test="${status.current == 1}">
+						<input type="checkbox" value="1"> 월
+					</c:if>
+					<c:if test="${status.current == 2}">
+						<input type="checkbox" value="2"> 화
+					</c:if>
+					<c:if test="${status.current == 3}">
+						<input type="checkbox" value="3"> 수
+					</c:if>
+					<c:if test="${status.current == 4}">
+						<input type="checkbox" value="4"> 목
+					</c:if>
+					<c:if test="${status.current == 5}">
+						<input type="checkbox" value="5"> 금
+					</c:if>
+					<c:if test="${status.current == 6}">
+						<input type="checkbox" value="6"> 토
+					</c:if>
+					<c:if test="${status.current == 7}">
+						<input type="checkbox" value="7"> 일
+					</c:if>
+					</c:forEach>
+					</td>
+				</tr>
+        	   </table> --%>
+          	</div>
+           <div class="black_overlay"></div>
           </div>
+          <!-- checkList Div End -->
         </div>
         <!-- /#page-wrapper -->
 

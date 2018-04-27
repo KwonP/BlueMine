@@ -309,6 +309,12 @@
 			 		<a id="pfUpload" onclick="pfUpload()">Update Image</a>
 			 </div>
 			 </form>
+		  <a onclick="leaveForm()" class="leave"><span class="fa  fa-sign-in fa-fw"> Leave the member</span></a>
+		  <div class="passwordCheck" onkeydown="javascript:if(event.keyCode==13){leaveMember();}">
+		    <a class="leaveCancel" onclick="cancelLeave()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+		  	Password : <input type="password" id="leavePassword" >
+		  	<a class="leaveMember" onclick="leaveMember()">Leave</a>
+		  </div>
 		</div>
 		<!-- /#page-wrapper -->
 
