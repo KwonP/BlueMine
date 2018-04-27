@@ -52,8 +52,6 @@ public class TaskController {
 		return "project/task";
 	}
 	
-	
-	
 	/*@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public SRoom ??(GP_Work gp_work) {	

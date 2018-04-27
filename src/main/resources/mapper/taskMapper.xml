@@ -18,7 +18,7 @@
 	</select>
 	
 	<!-- Task 가져오기 -->
-	<select id="selectGroup" parameterType="int" resultType="group">
+	<select id="selectGroup" parameterType="int" resultType="gpWork">
 		select
 			gs_Num
 			, gs_Name
@@ -34,7 +34,7 @@
 		where
 			gp_Num = #{gp_Num}
 	</select>
-	<!-- gpWork -->
+	
 	<!-- 파일 저장 -->
 	<!-- <insert id="insertFile" parameterType="fileInfo">
 		insert into FileInfo (
