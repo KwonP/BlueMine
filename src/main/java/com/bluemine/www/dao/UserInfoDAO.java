@@ -118,6 +118,7 @@ public class UserInfoDAO implements UserInfoMapper{
 		return session.getMapper(UserInfoMapper.class).getPositionList();
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void loginCheck(String id) {
 		session.getMapper(UserInfoMapper.class).loginCheck(id);
@@ -131,6 +132,14 @@ public class UserInfoDAO implements UserInfoMapper{
 	@Override
 	public ArrayList<UserInfo> selectLoginUsers(String userId) {
 		return session.getMapper(UserInfoMapper.class).selectLoginUsers(userId);
+=======
+	//ajax자동완성 기능을 위한 목록 부르기
+	@Override
+	public ArrayList<UserInfo> getUser(HashMap<String, String> map) {
+		ArrayList<UserInfo> list = new ArrayList<>();
+		list = session.getMapper(UserInfoMapper.class).getUser(map);
+		return list;
+>>>>>>> master
 	}
 
 }
