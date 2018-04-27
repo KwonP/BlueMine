@@ -300,6 +300,20 @@ function addOne(){
 		}
 	})
 }
+function deleteList(cl_Num){
+	if (!confirm('삭제하시겠습니까?')) return;
+	$.ajax({
+		url : 'deleteList',
+		type : 'post',
+		data : {cl_Num : cl_Num},
+		success : function(){
+			window.location.reload();
+		},
+		error : function(){
+			alert('서버 오류');
+		}
+	});
+}
 // 여기 보류
 function getOneInfo(){
 	for(var i = 0; i < getOne.length; i++){

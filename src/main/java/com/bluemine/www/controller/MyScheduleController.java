@@ -116,6 +116,13 @@ public class MyScheduleController {
 		session.setAttribute("ckList", getCKList);
 		return getCKList;
 	}
+	
+	// 체크리스트 삭제
+	@ResponseBody
+	@RequestMapping(value="/deleteList",method=RequestMethod.POST)
+	public void deleteList(int cl_Num){
+		myDao.deleteCKList(cl_Num);
+	}
 	// 체크리스트 하나 가져오기(수정용)
 	@ResponseBody
 	@RequestMapping(value="/getOneList",method=RequestMethod.POST)

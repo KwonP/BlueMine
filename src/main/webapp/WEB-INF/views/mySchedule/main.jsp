@@ -408,7 +408,7 @@
         	 	  	${list.cl_Name}
         	 	  	<div class="btns">
         	 	  	  <a onclick="updateList(${list.cl_Num})" >Modify</a>
-        	 	  	  <a>Delete</a>
+        	 	  	  <a onclick="deleteList(${list.cl_Num})">Delete</a>
         	 	  	</div>
         	 	  </li>
         	 	</c:forEach>
