@@ -20,6 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bluemine.www.dao.TaskDAO;
 import com.bluemine.www.vo.FileInfo;
+import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.PJ_Group;
 
 /**
  * 일감 콘트롤러
@@ -39,8 +41,14 @@ public class TaskController {
 	 * 일감 페이지 이동
 	 */
 	@RequestMapping (value="move", method=RequestMethod.GET)
-	public String move(HttpSession session, Model model) {
+	public String move(int prjNum, Model model) {
 	
+		PJ_Group pj_group = dao.selectGroup(prjNum);
+		
+		ArrayList<GP_Work> gp_work_list = dao.printTask(pj_group.getGp_Num());
+		
+		model.addAttribute("tasklist",gp_work_list);
+		
 		return "project/task";
 	}
 	
