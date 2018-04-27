@@ -19,6 +19,16 @@ public class MyScheduleDAO implements MyScheduleMapper{
 	@Inject
 	SqlSession session;
 	
+	
+	@Override
+	public int createCKList(CKList cklist) {
+		return session.getMapper(MyScheduleMapper.class).createCKList(cklist);
+	}
+
+	@Override
+	public int createLoops(CK_Loops loops) {
+		return session.getMapper(MyScheduleMapper.class).createLoops(loops);
+	}
 	@Override
 	public ArrayList<CKList> getCKList(String id) {
 		return session.getMapper(MyScheduleMapper.class).getCKList(id);
@@ -83,6 +93,5 @@ public class MyScheduleDAO implements MyScheduleMapper{
 	public PS_Work getWork(int ps_Num) {
 		return session.getMapper(MyScheduleMapper.class).getWork(ps_Num);
 	}
-
 
 }

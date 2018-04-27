@@ -137,11 +137,12 @@ i{
     border-color: #687eba;
 }
 .checked{
-	background-color: #e17db5;
+    color: white;
 	list-style: none;
     border-color: #ffffff;
     border-radius: 15px;
-    color: white;
+    margin-bottom: 5px;
+	background-color: #e17db5;
 }
 .checkBox{
 	left: -20px;
@@ -158,11 +159,15 @@ i{
     margin: 5px;
     border-radius: 15px;
 }
-.addList{
-	position: absolute;
+.addList {
+    position: absolute;
     left: 190px;
     top: 60px;
+    border-style: unset;
+    font-size: 22px;
+    border-radius: 10px;
 }
+.addList:hover{background-color: darkgrey;}
 .btns{float: right;}
 .btns a{padding: 5px;}
 #getCKList {

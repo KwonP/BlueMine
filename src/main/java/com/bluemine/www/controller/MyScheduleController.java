@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bluemine.www.dao.MyScheduleDAO;
 import com.bluemine.www.vo.CKList;
+import com.bluemine.www.vo.CK_Loops;
 import com.bluemine.www.vo.CK_Show;
 import com.bluemine.www.vo.PS_Work;
 
@@ -89,6 +90,32 @@ public class MyScheduleController {
 	public void uncheckLoop(int loopNum){
 		System.out.println("완료 : "+myDao.uncheckLoop(loopNum));
 	}
+	// 체크리스트 추가
+	@ResponseBody
+	@RequestMapping(value="/putCKList",method=RequestMethod.POST)
+	public ArrayList<CKList> putCKList(String cl_Name,String loopDay,HttpSession session){
+		CKList cklist = new CKList();
+		String memberId = (String)session.getAttribute("loginId");
+		cklist.setCl_Name(cl_Name);
+		cklist.setMemberId(memberId);
+		System.out.println(myDao.createCKList(cklist));
+		int cl_Num = cklist.getCl_Num();
+		System.out.println(cl_Num);
+		CK_Loops loops = new CK_Loops();
+		loops.setCl_Num(cl_Num);
+		// 요일별로 넣어주기
+		for(int i = 0; i < loopDay.length(); i++){
+			char getloop = loopDay.charAt(i);
+			int loop = getloop - 48;
+			System.out.println(loop);
+			loops.setLoopDay(loop);
+			myDao.createLoops(loops);
+		}
+		String userId = (String)session.getAttribute("loginId");
+		ArrayList<CKList> getCKList = myDao.getCKList(userId);
+		session.setAttribute("ckList", getCKList);
+		return getCKList;
+	}
 	// 체크리스트 하나 가져오기(수정용)
 	@ResponseBody
 	@RequestMapping(value="/getOneList",method=RequestMethod.POST)
@@ -97,4 +124,5 @@ public class MyScheduleController {
 		System.out.println(getOne);
 		return getOne;
 	}
+	
 }

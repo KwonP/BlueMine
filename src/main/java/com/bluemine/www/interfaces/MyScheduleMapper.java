@@ -9,6 +9,10 @@ import com.bluemine.www.vo.PS_Work;
 
 public interface MyScheduleMapper {
 	
+	// 체크리스트 만들기(CKList)
+	public int createCKList(CKList cklist);
+	// 체크리스트 만들기(CK_Loops)
+	public int createLoops(CK_Loops loops);
 	// 체크리스트 가져오기
 	public ArrayList<CKList> getCKList(String id);
 	// 체크리스트 보여주기(요일에 따라)

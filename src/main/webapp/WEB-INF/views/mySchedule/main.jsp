@@ -404,50 +404,15 @@
         	  <span id="addSpan"></span>
         	   <ul class="ckList">
         	    <c:forEach items="${ckList}" var="list">
-        	 	  <li number="${list.cl_Num}">
+        	 	  <li>
         	 	  	${list.cl_Name}
         	 	  	<div class="btns">
-        	 	  	  <a onclick="updateList(${list.cl_Num})">Modify</a>
+        	 	  	  <a onclick="updateList(${list.cl_Num})" >Modify</a>
         	 	  	  <a>Delete</a>
         	 	  	</div>
         	 	  </li>
         	 	</c:forEach>
         	   </ul>
-       	  <%--  <table class="getCKList" id="getCKList">
-       	   		<tr>
-					<td>Name </td>
-					<td>:</td>
-					<td><input type="text" id="getOneName" value=""></td>
-				</tr>
-				<tr>
-					<td>Day  </td>
-					<td>:</td>
-					<td><c:forEach begin="1" end="7" varStatus="status">
-					<c:if test="${status.current == 1}">
-						<input type="checkbox" value="1"> 월
-					</c:if>
-					<c:if test="${status.current == 2}">
-						<input type="checkbox" value="2"> 화
-					</c:if>
-					<c:if test="${status.current == 3}">
-						<input type="checkbox" value="3"> 수
-					</c:if>
-					<c:if test="${status.current == 4}">
-						<input type="checkbox" value="4"> 목
-					</c:if>
-					<c:if test="${status.current == 5}">
-						<input type="checkbox" value="5"> 금
-					</c:if>
-					<c:if test="${status.current == 6}">
-						<input type="checkbox" value="6"> 토
-					</c:if>
-					<c:if test="${status.current == 7}">
-						<input type="checkbox" value="7"> 일
-					</c:if>
-					</c:forEach>
-					</td>
-				</tr>
-        	   </table> --%>
           	</div>
            <div class="black_overlay"></div>
           </div>

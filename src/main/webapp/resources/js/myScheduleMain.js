@@ -231,6 +231,41 @@ function endCklist(loopNum){
 		});
 	}
 }
+
+function addList(){
+	var childDiv = '';
+	childDiv += '<table class="getCKList" id="getCKList">';
+	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="getOneName" value=""></td></tr>';
+	childDiv += '<tr><td>Day </td><td> : </td><td>';
+	childDiv += '<c:forEach begin="1" end="7" varStatus="status">';
+	childDiv += '<c:if test="${status.current == 1}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="1" name="setDays">월</i></c:if>';
+	childDiv += '<c:if test="${status.current == 2}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="2" name="setDays">화</i></c:if>';
+	childDiv += '<c:if test="${status.current == 3}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="3" name="setDays">수</i></c:if>';
+	childDiv += '<c:if test="${status.current == 4}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="4" name="setDays">목</i></c:if>';
+	childDiv += '<c:if test="${status.current == 5}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="5" name="setDays">금</i></c:if>';
+	childDiv += '<c:if test="${status.current == 6}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="6" name="setDays">토</i></c:if>';
+	childDiv += '<c:if test="${status.current == 7}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="7" name="setDays">일</i></c:if>';
+	childDiv += '</c:forEach></td></tr>';
+	childDiv += '<tr><td colspan="3">';
+	childDiv += '<a onclick="addOne()">Add List</a></td></tr></table>';
+
+	var parentDiv = document.getElementById('addSpan');
+	parentDiv.innerHTML = childDiv;
+	$('.addList').text('Cancel');
+	$('.addList').attr('onclick','cancelAdd()');
+}
+function cancelAdd(){
+	$('#getCKList').remove();
+	$('.addList').text('Add');
+	$('.addList').attr('onclick','addList()');
+}
 function updateList(cl_Num){
 	$.ajax({
 		url : 'getOneList',
@@ -245,34 +280,28 @@ function updateList(cl_Num){
 		}
 	});
 }
-function addList(){
-	var childDiv = '';
-	childDiv += '<table class="getCKList" id="getCKList">';
-	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="getOneName" value=""></td></tr>';
-	childDiv += '<tr><td>Day </td><td> : </td><td>';
-	childDiv += '<c:forEach begin="1" end="7" varStatus="status">';
-	childDiv += '<c:if test="${status.current == 1}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="1">월</i></c:if>';
-	childDiv += '<c:if test="${status.current == 2}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="2">화</i></c:if>';
-	childDiv += '<c:if test="${status.current == 3}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="3">수</i></c:if>';
-	childDiv += '<c:if test="${status.current == 4}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="4">목</i></c:if>';
-	childDiv += '<c:if test="${status.current == 5}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="5">금</i></c:if>';
-	childDiv += '<c:if test="${status.current == 6}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="6">토</i></c:if>';
-	childDiv += '<c:if test="${status.current == 7}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="7">일</i></c:if>';
-	childDiv += '</c:forEach></td></tr>';
-	childDiv += '<tr><td colspan="3">';
-	childDiv += '<a onclick="addOne()">Add List</a></td></tr></table>';
-
-	var parentDiv = document.getElementById('addSpan');
-	parentDiv.innerHTML = childDiv;
+function addOne(){
+	var cl_Name = $('#getOneName').val();
+	var loopDay = new Array();
+	$("input[name=setDays]:checked").each(function() {
+		  var test = $(this).val();
+		  loopDay += test;
+	});
+	$.ajax({
+		url : 'putCKList',
+		type : 'post',
+		data : {cl_Name : cl_Name, loopDay : loopDay},
+		dataType : 'json',
+		success : function(getList){
+			window.location.reload();
+		},
+		error : function(){
+			alert('서버 오류');
+		}
+	})
 }
-function getOneInfo(getOne){
+// 여기 보류
+function getOneInfo(){
 	for(var i = 0; i < getOne.length; i++){
 		alert(getOne[i].cl_Name+"/"+getOne[i].loopDay+"/"+getOne[i].loopNum);
 	}
