@@ -5,7 +5,36 @@
 
 <!-- 일감 처리 SQL -->
 <mapper namespace="com.bluemine.www.interfaces.TaskMapper">
+	<!-- group 가져오기 -->
+	<select id="selectGroup" parameterType="int" resultType="group">
+		select
+			gp_Num
+			, prj_Num
+			, gp_Name
+		from
+			PJ_GROUP
+		where
+			prj_Num = #{prjNum}
+	</select>
+	public ArrayList<PJ_Group> printTask(int gp_Num);
 	
+	<!-- Task 가져오기 -->
+	<select id="selectGroup" parameterType="int" resultType="group">
+		select
+			gs_Num
+			, gs_Name
+			, gp_Num
+			, private String gs_Content
+			, start_Date
+			, deadLine
+			, gp_Pri
+			, progress
+			, category
+		from
+			PJ_GROUP
+		where
+			gp_Num = #{gp_Num}
+	</select>
 	<!-- gpWork -->
 	<!-- 파일 저장 -->
 	<!-- <insert id="insertFile" parameterType="fileInfo">
