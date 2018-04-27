@@ -272,12 +272,8 @@
 								<li><a href="#">Company Timeline</a></li>
 							</ul> <!-- /.nav-second-level --></li>
 						<li><a href="../data/filePrint?prjNum=${prjNum }"><i class="fa fa-edit fa-fw"></i> Data Download</a></li>
-						<li><a href="#"><i class="fa fa-paste fa-fw"></i>
-								Progress<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="#">My tasks</a></li>
-								<li><a href="#">Project</a></li>
-							</ul> <!-- /.nav-second-level --></li>
+						<li><a href="../data/filePrint?prjNum=${prjNum }"><i class="fa fa-paste fa-fw"></i>
+								Task<span class="fa arrow"></span></a>
 						<li><a href="#"><i class="fa fa-calendar fa-fw"></i>Work
 								Schedule</a>
 						<li><a href="#"><i class="fa fa-comments fa-fw"></i>
