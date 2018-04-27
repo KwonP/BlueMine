@@ -264,7 +264,7 @@
 								<li><a href="#">Company Timeline</a></li>
 							</ul> <!-- /.nav-second-level --></li>
 						<li><a href="../data/filePrint?prjNum=${prjNum }"><i class="fa fa-edit fa-fw"></i> Data Download</a></li>
-						<li><a href="../data/??prjNum=${prjNum }"><i class="fa fa-paste fa-fw"></i>
+						<li><a href="../task/move?prjNum=${prjNum }"><i class="fa fa-paste fa-fw"></i>
 								Task<span class="fa arrow"></span></a>
 						<li><a href="#"><i class="fa fa-calendar fa-fw"></i>Work
 								Schedule</a>

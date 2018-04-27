@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bluemine.www.dao.TaskDAO;
+import com.bluemine.www.vo.FileInfo;
 
 /**
  * 일감 콘트롤러
@@ -34,6 +35,17 @@ public class TaskController {
 
 	private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
+	/**
+	 * 일감 페이지 이동
+	 */
+	@RequestMapping (value="move", method=RequestMethod.GET)
+	public String move(HttpSession session, Model model) {
+	
+		return "project/task";
+	}
+	
+	
+	
 	/*@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public SRoom ??(GP_Work gp_work) {	

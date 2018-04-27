@@ -67,7 +67,7 @@ p {
 	background-color: #dbdbdbe6;
 	z-index: 1002;
 	overflow: auto;
-	margin-top: -419px;
+	margin-top: -370px;
 	margin-left: -170px;
 	border-radius: 15px;
 	border: solid 5px #757373;
