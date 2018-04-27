@@ -36,7 +36,8 @@ WHERE memberId = #{memberId} and ckl.cl_Num = loops.cl_Num
 <!-- 체크리스트 하나 가져오기(수정용) -->
 <select id="getOneList" resultType="ckShow">
 SELECT
-	loops.loopNum
+	ckl.cl_Num
+	,loops.loopNum
 	,ckl.cl_Name
 	,loops.loopDay
 FROM CKList ckl, CK_Loops loops

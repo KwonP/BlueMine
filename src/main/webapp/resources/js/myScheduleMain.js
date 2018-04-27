@@ -239,19 +239,19 @@ function addList(){
 	childDiv += '<tr><td>Day </td><td> : </td><td>';
 	childDiv += '<c:forEach begin="1" end="7" varStatus="status">';
 	childDiv += '<c:if test="${status.current == 1}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="1" name="setDays">월</i></c:if>';
+	childDiv += '<i class="getDays"><input type="checkbox" value="1" name="getDays">월</i></c:if>';
 	childDiv += '<c:if test="${status.current == 2}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="2" name="setDays">화</i></c:if>';
+	childDiv += '<i class="getDays"><input type="checkbox" value="2" name="getDays">화</i></c:if>';
 	childDiv += '<c:if test="${status.current == 3}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="3" name="setDays">수</i></c:if>';
+	childDiv += '<i class="getDays"><input type="checkbox" value="3" name="getDays">수</i></c:if>';
 	childDiv += '<c:if test="${status.current == 4}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="4" name="setDays">목</i></c:if>';
+	childDiv += '<i class="getDays"><input type="checkbox" value="4" name="getDays">목</i></c:if>';
 	childDiv += '<c:if test="${status.current == 5}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="5" name="setDays">금</i></c:if>';
+	childDiv += '<i class="getDays"><input type="checkbox" value="5" name="getDays">금</i></c:if>';
 	childDiv += '<c:if test="${status.current == 6}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="6" name="setDays">토</i></c:if>';
+	childDiv += '<i class="getDays"><input type="checkbox" value="6" name="getDays">토</i></c:if>';
 	childDiv += '<c:if test="${status.current == 7}">';
-	childDiv += '<i class="getDays"><input type="checkbox" value="7" name="setDays">일</i></c:if>';
+	childDiv += '<i class="getDays"><input type="checkbox" value="7" name="getDays">일</i></c:if>';
 	childDiv += '</c:forEach></td></tr>';
 	childDiv += '<tr><td colspan="3">';
 	childDiv += '<a onclick="addOne()">Add List</a></td></tr></table>';
@@ -267,6 +267,7 @@ function cancelAdd(){
 	$('.addList').attr('onclick','addList()');
 }
 function updateList(cl_Num){
+
 	$.ajax({
 		url : 'getOneList',
 		type : 'post',
@@ -315,8 +316,41 @@ function deleteList(cl_Num){
 	});
 }
 // 여기 보류
-function getOneInfo(){
+function getOneInfo(getOne){
+
+	var childDiv = '';
+	childDiv += '<table class="getCKList" id="setCKList">';
+	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="updateName" value="'+getOne[0].cl_Name+'"></td>';
+	childDiv += '<td><a onclick="updateOne()">Update List</a></td></tr>';
+	childDiv += '<tr><td>Day </td><td> : </td><td>';
+	childDiv += '<c:forEach begin="1" end="7" varStatus="status">';
+	childDiv += '<c:if test="${status.current == 1}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="1" name="setDays">월</i></c:if>';
+	childDiv += '<c:if test="${status.current == 2}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="2" name="setDays">화</i></c:if>';
+	childDiv += '<c:if test="${status.current == 3}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="3" name="setDays">수</i></c:if>';
+	childDiv += '<c:if test="${status.current == 4}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="4" name="setDays">목</i></c:if>';
+	childDiv += '<c:if test="${status.current == 5}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="5" name="setDays">금</i></c:if>';
+	childDiv += '<c:if test="${status.current == 6}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="6" name="setDays">토</i></c:if>';
+	childDiv += '<c:if test="${status.current == 7}">';
+	childDiv += '<i class="getDays"><input type="checkbox" value="7" name="setDays">일</i></c:if>';
+	childDiv += '</c:forEach></td>';
+	childDiv += '<td><a onclick="cancelOne()">Cancel</a></td></tr></table>';
+	var parentDiv = document.getElementById(getOne[0].cl_Num);
+	parentDiv.innerHTML = childDiv;
+	var count = $('input[name=setDays]').length;
 	for(var i = 0; i < getOne.length; i++){
-		alert(getOne[i].cl_Name+"/"+getOne[i].loopDay+"/"+getOne[i].loopNum);
+		for(var j = 1; j <= count; j++){
+			var compare = $('input[value='+j+']').val();
+			if (getOne[i].loopDay == compare) {
+				$('input[value='+j+']').attr('checked', 'checked');
+			}
+		}
 	}
+	return false;
+	
 }
