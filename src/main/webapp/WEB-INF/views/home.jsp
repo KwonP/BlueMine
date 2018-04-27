@@ -36,9 +36,22 @@
 	  	</tr>
 	  </table>
 	   <button class="loginBtn" onclick="login();">Login</button>
-	   <a class="findPw" href="#">Forgot Password?</a>
+	   <a class="findPw" onclick="findPopup()">Forgot Password?</a>
 	</div>
-	
+	<!-- Find Password -->
+	<div class="findInfo">
+		<div id="findDiv" class="white_content">
+		  <a onclick="findClose();">
+        	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		  </a>
+		  <div class="findForm">
+			E-mail : <input type="email" id="findInfo" autofocus="autofocus">
+			<button onclick="mailCheck('find')">Find</button><br>
+			<a onclick="sendInfo()" class="sendInfo">Send Password</a>
+		  </div>
+		</div>
+	  <div id="popupBack" class="black_overlay"></div>
+	</div>
 	
 	<!-- Join Popup -->
 	<div class="join">
@@ -49,7 +62,7 @@
           <div class="step1">
             <div class="mailForm">
           	E-mail : <input type="email" id="emailC" onkeydown="checkAgain()" autofocus="autofocus">
-          	<button onclick="mailCheck();">Check</button><br>
+          	<button onclick="mailCheck('join');">Check</button><br>
           	</div>
           	<div class="sendForm">
 			  <a onclick="sendCode()" class="sendCode">인증번호 발송</a><br> 

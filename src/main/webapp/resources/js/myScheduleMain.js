@@ -290,7 +290,7 @@ if (count == 1) {
 function addOne(){
 	var cl_Name = $('#getOneName').val();
 	var loopDay = new Array();
-	$("input[name=setDays]:checked").each(function() {
+	$("input[name=getDays]:checked").each(function() {
 		  var test = $(this).val();
 		  loopDay += test;
 	});

@@ -25,7 +25,45 @@ public class UserInfoController {
 
 	@Autowired
 	UserInfoDAO uDao;
+	@Autowired
+	private JavaMailSender mailSender;
 	
+	// 이메일 가입여부 확인(비번찾기)
+	@ResponseBody
+	@RequestMapping(value="/findMail",method=RequestMethod.POST)
+	public String findMail(String findMail){
+		String result = null;
+		if (uDao.emailCheck(findMail) != null) {
+			result = "ok";
+		}
+		return result;
+	}
+	// 비밀번호 보내주기
+	@ResponseBody
+	@RequestMapping(value="/sendInfo",method=RequestMethod.POST)
+	public String sendInfo(String email)throws FileNotFoundException, URISyntaxException  {
+		String result = null;
+		String password = uDao.findPw(email);
+		try {
+			
+			SimpleMailMessage message = new SimpleMailMessage();
+			
+			message.setFrom("springsentmailKim@gmail.com");
+			message.setTo(email);
+			message.setSubject("[로그인을 위한 회원정보 안내]");
+			String text = "회원님의 비밀번호는 ["+password+"]입니다.\n"
+					+ "감사합니다 :)";
+			message.setText(text);
+			mailSender.send(message);
+			result = "ok";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "no";
+		}
+		return result;
+	}
+	// 이메일 중복 확인
 	@ResponseBody
 	@RequestMapping(value = "/checkEmail",method = RequestMethod.POST)
 	public String checkEmail(String email){
@@ -38,8 +76,6 @@ public class UserInfoController {
 	}
 	
 	// 인증번호 이메일 보내기
-	@Autowired
-	private JavaMailSender mailSender;
 	
 	@ResponseBody
 	@RequestMapping(value = "/sendCode",method = RequestMethod.POST)
@@ -84,6 +120,10 @@ public class UserInfoController {
 	public String goToMain(String email,String password,HttpSession session){
 		String result = null;
 		UserInfo login = new UserInfo(email, password);
+		if (uDao.emailCheck(email) == null) {
+			result = "not";
+		}
+		
 		String loginId = uDao.login(login);
 		
 		System.out.println(loginId);

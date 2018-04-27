@@ -66,6 +66,7 @@ span{ font-weight: bold; }
     text-align: center;
     margin-top: -150px;
     margin-left: -195px;
+    border-radius: 15px;
     background-color: #53829e;
 }
 .passwordCheck span {

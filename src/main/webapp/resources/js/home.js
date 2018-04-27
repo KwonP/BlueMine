@@ -44,8 +44,61 @@ function popupClose(){
 		showTime.innerHTML = "";
 	}
 }
-// 메일 중복체크
-function mailCheck(){
+// 정보찾기 팝업
+function findPopup(){
+	$('#findDiv').slideDown('fast');
+	$('#popupBack').fadeIn(300);
+}
+// 정보찾기 팝업 닫기
+function findClose(){
+	$('#findDiv').slideUp('fast');
+	$('#popupBack').fadeOut(300);
+	$('#findInfo').val('');
+}
+// password 메일로 송신
+function sendInfo(){
+	alert('잠시만 기다려 주세요.');
+	var email = $('#findInfo').val();
+	$.ajax({
+		url : "sendInfo",
+		type : 'post',
+		data : {email : email},
+		success : function(result){
+			if (result == 'ok') {
+				alert('비밀번호 전송이 완료되었습니다.');
+			} else {
+				alert('전송에 실패하였습니다. 다시 시도해 주세요.');
+			}
+		},
+		error : function(){
+			alert('서버 오류');
+		}
+	});
+}
+
+// 메일 중복체크(join) & 가입된 이메일 확인(find)
+function mailCheck(value){
+	if (value == 'find') {
+		var findMail = $('#findInfo').val();
+		if (findMail == '') {alert('메일을 입력해 주세요.');return;}
+		$.ajax({
+			url : 'findMail',
+			type : 'post',
+			data : {findMail : findMail},
+			success : function(result){
+				if (result == 'ok') {
+					alert('일치하는 메일이 있습니다.');
+					$('.sendInfo').fadeIn(300);
+				} else {
+					alert('일치하는 메일이 없습니다.');
+				}
+			},
+			error : function(){
+				alert('서버 오류');
+			}
+		});
+		return;
+	} 
 	var email = $('#emailC').val();
 	if (email == "") {
 		alert('메일을 입력해 주세요.');
@@ -216,8 +269,10 @@ function login(){
 		success : function(result){
 			if (result == 'login') {
 				location.href = 'goToMain';
+			} else if(result == 'not') {
+				alert('존재하지 않는 이메일 입니다.');
 			} else {
-				alert('비밀번호나 이메일이 맞지 않습니다');
+				alert('비밀번호가 맞지 않습니다.');
 			}
 		},
 		error : function(){
