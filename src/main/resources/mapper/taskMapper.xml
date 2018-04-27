@@ -18,7 +18,7 @@
 	</select>
 	
 	<!-- Task 가져오기 -->
-	<select id="selectGroup" parameterType="int" resultType="gpWork">
+	<select id="printTask" parameterType="int" resultType="gpWork">
 		select
 			gs_Num
 			, gs_Name
