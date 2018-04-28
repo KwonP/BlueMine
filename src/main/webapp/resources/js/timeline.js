@@ -88,10 +88,13 @@ function menuPage() {
 				timeLine += ' class="timeline-inverted"';
 			}
 			timeLine += '><div class="timeline-badge"';
-			
+			if(splitArray[2]=='del_Tl'){
+				timeLine += ' style="background-color:red"><i class="fa fa-trash-o">';
+				timeLine += '</i></div><div class="timeline-panel" style="border: 2px red solid">';
+			}else{
 				timeLine += ' style="background-color:green"><i class="fa fa-calendar-o">';
 				timeLine += '</i></div><div class="timeline-panel" style="border: 2px green solid">';
-		
+			}
 			timeLine += '<div class="timeline-heading"><h4 class="timeline-title">';
 			timeLine += splitArray[0];
 			timeLine += '</h4><p><small class="text-muted"><i class="fa fa-clock-o"></i>';
@@ -186,11 +189,10 @@ function menuPage() {
 	}
 	//타임라인 수정
 	function updateTL() { 
-		alert("수정 실행!");
 		var tl_Num = $('#TLNumber').val();
 		var writer = $("#writer").val();
 		var tl_Content = $("#timeLineContent").val();
-		var tagNum = $("#horseHead option:selected").val();
+		
 		;
 		if (writer == '' || writer == null) {
 			alert('작성자가 설정되어있지 않습니다.');
@@ -206,8 +208,6 @@ function menuPage() {
 			data : {
 				writer : writer,
 				tl_Content : tl_Content,
-				tagNum : tagNum,
-				prj_Num : prj_Num,
 				tl_Num : tl_Num
 			},
 			dataType : 'text',
@@ -249,3 +249,4 @@ function menuPage() {
 		}
 		);
 	}
+	

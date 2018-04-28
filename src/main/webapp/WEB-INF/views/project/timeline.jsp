@@ -42,10 +42,11 @@
 <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../resources/js/timeline.js"></script>
 <%--알림 js --%>
-	<script src="../resources/toastr/toastr.min.js"></script>
-	<link href="../resources/toastr/toastr.css" rel="stylesheet">
-	<script src="../resources/js/webWorkerStart.js"></script>
-	<script src="../resources/js/worker.js"></script>
+
+<script src="../resources/toastr/toastr.min.js"></script>
+<link href="../resources/toastr/toastr.css" rel="stylesheet">
+<script src="../resources/js/webWorkerStart.js"></script>
+<%-- <script src="../resources/js/worker.js"></script>--%>
 </head>
 
 <body>
@@ -185,7 +186,8 @@
 					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
 						<i class="fa fa-caret-down"></i>
 				</a>
-					<ul class="dropdown-menu dropdown-alerts">
+
+					<ul id="notificationList" class="dropdown-menu dropdown-alerts">
 						<li><a href="#">
 								<div>
 									<i class="fa fa-comment fa-fw"></i> New Comment <span
@@ -263,11 +265,13 @@
 								<li><a href="#">My Timeline</a></li>
 								<li><a href="#">Company Timeline</a></li>
 							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="../data/filePrint?prjNum=${prjNum }"><i class="fa fa-edit fa-fw"></i> Data Download</a></li>
-						<li><a href="../task/move?prjNum=${prjNum }"><i class="fa fa-paste fa-fw"></i>
-								Task<span class="fa arrow"></span></a>
-						<li><a href="#"><i class="fa fa-calendar fa-fw"></i>Work
+						<li><a href="../data/filePrint?prjNum=${prjNum }"><i
+								class="fa fa-edit fa-fw"></i> Data Download</a></li>
+						<li><a href="../task/move?prjNum=${prjNum }"><i
+								class="fa fa-paste fa-fw"></i> Task<span class="fa arrow"></span></a>
+							<li><a href="#"><i class="fa fa-calendar fa-fw"></i>Work
 								Schedule</a>
+						
 						<li><a href="#"><i class="fa fa-comments fa-fw"></i>
 								Chats</a></li>
 					</ul>
@@ -276,9 +280,9 @@
 			</div>
 			<!-- /.navbar-static-side -->
 		</nav>
-		
+
 		<div id="page-wrapper">
-		<h1>프로젝트 No.${prjNum}</h1>
+			<h1>프로젝트 No.${prjNum}</h1>
 			<div id="timeLineDiv"></div>
 			<input type="hidden" id="getPrjNum" value="${prjNum}"> <input
 				type="hidden" id="getUserId" value="${loginId}"> <input
@@ -286,24 +290,26 @@
 			<div id="userTest"></div>
 			<div id="addTimeLineDiv">
 				<div class="col-lg-3 col-md-6">
-				<a href="#layer1" class="btn-example">
-					<div class="panel panel-yellow">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-plus fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="timeLineFont">타임라인 추가<br>테스트용</div>
-									<div></div>
+					<a href="#layer1" class="btn-example"
+						onclick="javascript:getNotice();">
+						<div class="panel panel-yellow">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-plus fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div class="timeLineFont">
+											타임라인 추가<br>테스트용
+										</div>
+										<div></div>
+									</div>
 								</div>
 							</div>
-						</div>
-						 <span class="pull-left">ADD
-								TIME LINE</span> <span class="pull-right"><i
-								class="fa fa-arrow-circle-right"></i></span>
+							<span class="pull-left">ADD TIME LINE</span> <span
+								class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 							<div class="clearfix"></div>
-					</div>
+						</div>
 					</a>
 				</div>
 			</div>
@@ -315,14 +321,17 @@
 					</dt>
 					<dd>
 						<ul>
-						<li><a href="#"><i class="fa fa-columns"></i>전체 조회<span class="value">0</span></a></li>
-							<li><a href="#"><i class="fa fa-info-circle"></i>공지 조회<span class="value">1</span></a></li>
-							<li><a href="#"><i class="fa fa-calendar-o"></i>작업 조회<span class="value">2</span></a></li>
+							<li><a href="#"><i class="fa fa-columns"></i>전체 조회<span
+									class="value">0</span></a></li>
+							<li><a href="#"><i class="fa fa-info-circle"></i>공지 조회<span
+									class="value">1</span></a></li>
+							<li><a href="#"><i class="fa fa-calendar-o"></i>작업 조회<span
+									class="value">2</span></a></li>
 						</ul>
 					</dd>
 				</dl>
 				<span id="result"></span>
-				
+
 			</div>
 			<!--  </td><td><select id="searchType"><option selected="selected" value="writer">작성자</option><option value="content">내용</option> </select> </td></tr></table>-->
 
@@ -332,7 +341,7 @@
 		<!-- /#page-wrapper -->
 
 	</div>
-	
+
 	<div class="dim-layer">
 		<div class="dimBg"></div>
 		<div id="layer1" class="pop-layer">
@@ -341,12 +350,7 @@
 					<!--content //-->
 					<table id="timeLineTable">
 						<thead>
-							<tr>
-								<th>말머리</th>
-								<td><select id="horseHead"><option value="1">공지사항</option>
-										<option value="2">스케줄</option>
-								</select></td>
-							</tr>
+
 							<tr>
 								<th>작성자</th>
 								<td>${sessionScope.user.name}<input type="hidden"
@@ -362,7 +366,11 @@
 										rows="5" cols="60" placeholder="타임라인 내용"></textarea></td>
 							</tr>
 						</tbody>
-						<tfoot><tr><td><input type="hidden" value="" id="TLNumber"> </td></tr></tfoot>
+						<tfoot>
+							<tr>
+								<td><input type="hidden" value="" id="TLNumber"></td>
+							</tr>
+						</tfoot>
 					</table>
 					<p class="ctxt mb20"></p>
 
@@ -374,8 +382,8 @@
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 	</div>
 	<div class="dim-layer2">
 		<div class="dimBg"></div>
@@ -386,12 +394,6 @@
 					<table id="timeLineTable">
 						<thead>
 							<tr>
-								<th>말머리</th>
-								<td><select id="horseHead"><option value="1">공지사항</option>
-										<option value="2">스케줄</option>
-								</select></td>
-							</tr>
-							<tr>
 								<th>작성자</th>
 								<td>${sessionScope.user.name}<input type="hidden"
 									value="${loginId}" id="writer"></td>
@@ -406,7 +408,11 @@
 										rows="5" cols="60" placeholder="타임라인 내용"></textarea></td>
 							</tr>
 						</tbody>
-						<tfoot><tr><td><input type="hidden" id="TLNumber" value=""> </td></tr></tfoot>
+						<tfoot>
+							<tr>
+								<td><input type="hidden" id="TLNumber" value=""></td>
+							</tr>
+						</tfoot>
 					</table>
 					<p class="ctxt mb20"></p>
 
@@ -418,10 +424,10 @@
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 	</div>
-	
+
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
@@ -438,11 +444,12 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="../resources/templet/dist/js/sb-admin-2.js"></script>
-	
-	
 
-	<!-- <script type="text/javascript">
+
+
+	<script type="text/javascript">
 	$(document).ready(function() {
+	
         /* $(".dropdown img.flag").addClass("flagvisibility");*/
 	    	$('.btn-example').click(function(){
 				$('#timeLineContent').val('');
@@ -453,26 +460,10 @@
 		        layer_popup($href);
 		    });
 	    	$('#btn-add').on('click',insertTimeLine);
-	    	$('#tlDelete').on('click',);
 	    	workerStart(${loginId});
-     });
-	function workerStart(){
-		var w;
-		console.log('webwork실행');
-		if(typeof(Worker)!='nudefined'){
-			console.log('Webwork가 정의된 상태(webworker 사용가능 브라우저)');
-			if(typeof(w)=='nudefined'){
-				console.log('webwork 생성');
-				w = new Worker('worker.js');
-			}
-			w.onmessage = function(response){
-				console.log('알림정보 가져옴');
-				alert("postmessage동작" + response);
-			};
-		}else{
-			alert("웹 워커를 사용할 수 없습니다.");
-		}
-	}
+	    	//showNotice(${sessionScope.nList});
+	});
+	
 	
 	function updateStep($href,tl_Num){
         $('#timeLineContent').val($('#tlText'+tl_Num).text());
@@ -483,13 +474,19 @@
         layer_popup($href);
     }
 	function deleteStep(tl_Num){
-        if(confirm('정말로 지우시겠습니까?')==true){
-        	deleteTimeLine(tl_Num);
-        }
-    }
+	    if(confirm('정말로 지우시겠습니까?')==true){
+	    	deleteTimeLine(tl_Num);
+	    }
+	}
+	function getNotice(){
+		
+		showNotice(${sessionScope.nList});
+	}
+	
 	
 		
 	    function layer_popup(el){
+	   
 
 	        var $el = $(el);        //레이어의 id를 $el 변수에 저장
 	        var isDim = $el.prev().hasClass('dimBg');   //dimmed 레이어를 감지하기 위한 boolean 변수
@@ -531,7 +528,9 @@
 
 	    }
 	    
-		</script> -->
+	    
+	    </script>
+		
 </body>
 
 </html>

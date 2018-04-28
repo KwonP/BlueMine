@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.RowBounds;
 
@@ -72,18 +73,27 @@ public class TimeLineController {
 		Calendar cal = Calendar.getInstance();
 		int nowTime = (int) (cal.getTimeInMillis() / 1000);
 		for (int i = 0; i < list.size(); i++) { 
-			PRJList prj = tlDAO.getProjectInfo(list.get(i).getPrj_Num());
+			
 			//private면 보여주지 않는다.
-			if(prj.getAccess_Control()==0) {
+			logger.info("Tl_Content : "+list.get(i).getTl_Content());
+			if(list.get(i).getTl_Content().equals("0")) {
 				list.remove(i);
 				i--;
 				continue;
 				
 			}
+			String content = list.get(i).getTl_Content();
+			
+			String [] splitArray = content.split("///"); 
+			Object[] obj = new Object[3];
+			
+			if(!splitArray[0].equals("del_Tl")) {
+				PRJList prj = tlDAO.getProjectInfo(list.get(i).getPrj_Num());
 			logger.info("::프로젝트 정보::"+prj.toString());
 			int projectNum = prj.getPrj_Num();
 			String prj_Name = prj.getPrj_Name();
 			String names = "참여인원 : ";
+			
 			uList = tlDAO.getUserList(projectNum);
 			for (int j = 0; j < uList.size(); j++) {
 				if (j == 0) {
@@ -92,13 +102,19 @@ public class TimeLineController {
 					names += ", " + uList.get(j).getName();
 				}
 			}
-			Object[] obj = new Object[3];
+			
 			obj[0] = projectNum; // 프로젝트 번호
 			obj[1] = prj_Name; // 프로젝트 이름
 			obj[2] = names; // 프로젝트의 참여한 인원들
-			if ((int) obj[0] == list.get(i).getPrj_Num()) {
-				list.get(i).setTl_Content((String) obj[1] + "///" + (String) obj[2]);
+			}else {
+				obj[0] = list.get(i).getPrj_Num(); // 프로젝트 번호
+				obj[1] = splitArray[1]; // 프로젝트 이름
+				obj[2] = "삭제되었습니다."; // 프로젝트의 참여한 인원들
 			}
+			logger.info("테스트테스트테스트!!!!"+obj.toString());
+			
+			list.get(i).setTl_Content((String) obj[1] + "///" + (String) obj[2]+"///"+splitArray[0]);
+			
 			
 			// 작성(수정)시간과 현재 시간계산
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -174,13 +190,14 @@ public class TimeLineController {
 	// 알림 가져오기
 	@ResponseBody
 	@RequestMapping(value = "checknotifications", method = RequestMethod.GET)
-	public ArrayList<TriggerInfo> checkNotifications(String userId) throws InterruptedException {
+	public ArrayList<TriggerInfo> checkNotifications(String userId, HttpSession session) throws InterruptedException {
 		while (true) {
 
 			ArrayList<TriggerInfo> list = new ArrayList<>();
 			list = tlDAO.getTriggerInfo();
 			
-			
+			Calendar cal = Calendar.getInstance();
+			int nowTime = (int) (cal.getTimeInMillis() / 1000);
 			logger.info(list.toString());
 			if (list != null || list.size() > 0) {
 				for (int i = 0; i < list.size(); i++) {
@@ -207,9 +224,48 @@ public class TimeLineController {
 					if(check) {
 						list.remove(list.get(i));
 					}*/
+					DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					try {	
+						
+						String result = "";
+						Date date = df.parse(list.get(i).getUpdate_Date());
+						Calendar dCal = Calendar.getInstance();
+						dCal.setTime(date);
+						int writerTime = (int) (dCal.getTimeInMillis() / 1000);
+						if (nowTime - writerTime < 60) {
+							result = nowTime - writerTime + "Seconds Ago";
+						} else if ((nowTime - writerTime) / 60 < 60) {
+							result = (nowTime - writerTime) / 60 + "Minutes Ago";
+						} else if ((nowTime - writerTime) / 3600 < 24) {
+							result = (nowTime - writerTime) / 3600 + "Hours Ago";
+						} else if ((nowTime - writerTime) / (3600 * 24) < 7) {
+							result = (nowTime - writerTime) / (3600 * 24) + "Days Ago";
+						} else {
+							result = list.get(i).getUpdate_Date();
+						}
+						list.get(i).setUpdate_Date(list.get(i).getUpdate_Date() + "***" + result);
+						logger.info(i + "반복");
+						// tlDAO.deleteTriggerInfo(list.get(i).getTrigger_Num());
+						
+						
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						logger.info(e.toString());
+					}
 			
-					logger.info(i + "반복");
-					// tlDAO.deleteTriggerInfo(list.get(i).getTrigger_Num());
+					
+				}
+				if(session.getAttribute("nList")==null) {
+					session.setAttribute("nList", list);
+				}else {
+				ArrayList <TriggerInfo> nList = (ArrayList<TriggerInfo>) session.getAttribute("nList");
+				for(int l=list.size()-1;l>=0;l--) {
+					nList.add(0, list.get(l));
+				}
+				for(int l=nList.size()-1;l>=5;l--) {
+					nList.remove(l);
+				}
+				session.setAttribute("nList", nList);
 				}
 				logger.info(list.toString());
 				return list;

@@ -1,17 +1,15 @@
 /**
  * 
  */
+
+
+
 var updateCheck = function(){
 	checkNotifications()
-	setTimeout('updateCheck()',1000);
+	setTimeout('updateCheck()',5000);
 };
-
 updateCheck();
-if ($('#addBehaviorOnToastClick').prop('checked')) {
-    toastr.options.onclick = function () {
-        alert('You can perform some custom action after a toast goes away');
-    };
-}
+
 
 function checkNotifications(){
 	loginId='';//!!!!!!!!!!!!!!!!!!!나중에 수정할 것
@@ -26,6 +24,7 @@ function checkNotifications(){
 				return;
 			}
 			console.info('알림 로딩 : ' + list.length + '개');
+			 self.postMessage(list);
 			postNotifications(list);
 		},
 		error : function(error) {
@@ -36,6 +35,7 @@ function checkNotifications(){
 }
 function postNotifications(list){
 	for(var i=0;i<list.length;i++){
+		
 		var type='';
 		var command = '';
 		if(list[i].info_Type=='prjList'){
@@ -55,7 +55,7 @@ function postNotifications(list){
 				  "preventDuplicates": false,
 				  "showDuration": "300",
 				  "hideDuration": "1000",
-				  "timeOut": "5000",
+				  "timeOut": "1000",
 				  "extendedTimeOut": "1000",
 				  "showEasing": "swing",
 				  "hideEasing": "linear",
@@ -63,6 +63,7 @@ function postNotifications(list){
 				  "hideMethod": "fadeOut",
 				  "tapToDismiss": false
 				}
+		
 		if(list[i].command_Check==null&&list[i].info_Content!=null){
 			//INSERT
 			toastr.options.onclick=null;
@@ -83,7 +84,7 @@ function postNotifications(list){
 			//JSON.stringify(list[i])
 			toastr.success('', type+list[i].info_Content+'(이)가 수정되었습니다.');
 		}
-		
+		//getNotice();
 	}
 }
 function goProjectMain(prj_Num){
@@ -92,20 +93,3 @@ function goProjectMain(prj_Num){
 
 }
 
-function deleteNotifications(trigger_Num){
-	$.ajax({
-		url : 'deletenotifications',
-		tpue : 'get',
-		data : {trigger_Num : trigger_Num},
-		dataType : 'text',
-		async : false,
-		success : function() {
-			
-			console.info('알림 삭제 ');
-		},
-		error : function(error) {
-			console.info('알림 삭제 오류' + error.status);
-		}
-	}
-	);
-}
