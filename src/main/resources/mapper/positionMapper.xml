@@ -36,12 +36,10 @@ WHERE
 INSERT INTO CP_DEPARTMENT
 (
 	depNum
-	,depNameEn
 	,depNameKr
 	,typeAlias
 )VALUES(
 	DP_SEQ.nextval()
-    ,#{depNameEn}
     ,#{depNameKr}
     ,#{typeAlias}
 )

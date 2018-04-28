@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bluemine.www.dao.PositionDAO;
 import com.bluemine.www.dao.ProjectDAO;
 import com.bluemine.www.dao.UserInfoDAO;
+import com.bluemine.www.vo.CP_Department;
+import com.bluemine.www.vo.CP_Position;
 import com.bluemine.www.vo.MatchPRJ;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.UserInfo;
@@ -46,6 +48,16 @@ public class MainPageController {
 		session.setAttribute("user", user);
 		ArrayList<PRJList> getList = prjDao.getPrjList(getId);
 		session.setAttribute("pro_list", getList);
+		ArrayList<CP_Department> depList=uDao.getDepartmentList();
+		for (int i = 0; i < depList.size(); i++) {
+			//System.out.println(depList.get(i).toString());
+		}
+		session.setAttribute("dep_list", depList);
+		ArrayList<CP_Position> posiList=uDao.getPositionList();
+		for (int i = 0; i < posiList.size(); i++) {
+			//System.out.println(posiList.get(i).toString());
+		}
+		session.setAttribute("posi_list", posiList);
 		return "inside/mainPage";
 	}
 		

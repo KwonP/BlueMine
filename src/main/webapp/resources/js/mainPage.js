@@ -1,6 +1,10 @@
 /**
  * 
  */
+const user={
+		position: '',
+		department:''
+};
 $(document).ready(function(){
 	$('.companyInfo').click(menuPage);
 	$('#schedule').click(mySchedule);
@@ -36,6 +40,9 @@ function projectMain(){
 }
 
 function getUser(){
+	console.log("getUser 실행");
+	user['position']='';
+	user['department']='';
 	user['position']=$('#cp_posi').val();
 	user['department']=$('#cp_dep').val();
 	console.log(user.department);

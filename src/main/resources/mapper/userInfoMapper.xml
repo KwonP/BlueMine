@@ -194,8 +194,11 @@ FROM CP_Department
 </select>
 <!-- 직급 리스트 가져오기 -->
 <select id="getPositionList" resultType="cpPosition">
-SELECT positionName
-FROM CP_Position
+SELECT 
+	positionNum
+	,positionName
+FROM CP_POSITION
+Order By positionNum
 </select>
 
 <!-- 로그인 중인 회원들  -->
