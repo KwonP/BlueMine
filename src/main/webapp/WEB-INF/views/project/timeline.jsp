@@ -96,7 +96,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="noticeCheck">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-bell fa-fw" id="bell"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul id="notificationList" class="dropdown-menu dropdown-alerts">
                        

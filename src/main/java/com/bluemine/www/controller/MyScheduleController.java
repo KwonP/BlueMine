@@ -1,6 +1,7 @@
 package com.bluemine.www.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -39,10 +40,20 @@ public class MyScheduleController {
 		// 체크리스트 요일별로 보여주기 위한 리스트 가져오기
 		ArrayList<CK_Show> cl_show = myDao.showCKList(userId);
 		System.out.println(cl_show);
-		session.setAttribute("CL_Show", cl_show);
 		ArrayList<CKList> getCKList = myDao.getCKList(userId);
 		System.out.println(getCKList);
 		session.setAttribute("ckList", getCKList);
+		
+		// 오늘 요일 가져오기 (월요일을 체크리스트 초기화)
+		Calendar cal = Calendar.getInstance(); 
+		int num = cal.get(Calendar.DAY_OF_WEEK)-1; 
+		if (num == 1) {
+			for (CKList list : getCKList) {
+				myDao.resetLoop(list.getCl_Num());
+			}
+		}
+		cl_show = myDao.showCKList(userId);
+		session.setAttribute("CL_Show", cl_show);
 		return "mySchedule/main";
 	}
 	
