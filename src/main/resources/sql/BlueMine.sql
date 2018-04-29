@@ -140,6 +140,7 @@ info_num number not null,--알림의 고유번호
 info_content varchar2(200),--알림 내용
 update_date date DEFAULT sysdate,--발생일
 command_check varchar2(200)--알림내용(동작체크용)
+loginOk number default 0 --로그인 확인용
 );
 
 --유저 정보
