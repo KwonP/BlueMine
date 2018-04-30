@@ -8,6 +8,7 @@ var tagNum = 0;
 var loginId = null;
 var sessionInfo;
 $(document).ready(function() {
+	$('#load').hide();
 	$('.companyInfo').click(menuPage);
 
 	prj_Num = $('#getPrjNum').val();

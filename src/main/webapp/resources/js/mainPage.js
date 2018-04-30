@@ -6,6 +6,7 @@ const user={
 		department:''
 };
 $(document).ready(function(){
+	$('#load').hide();
 	$('.companyInfo').click(menuPage);
 	$('#schedule').click(mySchedule);
 	$('.panel-primary').click(projectMain);

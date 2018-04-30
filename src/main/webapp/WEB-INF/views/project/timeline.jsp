@@ -50,6 +50,9 @@
 </head>
 
 <body>
+<div id="load">
+	<img src="../resources/img/loading.gif" alt="loading">
+</div>
 	<div id="wrapper">
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"

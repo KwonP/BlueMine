@@ -17,6 +17,6 @@ public class BluemineExceptionHandler {
 	@ExceptionHandler (Exception.class)
 	public String errorHandler(){
 		System.out.println("들어오니 에러");
-		return"redirect:./error";
+		return"/error/error404";
 	}
 }

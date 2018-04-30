@@ -11,8 +11,38 @@
 	<link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet"> <!-- 구글 Font -->
 	<link href="resources/css/home.css" rel="stylesheet">
 	<script type="text/javascript" src="resources/js/home.js"></script>
+	<script type="text/javascript">
+	$(window).on('load',(function() {
+		$('#load').hide();
+	}));
+	</script>
+	<style type="text/css">
+	#load{
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		position: fixed;
+		display: block;
+		opacity: 0.8;
+		background: white;
+		z-index: 99;
+		text-align: center;
+	}
+	#load > img{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -100px;
+  	  	margin-top: -115px;
+		z-index: 100;
+	}
+	</style>
 </head>
 <body>
+<div id="load">
+	<img src="resources/img/loading.gif" alt="loading">
+</div>
 <div id="wrap"> 
 	<h1>Welcome to <span class="highlight">BLUE MINE</span></h1>
 	

@@ -50,6 +50,9 @@
 </head>
 
 <body>
+<div id="load">
+	<img src="resources/img/loading.gif" alt="loading">
+</div>
 <input type="hidden" id="userId" value="${sessionScope.loginId}">
 	<div id="wrapper">
 
@@ -232,7 +235,7 @@
 				<!-- /.dropdown -->
 				<li class="dropdown">
 				  <a class="dropdown-toggle"data-toggle="dropdown" href="#" id="profileImg"> 
-					<img alt="./resources/img/null.png" src="showProfile" width="50px">
+					<img src="showProfile" width="50px">
 					<i class="fa fa-caret-down"></i>
 				  </a>
 					<ul class="dropdown-menu dropdown-user">

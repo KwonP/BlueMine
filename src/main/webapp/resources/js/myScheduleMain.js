@@ -2,6 +2,7 @@
  * 
  */
 $(document).ready(function(){
+	$('#load').hide();
 	$('.companyInfo').click(menuPage);
 	var getHeight = $('#page-wrapper').css('height').replace(/[^0-9]/g, "");
 	getHeight /= 2;
