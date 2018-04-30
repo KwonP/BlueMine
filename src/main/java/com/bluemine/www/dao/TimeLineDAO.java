@@ -15,6 +15,8 @@ import org.springframework.stereotype.Repository;
 import com.bluemine.www.HomeController;
 import com.bluemine.www.interfaces.TimeLineMapper;
 import com.bluemine.www.vo.FileInfo;
+import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.PJ_Group;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
 import com.bluemine.www.vo.TriggerInfo;
@@ -97,11 +99,16 @@ public class TimeLineDAO implements TimeLineMapper{
 		logger.info("트리거 번호:"+trigger_Num+"결과 : "+result);
 		return result;
 	}
-	//gs_Num으로 매칭되는 프로젝트 가져오기
+	
 	@Override
-	public PRJList getProject(int gs_Num) {
-		PRJList prj = session.getMapper(TimeLineMapper.class).getProject(gs_Num);
-		return prj;
+	public PJ_Group getPJ_Group_Gp_Num(int gp_Num) {
+		PJ_Group pg = session.getMapper(TimeLineMapper.class).getPJ_Group_Gp_Num(gp_Num);
+		return pg;
+	}
+	@Override
+	public GP_Work getGP_Work_Gs_Num(int gs_Num) {
+		GP_Work gw = session.getMapper(TimeLineMapper.class).getGP_Work_Gs_Num(gs_Num);
+		return gw;
 	}
 
 }

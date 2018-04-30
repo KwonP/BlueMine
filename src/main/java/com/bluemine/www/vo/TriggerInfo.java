@@ -1,23 +1,25 @@
 package com.bluemine.www.vo;
 
-public class TriggerInfo {
+import java.io.Serializable;
+
+public class TriggerInfo implements Serializable{
 
 	private int trigger_Num;// 트리거번호(알림번호)
 	private String info_Type;// 알림종류
 	private int info_Num;// 알림고유번호
 	private String info_Content;// 알림 내용
 	private String update_Date;// 발생일
-	private String command_check;// 알림내용(동작체크용)
+	private String command_Check;// 알림내용(동작체크용)
 
 	public TriggerInfo(int trigger_Num, String info_Type, int info_Num, String info_Content, String update_Date,
-			String command_check) {
+			String command_Check) {
 		super();
 		this.trigger_Num = trigger_Num;
 		this.info_Type = info_Type;
 		this.info_Num = info_Num;
 		this.info_Content = info_Content;
 		this.update_Date = update_Date;
-		this.command_check = command_check;
+		this.command_Check = command_Check;
 	}
 
 	public TriggerInfo() {
@@ -64,18 +66,18 @@ public class TriggerInfo {
 		this.update_Date = update_Date;
 	}
 
-	public String getCommand_check() {
-		return command_check;
+	public String getCommand_Check() {
+		return command_Check;
 	}
 
-	public void setCommand_check(String command_check) {
-		this.command_check = command_check;
+	public void setCommand_Check(String command_Check) {
+		this.command_Check = command_Check;
 	}
 
 	@Override
 	public String toString() {
 		return "trigger_Num=" + trigger_Num + ", info_Type=" + info_Type + ", info_Num=" + info_Num
-				+ ", info_Content=" + info_Content + ", update_Date=" + update_Date + ", command_check=" + command_check;
+				+ ", info_Content=" + info_Content + ", update_Date=" + update_Date + ", command_Check=" + command_Check;
 	}
 
 }

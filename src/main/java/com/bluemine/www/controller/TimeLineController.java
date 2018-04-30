@@ -29,6 +29,8 @@ import com.bluemine.www.HomeController;
 import com.bluemine.www.dao.ProjectDAO;
 import com.bluemine.www.dao.TimeLineDAO;
 import com.bluemine.www.util.PageNavigator;
+import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.PJ_Group;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
 import com.bluemine.www.vo.TriggerInfo;
@@ -111,7 +113,6 @@ public class TimeLineController {
 				obj[1] = splitArray[1]; // 프로젝트 이름
 				obj[2] = "삭제되었습니다."; // 프로젝트의 참여한 인원들
 			}
-			logger.info("테스트테스트테스트!!!!"+obj.toString());
 			
 			list.get(i).setTl_Content((String) obj[1] + "///" + (String) obj[2]+"///"+splitArray[0]);
 			
@@ -190,7 +191,7 @@ public class TimeLineController {
 	// 알림 가져오기
 	@ResponseBody
 	@RequestMapping(value = "checknotifications", method = RequestMethod.GET)
-	public ArrayList<TriggerInfo> checkNotifications(String userId, HttpSession session) throws InterruptedException {
+	public ArrayList<TriggerInfo> checkNotifications(String loginId, HttpSession session) throws InterruptedException {
 		while (true) {
 
 			ArrayList<TriggerInfo> list = new ArrayList<>();
@@ -198,32 +199,39 @@ public class TimeLineController {
 			
 			Calendar cal = Calendar.getInstance();
 			int nowTime = (int) (cal.getTimeInMillis() / 1000);
-			logger.info(list.toString());
 			if (list != null || list.size() > 0) {
-				for (int i = 0; i < list.size(); i++) {
-					/*boolean check = true;
+				for (int i = list.size()-1; i >=0 ; i--) {
+					logger.info(session.getAttributeNames().toString());
+					boolean check = true;
 					if(list.get(i).getInfo_Type().equals("gp_Work")) {
-						PRJList prj = tlDAO.getProject(list.get(i).getInfo_Num());
+						GP_Work gw = tlDAO.getGP_Work_Gs_Num(list.get(i).getInfo_Num());
+						PJ_Group pg = tlDAO.getPJ_Group_Gp_Num(gw.getGp_Num());
+						PRJList prj = tlDAO.getProjectInfo(pg.getPrj_Num());
 						ArrayList<UserInfo> uList = tlDAO.getUserList(prj.getPrj_Num());
 						for(int j=0;j<uList.size();j++) {
-							if(userId.equals(uList.get(j).getUserId())) {
+							
+							if(loginId.equals(uList.get(j).getUserId())) {
 								logger.info(list.get(i).toString());
 								check=false;
+								break;
 							}
 						}
 						
 					}else if(list.get(i).getInfo_Type().equals("prjList")) {
 						ArrayList<UserInfo> uList = tlDAO.getUserList(list.get(i).getInfo_Num());
+						logger.info(loginId+"===="+uList.toString());
 						for(int j=0;j<uList.size();j++) {
-							if(userId.equals(uList.get(j).getUserId())) {
+							if(loginId.equals(uList.get(j).getUserId())) {
 								logger.info(list.get(i).toString());
 								check=false;
+								break;
 							}
 						}
 					}
 					if(check) {
 						list.remove(list.get(i));
-					}*/
+						continue;
+					}
 					DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					try {	
 						
@@ -262,12 +270,13 @@ public class TimeLineController {
 				for(int l=list.size()-1;l>=0;l--) {
 					nList.add(0, list.get(l));
 				}
-				for(int l=nList.size()-1;l>=5;l--) {
+				for(int l=nList.size()-1;l>=10;l--) {
 					nList.remove(l);
 				}
 				session.setAttribute("nList", nList);
 				}
 				logger.info(list.toString());
+				session.setAttribute("loginId", loginId);
 				return list;
 			}
 			Thread.sleep(500);

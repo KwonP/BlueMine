@@ -45,8 +45,8 @@
 
 <script src="../resources/toastr/toastr.min.js"></script>
 <link href="../resources/toastr/toastr.css" rel="stylesheet">
-<script src="../resources/js/webWorkerStart.js"></script>
-<%-- <script src="../resources/js/worker.js"></script>--%>
+<script src="../resources/js/notificationList.js"></script>
+
 </head>
 
 <body>
@@ -182,8 +182,8 @@
 						</a></li>
 					</ul> <!-- /.dropdown-tasks --></li>
 				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
+				<li class="dropdown" ><a class="dropdown-toggle" id="noticeCheck" 
+					data-toggle="dropdown" href="#"> <i  class="fa fa-bell fa-fw"></i>
 						<i class="fa fa-caret-down"></i>
 				</a>
 
@@ -421,7 +421,7 @@
 							class="btn-layerClose">Close</a>
 					</div>
 					<!--// content-->
-				</div>
+				</div >
 			</div>
 		</div>
 
@@ -446,7 +446,6 @@
 	<script src="../resources/templet/dist/js/sb-admin-2.js"></script>
 
 
-
 	<script type="text/javascript">
 	$(document).ready(function() {
 	
@@ -460,8 +459,8 @@
 		        layer_popup($href);
 		    });
 	    	$('#btn-add').on('click',insertTimeLine);
-	    	workerStart(${loginId});
-	    	//showNotice(${sessionScope.nList});
+	    	updateCheck('${loginId}');
+	    	getNotice();
 	});
 	
 	
@@ -472,15 +471,32 @@
         $('#btn-add').on('click',updateTL);
         $('#btn-add').text('Update');
         layer_popup($href);
+        
     }
 	function deleteStep(tl_Num){
 	    if(confirm('정말로 지우시겠습니까?')==true){
 	    	deleteTimeLine(tl_Num);
 	    }
 	}
-	function getNotice(){
+	function getNotice(){ 
+		if(${nList==null}){
+			return ;
+		}
+			var list = new Array();
+			<c:forEach items="${nList}" var="item">
+			var trigger_Num="${item.trigger_Num}";
+			var info_Type="${item.info_Type}";
+			var info_Num="${item.info_Num}";
+			var info_Content="${item.info_Content}";
+			var update_Date="${item.update_Date}";
+			var command_Check="${item.command_Check}";
+			showNotice({trigger_Num : trigger_Num, info_Type : info_Type, info_Num:info_Num, info_Content:info_Content, update_Date:update_Date, command_Check:command_Check});
+			</c:forEach>
 		
-		showNotice(${sessionScope.nList});
+		
+		
+		
+		
 	}
 	
 	
@@ -530,7 +546,8 @@
 	    
 	    
 	    </script>
-		
+		<script src="../resources/js/worker.js"></script>
+
 </body>
 
 </html>

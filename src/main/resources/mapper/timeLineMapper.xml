@@ -107,4 +107,12 @@ select * from triggerinfo order by update_date asc
 <delete id="deleteTriggerInfo" parameterType="int">
 delete from triggerinfo where trigger_num=#{value}
 </delete>
+<!-- PJ_Group정보 가져오기 -->
+<select id="getPJ_Group_Gp_Num" parameterType="int" resultType="group">
+select * from pj_group where gp_num=#{value}
+</select>
+<!-- GP_Work정보 가져오기 -->
+<select id="getGP_Work_Gs_Num" parameterType="int" resultType="gpWork">
+select * from gp_work where gs_num=#{value}
+</select>
 </mapper>

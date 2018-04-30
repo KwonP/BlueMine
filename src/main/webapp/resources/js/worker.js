@@ -2,17 +2,18 @@
  * 
  */
 
-
-
-var updateCheck = function(){
-	checkNotifications()
-	setTimeout('updateCheck()',5000);
+var updateCheck = function(loginId){
+	
+	if(loginId==null||loginId==''){
+		console.log('로그인 아이디 없음');
+		loginId='test';//임시
+	}
+	checkNotifications(loginId)
+	setTimeout('updateCheck("'+loginId+'")',5000);
 };
-updateCheck();
 
-
-function checkNotifications(){
-	loginId='';//!!!!!!!!!!!!!!!!!!!나중에 수정할 것
+function checkNotifications(loginId){
+	
 	$.ajax({
 		url : 'checknotifications',
 		tpue : 'get',
@@ -24,7 +25,7 @@ function checkNotifications(){
 				return;
 			}
 			console.info('알림 로딩 : ' + list.length + '개');
-			 self.postMessage(list);
+			
 			postNotifications(list);
 		},
 		error : function(error) {
@@ -38,11 +39,6 @@ function postNotifications(list){
 		
 		var type='';
 		var command = '';
-		if(list[i].info_Type=='prjList'){
-			type='프로젝트 ';
-		}else if(list[i].info_Type=='gp_Work'){
-			type='일감 ';
-		}
 		toastr.options = {
 				  "closeButton": true,
 				  "debug": true,
@@ -64,7 +60,7 @@ function postNotifications(list){
 				  "tapToDismiss": false
 				}
 		
-		if(list[i].command_Check==null&&list[i].info_Content!=null){
+		if((list[i].command_Check==null||list[i].command_Check=='')&&(list[i].info_Content!=null&&list[i].info_Content!='')){
 			//INSERT
 			toastr.options.onclick=null;
 			if(list[i].info_Type=='prjList'){
@@ -75,7 +71,7 @@ function postNotifications(list){
 				toastr.info(''+'<button type="button" class="btn clear" onclick="alert('+"'이동 주소를 설정해 주세요.'"+');">Yes</button>',type+ list[i].info_Content+'(이)가 생성되었습니다.');
 			}
 			
-		}else if(list[i].command_Check!=null&&list[i].info_Content==null){
+		}else if((list[i].command_Check!=null&&list[i].command_Check!='')&&(list[i].info_Content==null||list[i].info_Content=='')){
 			//DELETE
 			toastr.options.onclick=null;
 			toastr.error('', type+list[i].command_Check+'(이)가 삭제되었습니다.');
@@ -84,12 +80,10 @@ function postNotifications(list){
 			//JSON.stringify(list[i])
 			toastr.success('', type+list[i].info_Content+'(이)가 수정되었습니다.');
 		}
-		//getNotice();
+		showNotice(list[i]);
 	}
 }
 function goProjectMain(prj_Num){
 	alert('이동합니다.');
 	location.href = "../project/sendNum?prj_Num="+prj_Num;
-
 }
-

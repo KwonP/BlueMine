@@ -7,6 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 
 import com.bluemine.www.vo.FileInfo;
+import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.PJ_Group;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
 import com.bluemine.www.vo.TriggerInfo;
@@ -36,6 +38,8 @@ public PRJList getProjectInfo(int prj_Num);
 public ArrayList<TriggerInfo> getTriggerInfo();
 //알림 정보 삭제
 public int deleteTriggerInfo(int trigger_Num);
-//gp_Work에 연결된 prjList가져오기
-public PRJList getProject(int gs_Num);
+//gp_Num으로 PJ_Group정보 가져오기
+public PJ_Group getPJ_Group_Gp_Num(int gp_Num);
+//gs_Num으로 GP_Work정보 가져오기
+public GP_Work getGP_Work_Gs_Num(int gs_Num);
 }
