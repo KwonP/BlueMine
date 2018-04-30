@@ -15,23 +15,23 @@ import com.bluemine.www.vo.TriggerInfo;
 import com.bluemine.www.vo.UserInfo;
 
 /**
- * 일감 관련 Mybatis 사용 메서드
+ * 간트 차트 관련 Mybatis 사용 메서드
  */
-public interface TaskMapper {
+public interface GanttMapper {
 
-	//prjNum이 같은 pj_group 가져오기
-	public PJ_Group selectGroup(int prjNum);
+	//세션가져오기
+	ArrayList<PJ_Group> selectAllPjgroup(int prj_Num);
 
-	//gp_Num이 같은  모든 Task 가져오기
-	public ArrayList<GP_Work> printTask(int gp_Num);
-
-	//gp_work의 데이터를 테이블에 모두 삽입
-	public int insertTask(GP_Work gp_work);
-
-	//progreess 상태 변경
-	public int updateProgress(GP_Work gp_work);
+	//Task가져오기
+	ArrayList<GP_Work> selectAllGpwork(PJ_Group pj_group);
 	
+	/*//자료 저장
+	public int insertFile(FileInfo file);
+
+	//파일 가져오기
+	public ArrayList<FileInfo> selectPrjFiles(int prjNum);
+
 	//오리지날 파일을 이용해서 파일 리스트 가져오기
-	/*public ArrayList<FileInfo> listFiles(String originalfile);*/
+	public ArrayList<FileInfo> listFiles(String originalfile);*/
 	
 }

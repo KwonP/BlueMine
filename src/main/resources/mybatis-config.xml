@@ -28,5 +28,6 @@
 		<mapper resource="mapper/myScheduleMapper.xml"/>
 		<mapper resource="mapper/dataDownloadMapper.xml"/>
 		<mapper resource="mapper/taskMapper.xml"/>
+		<mapper resource="mapper/ganttMapper.xml"/>
 	</mappers> 
 </configuration>

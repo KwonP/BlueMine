@@ -40,64 +40,60 @@ public class TaskController {
 	/**
 	 * 일감 페이지 이동
 	 */
-	@RequestMapping (value="move", method=RequestMethod.GET)
-	public String move(int prjNum, Model model) {
-	
+	@RequestMapping (value="/taskMain", method=RequestMethod.GET)
+	public String move(Model model,HttpSession session) {
+		int prjNum = (int)session.getAttribute("prjNum");
 		PJ_Group pj_group = dao.selectGroup(prjNum);
-		
 		ArrayList<GP_Work> gp_work_list = dao.printTask(pj_group.getGp_Num());
-		
+
+		model.addAttribute("sectionName",gp_work_list.get(0).getGs_Name());
 		model.addAttribute("tasklist",gp_work_list);
-		
+		model.addAttribute("pj_group",pj_group);
+		model.addAttribute("prjNum",prjNum);
 		return "project/task";
 	}
 	
-	/*@ResponseBody
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public SRoom ??(GP_Work gp_work) {	
-		logger.debug("전달된 값: " + sr);
-		
-		return sr;
-	}*/
-		
-	@SuppressWarnings("deprecation")
+	/**
+	 * 일감 추가
+	 */
 	@ResponseBody
-	@RequestMapping(value = "/checkdate", method = RequestMethod.POST)
-	public int checkdate(String inputdata) {
-		Date d1 = new Date();
-		Date d2 = new Date();
-		Date d3 = new Date();
-		// 날짜를 2018-01-29 포맷 해주는 클래스 선언
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	@RequestMapping(value = "/insertTask", method = RequestMethod.POST)
+	public String insertTask(GP_Work gp_work, HttpSession session) {
+		System.out.println("들어옴.");
+		System.out.println(gp_work);
+		/*String gs_Name, String gs_Content, String start_Date, String deadLine, int gp_Pri, int progress, String taskCategory , int gp_Num, */
+		/*GP_Work gp_work = new GP_Work();
+		gp_work.setDeadLine(deadLine);
+		gp_work.setGp_Num(gp_Num);
+		gp_work.setGp_Pri(gp_Pri);
+		gp_work.setGs_Content(gs_Content);
+		gp_work.setGs_Name(gs_Name);
+		gp_work.setTaskCategory(taskCategory);
+		gp_work.setStart_Date(start_Date);
+		gp_work.setProgress(progress);*/
 		
-		// 날짜 비교 메소드를 사용
-		try {
-			d1 = sdf.parse(inputdata);
-			d2 = sdf.parse(sdf.format(d2));
-			d3 = sdf.parse(sdf.format(d3));
-			d3.setDate(d2.getDate() + 10);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		int num = dao.insertTask(gp_work);
 		
-		int compare1 = d1.compareTo(d2);
-		int compare2 = 0;
-		// 예약하려는 날짜보다 현재 날짜가 크다면 -1
-		// 예약하려는 날짜와 현재 날짜가 같다면 0
-		// 예약하려는 날짜가 더 크다면 1을 리턴
+		String str = String.valueOf(num);
+		
+		return str;
+	}
 	
-		if(compare1 < 0) { // 오늘 이전 날짜 선택시
-			return 0;
-		} else if ( compare1 == 1) { // 오늘이후 부터 10일 까지
-			compare2 = d1.compareTo(d3);
-			if(compare2 <= 0) {
-				return 1;				
-			} else {
-				return 0;
-			}
-		} else { // 오늘 날짜 선택
-			return 1;
-		}
-
+	/**
+	 * 일감 진행도 변경
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/updateProgress", method = RequestMethod.POST)
+	public String updateProgress(String gp_Num, String progress) {
+		System.out.println(gp_Num);
+		System.out.println(progress);
+		GP_Work gp_work = new GP_Work();
+		gp_work.setGp_Num(Integer.parseInt(gp_Num));
+		gp_work.setProgress(Integer.parseInt(progress));
+	
+		int num = dao.updateProgress(gp_work);
+		String str = String.valueOf(num);
+		
+		return str;
 	}
 }

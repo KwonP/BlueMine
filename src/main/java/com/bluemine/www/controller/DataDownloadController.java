@@ -64,12 +64,11 @@ public class DataDownloadController {
 	 * 파일 업로드 하기
 	 */
 	@RequestMapping (value="/fileUpload", method=RequestMethod.POST)
-	public String fileUpload(
-			String prjNum, 
+	public String fileUpload( 
 			MultipartFile[] upload,
 			HttpSession session, 
 			Model model) {
-		int throwNum = Integer.parseInt(prjNum);
+		int throwNum = (int) session.getAttribute("prjNum");
 		//첨부파일이 있는 경우 지정된 경로에 저장
 		if (upload.length != 0) {
 			for(int i = 0; i < upload.length; i++) {
@@ -82,16 +81,15 @@ public class DataDownloadController {
 			}
 		}
 		
-		return "redirect:filePrint?prjNum=" + prjNum;
+		return "redirect:filePrint";
 	}
 	
 	/**
 	 * 파일 출력하기
 	 */
 	@RequestMapping (value="filePrint", method=RequestMethod.GET)
-	public String filePrint(int prjNum, HttpSession session, Model model) {
-		System.out.println(prjNum);
-		ArrayList<FileInfo> tempList = dao.selectPrjFiles(prjNum);
+	public String filePrint(HttpSession session, Model model) {
+		ArrayList<FileInfo> tempList = dao.selectPrjFiles((int)session.getAttribute("prjNum"));
 		
 		//파일 타입 추가
 		ArrayList<FileInfo> imagelist = new ArrayList<>();
@@ -121,7 +119,6 @@ public class DataDownloadController {
 		model.addAttribute("imagelist", imagelist);
 		model.addAttribute("textlist", textlist);
 		model.addAttribute("mp3list", mp3list);
-		model.addAttribute("prjNum", prjNum);
 		return "project/datadownload";
 	}
 	

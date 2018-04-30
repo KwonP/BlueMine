@@ -51,6 +51,43 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
+	<!-- jQuery -->
+	<script src="../resources/templet/vendor/jquery/jquery.min.js"></script>
+
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="../resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
+
+	<!-- Morris Charts JavaScript -->
+	<script src="../resources/templet/vendor/raphael/raphael.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="../resources/templet/dist/js/sb-admin-2.js"></script>
+	
+	<!-- DataTables JavaScript -->
+	<script
+		src="../resources/templet/vendor/datatables/js/jquery.dataTables.min.js"></script>
+	<script
+		src="../resources/templet/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+	<script
+		src="../resources/templet/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script
+		src="../resources/templet/dist/js/sb-admin-2.js"></script>
+
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive : true
+			});
+		});
+	</script>
+
 <style>
 p {
 	font-size: 24px;
@@ -124,7 +161,7 @@ option {
 	function popup() {
 		$('#joinPopup').slideDown('fast');
 		$('#popupBack').fadeIn(300);
-
+	
 	}
 	function popupClose() {
 		if (confirm('Are you sure to quit joining?')) {
@@ -133,73 +170,157 @@ option {
 		}
 	}
 
-	/* function makeTask() {
+	function makeTask() {
 		var gs_Name = $('#gs_Name').val();
 		var gs_Content = $('#gs_Content').val();
 		var start_Date = $('#start_Date').val();
 		var deadLine = $('#deadLine').val();
 		var gp_Pri = $('#gp_Pri').val();
-		var progress = $('#progress').val();
-		var category = $('#category').val();
-					
+		var taskCategory = $('#taskCategory').val();
+		var gp_Num = ${pj_group.gp_Num};
+		// var GP_Work = $('form[name=taskForm]').serialize();
+		
 		$.ajax({
-			url: '', // 컨트롤러 value
-			type: 'POST', // 타입
+			url: 'insertTask', 								// 일감추가
+			type: 'POST', 									// 타입
 			data: {
-				gs_Name: gs_Name// 그룹 스케줄 이름
-				, gp_Num: {} // 그룹 번호
-				, gs_Content: gs_Content // 내용
-				, director: {} // 담당자
-				, start_Date: start_Date // 시작일
-				, deadLine: deadLine // 마감일
-				, gp_Pri: gp_Pri // 중요도
-				, progress: progress // 진행도
-				, category: category // 유형
+				gs_Name: gs_Name
+				, gp_Num : gp_Num
+				, gs_Content : gs_Content
+				, start_Date : start_Date
+				, deadLine : deadLine
+				, gp_Pri : gp_Pri
+				, taskCategory : taskCategory
 			},
-			dataType: 'json',
-			success: function(reservedlist) { // 성공했을 때 어떤걸 할지?
-				
+			dataType: 'text',
+			success: function(str) { 
+				if(str == '1') {
+					alert("성공했다능");
+				}
 			},
 			error: function(cnt) {
 				alert('에러');
 			}				
 		});	 
+	}
+		
+	function completeTask() {
+		var array = [];
+	     
+	    <c:forEach items="${tasklist}" var="item">
+			array.push("${item}");
+		</c:forEach>
+		$.each( array, function(i, l){
+			alert(i); // 0 1
+			alert(l); // GP_Work [gs_Num=123, gs_Name=tt2, gp_Num=1234, gs_Content=ff, start_Date=2018-02-05 00:00:00, deadLine=2018-01-02 00:00:00, gp_Pri=2, progress=1, taskCategory=결함]
+			alert(l[1]);// l.gs_Num
+			if($('#'+l[i]).prop("checked")) {
+				alert(3);
+				$('#'+l[i]).attr("value", 1);
+				var progress = $('#'+l[i]).val();
+				alert(progress);
+				var temp = l[i];
+				$('.' + temp).attr("class", "success");
+			}
+			else {
+				alert(4); // ok
+				$('#'+l[i]).attr("value", 0);
+				var progress = $('#'+l[i]).val();
+				alert(progress); // undifined!!
+				var temp = l[i];
+				$('.' + temp).attr("class", "info");
+			}
+			alert(5); // ok
+			var gp_Num = ${pj_group.gp_Num};			
+			
+			$.ajax({
+				url: 'updateProgress', 							// progress 변경
+				type: 'POST', 									// 타입
+				data: {
+					gp_Num: gp_Num 								// 그룹 번호
+					, progress: progress 						// 진행도
+				},
+				dataType: 'text',
+				async: false,
+				success: function(str) { 
+					if(str == '1') {
+						alert('성공');
+					}
+				},
+				error: function(cnt) {
+					alert('에러');
+				}				
+			});	 
+		});
+	}
+	
+	/* function getsroom2() {
+		var sroomnum = $(this).attr('value');
+		// alert(typeof(sroomnum)); 스트링
+		$('#thissroom').attr('value', sroomnum);
+		
+		// 여기까지
+		$.ajax({
+			url: 'getsroom',
+			type: 'get',
+			data: {rnum: sroomnum},
+			dataType: 'json',
+			success: function(sr) {			
+				var str = '';
+				
+				sroomPrint.innerHTML = str;
+				
+				//alert(typeof(sr.roomnum));  number
+				
+				$('#thissroom').attr('value', sr.roomnum);
+				$('#hidden2').attr('value', sr.roomnum);
+				$('.seat').on('click', seatSelect);
+				$('#submit').on('click', seatReserved);
+				
+				// roomnum, reservedate, start6, start7을 가져와서 controller에서 rlist와 비교한다.
+				// 그 날짜 그시간 그 방에 자리가 있다면 가져온다.(예약된 자리 - 여기서 빨간색으로 표시)
+				var roomnum = $('#thissroom').attr('value');
+				var reservedate = $('#cal').val();
+				
+				if($('#start6').prop("checked")) {
+					var start6 = $('#start6').attr('value');	
+				} else {
+					var start6 = 0;
+				}		
+
+				if($('#start7').prop("checked")) {
+					var start7 = $('#start7').attr('value');	
+				} else {
+					var start7 = 0;
+				}
+							
+				$.ajax({
+					url: 'getReserved',
+					type: 'POST',
+					data: {roomnum: roomnum, reservedate: reservedate, start6: start6, start7: start7},
+					dataType: 'json',
+					success: function(reservedlist) {
+						if(reservedlist == '') {
+							
+						} else {
+							$.each(reservedlist, function(key, item) {
+								var temp = item.seatname.substring(3,5);
+								$('#' + temp).css('background-color', '#FF0000');
+								$('#' + temp).css('color', '#FBEFEF');
+							});
+						}
+					},
+					error: function(cnt) {
+						alert('에러');
+					}				
+				});	
+			},
+			error: function(cnt) {
+				alert('에러');
+			}	
+		});	
 	} */
 
-	/* function completeTask() {
-	var gs_Name = $('#gs_Name').val();
-	var gs_Content = $('#gs_Content').val();
-	var start_Date = $('#start_Date').val();
-	var deadLine = $('#deadLine').val();
-	var gp_Pri = $('#gp_Pri').val();
-	var progress = $('#progress').val();
-	var category = $('#category').val();
-				
-	$.ajax({
-		url: '', // 컨트롤러 value
-		type: 'POST', // 타입
-		data: {
-			gs_Name: gs_Name// 그룹 스케줄 이름
-			, gp_Num: {} // 그룹 번호
-			, gs_Content: gs_Content // 내용
-			, director: {} // 담당자
-			, start_Date: start_Date // 시작일
-			, deadLine: deadLine // 마감일
-			, gp_Pri: gp_Pri // 중요도
-			, progress: progress // 진행도
-			, category: category // 유형
-		},
-		dataType: 'json',
-		success: function(reservedlist) { // 성공했을 때 어떤걸 할지?
-			
-		},
-		error: function(cnt) {
-			alert('에러');
-		}				
-	});	 
-	} */
-	
-	
 	/* //새 메세지 추가
 	function insertReply() {
 		var btn-input = $('#btn-input').val();
@@ -224,61 +345,7 @@ option {
 		});	 
 	}	
 	 */
-	//글삭제시 확인 스크립트
-	function deleteCheck(boardnum){
-		if(confirm("정말 삭제하시겠습니까?")){
-			location.href = 'delete?boardnum=' + boardnum;
-		}
-	}
 
-	//리플 쓰기 폼 체크
-	function replyFormCheck() {
-		var retext = document.getElementById('retext');
-		if (retext.value.length < 5) {
-			alert('리플 내용을 입력하세요.');
-			retext.focus();
-			retext.select();
-			return false;
-		}
-		return true;			
-	}
-
-	//리플 수정
-	function replyEditForm(replynum, boardnum, retext) {
-		//해당 리플번호를 붙여 생성한 <div>태그에 접근
-		var div = document.getElementById("div"+replynum);
-		
-		var str = '<form name="editForm' + replynum + '" action="replyEdit" method="post">';
-		str += '<input type="hidden" name="replynum" value="'+replynum+'">';
-		str += '<input type="hidden" name="boardnum" value="'+boardnum+'">';
-		str += '&nbsp;';
-		str += '<input type="text" name="text" value="' + retext + '" style="width:530px;">';
-		str += '&nbsp;';
-		str += '<a href="javascript:replyEdit(document.editForm' + replynum + ')">[저장]</a>';
-		str += '&nbsp;';
-		str += '<a href="javascript:replyEditCancle(document.getElementById(\'div' + replynum + '\'))">[취소]</a>';
-		str += '</form>';
-		div.innerHTML = str;
-	}
-
-	//리플 수정 취소
-	function replyEditCancle(div) {
-		div.innerHTML = '';
-	}
-
-	//리플 수정 정보 저장
-	function replyEdit(form) {
-		if (confirm('수정된 내용을 저장하시겠습니까?')) {
-			form.submit();
-		}
-	}
-
-	//리플 삭제
-	function replyDelete(replynum, boardnum) {
-		if (confirm('리플을 삭제하시겠습니까?')) {
-			location.href='replyDelete?replynum=' + replynum + '&boardnum=' + boardnum;
-		}
-	}
 </script>
 
 </head>
@@ -498,9 +565,9 @@ option {
 								<li><a href="#">My Timeline</a></li>
 								<li><a href="#">Company Timeline</a></li>
 							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="../data/filePrint?prjNum=${prjNum }"><i class="fa fa-edit fa-fw"></i> Data Download</a></li>
-						<li><a href="../data/??prjNum=${prjNum }"><i class="fa fa-paste fa-fw"></i>
-								Task<span class="fa arrow"></span></a>
+						<li><a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a></li>
+						<li><a href="taskMain"><i class="fa fa-paste fa-fw"></i>
+				 			Task<span class="fa arrow"></span></a>
 						<li><a href="#"><i class="fa fa-calendar fa-fw"></i>Work
 								Schedule</a>
 						<li><a href="#"><i class="fa fa-comments fa-fw"></i>
@@ -516,7 +583,7 @@ option {
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Tables</h1>
+					<h1 class="page-header">${pj_group.gp_Name}</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -525,7 +592,7 @@ option {
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="panel panel-default">
-						<div class="panel-heading">Context Classes</div>
+						<div class="panel-heading">${sectionName }</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<div class="table-responsive">
@@ -535,7 +602,6 @@ option {
 											<th>Progress</th>
 											<th>Task Number</th>
 											<th>Category</th>
-											<th>Director</th>
 											<th>Start Date</th>
 											<th>Deadline</th>
 											<th>Priority</th>
@@ -543,69 +609,30 @@ option {
 									</thead>
 									<tbody>
 										<!-- 반복 시작 -->
-										<c:if test="${loginId != null}">
-											<c:forEach var="task" items="${gpworklist}">
-												<tr class="info">
-													<td>${task.progress}
+										<c:if test="${sessionScope.loginId != null}">
+											<c:forEach var="t" items="${tasklist}" varStatus="status">
+												<tr class="info" class="${t.gs_Num}">
+													<td>
 														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default"> <input
-																type="checkbox" autocomplete="off"> <span
-																class="glyphicon glyphicon-ok"></span>
+															<label class="btn btn-default"> 
+																<input type="checkbox" id="${t.gs_Num}" value="${t.progress}" autocomplete="off"> 
+																<span class="glyphicon glyphicon-ok"></span>
 															</label>
 														</div>
 													</td>
 													<%-- <td><a href="read?boardnum=${board.boardnum}">${board.title}</a>
 													</td> --%>
-													<td>${task.gs_Num}</td>
-													<td>${task.category}</td>
-													<td>${task.start_Date}</td>
-													<td>${task.deadLine}</td>
-													<td>${task.gp_Pri}</td>
+													<td>${t.gs_Num}</td>
+													<td>${t.taskCategory}</td>
+													<td>${t.start_Date}</td>
+													<td>${t.deadLine}</td>
+													<td>${t.gp_Pri}</td>
 												</tr>
 											</c:forEach>
 										</c:if>
-										<!-- 반복 끝 -->
-										<%-- <a href="javascript:pagingFormSubmit(${counter})">${counter}</a>
-										<c:if test="${counter == navi.currentPage}">
-										</c:if> --%>
-
-
-										<!-- 반복 시작 -->
-										<c:forEach var="e" items="list">
-											<tr class="success">
-												<td>
-													<div class="btn-group" data-toggle="buttons">
-														<label class="btn btn-default"> <input
-															type="checkbox" autocomplete="off"> <span
-															class="glyphicon glyphicon-ok"></span>
-														</label>
-													</div>
-												</td>
-												<td>1</td>
-												<td>2</td>
-												<td>3</td>
-												<td>4</td>
-											</tr>
-										</c:forEach>
-										<!-- 반복 끝 -->
-										<%-- <c:forEach var="e" items="list"> --%>
-										<tr class="info">
-											<td>
-												<div class="btn-group" data-toggle="buttons">
-													<label class="btn btn-default"> <input
-														type="checkbox" autocomplete="off"> <span
-														class="glyphicon glyphicon-ok"></span>
-													</label>
-												</div>
-											</td>
-											<td>2</td>
-											<td>3</td>
-											<td>4</td>
-											<td>5</td>
-										</tr>
-										<%-- </c:forEach> --%>
+										
 										<tr>
-											<td style="pointer-events: none;">
+											<td class="table">
 												<button class="btn btn-primary" onclick="completeTask()">저장</button>
 											</td>
 										</tr>
@@ -613,13 +640,13 @@ option {
 								</table>
 							</div>
 							<!-- /.table-responsive -->
-							<button class="btn fifth" style="width: 566px; height: 180px; font-size: 50px;"  onclick="popup()">+</button>
+							<button class="btn fifth" style="width: 566px; height: 180px; font-size: 50px;" onclick="popup()">+</button>
 
 							<div id="joinPopup" class="white_content" style="width: 800px; height: 673px;">
 								<div id="wrapper">
 									<div class="row">
 										<div class="col-lg-12">
-											<h1 class="page-header">Forms</h1>
+											<h1 class="page-header">Form</h1>
 										</div>
 										<!-- /.col-lg-12 -->
 									</div>
@@ -628,20 +655,20 @@ option {
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="panel panel-default">
-												<div class="panel-heading">Basic Form Elements</div>
+												<div class="panel-heading">Task</div>
 												<div class="panel-body">
+													<form role="form" name="taskForm" method="post">
 													<div class="row">
-														<div class="col-lg-6">
-															<form role="form">
+															<div class="col-lg-6">
 																<div class="form-group">
 																	<label>유형</label> <select class="form-control"
-																		name="category" id="category">
-																		<option value="issue">이슈</option>
-																		<option value="bug">결함</option>
-																		<option value="test">테스트케이스</option>
-																		<option value="planning">설계</option>
-																		<option value="develop">개발</option>
-																		<option value="review">코드 리뷰</option>
+																		name="taskCategory" id="taskCategory">
+																		<option value="이슈">이슈</option>
+																		<option value="결함">결함</option>
+																		<option value="테스트케이스">테스트케이스</option>
+																		<option value="설계">설계</option>
+																		<option value="개발">개발</option>
+																		<option value="코드 리뷰">코드 리뷰</option>
 																	</select>
 																</div>
 
@@ -678,23 +705,25 @@ option {
 																		<option value="low">낮음</option>
 																	</select>
 																</div>
-															</form>
+															
 														</div>
 														<!-- /.col-lg-6 (nested) -->
 														<div class="col-lg-6">
-															<form role="form">
 																<div class="form-group">
 																	<label>설명</label>
 																	<textarea style="resize: none;" class="form-control"
 																		name="gs_Content" id="gs_Content" rows="17"></textarea>
 																</div>
-																<button class="btn btn-primary" style="float: right;"
-																	onclick="makeTask()">만들기</button>
-															</form>
+																<div class="form-group">
+																	<button class="btn btn-primary" style="float: right;"
+																		onclick="makeTask()">만들기</button>
+																</div>
 														</div>
 														<!-- /.col-lg-6 (nested) -->
+														
 													</div>
 													<!-- /.row (nested) -->
+													</form>
 												</div>
 												<!-- /.panel-body -->
 											</div>
@@ -723,18 +752,18 @@ option {
 						<div class="panel-body">
 							<ul class="chat">
 							
-							<c:if test="${list != null }">
-								<c:forEach var="i" items="${list }">
+							<%-- <c:if test="${list != null }">
+								<c:forEach var="i" items="${list }"> --%>
 									<li class="left clearfix">
 									<span class="chat-img pull-left">
 										<!-- 기본이미지 가지고오기 --> 
-										<img width="500" height="300" src="${i.userId??} "/> 
+										<!-- <img width="500" height="300" src=""/>  -->
 										<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
 									</span>
 									
 									<div class="chat-body clearfix">
 										<div class="header">
-											<strong class="primary-font">${i.userId }</strong> 
+											<strong class="primary-font">ddddddd</strong> 
 											<small class="pull-right text-muted">
 												<i class="fa fa-clock-o fa-fw"></i> 12 mins ago
 											</small>
@@ -744,68 +773,6 @@ option {
 											ligula sodales.</p>
 									</div>
 									</li>
-								</c:forEach>
-							</c:if>
-								
-								<%-- <c:forEach var="reply" items="${oolist}">
-									<li class="left clearfix"><span class="chat-img pull-left">
-										<!-- 기본이미지 가지고오기 --> 
-										<img width="500" height="300" src="imageShow/${board.num}.do"/> 
-										<img
-										src="http://placehold.it/50/55C1E7/fff" alt="User Avatar"
-										class="img-circle" />
-								</span>
-									<div class="chat-body clearfix">
-										<div class="header">
-											<strong class="primary-font">Jack Sparrow</strong> <small
-												class="pull-right text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i> 12 mins ago
-											</small>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit. Curabitur bibendum ornare dolor, quis ullamcorper
-											ligula sodales.</p>
-									</div></li>
-									
-								</c:forEach> --%>
-								
-								<%-- <c:forEach var="reply" items="${oo2list}">
-								<li class="right clearfix">
-									<span
-										class="chat-img pull-right"> 
-										<img
-											src="http://placehold.it/50/FA6F57/fff" alt="User Avatar"
-										class="img-circle" />
-									</span>
-									<div class="chat-body clearfix">
-										<div class="header">
-											<small class=" text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i> 13 mins ago
-											</small> <strong class="pull-right primary-font">Bhaumik
-												Patel</strong>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit. Curabitur bibendum ornare dolor, quis ullamcorper
-											ligula sodales.</p>
-									</div></li>
-								</c:forEach>
-								<li class="left clearfix"><span class="chat-img pull-left">
-										<!-- 기본이미지 가지고오기 --> 
-										<img
-										src="http://placehold.it/50/55C1E7/fff" alt="User Avatar"
-										class="img-circle" />
-								</span>
-									<div class="chat-body clearfix">
-										<div class="header">
-											<strong class="primary-font">Jack Sparrow</strong> <small
-												class="pull-right text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i> 12 mins ago
-											</small>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit. Curabitur bibendum ornare dolor, quis ullamcorper
-											ligula sodales.</p>
-									</div></li> --%>
 							</ul>
 						</div>
 						<!-- /.panel-body -->
@@ -830,41 +797,45 @@ option {
 		<!-- /#page-wrapper -->
 	</div>
 	<!-- /#wrapper -->
-
-	<!-- jQuery -->
-	<script src="../resources/templet/vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="../resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- Morris Charts JavaScript -->
-	<script src="../resources/templet/vendor/raphael/raphael.min.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="../resources/templet/dist/js/sb-admin-2.js"></script>
-	
-	<!-- DataTables JavaScript -->
-	<script
-		src="../resources/templet/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script
-		src="../resources/templet/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script
-		src="../resources/templet/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script
-		src="../resources/templet/dist/js/sb-admin-2.js"></script>
-
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
-		$(document).ready(function() {
-			$('#dataTables-example').DataTable({
-				responsive : true
-			});
-		});
-	</script>
-
 </body>
+
+<!-- 반복 끝 -->
+										<%-- <a href="javascript:pagingFormSubmit(${counter})">${counter}</a>
+										<c:if test="${counter == navi.currentPage}">
+										</c:if> --%>
+
+
+										<!-- 반복 시작 -->
+										<%-- <c:forEach var="e" items="list">
+											<tr class="success">
+												<td>
+													<div class="btn-group" data-toggle="buttons">
+														<label class="btn btn-default"> <input
+															type="checkbox" autocomplete="off"> <span
+															class="glyphicon glyphicon-ok"></span>
+														</label>
+													</div>
+												</td>
+												<td>1</td>
+												<td>2</td>
+												<td>3</td>
+												<td>4</td>
+											</tr>
+										</c:forEach> --%>
+										<!-- 반복 끝 -->
+										<%-- <c:forEach var="e" items="list"> --%>
+										<!-- <tr class="info">
+											<td>
+												<div class="btn-group" data-toggle="buttons">
+													<label class="btn btn-default"> <input
+														type="checkbox" autocomplete="off"> <span
+														class="glyphicon glyphicon-ok"></span>
+													</label>
+												</div>
+											</td>
+											<td>2</td>
+											<td>3</td>
+											<td>4</td>
+											<td>5</td>
+										</tr> -->
+										<%-- </c:forEach> --%>

@@ -23,17 +23,51 @@
 			gs_Num
 			, gs_Name
 			, gp_Num
-			, private String gs_Content
+			, gs_Content
 			, start_Date
 			, deadLine
 			, gp_Pri
 			, progress
-			, category
+			, taskCategory
 		from
-			PJ_GROUP
+			GP_WORK
 		where
 			gp_Num = #{gp_Num}
 	</select>
+
+	<!-- Task 저장 -->
+	<insert id="insertTask " parameterType="gpWork">
+		insert into GP_WORK (
+			gs_Num
+			, gs_Name
+			, gp_Num	
+			, gs_Content
+			, start_Date
+			, deadLine
+			, gp_Pri
+			, taskCategory
+		)
+		values (
+			GP_SEQ.nextval
+			, #{gs_Name}
+			, #{gp_Num}	
+			, #{gs_Content}
+			, #{start_Date}
+			, #{deadLine}
+			, #{gp_Pri}
+			, #{taskCategory}
+		)
+	</insert>
+	
+	<!-- progress 변경 -->
+	<insert id="updateProgress" parameterType="gpWork">
+		update 
+			GP_WORK 
+		set 	
+			progress = #{progress}
+		where
+			gp_Num = #{gp_Num}	
+	</insert>
 	
 	<!-- 파일 저장 -->
 	<!-- <insert id="insertFile" parameterType="fileInfo">

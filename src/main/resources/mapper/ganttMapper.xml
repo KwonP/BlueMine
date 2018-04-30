@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 자료실 처리 SQL -->
+<mapper namespace="com.bluemine.www.interfaces.GanttMapper">
+	<!-- 해당 프로젝트에 있는 섹션 전부 가져오기 -->
+	<select id="selectAllPjgroup" parameterType="int" resultType="group">
+		select
+			gp_Num
+			, prj_Num
+			, gp_Name
+		from
+			PJ_Group
+		where
+			prj_Num = #{prj_Num}
+	</select>
+	
+	<!-- 해당 세션에 있는 작업 전부 가져오기 -->
+	<select id="selectAllGpwork" parameterType="group" resultType="gpWork">
+		select
+			gs_Num
+			, gs_Name
+			, gp_Num
+			, gs_Content
+			, TO_NUMBER(TO_CHAR(start_Date, 'YYYY, MM, DD')), 'YYYY, MM, DD')
+			, TO_NUMBER(TO_CHAR(deadLine, 'YYYY, MM, DD')), 'YYYY, MM, DD')
+			, gp_Pri
+			, progress
+			, taskCategory
+		from
+			GP_WORK
+		where
+			gp_Num = #{gp_Num}
+	</select>
+</mapper>

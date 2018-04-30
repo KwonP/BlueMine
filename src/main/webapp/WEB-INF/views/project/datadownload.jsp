@@ -390,7 +390,6 @@ img{
 			<div class="row">
 				<div class="col-lg-12">
 					<form action="fileUpload" id="fileForm" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="prjNum" value="${prjNum }">
 						<input type="file" multiple="multiple" id="orgFile" name="upload" onchange="submitFile()" size="30">
 						<button style="margin-top: 23px;" class="btn btn-default" type="button" onclick="check()">
 							<i class="fa fa-upload" style="margin-right: 10px;"></i>File Upload
@@ -414,7 +413,7 @@ img{
 				<c:forEach var="i" items="${imagelist}">
 					<div id="a" class="col-lg-4">
 						<div id="b" class="panel panel-primary">
-							<div class="panel-heading">${sessionScope.loginId }</div>  
+							<div class="panel-heading">${i.originalFile }</div>  
 							<div class="panel-body">
 								<img src="download?originalFile=${i.originalFile}">
 							</div>
@@ -444,7 +443,7 @@ img{
 				<c:forEach var="i" items="${textlist}">
 					<div id="a" class="col-lg-4">
 						<div id="b" class="panel panel-primary">
-							<div class="panel-heading">${sessionScope.loginId }</div>
+							<div class="panel-heading">${i.originalFile }</div>
 							<div class="panel-body">
 								<img src="../resources/img/text.png" width="50%" height="50%">
 							</div>
@@ -476,7 +475,7 @@ img{
 				<c:forEach var="i" items="${mp3list}">
 					<div id="a" class="col-lg-4">
 						<div id="b" class="panel panel-primary">
-							<div class="panel-heading">${sessionScope.loginId }</div>
+							<div class="panel-heading">${i.originalFile }</div>
 							<div class="panel-body">
 								<img src="../resources/img/mp3.png" width="50%" height="50%">
 							</div>

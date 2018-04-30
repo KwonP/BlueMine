@@ -265,12 +265,10 @@
 								<li><a href="#">My Timeline</a></li>
 								<li><a href="#">Company Timeline</a></li>
 							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="../data/filePrint?prjNum=${prjNum }"><i
-								class="fa fa-edit fa-fw"></i> Data Download</a></li>
-						<li><a href="../task/move?prjNum=${prjNum }"><i
-								class="fa fa-paste fa-fw"></i> Task<span class="fa arrow"></span></a>
-							<li><a href="#"><i class="fa fa-calendar fa-fw"></i>Work
-								Schedule</a>
+						<li><a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i>Data Download</a></li>
+						<li><a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i>
+								Task<span class="fa arrow"></span></a>
+						<li><a href="../gantt/chart"><i class="fa fa-calendar fa-fw"></i>Gantt Chart</a>
 						
 						<li><a href="#"><i class="fa fa-comments fa-fw"></i>
 								Chats</a></li>

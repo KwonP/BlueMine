@@ -9,11 +9,11 @@ public class GP_Work {
 	private String deadLine;// 마감일
 	private int gp_Pri;// 중요도
 	private int progress;// 진행도
-	private String category;//유형
+	private String taskCategory;//유형
 	
 	
 	public GP_Work(int gs_Num, String gs_Name, int gp_Num, String gs_Content,String start_Date,
-			String deadLine, int gp_Pri, int progress, String category) {
+			String deadLine, int gp_Pri, int progress, String taskCategory) {
 		super();
 		this.gs_Num = gs_Num;
 		this.gs_Name = gs_Name;
@@ -23,7 +23,7 @@ public class GP_Work {
 		this.deadLine = deadLine;
 		this.gp_Pri = gp_Pri;
 		this.progress = progress;
-		this.category = category;
+		this.taskCategory = taskCategory;
 	}
 
 	public GP_Work() {
@@ -80,19 +80,19 @@ public class GP_Work {
 		this.progress = progress;
 	}
 	
-	public String getCategory() {
-		return category;
+	public String getTaskCategory() {
+		return taskCategory;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setTaskCategory(String taskCategory) {
+		this.taskCategory = taskCategory;
 	}
 
 	@Override
 	public String toString() {
 		return "GP_Work [gs_Num=" + gs_Num + ", gs_Name=" + gs_Name + ", gp_Num=" + gp_Num + ", gs_Content="
 				+ gs_Content + ", start_Date=" + start_Date + ", deadLine=" + deadLine
-				+ ", gp_Pri=" + gp_Pri + ", progress=" + progress + ", category=" + category + "]";
+				+ ", gp_Pri=" + gp_Pri + ", progress=" + progress + ", taskCategory=" + taskCategory + "]";
 	}
 
 	

@@ -39,7 +39,6 @@ public class TaskDAO implements TaskMapper{
 	 */
 	public PJ_Group selectGroup(int prjNum) {
 		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
-		
 		PJ_Group pj_group = new PJ_Group(); 
 		try {
 			pj_group = mapper.selectGroup(prjNum);
@@ -66,21 +65,40 @@ public class TaskDAO implements TaskMapper{
 		}
 		return pj_group_list;
 	}
-	
+
 	/**
-	 * 파일 저장
-	 * @param FileInfo에 저장
+	 * 일감 추가하기
+	 * @param gp_work 가져와서 넣어주기 
 	 */
-	/*public int insertFile(FileInfo file) {
-		DataDownloadMapper mapper = sqlSession.getMapper(DataDownloadMapper.class);
+	public int insertTask(GP_Work gp_work) {
 		
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
 		int result = 0;
 		try {
-			result = mapper.insertFile(file);
+			result = mapper.insertTask(gp_work);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return result;
-	}*/	
+	}
+
+	/**
+	 * 일감 추가하기
+	 * @param gp_work 가져와서 넣어주기 
+	 */
+	public int updateProgress(GP_Work gp_work) {
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		
+		int result = 0;
+		try {
+			result = mapper.updateProgress(gp_work);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}	
 }
