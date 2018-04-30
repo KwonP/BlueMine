@@ -3,17 +3,20 @@ package com.bluemine.www.exception;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-// 오류 페이지 처리
+/**
+ * 웹 애플리케이션의 공통 예외 처리 클래스
+ */
+
 @ControllerAdvice
 public class BluemineExceptionHandler {
-/**
- * 모든 종류의 예외 처리
- * @return JSP파일경로
-*/	
-	
-	@ExceptionHandler(Exception.class)
+
+	/**
+	 * 모든 종류의 예외를 처리
+	 * @return JSP파일 경로
+	 */
+	@ExceptionHandler (Exception.class)
 	public String errorHandler(){
-		System.out.println("에러");
-		return "error";
+		System.out.println("들어오니 에러");
+		return"/error";
 	}
 }

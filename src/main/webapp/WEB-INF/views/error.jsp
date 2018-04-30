@@ -6,13 +6,17 @@
 <meta charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-body{
-	background-image: url('resources/img/error.jpg');
-	background-size: cover;
+.error {
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    margin-left: -410px;
+    margin-top: -320px;
+    width: 800px;
 }
 </style>
 </head>
 <body>
-
+<img src="resources/img/errorPage.png" class="error">
 </body>
 </html>
