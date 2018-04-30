@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 프로젝트 처리 SQL -->
+<!-- 그룹 SQL -->
 <mapper namespace="com.bluemine.www.interfaces.GroupMapper">
 
 <!-- 그룹 생성 -->
@@ -25,7 +25,7 @@ UPDATE
 	PJ_GROUP
 set
 GP_Num = gp_Num
-<if test="prj_Name != null">
+<if test="gp_Name != null">
 ,GP_NAME = #{gp_Name}
 </if>
 where
@@ -46,22 +46,26 @@ ORDER BY gp_Num ASC
 </select>
 <!-- 그룹 스케줄 생성 -->
 <insert id="insertGP_Work" parameterType="gpWork">
+<selectKey resultType="int" keyProperty="gs_Num" order="BEFORE">
+SELECT
+	GS_SEQ.NEXTVAL
+FROM 
+	dual
+</selectKey>
 insert into gp_work (
 	gs_num,
 	gs_name,
 	gp_num,
 	gs_content,
-	director,
 	start_date,
 	deadline,
 	gp_pri,
 	progress
 )values(
-	gs_seq.nextval,
+	#{gs_Num},
 	#{gs_Name},
 	#{gp_Num},
 	#{gs_Content},
-	#{director},
 	#{start_Date},
 	#{deadLine},
 	#{gp_Pri},
@@ -78,9 +82,6 @@ set
 	</if>
 	<if test="gs_Content!=null">
 	, gs_content=#{gs_Content}
-	</if>
-	<if test="director!=null">
-	, director=#{director}
 	</if>
 	<if test="start_Date!=null">
 	, start_date=#{start_Date}
@@ -104,7 +105,6 @@ select gs_num
 	gs_name,
 	gp_num,
 	gs_content,
-	director,
 	start_date,
 	deadline,
 	gp_pri,

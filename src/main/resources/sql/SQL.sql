@@ -74,24 +74,30 @@ FROM CP_POSITION
 Order By positionNum
 
 --프로젝트 추가
+<selectKey resultType="int" keyProperty="prj_Num" order="BEFORE">
+SELECT
+	PL_SEQ.NEXTVAL
+FROM 
+	dual
+</selectKey>
 INSERT INTO PRJLIST
 (
     PRJ_NUM
     ,PRJ_NAME
     ,PLANNER
     ,ACCESS_CONTROL
-    <if test='background != null'>
+    <if test="background != null">
     ,BACKGROUND
     </if>
 )VALUES(
-    PL_SEQ.NEXTVAL
+    #{prj_Num}
     ,#{prj_Name}
     ,#{planner}
     ,#{access_Control}
-    <if test='background != null'>
+    <if test="background != null">
     ,#{background}
     </if>
-);
+)
 
 --회원의 프로젝트 참여현황 추가
 INSERT INTO MATCHPRJ(
@@ -150,6 +156,12 @@ Where
 order by
     saveFile
 --프로젝트 그룹스케줄 추가
+<selectKey resultType="int" keyProperty="gs_Num" order="BEFORE">
+SELECT
+	GS_SEQ.NEXTVAL
+FROM 
+	dual
+</selectKey>
 INSERT INTO GP_WORK(
     GS_NUM
     ,GS_NAME
@@ -163,7 +175,7 @@ INSERT INTO GP_WORK(
     ,PROGRESS
     </if>
 )VALUES(
-    GS_SEQ.NEXTVAL
+    #{gs_Num}
     ,#{gs_Name}
     ,#{gp_Num}
     ,#{gs_Content}
@@ -307,3 +319,18 @@ where
     gp_Num=#{gp_Num}
 order by w_Date
 
+select p.prj_name,d.*,mp.MEMBERID
+
+From pj_group e
+
+join gp_work d
+on e.GP_NUM=d.GP_NUM
+
+join MATCH_GP_WORK j
+on d.GS_NUM=j.GS_NUM
+
+join prjlist p
+on p.PRJ_NUM=e.prj_num
+
+join matchPrj mp
+on mp.MEMBERID=j.USERID;
