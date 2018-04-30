@@ -39,6 +39,7 @@
 
 	<!-- modified CSS -->
  	<link href="./resources/css/basic.css" rel="stylesheet">
+ 	<link href="./resources/css/contact.css" rel="stylesheet">
 	<!-- JS -->
 	<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
@@ -280,65 +281,98 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">My Timeline</a>
-                                </li>
-                                <li>
-                                    <a href="#">Company Timeline</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                        	<a href="#"><i class="fa fa-edit fa-fw"></i> Board</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-paste fa-fw"></i> Progress<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">My tasks</a>
-                                </li>
-                                <li>
-                                    <a href="#">Project</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                        	<a href="#"><i class="fa fa-calendar fa-fw"></i>Work Schedule</a>
-                        <li>
-                            <a href="#"><i class="fa fa-comments fa-fw"></i> Chats</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
         </nav>
 
         <div id="page-wrapper">
-  		  <h1>${prjNum}</h1>
+          <div class="firstLine">
+          	<div class="col-lg-4">
+			<div class="panel panel-primary">
+			  <div class="panel-body">
+			  	<img class="img-rounded" src="./resources/img/kjh.jpg" width="160" height="220">
+			  	<ul class="personal">
+			  	  <li>이름 : 경준현</li>
+			  	  <li>자신있는 분야</li>
+			  	  <li> - 알고리즘</li>
+			  	  <li> - 안드로이드</li>
+			  	  <li>asd8680@naver.com</li>
+			  	</ul>
+			  </div>
+			  <div class="panel-footer">
+			  	<i>File Download, Gantt chart, CSS담당</i>
+			  </div>
+			</div>          	
+          	</div>
+          	<div class="col-lg-4">
+          	<div class="panel panel-primary">
+			  <div class="panel-body">
+			  	<img class="img-rounded" src="./resources/img/khh.jpg" width="160" height="220">
+			  	<ul class="personal">
+			  	  <li>이름 : 김훈희</li>
+			  	  <li>자신있는 분야 </li>
+			  	  <li> - 게임 개발</li>
+			  	  <li> - 다양한 프로그래밍 언어</li>
+			  	  <li>hulove7@naver.com</li>
+			  	</ul>
+			  </div>
+			  <div class="panel-footer">
+			  	<i>Chat, Logon List, CSS 담당</i>
+			  </div>
+			</div>
+          	</div>
+          </div>
+          <div class="secondLine">
+			<div class="col-lg-4">
+			<div class="panel panel-primary">
+			  <div class="panel-body">
+			  	<img class="img-rounded" src="./resources/img/khj.jpg" width="160" height="220">
+			  	<ul class="personal">
+			  	  <li>이름 : 김혜지</li>
+			  	  <li>자신있는 분야</li>
+			  	  <li> - AJAX</li>
+			  	  <li> - Java coding</li>
+			  	  <li>hazel22kim@gmail.com</li>
+			  	</ul>
+			  </div>
+			  <div class="panel-footer">
+			  	<i>Login, My Schedule, CSS 담당</i>
+			  </div>
+			</div>   
+			</div>          
+			<div class="col-lg-4">
+			<div class="panel panel-primary">
+			  <div class="panel-body">
+			  	<img class="img-rounded" src="./resources/img/pdh.jpg" width="160" height="220">
+			  	<ul class="personal">
+			  	  <li>이름 : 박대호</li>
+			  	  <li>자신있는 분야</li>
+			  	  <li> - 자바 스크립트</li>
+			  	  <li> - 자동화 시스템</li>
+			  	  <li>qkreogh1209@gmail.com</li>
+			  	</ul>
+			  </div>
+			  <div class="panel-footer">
+			  	<i>Timeline, Alarm, CSS 담당</i>
+			  </div>
+			</div>   
+			</div>
+			<div class="col-lg-4">
+			<div class="panel panel-primary">
+			  <div class="panel-body">
+			  	<img class="img-rounded" src="./resources/img/pcg.jpg" width="160" height="220">
+			  	<ul class="personal">
+			  	  <li>이름 : 박창권</li>
+			  	  <li>자신있는 분야</li>
+			  	  <li> - 日本語（ビジネスレベル）</li>
+			  	  <li> - Java Script, Java</li>
+			  	  <li>ckdrnjs513@gmail.com</li>
+			  	</ul>
+			  </div>
+			  <div class="panel-footer">
+			  	<i>DB설계, Project, Group, CSS 담당</i>
+			  </div>
+			</div>   
+			</div>
+          </div>
         </div>
         <!-- /#page-wrapper -->
 

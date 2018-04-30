@@ -239,7 +239,7 @@ function endCklist(loopNum){
 function addList(){
 	var childDiv = '';
 	childDiv += '<table class="getCKList" id="getCKList">';
-	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="getOneName" onkeyup="nameLimit(this,18)" value="" ></td></tr>'; 
+	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="getOneName" onkeyup="nameLimit(this,40)" value="" ></td></tr>'; 
 	childDiv += '<tr><td>Day </td><td> : </td><td>';
 	childDiv += '<c:forEach begin="1" end="7" varStatus="status">';
 	childDiv += '<c:if test="${status.current == 1}">';
@@ -285,7 +285,13 @@ function nameLimit(obj, maxByte){
 	    if (totalByte <= maxByte) { 
 	      len = i + 1; 
 	    } 
-	  }
+	 }
+		if (totalByte > maxByte) {
+			alert(maxByte + "자를 초과 입력 할 수 없습니다");
+			str2 = strValue.substr(0,len);
+			obj.value = str2;
+			titleLimit(obj,maxByte);
+	}
 }
 function cancelAdd(){
 	$('#getCKList').remove();

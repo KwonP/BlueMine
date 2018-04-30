@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+.img-rounded {
+	float: left;
+    box-shadow: 3px 3px 10px #9a9898;
+    border-radius: 75px;
+}
+.personal {
+    font-family: NanumGothic;
+    position: relative;
+    list-style: none;
+    line-height: 40px;
+    font-weight: bold;
+    left: 20px;
+}
+.firstLine .col-lg-4:nth-child(2) {
+    margin: 20px 100px 20px 100px;
+}
+.firstLine .col-lg-4:nth-child(1) {
+    margin: 20px 80px 20px 160px;
+}
+ul.personal li:nth-child(5) {
+    text-decoration: underline;
+}
