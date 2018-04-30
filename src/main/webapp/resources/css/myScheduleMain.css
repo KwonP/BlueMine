@@ -144,10 +144,7 @@ i{
     margin-bottom: 5px;
 	background-color: #e17db5;
 }
-.checkBox{
-	left: -20px;
-    position: relative;
-}
+.checkBox{position: relative;}
 .ckList{
 	padding: 0px;
 	margin-top: 20px;

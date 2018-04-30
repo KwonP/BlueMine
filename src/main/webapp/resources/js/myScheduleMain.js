@@ -23,7 +23,7 @@ $(document).ready(function(){
 		 prevButton: '.back'
    });
 });
-var count = 0; // 체크리스트 업데이트 1개이상 불가능
+var count = 0; // 체크리스트 업데이트 1개이상 불가능 & 중복 onclick 활성 방지
 function menuPage(){
 	var menuPage = $(this).attr('value');
 	location.href = menuPage;
@@ -104,6 +104,7 @@ function delWork(ps_Num){
 	}
 }
 function endWork(ps_Num){
+	count = 1;
 	if (confirm('완료하시겠습니까?')) {
 		$.ajax({
 			url : 'endWork',
@@ -119,7 +120,9 @@ function endWork(ps_Num){
 	}
 }
 function getDetail(ps_Num){
-	//event.stopPropagation();
+	if (count == 1) {
+		return;
+	}
 
 	$('.submitWork').val('Modify');
 	$('#formAction').attr('action','updateWork');
@@ -236,7 +239,7 @@ function endCklist(loopNum){
 function addList(){
 	var childDiv = '';
 	childDiv += '<table class="getCKList" id="getCKList">';
-	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="getOneName" value=""></td></tr>';
+	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="getOneName" onkeyup="nameLimit(this,18)" value="" ></td></tr>'; 
 	childDiv += '<tr><td>Day </td><td> : </td><td>';
 	childDiv += '<c:forEach begin="1" end="7" varStatus="status">';
 	childDiv += '<c:if test="${status.current == 1}">';
@@ -261,6 +264,28 @@ function addList(){
 	parentDiv.innerHTML = childDiv;
 	$('.addList').text('Cancel');
 	$('.addList').attr('onclick','cancelAdd()');
+}
+function nameLimit(obj, maxByte){ 
+	  var strValue = obj.value; 
+	  var strLen = strValue.length; 
+	  var totalByte = 0; 
+	  var lem = 0; 
+	  var oneChar = ""; 
+	  var str2 = ""; 
+	   
+	  for (var i = 0; i < strLen; i++){ 
+	    oneChar = strValue.charAt(i); 
+	    if (escape(oneChar).length > 4) { 
+	      totalByte += 2 
+	    } else { 
+	      totalByte++; 
+	    } 
+	     
+	    // 입력한 문자 길이보다 넘치면 잘라내기 위해 저장 
+	    if (totalByte <= maxByte) { 
+	      len = i + 1; 
+	    } 
+	  }
 }
 function cancelAdd(){
 	$('#getCKList').remove();
@@ -308,6 +333,7 @@ function addOne(){
 	});
 }
 function deleteList(cl_Num){
+	count = 1;
 	if (!confirm('삭제하시겠습니까?')) return;
 	$.ajax({
 		url : 'deleteList',
