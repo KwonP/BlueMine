@@ -157,7 +157,7 @@ public class UserInfoController {
 	}
 	
 	// 프로필 사진 파일경로
-	private final String PF_UPLOAD_PATH = "/spring/springws/BlueMine/profileImg";
+	private final String PF_UPLOAD_PATH = "/profileImg";
 
 	// 프로필 사진 수정
 	@ResponseBody

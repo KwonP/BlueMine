@@ -5,9 +5,6 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
-<script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
-<link href="../resources/templet/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
 .errorMsg{
     position: absolute;
@@ -15,7 +12,7 @@
     left: 50%;
     font-size: 30px;
     margin-left: -225px;
-    margin-top: -240px;
+    margin-top: -285px;
     text-align: center;
 }
 h1{
@@ -42,10 +39,7 @@ function back(){
 </head>
 <body>
 <div class="errorMsg">
-<h1>
-	<span class="glyphicon glyphicon-link"></span>
-	Blue Mine
-</h1>
+<h1>Blue Mine</h1>
 <h2>404 Error</h2>
 <h3>Sorry, this page doesn't exist</h3>
 <a class="back" onclick="back()">← Back</a>

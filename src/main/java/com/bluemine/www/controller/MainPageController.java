@@ -63,7 +63,7 @@ public class MainPageController {
 		
 	
 	// 프로필 사진 파일경로
-	private final String PF_UPLOAD_PATH = "/spring/springws/BlueMine/profileImg";
+	private final String PF_UPLOAD_PATH = "/profileImg";
 	// 프로필 사진 띄워주기
 	@RequestMapping(value="/showProfile",method=RequestMethod.GET)
 	public String showProfile(HttpSession session,HttpServletResponse resp){
