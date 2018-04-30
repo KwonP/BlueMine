@@ -179,23 +179,31 @@ option {
 		var taskCategory = $('#taskCategory').val();
 		var gp_Num = ${pj_group.gp_Num};
 		// var GP_Work = $('form[name=taskForm]').serialize();
+		alert(gs_Name); // 제목일걸
+		alert(gs_Content); // 설명이라
+		alert(start_Date); // 2018-05-04
+		alert(deadLine); // 2018-05-26
+		alert(gp_Pri); //low
+		alert(taskCategory); // 테스트케이스
+		alert(gp_Num); //1234
 		
 		$.ajax({
 			url: 'insertTask', 								// 일감추가
 			type: 'POST', 									// 타입
 			data: {
-				gs_Name: gs_Name
-				, gp_Num : gp_Num
-				, gs_Content : gs_Content
-				, start_Date : start_Date
-				, deadLine : deadLine
-				, gp_Pri : gp_Pri
-				, taskCategory : taskCategory
+				gs_Name: gs_Name // String
+				, gp_Num : gp_Num // int
+				, gs_Content : gs_Content // String
+				, start_Date : start_Date // String
+				, deadLine : deadLine // String
+				, gp_Pri : gp_Pri // int
+				, taskCategory : taskCategory //String
 			},
 			dataType: 'text',
 			success: function(str) { 
 				if(str == '1') {
 					alert("성공했다능");
+					location.reload();
 				}
 			},
 			error: function(cnt) {
@@ -203,10 +211,10 @@ option {
 			}				
 		});	 
 	}
-		
-	function completeTask() {
+	
+	/* function completeTask() {
 		var array = [];
-	     
+	    
 	    <c:forEach items="${tasklist}" var="item">
 			array.push("${item}");
 		</c:forEach>
@@ -252,6 +260,71 @@ option {
 				}				
 			});	 
 		});
+	 */
+	function completeTask() {
+		var checked = new Array();
+		var unchecked = new Array();
+		/* $('input[name=changeProg]:checked') */
+		/* $(".ckbox").prop("checked", true) */
+	/* ${t.gs_Num} + ${status.count}
+		 */
+		// Check
+		$(".ckbox").prop("checked", true).each(function(){
+			var getCheck = $(this).val();
+			checked.push(getCheck);
+		});
+		
+		// Uncheck
+		$(".ckbox").prop("checked", false).each(function(){
+			var getCheck = $(this).val();
+			unchecked.push(getCheck);
+		});
+
+		for(var i = 0; i < checked.length; i++){
+			alert(checked[i]);
+		}
+		
+		for(var j = 0; j < unchecked.length; j++){
+			alert(unchecked[j]);
+		}
+		
+		/* if($('#'+l[i]).prop("checked")) {
+			alert(3);
+			$('#'+l[i]).attr("value", 1);
+			var progress = $('#'+l[i]).val();
+			alert(progress);
+			var temp = l[i];
+			$('.' + temp).attr("class", "success");
+		}
+		else {
+			alert(4); // ok
+			$('#'+l[i]).attr("value", 0);
+			var progress = $('#'+l[i]).val();
+			alert(progress); // undifined!!
+			var temp = l[i];
+			$('.' + temp).attr("class", "info");
+		}
+		alert(5); // ok
+		var gp_Num = ${pj_group.gp_Num};			
+		
+		$.ajax({
+			url: 'updateProgress', 							// progress 변경
+			type: 'POST', 									// 타입
+			data: {
+				gp_Num: gp_Num 								// 그룹 번호
+				, progress: progress 						// 진행도
+			},
+			dataType: 'text',
+			async: false,
+			success: function(str) { 
+				if(str == '1') {
+					alert('성공');
+				}
+			},
+			error: function(cnt) {
+				alert('에러');
+			}				
+		}); */
 	}
 	
 	/* function getsroom2() {
@@ -615,8 +688,14 @@ option {
 													<td>
 														<div class="btn-group" data-toggle="buttons">
 															<label class="btn btn-default"> 
-																<input type="checkbox" id="${t.gs_Num}" value="${t.progress}" autocomplete="off"> 
-																<span class="glyphicon glyphicon-ok"></span>
+																<c:if test="${t.progress == 1}">
+																	<input type="checkbox" class="ckbox" id="${t.gs_Num} + ${status.count}" value="${t.gs_Num}" checked="checked"> 
+																	<span class="glyphicon glyphicon-ok"></span>
+																</c:if>
+																<c:if test="${t.progress == 0}">
+																	<input type="checkbox" class="ckbox" id="${t.gs_Num} + ${status.count}" value="${t.gs_Num}"> 
+																	<span class="glyphicon glyphicon-ok"></span>
+																</c:if>
 															</label>
 														</div>
 													</td>
@@ -698,11 +777,11 @@ option {
 																<div class="form-group">
 																	<label>중요도</label> <select class="form-control"
 																		name="gp_Pri" id="gp_Pri">
-																		<option value="immediately">즉시</option>
-																		<option value="urgency">긴급</option>
-																		<option value="high">높음</option>
-																		<option value="ordinary">보통</option>
-																		<option value="low">낮음</option>
+																		<option value="4">즉시</option>
+																		<option value="3">긴급</option>
+																		<option value="2">높음</option>
+																		<option value="1">보통</option>
+																		<option value="0">낮음</option>
 																	</select>
 																</div>
 															

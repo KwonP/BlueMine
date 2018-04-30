@@ -58,23 +58,39 @@ public class TaskController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/insertTask", method = RequestMethod.POST)
-	public String insertTask(GP_Work gp_work, HttpSession session) {
+	public String insertTask(String gs_Name
+			, String gp_Num
+			, String gs_Content // String
+			, String start_Date // String
+			, String deadLine // String
+			, String gp_Pri // int
+			, String taskCategory, HttpSession session, Model model) {
 		System.out.println("들어옴.");
-		System.out.println(gp_work);
-		/*String gs_Name, String gs_Content, String start_Date, String deadLine, int gp_Pri, int progress, String taskCategory , int gp_Num, */
-		/*GP_Work gp_work = new GP_Work();
-		gp_work.setDeadLine(deadLine);
-		gp_work.setGp_Num(gp_Num);
-		gp_work.setGp_Pri(gp_Pri);
-		gp_work.setGs_Content(gs_Content);
+		GP_Work gp_work = new GP_Work();
 		gp_work.setGs_Name(gs_Name);
-		gp_work.setTaskCategory(taskCategory);
+		int num1 = Integer.parseInt(gp_Num);
+		gp_work.setGp_Num(num1);
+		gp_work.setGs_Content(gs_Content);
 		gp_work.setStart_Date(start_Date);
-		gp_work.setProgress(progress);*/
+		gp_work.setDeadLine(deadLine);
+		int num2 = Integer.parseInt(gp_Pri);
+		gp_work.setGp_Pri(num2);
+		gp_work.setTaskCategory(taskCategory);
+		System.out.println(gp_work); 
 		
 		int num = dao.insertTask(gp_work);
+		System.out.println(num);
 		
 		String str = String.valueOf(num);
+		/*
+		int prjNum = (int)session.getAttribute("prjNum");
+		PJ_Group pj_group = dao.selectGroup(prjNum);
+		ArrayList<GP_Work> gp_work_list = dao.printTask(pj_group.getGp_Num());
+
+		model.addAttribute("sectionName",gp_work_list.get(0).getGs_Name());
+		model.addAttribute("tasklist",gp_work_list);
+		model.addAttribute("pj_group",pj_group);
+		model.addAttribute("prjNum",prjNum);*/
 		
 		return str;
 	}

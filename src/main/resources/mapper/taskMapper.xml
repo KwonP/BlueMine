@@ -36,7 +36,7 @@
 	</select>
 
 	<!-- Task 저장 -->
-	<insert id="insertTask " parameterType="gpWork">
+	<insert id="insertTask" parameterType="gpWork">
 		insert into GP_WORK (
 			gs_Num
 			, gs_Name
@@ -48,7 +48,7 @@
 			, taskCategory
 		)
 		values (
-			GP_SEQ.nextval
+			GS_SEQ.nextval
 			, #{gs_Name}
 			, #{gp_Num}	
 			, #{gs_Content}
@@ -68,19 +68,4 @@
 		where
 			gp_Num = #{gp_Num}	
 	</insert>
-	
-	<!-- 파일 저장 -->
-	<!-- <insert id="insertFile" parameterType="fileInfo">
-		insert into FileInfo (
-			prj_Num
-			, originalFile
-			, saveFile
-		)
-		values (
-			#{prj_Num}
-			, #{originalFile}
-			, #{saveFile}
-		)
-	</insert>
- -->	
 </mapper>
