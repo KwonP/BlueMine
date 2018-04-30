@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 // 오류 페이지 처리
 @ControllerAdvice
-public class bluemineExceptionHandler {
+public class BluemineExceptionHandler {
 /**
  * 모든 종류의 예외 처리
  * @return JSP파일경로
@@ -13,6 +13,7 @@ public class bluemineExceptionHandler {
 	
 	@ExceptionHandler(Exception.class)
 	public String errorHandler(){
-		return "/error";
+		System.out.println("에러");
+		return "error";
 	}
 }
