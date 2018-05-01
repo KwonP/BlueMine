@@ -388,8 +388,8 @@ option {
 			error: function(cnt) {
 				alert('에러');
 			}				
-		}); 
-	}*/
+		});*/ 
+	}
 	
 	//새 메세지 추가
 	function insertReply() {
@@ -486,7 +486,7 @@ option {
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#" id="profileImg"> <img
-						src="showProfile" width="50px"> <i class="fa fa-caret-down"></i>
+						src="../showProfile" width="50px"> <i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-user">
 						<li><a href="profilePage"><i class="fa fa-user fa-fw"></i>
@@ -541,6 +541,8 @@ option {
 
 	<!-- 여기서부터 변경. -->
 	<div id="page-wrapper">
+	<div class="test">
+	</div>
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -578,35 +580,38 @@ option {
 									</thead>
 									<tbody>
 										<!-- 반복 시작 -->
+										<%-- <c:forEach var="key" items="${keys}"> --%>
 										<c:if test="${sessionScope.loginId != null}">
-											<c:if test="${gpworkList == null}">
-											</c:if>
-											<c:if test="${gpworkList != null}">
-												<c:forEach var="r" items="${gpworkList}">
-													<c:if test="${k.gp_Num == r.gp_Num}">
-														<tr class="info" class="${r.gp_Num}">
+											<c:if test="${pjgroupList != null}">
+												<c:forEach var="key" items="${map}" varStatus="status">
+													<c:forEach var="m" items="${key[k.gp_Num][status.count]}">
+														<tr class="info" class="tt">
 															<td>
 																<div class="btn-group" data-toggle="buttons">
-																	<c:if test="${r.progress == 0}">
+																	<c:if
+																		test="${key[k.gp_Num][status.count].progress == 0}">
 																		<input type="checkbox" class="ckbox"
-																			id="${r.gs_Num} + ${status.count}"
-																			value="${r.gs_Num}" name="getNums">
+																			id="${key[k.gp_Num][status.count].gs_Num} + ${status.count}"
+																			value="${key[k.gp_Num][status.count].gs_Num}"
+																			name="getNums">
 																	</c:if>
-																	<c:if test="${r.progress == 1}">
+																	<c:if
+																		test="${key[k.gp_Num][status.count].progress == 1}">
 																		<input type="checkbox" class="ckbox"
-																			id="${r.gs_Num} + ${status.count}"
-																			value="${r.gs_Num}" checked="checked" name="getNums">
+																			id="${key[k.gp_Num][status.count].gs_Num} + ${status.count}"
+																			value="${key[k.gp_Num][status.count].gs_Num}"
+																			checked="checked" name="getNums">
 																	</c:if>
 																</div>
 															</td>
-															<td>${r.gs_Name}</td>
-															<td>${r.gs_Content}</td>
-															<td>${r.taskCategory}</td>
-															<td>${r.start_Date}</td>
-															<td>${r.deadLine}</td>
-															<td>${r.gp_Pri}</td>
+															<td>${key[k.gp_Num][status.count].gs_Name}</td>
+															<td>${key[k.gp_Num][status.count].gs_Content}</td>
+															<td>${key[k.gp_Num][status.count].taskCategory}</td>
+															<td>${key[k.gp_Num][status.count].start_Date}</td>
+															<td>${key[k.gp_Num][status.count].deadLine}</td>
+															<td>${key[k.gp_Num][status.count].gp_Pri}</td>
 														</tr>
-													</c:if>
+													</c:forEach>
 												</c:forEach>
 											</c:if>
 										</c:if>

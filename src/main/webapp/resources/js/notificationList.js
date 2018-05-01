@@ -15,7 +15,7 @@ function showNotice(list,addPass){
 	if(nList==null||nList.length==0){
 		return ;
 	}else{
-		$('#noticeCheck').css("background-color", "red");
+		$('#bell').css("color", "red");
 		$('#noticeCheck').css("border", "1px solid black");
 		$('#noticeCheck').css("border-radius", "8px");
 	}
