@@ -193,10 +193,13 @@ i{
     background-color: mistyrose;
     border-radius: 20px;
     text-align: center;
+    position: relative;
     margin: 5px;
+    left: 110px;
 }
 #getOneName{width:100%;}
 #getCKList td,tr,th{padding: 10px;}
+.getCKList a:hover {cursor: pointer;}
 .getDays{padding:10px;}
 #setCKList{width:100%;}
 #setCKList a:hover{cursor: pointer;}
