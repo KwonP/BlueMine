@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page trimDirectiveWhitespaces="true" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -179,13 +180,6 @@ option {
 		var taskCategory = $('#taskCategory').val();
 		var gp_Num = ${pj_group.gp_Num};
 		// var GP_Work = $('form[name=taskForm]').serialize();
-		alert(gs_Name); // 제목일걸
-		alert(gs_Content); // 설명이라
-		alert(start_Date); // 2018-05-04
-		alert(deadLine); // 2018-05-26
-		alert(gp_Pri); //low
-		alert(taskCategory); // 테스트케이스
-		alert(gp_Num); //1234
 		
 		$.ajax({
 			url: 'insertTask', 								// 일감추가
@@ -200,10 +194,9 @@ option {
 				, taskCategory : taskCategory //String
 			},
 			dataType: 'text',
-			success: function(str) { 
+			success: function(str) {
 				if(str == '1') {
-					alert("성공했다능");
-					location.reload();
+					window.location.reload();
 				}
 			},
 			error: function(cnt) {
@@ -736,7 +729,6 @@ option {
 											<div class="panel panel-default">
 												<div class="panel-heading">Task</div>
 												<div class="panel-body">
-													<form role="form" name="taskForm" method="post">
 													<div class="row">
 															<div class="col-lg-6">
 																<div class="form-group">
@@ -802,7 +794,6 @@ option {
 														
 													</div>
 													<!-- /.row (nested) -->
-													</form>
 												</div>
 												<!-- /.panel-body -->
 											</div>

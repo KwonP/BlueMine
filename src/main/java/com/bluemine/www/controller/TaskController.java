@@ -1,10 +1,6 @@
 package com.bluemine.www.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -16,10 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bluemine.www.dao.TaskDAO;
-import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.GP_Work;
 import com.bluemine.www.vo.PJ_Group;
 
@@ -64,8 +58,7 @@ public class TaskController {
 			, String start_Date // String
 			, String deadLine // String
 			, String gp_Pri // int
-			, String taskCategory, HttpSession session, Model model) {
-		System.out.println("들어옴.");
+			, String taskCategory, HttpSession session) {
 		GP_Work gp_work = new GP_Work();
 		gp_work.setGs_Name(gs_Name);
 		int num1 = Integer.parseInt(gp_Num);
@@ -76,22 +69,10 @@ public class TaskController {
 		int num2 = Integer.parseInt(gp_Pri);
 		gp_work.setGp_Pri(num2);
 		gp_work.setTaskCategory(taskCategory);
-		System.out.println(gp_work); 
-		
+		System.out.println(gp_work);
 		int num = dao.insertTask(gp_work);
 		System.out.println(num);
-		
 		String str = String.valueOf(num);
-		/*
-		int prjNum = (int)session.getAttribute("prjNum");
-		PJ_Group pj_group = dao.selectGroup(prjNum);
-		ArrayList<GP_Work> gp_work_list = dao.printTask(pj_group.getGp_Num());
-
-		model.addAttribute("sectionName",gp_work_list.get(0).getGs_Name());
-		model.addAttribute("tasklist",gp_work_list);
-		model.addAttribute("pj_group",pj_group);
-		model.addAttribute("prjNum",prjNum);*/
-		
 		return str;
 	}
 	
