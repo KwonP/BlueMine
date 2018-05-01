@@ -14,6 +14,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>BLUE MINE</title>
+<!-- jQuery -->
+<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -51,7 +53,6 @@
 <!-- modified CSS -->
 <link href="../resources/css/basic.css" rel="stylesheet">
 <!-- JS -->
-<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.companyInfo').click(menuPage);
