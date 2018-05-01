@@ -128,11 +128,11 @@ public class UserInfoController {
 		
 		System.out.println(loginId);
 		if (loginId != null) {
-			uDao.loginCheck(loginId);
 			session.setAttribute("loginId", loginId);
 			String selfie = uDao.getPic(loginId);
 			session.setAttribute("selfie", selfie);
 			result = "login";
+			System.out.println("로그인 정보: "+ uDao.getInfo(loginId));
 		}
 		
 		return result;
@@ -142,6 +142,7 @@ public class UserInfoController {
 	public String logout(HttpSession session){
 		
 		String getId = (String)session.getAttribute("loginId");
+		System.out.println("로그아웃 아이디: " + getId);
 		uDao.logOut(getId);
 		session.invalidate();
 	
@@ -151,6 +152,7 @@ public class UserInfoController {
 	@RequestMapping(value="/profilePage")
 	public String prifilePage(HttpSession session){
 		String getId = (String)session.getAttribute("loginId");
+		uDao.logOut(getId);
 		System.out.println(getId);
 		UserInfo update_user = uDao.getInfo(getId);
 		session.setAttribute("updateUser", update_user);

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bluemine.www.dao.TaskDAO;
+import com.bluemine.www.dao.UserInfoDAO;
 import com.bluemine.www.vo.GP_Work;
 import com.bluemine.www.vo.PJ_Group;
 
@@ -29,6 +30,9 @@ public class TaskController {
 	@Inject
 	TaskDAO dao;
 
+	@Inject
+	UserInfoDAO uDao;
+	
 	private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
 	/**
@@ -36,6 +40,10 @@ public class TaskController {
 	 */
 	@RequestMapping (value="/taskMain", method=RequestMethod.GET)
 	public String move(Model model,HttpSession session) {
+		// 채팅 페이지 로그아웃
+		String getId = (String)session.getAttribute("loginId");
+		uDao.logOut(getId);
+		
 		int prjNum = (int)session.getAttribute("prjNum");
 		PJ_Group pj_group = dao.selectGroup(prjNum);
 		ArrayList<GP_Work> gp_work_list = dao.printTask(pj_group.getGp_Num());

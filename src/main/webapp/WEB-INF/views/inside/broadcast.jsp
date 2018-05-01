@@ -13,20 +13,24 @@
     <meta name="author" content="">
     <title>BLUE MINE</title>
 
-    <!-- Bootstrap Core CSS -->
+     <!-- Bootstrap Core CSS -->
     <link href="../resources/templet/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="../resources/templet/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../resources/templet/dist/css/sb-admin-2.css" rel="stylesheet">
-    
-    <!-- Chat.CSS -->
-    <link href="../resources/css/chat.css" rel="stylesheet">
+    <link href="../resources/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../resources/templet/vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../resources/templet/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- Chat.CSS -->
+    <link href="../resources/css/chat.css" rel="stylesheet">
+    <link href="../resources/css/userlist.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,12 +40,16 @@
     <![endif]-->
 
 	<!-- modified CSS -->
- <link href="../resources/css/basic.css" rel="stylesheet">
+	<link href="../resources/css/basic.css" rel="stylesheet">
 	<!-- JS -->
 	<script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.0-rc1.min.js"></script>
+	<script src="../resources/js/chat.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
+		
 		$('.companyInfo').click(menuPage);
+		
 	});
 	function menuPage(){
 		var menuPage = $(this).attr('value');
@@ -52,6 +60,40 @@
 
 <body>
 
+<div class="chat_box">
+	<div class="chat_head">CurrentUsers</div>
+	<div class="chat_body">
+		<c:forEach var="login" items="${loginUserList}" varStatus="log">
+			<div class="user">
+				<a id="check${log.index }" style="text-decoration:none" >${login.name }</a> <br>
+				<input type="hidden" value="${login.name }">
+			</div>
+		</c:forEach>
+	</div>
+</div>
+ <div class="msg_box" style="right: 300px">
+	<div class="msg_head">${loginName}
+		<div class="close">x</div>	
+	</div>
+	<div class="msg_weap">
+		<div class="msg_body">
+			<div class="msg_insert"></div>
+		</div>
+		
+		<div class="msg_footer">
+			<div class="input-group">
+				<input id="btn-minichat" type="text" class="form-control input-sm" placeholder="Type your message here..."/>
+					<span class="input-group-btn">
+						<button class="btn btn-warning btn-sm" id="btn-chat">
+						Send
+						</button>
+					</span>
+			</div>
+		</div>
+		<!-- msg_footer -->
+	</div> 
+	<!-- msg_weap -->
+</div>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -267,10 +309,10 @@
 					  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -326,7 +368,7 @@
                         <li>
                         	<a href="#"><i class="fa fa-calendar fa-fw"></i>Work Schedule</a>
                         <li>
-                            <a href="inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a>
+                            <a href="#"><i class="fa fa-comments fa-fw"></i> Chats</a>
                         </li>
                     </ul>
                 </div>
@@ -334,7 +376,6 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
         <div id="page-wrapper">
         	<div class="chat-panel panel panel-default pull-right" style="width: 1100px;">
 			<div class="panel-heading">
@@ -345,8 +386,6 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 			<ul class="chat">
-			<c:choose>
-				<c:when test="${loginName == sessionScope.loginName }">
 				<!--내 채팅 메시지-->
 				<li class="left clearfix">
 					<span class="chat-img pull-left">
@@ -359,20 +398,13 @@
 						</div>
 						
 						<div class="clear">
-						</div> -->
+						</div>  -->
 						<div class="header">
-							<strong class="primary-font" id="messageWindow">${loginName }</strong>
+							${loginName }<br>
+							<strong class="primary-font" id="messageWindow"></strong>
 						</div>
 					</div>
 				</li>
-				</c:when>
-				<c:otherwise>
-				<div class="from-them">
-				   <div id="messageWindow"></div>
-				 </div>
-				 <div class="clear"></div>
-				</c:otherwise>
-				</c:choose>
 			</ul>
 		</div>
 		
@@ -380,7 +412,7 @@
 		<div class="panel-footer">
 			<div class="input-group">
 			<!--메시지 입력 창-->
-				<input id="inputMessage" type="text" class="form-control input-sm" placeholder="Type your message here..." onkeyup="enterkey()"/>
+				<input id="inputMessage" type="text" style="z-index: 0;" class="form-control input-sm" placeholder="Type your message here..." onkeyup="enterkey();"/>
 					<span class="input-group-btn">
 						<button class="btn btn-warning btn-sm" id="btn-chat" onclick="send()">
 						Send
@@ -392,10 +424,8 @@
 		</div>
 		<!-- /.panel .chat-panel -->
 	</div>
-        </div>
-        
+</div>
         <!-- /#page-wrapper -->
-
 
     <!-- /#wrapper -->
 
@@ -416,92 +446,66 @@
 
 </body>
 <script type="text/javascript">
-    var textarea = document.getElementById("messageWindow");
-    var webSocket = new WebSocket('ws://localhost:8888/www/broadcasting');
-    var inputMessage = document.getElementById('inputMessage');
-    webSocket.onerror = function(event) {
-        onError(event)
-    };
-    webSocket.onopen = function(event) {
-        onOpen(event)
-    };
-    webSocket.onmessage = function(event) {
-        onMessage(event)
-    };
-    function onMessage(event) {
-        var message = event.data.split("|");
-        var sender = message[0];
-        var content = message[1];
-        if (content == "") {
-            
-        } else {
-            if (content.match("/")) {
-                if (content.match(("/" + $("#chat_id").val()))) {
-                    var temp = content.replace("/" + $("#chat_id").val(), "(귓속말) :").split(":");
-                    if (temp[1].trim() == "") {
-                    } else {
-                        $("#messageWindow").html($("#messageWindow").html()
-                            + sender + content.replace("/" + $("#chat_id").val(), "(귓속말) :") + "<br>");
-                    }
-                } else {
-                }
+var textarea = document.getElementById("messageWindow");
+var webSocket = new WebSocket('ws://localhost:8888/www/broadcasting');
+var inputMessage = document.getElementById('inputMessage');
+webSocket.onerror = function(event) {
+    onError(event)
+};
+webSocket.onopen = function(event) {
+    onOpen(event)
+};
+webSocket.onmessage = function(event) {
+    onMessage(event)
+};
+function onMessage(event) {
+    var message = event.data.split("|");
+    var sender = message[0];
+    var content = message[1];
+   if (content == "") {
+        
+    } else {
+		if (content.match("!")) {
+			$("#messageWindow").html($("#messageWindow").html()
+				 + sender + " : " + content + "<br>");
             } else {
-                if (content.match("!")) {
-                    $("#messageWindow").html($("#messageWindow").html()
-                        + sender + " : " + content + "<br>");
-                } else {
-                    $("#messageWindow").html($("#messageWindow").html()
-                        + sender + " : " + content + "<br>");
-                }
+                $("#messageWindow").html($("#messageWindow").html()
+                    + "<p class='msg_b'>" + sender + " : " + content + "<br>");
             }
         }
     }
-    function onOpen(event) {
-        $("#messageWindow").html("채팅에 참여하였습니다."+"<br>");
-    }
-    function onError(event) {
-        alert(event.data);
-    }
-    function send() {
-        if (inputMessage.value == "") {
-        } else {
-            $("#messageWindow").html($("#messageWindow").html()
-                + "<p class='chat_content'>나 : " + inputMessage.value + "</p>");
-        }
-        
-        /* 상대방에게 보여지는 메시지 */
-        webSocket.send($("#chat_id").val() + "|" + inputMessage.value);
-        inputMessage.value = "";
+
+function onOpen(event) {
+    $("#messageWindow").html("채팅에 참여하였습니다."+"<br>");
+}
+function onError(event) {
+    alert(event.data);
+}
+function send() {
+    if (inputMessage.value == "") {
+    } else {
+        $("#messageWindow").html($("#messageWindow").html()
+            + "<p class='msg_a'>나 : " + inputMessage.value + "</p>");
     }
     
-    // 엔터키를 통해 send함
-    // 아스키 코드 13은 Enterkey
-    function enterkey() {
-        if (window.event.keyCode == 13) {
-            send();
-        }
+    /* 메시지 보낼 때 형식 */
+  	webSocket.send($("#chat_id").val() + "|" + inputMessage.value);
+    inputMessage.value = "";
+}
+
+// 엔터키를 통해 send함
+// 아스키 코드 13은 Enterkey
+function enterkey() {
+    if (window.event.keyCode == 13) {
+        send();
     }
-    //     채팅이 많아져 스크롤바가 넘어가더라도 자동적으로 스크롤바가 내려가게함
- 	window.setInterval(function() {
-        var elem = document.getElementById('messageWindow');
-    	elem.scrollTop = elem.scrollHeight;
-    }, 0);
+}
+// 채팅이 많아져 스크롤바가 넘어가더라도 자동적으로 스크롤바가 내려가게함
+	window.setInterval(function() {
+
+    var elem = document.getElementById('messageWindow');
+	elem.scrollTop = elem.scrollHeight;
+}, 0);
 </script>
-    <!-- jQuery -->
-    <script src="../resources/vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../resources/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../resources/dist/js/sb-admin-2.js"></script>
     
 </html>
-	<%-- <a>
-	<c:forEach var="login" items="${loginUserList} }" varStatus="status">
-		${login.email }<br>
-	</c:forEach>
-	</a> --%>

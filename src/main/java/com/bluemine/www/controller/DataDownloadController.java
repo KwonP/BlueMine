@@ -37,6 +37,7 @@ import com.bluemine.www.HomeController;
 import com.bluemine.www.dao.DataDownloadDAO;
 import com.bluemine.www.dao.ProjectDAO;
 import com.bluemine.www.dao.TimeLineDAO;
+import com.bluemine.www.dao.UserInfoDAO;
 import com.bluemine.www.util.FileService;
 import com.bluemine.www.util.PageNavigator;
 import com.bluemine.www.vo.FileInfo;
@@ -58,6 +59,9 @@ public class DataDownloadController {
 	@Autowired
 	DataDownloadDAO dao;		//자료 관련 데이터 처리 객체
 	
+	@Autowired
+	UserInfoDAO uDao;
+	
 	final String uploadPath = "/datafile";	//파일 업로드 경로
 	
 	/**
@@ -68,6 +72,10 @@ public class DataDownloadController {
 			MultipartFile[] upload,
 			HttpSession session, 
 			Model model) {
+		// 채팅 페이지 로그아웃
+		String getId = (String)session.getAttribute("loginId");
+		uDao.logOut(getId);
+		
 		int throwNum = (int) session.getAttribute("prjNum");
 		//첨부파일이 있는 경우 지정된 경로에 저장
 		if (upload.length != 0) {

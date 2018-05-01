@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.bluemine.www.HomeController;
 import com.bluemine.www.dao.ProjectDAO;
 import com.bluemine.www.dao.TimeLineDAO;
+import com.bluemine.www.dao.UserInfoDAO;
 import com.bluemine.www.util.PageNavigator;
 import com.bluemine.www.vo.GP_Work;
 import com.bluemine.www.vo.PJ_Group;
@@ -47,9 +48,16 @@ public class TimeLineController {
 	TimeLineDAO tlDAO;
 	@Inject
 	ProjectDAO pjDAO;
+	
+	@Inject
+	UserInfoDAO uDao;
 
 	@RequestMapping("/xxx")
-	public String xxx() {
+	public String xxx(HttpSession session) {
+		// 채팅 페이지 로그아웃
+		String getId = (String)session.getAttribute("loginId");
+		uDao.logOut(getId);
+		
 		return "/project/timeline";
 	}
 

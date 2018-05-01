@@ -5,15 +5,21 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import org.junit.runners.Parameterized.Parameters;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.bluemine.www.dao.UserInfoDAO;
 
 import java.io.IOException;
  
@@ -21,6 +27,9 @@ import java.io.IOException;
 @ServerEndpoint(value="/broadcasting")
 public class Boradsocket extends TextWebSocketHandler{
 
+	@Autowired
+	UserInfoDAO uDao;
+	
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 
 	@OnMessage

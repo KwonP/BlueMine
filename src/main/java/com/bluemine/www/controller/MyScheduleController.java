@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bluemine.www.dao.MyScheduleDAO;
+import com.bluemine.www.dao.UserInfoDAO;
 import com.bluemine.www.vo.CKList;
 import com.bluemine.www.vo.CK_Loops;
 import com.bluemine.www.vo.CK_Show;
@@ -23,9 +24,14 @@ public class MyScheduleController {
 	@Inject
 	MyScheduleDAO myDao;
 	
+	@Inject
+	UserInfoDAO uDao;
+	
 	@RequestMapping(value="/main")
 	public String scheduleMain(HttpSession session){
 		String userId = (String)session.getAttribute("loginId");
+		// 채팅 페이지 로그아웃
+		uDao.logOut(userId);
 		ArrayList<PS_Work> workList = myDao.getWorkList(userId);
 		session.setAttribute("workList", workList);
 		System.out.println(workList);

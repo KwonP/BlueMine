@@ -156,7 +156,7 @@ body {
   margin-right: 60px;
 }
 .chat li .chat-body p {
-  margin: 0;
+  margin: 15px;
 }
 .panel .slidedown .glyphicon,
 .chat .glyphicon {

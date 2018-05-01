@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bluemine.www.dao.GanttDAO;
+import com.bluemine.www.dao.UserInfoDAO;
 import com.bluemine.www.util.FileService;
 import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.GP_Work;
@@ -41,11 +42,17 @@ public class GanttController {
 	@Autowired
 	GanttDAO dao;		//간트차트
 	
+	@Autowired
+	UserInfoDAO uDao;
 	/**
 	 * Gantt 차트 페이지로 이동
 	 */
 	@RequestMapping (value="chart", method=RequestMethod.GET)
 	public String chart(HttpSession session, Model model) {
+		// 채팅 페이지 로그아웃
+		String getId = (String)session.getAttribute("loginId");
+		uDao.logOut(getId);
+		
 		int prj_Num = (int) session.getAttribute("prjNum");
 		
 		ArrayList<PJ_Group> list = dao.selectAllPjgroup(prj_Num); // 해당 프로젝트의 모든 세션 가져오기

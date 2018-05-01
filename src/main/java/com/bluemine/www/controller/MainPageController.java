@@ -45,6 +45,8 @@ public class MainPageController {
 	@RequestMapping("/goToMain")
 	public String goToMail(HttpSession session){
 		String getId = (String)session.getAttribute("loginId");
+		// 채팅 페이지 로그아웃
+		uDao.logOut(getId);
 		UserInfo user = uDao.getInfo(getId);
 		session.setAttribute("user", user);
 		ArrayList<PRJList> getList = prjDao.getPrjList(getId);
