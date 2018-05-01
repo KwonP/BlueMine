@@ -79,6 +79,46 @@
 	<!-- Custom Theme JavaScript -->
 	<script
 		src="../resources/templet/dist/js/sb-admin-2.js"></script>
+	
+	<!-- datepicker -->
+	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
+	<!-- JS -->
+	<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('.companyInfo').click(menuPage);
+	});
+	function menuPage(){
+		var menuPage = $(this).attr('value');
+		location.href = menuPage;
+	}
+	</script>
+
+	<script>
+		function check(){
+			// 날짜 비교
+			var startValue = $('#startDate').val();
+			startValue = startValue.split('-');
+			var startDate = new Date();
+			startDate.setFullYear(startValue[0],(startValue[1]-1),startValue[2]);
+			
+			var endValue = $('#deadLine').val();
+			endValue = endValue.split('-');
+			var deadLine = new Date();
+			deadLine.setFullYear(endValue[0],(endValue[1]-1),endValue[2]);
+			if (startDate > deadLine) {
+				alert("시작날짜와 마감날짜를 확인해주세요");
+				return false;
+			}
+			startDate = $('#startDate').val();
+			deadLine = $('#deadLine').val();
+			
+			return true;
+		}
+	</script>
+
 
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
@@ -172,6 +212,8 @@ option {
 	}
 
 	function makeTask() {
+		check();		
+		
 		var gs_Name = $('#gs_Name').val();
 		var gs_Content = $('#gs_Content').val();
 		var start_Date = $('#start_Date').val();
@@ -354,97 +396,30 @@ option {
 		}); 
 	}*/
 	
-	/* function getsroom2() {
-		var sroomnum = $(this).attr('value');
-		// alert(typeof(sroomnum)); 스트링
-		$('#thissroom').attr('value', sroomnum);
-		
-		// 여기까지
-		$.ajax({
-			url: 'getsroom',
-			type: 'get',
-			data: {rnum: sroomnum},
-			dataType: 'json',
-			success: function(sr) {			
-				var str = '';
-				
-				sroomPrint.innerHTML = str;
-				
-				//alert(typeof(sr.roomnum));  number
-				
-				$('#thissroom').attr('value', sr.roomnum);
-				$('#hidden2').attr('value', sr.roomnum);
-				$('.seat').on('click', seatSelect);
-				$('#submit').on('click', seatReserved);
-				
-				// roomnum, reservedate, start6, start7을 가져와서 controller에서 rlist와 비교한다.
-				// 그 날짜 그시간 그 방에 자리가 있다면 가져온다.(예약된 자리 - 여기서 빨간색으로 표시)
-				var roomnum = $('#thissroom').attr('value');
-				var reservedate = $('#cal').val();
-				
-				if($('#start6').prop("checked")) {
-					var start6 = $('#start6').attr('value');	
-				} else {
-					var start6 = 0;
-				}		
-
-				if($('#start7').prop("checked")) {
-					var start7 = $('#start7').attr('value');	
-				} else {
-					var start7 = 0;
-				}
-							
-				$.ajax({
-					url: 'getReserved',
-					type: 'POST',
-					data: {roomnum: roomnum, reservedate: reservedate, start6: start6, start7: start7},
-					dataType: 'json',
-					success: function(reservedlist) {
-						if(reservedlist == '') {
-							
-						} else {
-							$.each(reservedlist, function(key, item) {
-								var temp = item.seatname.substring(3,5);
-								$('#' + temp).css('background-color', '#FF0000');
-								$('#' + temp).css('color', '#FBEFEF');
-							});
-						}
-					},
-					error: function(cnt) {
-						alert('에러');
-					}				
-				});	
-			},
-			error: function(cnt) {
-				alert('에러');
-			}	
-		});	
-	} */
-
 	/* //새 메세지 추가
 	function insertReply() {
-		var btn-input = $('#btn-input').val();
-					
+		var btn_input = $('#btn-input').val();
+	
 		$.ajax({
-			url: '', // 컨트롤러 value
+			url: 'insertMemo', // 컨트롤러 value
 			type: 'POST', // 타입
 			data: {
-				리플내용: btn-input
-				, 프로젝트 번호 : ??
-				, ...
+				vv: btn_input
+				, ...  
 				, ...
 				
 			},
-			dataType: 'json',
-			success: function(reservedlist) { // 성공했을 때 어떤걸 할지?
-				
+			dataType: 'text',
+			success: function(str) {
+				if(str == '1') {
+					window.location.reload();
+				}
 			},
 			error: function(cnt) {
 				alert('에러');
 			}				
 		});	 
-	}	
-	 */
+	}	 */
 
 </script>
 
@@ -452,9 +427,9 @@ option {
 
 <body>
 	<div id="wrapper">
-		<!-- Navigation -->
-		<nav class="navbar navbar-default navbar-static-top" role="navigation"
-			style="margin-bottom: 0">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
@@ -462,222 +437,145 @@ option {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">BLUE MINE</a> <a
-					class="companyInfo" value="about">About</a> <a class="companyInfo"
-					value="contact">Contact Us</a> <a class="companyInfo" value="help">Help</a>
-			</div>
-			<!-- /.navbar-header -->
+				<a class="navbar-brand" href="goToMain">BLUE MINE</a>
+				<a class="companyInfo" value="about">About</a>
+				<a class="companyInfo" value="contact">Contact Us</a>
+				<a class="companyInfo" value="help">Help</a>
+            </div>
+            <!-- /.navbar-header -->
 
-			<ul class="nav navbar-top-links navbar-right">
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> <i
-						class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-messages">
-						<li><a href="#">
-								<div>
-									<strong>John Smith</strong> <span class="pull-right text-muted">
-										<em>Yesterday</em>
-									</span>
-								</div>
-								<div>Lorem ipsum dolor sit amet, consectetur adipiscing
-									elit. Pellentesque eleifend...</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<strong>John Smith</strong> <span class="pull-right text-muted">
-										<em>Yesterday</em>
-									</span>
-								</div>
-								<div>Lorem ipsum dolor sit amet, consectetur adipiscing
-									elit. Pellentesque eleifend...</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<strong>John Smith</strong> <span class="pull-right text-muted">
-										<em>Yesterday</em>
-									</span>
-								</div>
-								<div>Lorem ipsum dolor sit amet, consectetur adipiscing
-									elit. Pellentesque eleifend...</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a class="text-center" href="#"> <strong>Read
-									All Messages</strong> <i class="fa fa-angle-right"></i>
-						</a></li>
-					</ul> <!-- /.dropdown-messages --></li>
-				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> <i class="fa fa-tasks fa-fw"></i>
-						<i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-tasks">
-						<li><a href="#">
-								<div>
-									<p>
-										<strong>Task 1</strong> <span class="pull-right text-muted">40%
-											Complete</span>
-									</p>
-									<div class="progress progress-striped active">
-										<div class="progress-bar progress-bar-success"
-											role="progressbar" aria-valuenow="40" aria-valuemin="0"
-											aria-valuemax="100" style="width: 40%">
-											<span class="sr-only">40% Complete (success)</span>
-										</div>
-									</div>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<p>
-										<strong>Task 2</strong> <span class="pull-right text-muted">20%
-											Complete</span>
-									</p>
-									<div class="progress progress-striped active">
-										<div class="progress-bar progress-bar-info" role="progressbar"
-											aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
-											style="width: 20%">
-											<span class="sr-only">20% Complete</span>
-										</div>
-									</div>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<p>
-										<strong>Task 3</strong> <span class="pull-right text-muted">60%
-											Complete</span>
-									</p>
-									<div class="progress progress-striped active">
-										<div class="progress-bar progress-bar-warning"
-											role="progressbar" aria-valuenow="60" aria-valuemin="0"
-											aria-valuemax="100" style="width: 60%">
-											<span class="sr-only">60% Complete (warning)</span>
-										</div>
-									</div>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<p>
-										<strong>Task 4</strong> <span class="pull-right text-muted">80%
-											Complete</span>
-									</p>
-									<div class="progress progress-striped active">
-										<div class="progress-bar progress-bar-danger"
-											role="progressbar" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100" style="width: 80%">
-											<span class="sr-only">80% Complete (danger)</span>
-										</div>
-									</div>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a class="text-center" href="#"> <strong>See
-									All Tasks</strong> <i class="fa fa-angle-right"></i>
-						</a></li>
-					</ul> <!-- /.dropdown-tasks --></li>
-				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
-						<i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-alerts">
-						<li><a href="#">
-								<div>
-									<i class="fa fa-comment fa-fw"></i> New Comment <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
-										class="pull-right text-muted small">12 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-tasks fa-fw"></i> New Task <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a class="text-center" href="#"> <strong>See
-									All Alerts</strong> <i class="fa fa-angle-right"></i>
-						</a></li>
-					</ul> <!-- /.dropdown-alerts --></li>
-				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" id="profileImg"> <img
-						src="../showProfile?id=${sessionScope.loginId}" width="50px">
-						<i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
-								Profile</a></li>
-						<li class="divider"></li>
-						<li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i>
-								Logout</a></li>
-					</ul> <!-- /.dropdown-user --></li>
-				<!-- /.dropdown -->
-			</ul>
-			<!-- /.navbar-top-links -->
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profileImg">
+                      <img src="showProfile" width="50px">
+					  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+        <div class="navbar-default sidebar" role="navigation"> 
+                <div class="sidebar-nav navbar-collapse"> 
+                    <ul class="nav" id="side-menu"> 
+                        <li class="sidebar-search"> 
+                            <div class="input-group custom-search-form"> 
+                                <input type="text" class="form-control" placeholder="Search..."> 
+                                <span class="input-group-btn"> 
+                                <button class="btn btn-default" type="button"> 
+                                    <i class="fa fa-search"></i> 
+                                </button> 
+                            </span> 
+                            </div> 
+                            <!-- /input-group --> 
+                        </li> 
+                        <li> 
+                            <a href="goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
+                        </li> 
+                        <li> 
+                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline<span class="fa arrow"></span></a> 
+                            <ul class="nav nav-second-level"> 
+                                <li> 
+                                    <a href="#">My Timeline</a> 
+                                </li> 
+                                <li> 
+                                    <a href="#">Company Timeline</a> 
+                                </li> 
+                            </ul> 
+                            <!-- /.nav-second-level --> 
+                        </li> 
+                        <li> 
+                          <a href="#"><i class="fa fa-edit fa-fw"></i> Board</a> 
+                        </li> 
+                        <li> 
+                            <a href="#"><i class="fa fa-paste fa-fw"></i> Task</a> 
+                        </li> 
+                        <li> 
+                            <a href="inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
+                        </li> 
+                       </li>
+                    </ul> 
+                </div> 
+                <!-- /.sidebar-collapse --> 
+            </div> 
+            <!-- /.navbar-static-side --> 
+        </nav> 
+ 
+        <div id="page-wrapper"> 
+        <h1>${prjNum}</h1> 
+        </div> 
+        <!-- /#page-wrapper --> 
 
-			<div class="navbar-default sidebar" role="navigation">
-				<div class="sidebar-nav navbar-collapse">
-					<ul class="nav" id="side-menu">
-						<li class="sidebar-search">
-							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" placeholder="Search...">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div> <!-- /input-group -->
-						</li>
-						<li><a href="../goToMain"><i class="fa fa-desktop fa-fw"></i>
-								Main Page</a></li>
-						<li><a href="#"><i class="fa fa-paper-plane-o fa-fw"></i>
-								Timeline<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="#">My Timeline</a></li>
-								<li><a href="#">Company Timeline</a></li>
-							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a></li>
-						<li><a href="taskMain"><i class="fa fa-paste fa-fw"></i>
-				 			Task<span class="fa arrow"></span></a>
-						<li><a href="#"><i class="fa fa-calendar fa-fw"></i>Work
-								Schedule</a>
-						<li><a href="#"><i class="fa fa-comments fa-fw"></i>
-								Chats</a></li>
-					</ul>
-				</div>
-				<!-- /.sidebar-collapse -->
-			</div>
-			<!-- /.navbar-static-side -->
-		</nav>
+    </div>
+    <!-- /#wrapper -->
 
 	<!-- 여기서부터 변경. -->
 		<div id="page-wrapper">
@@ -743,8 +641,11 @@ option {
 							</div>
 							<!-- /.table-responsive -->
 							<button class="btn fifth" style="width: 566px; height: 180px; font-size: 50px;" onclick="popup()">+</button>
-
+																		
 							<div id="joinPopup" class="white_content" style="width: 800px; height: 673px;">
+								<a href = "#" onclick="workPopupClose();">
+        	  						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+               					</a>
 								<div id="wrapper">
 									<div class="row">
 										<div class="col-lg-12">
@@ -780,20 +681,13 @@ option {
 
 																<div class="form-group">
 																	<label>시작일</label>
-																	<div class="bfh-datepicker" data-min="01/15/2013"
-																		data-max="today" data-close="false">
-																		<input type="date" class="form-control"
-																			name="start_Date" id="start_Date" placeholder="Title">
+																		<input type="text" class="form-control" name="startDate" id="startDate">
 																	</div>
 																</div>
 
 																<div class="form-group">
 																	<label>마감일</label>
-																	<div class="bfh-datepicker" data-min="today"
-																		data-max="01/15/2020" data-close="false">
-																		<input type="date" class="form-control"
-																			name="deadLine" id="deadLine">
-																	</div>
+																		<input type="text" class="form-control" name="deadLine" id="deadLine">
 																</div>
 
 																<div class="form-group">
@@ -898,44 +792,4 @@ option {
 	</div>
 	<!-- /#wrapper -->
 </body>
-
-<!-- 반복 끝 -->
-										<%-- <a href="javascript:pagingFormSubmit(${counter})">${counter}</a>
-										<c:if test="${counter == navi.currentPage}">
-										</c:if> --%>
-
-
-										<!-- 반복 시작 -->
-										<%-- <c:forEach var="e" items="list">
-											<tr class="success">
-												<td>
-													<div class="btn-group" data-toggle="buttons">
-														<label class="btn btn-default"> <input
-															type="checkbox" autocomplete="off"> <span
-															class="glyphicon glyphicon-ok"></span>
-														</label>
-													</div>
-												</td>
-												<td>1</td>
-												<td>2</td>
-												<td>3</td>
-												<td>4</td>
-											</tr>
-										</c:forEach> --%>
-										<!-- 반복 끝 -->
-										<%-- <c:forEach var="e" items="list"> --%>
-										<!-- <tr class="info">
-											<td>
-												<div class="btn-group" data-toggle="buttons">
-													<label class="btn btn-default"> <input
-														type="checkbox" autocomplete="off"> <span
-														class="glyphicon glyphicon-ok"></span>
-													</label>
-												</div>
-											</td>
-											<td>2</td>
-											<td>3</td>
-											<td>4</td>
-											<td>5</td>
-										</tr> -->
-										<%-- </c:forEach> --%>
+</html>

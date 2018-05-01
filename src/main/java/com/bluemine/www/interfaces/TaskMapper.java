@@ -30,8 +30,8 @@ public interface TaskMapper {
 
 	//progreess 상태 변경
 	public int updateProgress(GP_Work gp_work);
-	
-	//오리지날 파일을 이용해서 파일 리스트 가져오기
-	/*public ArrayList<FileInfo> listFiles(String originalfile);*/
+
+	//메모 추가
+	public int insertMemo(TimeLine timeline);
 	
 }

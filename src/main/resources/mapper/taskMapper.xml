@@ -68,4 +68,21 @@
 		where
 			gp_Num = #{gp_Num}	
 	</insert>
+
+	<!-- 메모 추가 -->
+	<insert id="insertMemo" parameterType="timeLine">
+		insert into TIMELINE (
+			tl_Num
+			, prj_Num
+			, writer
+			, tl_Content
+			
+		)
+		values (
+			TL_SEQ.nextval
+			, #{prj_Num}
+			, #{writer}	
+			, #{tl_Content}
+		)
+	</insert>
 </mapper>

@@ -2,6 +2,7 @@ package com.bluemine.www.controller;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import com.bluemine.www.dao.TaskDAO;
 import com.bluemine.www.dao.UserInfoDAO;
 import com.bluemine.www.vo.GP_Work;
 import com.bluemine.www.vo.PJ_Group;
+import com.bluemine.www.vo.TimeLine;
 
 /**
  * 일감 콘트롤러
@@ -48,8 +50,12 @@ public class TaskController {
 		int prjNum = (int)session.getAttribute("prjNum");
 		PJ_Group pj_group = dao.selectGroup(prjNum);
 		ArrayList<GP_Work> gp_work_list = dao.printTask(pj_group.getGp_Num());
-
-		model.addAttribute("sectionName",gp_work_list.get(0).getGs_Name());
+		if (gp_work_list.isEmpty()) {
+			System.out.println("널이다");
+		} else {
+			model.addAttribute("sectionName",gp_work_list.get(0).getGs_Name());
+		}
+		System.out.println(gp_work_list.get(0).getGs_Name());
 		model.addAttribute("tasklist",gp_work_list);
 		model.addAttribute("pj_group",pj_group);
 		model.addAttribute("prjNum",prjNum);
@@ -104,14 +110,25 @@ public class TaskController {
 		return str;
 	}
 	
-	// 다중 일감 진행도 변경
+	/**
+	 * 메모 추가
+	 */
 	@ResponseBody
-	@RequestMapping(value="/changeProgress",method=RequestMethod.POST)
-	public String changeProgress(ArrayList<String> checked){
-		for(int i = 0; i < checked.size(); i++){
-			System.out.println(checked.get(i));
-		}
-		System.out.println(checked);
-		return null;
+	@RequestMapping(value = "/insertMemo", method = RequestMethod.POST)
+	public String insertMemo(String tl_Content, HttpSession session) {
+		int prj_Num = (int)session.getAttribute("prjNum");
+		String loginid = (String)session.getAttribute("loginId");
+		
+		TimeLine timeline = new TimeLine();
+		
+		timeline.setPrj_Num(prj_Num);
+		timeline.setWriter(loginid);
+		timeline.setTl_Content(tl_Content);
+
+		int num = dao.insertMemo(timeline); // 해당 프로젝트에 해당 메모 넣기
+		
+		String str = String.valueOf(num);
+		
+		return str;
 	}
 }

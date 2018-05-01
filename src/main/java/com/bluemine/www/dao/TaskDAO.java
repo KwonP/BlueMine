@@ -100,5 +100,23 @@ public class TaskDAO implements TaskMapper{
 		}
 
 		return result;
+	}
+
+	/**
+	 * 메모추가하기
+	 * @param vv: 메모내용 , ab: 프로젝트번호 
+	 */
+	public int insertMemo(TimeLine timeline) {
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		
+		int result = 0;
+		try {
+			result = mapper.insertMemo(timeline);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
 	}	
 }
