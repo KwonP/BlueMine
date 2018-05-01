@@ -248,7 +248,7 @@
         						
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.href='goToMain'">Close</button>
         <button id="CreateGroup" type="button" class="btn btn-primary">Create</button>
       </div>
     </div><!-- /.modal-content -->

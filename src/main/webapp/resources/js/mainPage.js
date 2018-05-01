@@ -121,7 +121,7 @@ function addPrj() {
 }
 function addGroup(){
 	var prj_Num = $('#prj_Num').val();
-	var gp_Name = $('#gp_Name').val();
+	var gp_Name = document.getElementById('gp_Name');
 	console.log(prj_Num);
 	console.log(gp_Name);
 	$.ajax({
@@ -129,12 +129,13 @@ function addGroup(){
          type: 'POST',
          data: {
         	 prj_Num : prj_Num
-        	 ,gp_Name :gp_Name},
+        	 ,gp_Name :gp_Name.value},
          success: function(result){
-         	console.log('그룹 생성완료');
+         	alert('그룹 생성완료');
          	console.log('그룹 번호 : '+result);
          	console.log('gp_Num : '+result);
-         	$('gp_Name').val('');
+         	$("#gp_Name").val('');
+         	gp_Name.focus();
          },
          error: function(error) {
             alert('그룹생성 실패');

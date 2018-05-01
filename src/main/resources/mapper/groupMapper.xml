@@ -8,7 +8,7 @@
 
 <!-- 그룹 생성 -->
 <insert id="addGroup" parameterType="group">
-<selectKey resultType="int" keyProperty="GP_NUM" order="BEFORE">
+<selectKey resultType="int" keyProperty="gp_Num" order="BEFORE">
 SELECT
 	GP_SEQ.NEXTVAL
 FROM 
