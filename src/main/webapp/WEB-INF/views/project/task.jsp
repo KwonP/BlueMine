@@ -206,7 +206,7 @@ option {
 		}
 	}
 
-	function makeTask(pj_group) {
+	function makeTask(gp_Num) {
 		check();		
 		
 		var gs_Name = $('#gs_Name').val();
@@ -215,7 +215,7 @@ option {
 		var deadLine = $('#deadLine').val();
 		var gp_Pri = $('#gp_Pri').val();
 		var taskCategory = $('#taskCategory').val();
-		var gp_Num = pj_group;
+		var gp_Num = gp_Num;
 		// var GP_Work = $('form[name=taskForm]').serialize();
 		
 		$.ajax({
@@ -242,34 +242,19 @@ option {
 		});	 
 	}
 	
-	/* function completeTask() {
+	function completeTask(gp_Num) {
 		var array = [];
-	    
-	    <c:forEach items="${tasklist}" var="item">
-			array.push("${item}");
-		</c:forEach>
-		$.each( array, function(i, l){
-			alert(i); // 0 1
-			alert(l); // GP_Work [gs_Num=123, gs_Name=tt2, gp_Num=1234, gs_Content=ff, start_Date=2018-02-05 00:00:00, deadLine=2018-01-02 00:00:00, gp_Pri=2, progress=1, taskCategory=결함]
-			alert(l[1]);// l.gs_Num
-			if($('#'+l[i]).prop("checked")) {
-				alert(3);
-				$('#'+l[i]).attr("value", 1);
-				var progress = $('#'+l[i]).val();
-				alert(progress);
-				var temp = l[i];
-				$('.' + temp).attr("class", "success");
+		$('#' + gp_Num).each(function(i, l){
+			if($(this).prop("checked", true)) {
+				$(this).attr("value", 1);
+				var progress = $(this).val();
+				$('#' + gp_Num).attr("class", "success");
 			}
-			else {
-				alert(4); // ok
-				$('#'+l[i]).attr("value", 0);
-				var progress = $('#'+l[i]).val();
-				alert(progress); // undifined!!
-				var temp = l[i];
-				$('.' + temp).attr("class", "info");
+			if($(this).prop("checked", false)) {
+				$(this).attr("value", 0);
+				var progress = $(this).val();
+				$('#' + gp_Num).attr("class", "info");
 			}
-			alert(5); // ok
-			var gp_Num = ${pj_group.gp_Num};			
 			
 			$.ajax({
 				url: 'updateProgress', 							// progress 변경
@@ -283,112 +268,16 @@ option {
 				success: function(str) { 
 					if(str == '1') {
 						alert('성공');
+						window.location.reload();
 					}
 				},
 				error: function(cnt) {
 					alert('에러');
 				}				
-			});	 
+			});	
 		});
-	 */
-	/* function completeTask() { */
-		/* $(".ckbox").prop("checked", true) */
-		/* ${t.gs_Num} + ${status.count} */
-/* 		$(".ckbox").prop("checked", true).each(function(){
-			var getCheck = $(this).val();
-			checked.push(getCheck);
-		});
-		
-		// Uncheck
-		$(".ckbox").prop("checked", false).each(function(){
-			var getCheck = $(this).val();
-			unchecked.push(getCheck);
-		});
-		
-		// Check
-		$('input[name=changeProg]:checked')
- */		
-
- 	
-		
- 
- 		/*		$("input[name=getNums]:checked").each(function(){
-			var com = $(this).val();
-			alert("비교할 값" + com);
-			var com2 = 0;
-			for(var i = 0; i < checked.length; i++){
-				if (com == checked[i]) {
-					alert("포함" + checked[i]);
-					return true;
-				}
-			com2 = checked[i];
-			alert("체크가 안됨" + com2);
-			}
-		}); */
-		
-		/* return;
-		for(var i = 0; i < checked.length; i++){
-			alert(checked[i]);
-		}
-		for(var j = 0; j < unchecked.length; j++){
-			alert(unchecked[i]);
-		}
-		$.ajax({
-			url : 'changeProgress',
-			type : 'post',
-	        data: {checked : checked},
-	        dataType : "json",
-			success : function(result){
-				if (result == 'ok') {
-					alert('변경되었습니다.');
-				} else {
-					alert('변경에 실패하였습니다. 다시 시도해 주세요.');
-				}
-			},
-			error : function(){
-				alert('서버 오류');
-			}
-		}) */
-	//}
-
-		
-		/* if($('#'+l[i]).prop("checked")) {
-			alert(3);
-			$('#'+l[i]).attr("value", 1);
-			var progress = $('#'+l[i]).val();
-			alert(progress);
-			var temp = l[i];
-			$('.' + temp).attr("class", "success");
-		}
-		else {
-			alert(4); // ok
-			$('#'+l[i]).attr("value", 0);
-			var progress = $('#'+l[i]).val();
-			alert(progress); // undifined!!
-			var temp = l[i];
-			$('.' + temp).attr("class", "info");
-		}
-		alert(5); // ok
-		var gp_Num = ${pj_group.gp_Num};			
-		
-		$.ajax({
-			url: 'updateProgress', 							// progress 변경
-			type: 'POST', 									// 타입
-			data: {
-				gp_Num: gp_Num 								// 그룹 번호
-				, progress: progress 						// 진행도
-			},
-			dataType: 'text',
-			async: false,
-			success: function(str) { 
-				if(str == '1') {
-					alert('성공');
-				}
-			},
-			error: function(cnt) {
-				alert('에러');
-			}				
-		});}*/ 
+		return;
+	}
 		
 	//새 메세지 추가
 	function insertReply() {
@@ -485,7 +374,8 @@ option {
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#" id="profileImg"> <img
-						src="../showProfile" width="50px"> <i class="fa fa-caret-down"></i>
+						src="../showProfile" width="50px"> <i
+						class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-user">
 						<li><a href="profilePage"><i class="fa fa-user fa-fw"></i>
@@ -540,8 +430,7 @@ option {
 
 	<!-- 여기서부터 변경. -->
 	<div id="page-wrapper">
-	<div class="test">
-	</div>
+		<div class="test"></div>
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -579,45 +468,48 @@ option {
 									</thead>
 									<tbody>
 										<!-- 반복 시작 -->
-										<%-- <c:forEach var="key" items="${keys}"> --%>
 										<c:if test="${sessionScope.loginId != null}">
-											<c:if test="${pjgroupList != null}">
-												<c:forEach var="key" items="${map}" varStatus="status">
-													<c:forEach var="m" items="${key[k.gp_Num][status.count]}">
-														<tr class="info" class="tt">
-															<td>
-																<div class="btn-group" data-toggle="buttons">
-																	<c:if
-																		test="${key[k.gp_Num][status.count].progress == 0}">
-																		<input type="checkbox" class="ckbox"
-																			id="${key[k.gp_Num][status.count].gs_Num} + ${status.count}"
-																			value="${key[k.gp_Num][status.count].gs_Num}"
-																			name="getNums">
-																	</c:if>
-																	<c:if
-																		test="${key[k.gp_Num][status.count].progress == 1}">
-																		<input type="checkbox" class="ckbox"
-																			id="${key[k.gp_Num][status.count].gs_Num} + ${status.count}"
-																			value="${key[k.gp_Num][status.count].gs_Num}"
-																			checked="checked" name="getNums">
-																	</c:if>
-																</div>
-															</td>
-															<td>${key[k.gp_Num][status.count].gs_Name}</td>
-															<td>${key[k.gp_Num][status.count].gs_Content}</td>
-															<td>${key[k.gp_Num][status.count].taskCategory}</td>
-															<td>${key[k.gp_Num][status.count].start_Date}</td>
-															<td>${key[k.gp_Num][status.count].deadLine}</td>
-															<td>${key[k.gp_Num][status.count].gp_Pri}</td>
-														</tr>
-													</c:forEach>
-												</c:forEach>
+											<c:if test="${gpworkList == null }">
 											</c:if>
+											<c:if test="${gpworkList != null }">
+											</c:if>
+											<c:forEach var="r" items="${gpworkList}" varStatus="status">
+												<c:if test="${k.gp_Num == r.gp_Num}"></c:if>
+												<c:if test="${r.progress == 0}">
+													<tr class="info" id="${r.gp_Num}">
+														<td>
+															<div class="btn-group" data-toggle="buttons">
+																<input type="checkbox"
+																	class="${r.gs_Num} + ${status.count}" id="ff"
+																	value="${r.progress}" name="getNums">
+															</div>
+														</td>
+													</tr>
+												</c:if>
+												<c:if test="${r.progress == 1}">
+													<tr class="'success" id="${r.gp_Num}">
+														<td>
+															<div class="btn-group" data-toggle="buttons">
+																<input type="checkbox"
+																	class="${r.gs_Num} + ${status.count}" id="gg"
+																	value="${r.progress}" name="getNums">
+															</div>
+														</td>
+													</tr>
+												</c:if>
+												<td>${r.gs_Name}</td>
+												<td>${r.gs_Content}</td>
+												<td>${r.taskCategory}</td>
+												<td>${r.start_Date}</td>
+												<td>${r.deadLine}</td>
+												<td>${r.gp_Pri}</td>
+											</c:forEach>
 										</c:if>
 
 										<tr>
 											<td class="table">
-												<button class="btn btn-primary" onclick="completeTask(${r.gp_Num})">저장</button>
+												<button class="btn btn-primary"
+													onclick="completeTask(${k.gp_Num})">저장</button>
 											</td>
 										</tr>
 									</tbody>
@@ -698,7 +590,7 @@ option {
 														</div>
 														<div class="form-group">
 															<button class="btn btn-primary" style="float: right;"
-																onclick="makeTask()">만들기</button>
+																onclick="makeTask(${k.gp_Num})">만들기</button>
 														</div>
 													</div>
 													<!-- /.col-lg-6 (nested) -->

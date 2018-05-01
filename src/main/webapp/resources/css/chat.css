@@ -83,4 +83,11 @@ section div {
   border-bottom-right-radius: 10px;
   -webkit-transform: translate(-30px, -2px);
 }
+.sidebar {
+    z-index: 1;
+    position: absolute;
+    width: 250px;
+    height: 1024px;
+    margin-top: 71px;
+}
 

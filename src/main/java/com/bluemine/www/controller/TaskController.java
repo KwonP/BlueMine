@@ -53,15 +53,19 @@ public class TaskController {
 
 		// 해당 프로젝트의 모든 그룹 가져오기
 		ArrayList<PJ_Group> pjgroupList = dao.selectAllGroups(prj_Num);
-		
+		ArrayList<Integer> legthList = new ArrayList<>();
 		// 각 프로젝트의 GP_Work들을 각각의 어레이리스트에 넣기
 		ArrayList<GP_Work> gpworkList = new ArrayList<>();
+		int cnt = 0;
 		for (PJ_Group pj_Group : pjgroupList) {
 			ArrayList<GP_Work> tempList = new ArrayList<>();
 			tempList = dao.selectEachGpworks(pj_Group.getGp_Num());
 			for (GP_Work gp_Work : tempList) {
 				gpworkList.add(gp_Work);
+				cnt++;
 			}
+			legthList.add(cnt);
+			cnt = 0;
 		}
 
 		// TimeLine(Memo가져오기)
