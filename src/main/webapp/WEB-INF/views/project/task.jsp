@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page trimDirectiveWhitespaces="true" %>
+<%@ page trimDirectiveWhitespaces="true"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +42,7 @@
 <!-- Custom CSS -->
 <link href="../resources/templet/dist/css/sb-admin-2.css"
 	rel="stylesheet">
-	
+
 <!-- Custom Fonts -->
 <link
 	href="../resources/templet/vendor/font-awesome/css/font-awesome.min.css"
@@ -52,82 +52,40 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
-	<!-- jQuery -->
-	<script src="../resources/templet/vendor/jquery/jquery.min.js"></script>
+<!-- jQuery -->
+<script src="../resources/templet/vendor/jquery/jquery.min.js"></script>
 
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="../resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
 
-	<!-- Morris Charts JavaScript -->
-	<script src="../resources/templet/vendor/raphael/raphael.min.js"></script>
+<!-- Morris Charts JavaScript -->
+<script src="../resources/templet/vendor/raphael/raphael.min.js"></script>
 
-	<!-- Custom Theme JavaScript -->
-	<script src="../resources/templet/dist/js/sb-admin-2.js"></script>
-	
-	<!-- DataTables JavaScript -->
-	<script
-		src="../resources/templet/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script
-		src="../resources/templet/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script
-		src="../resources/templet/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="../resources/templet/dist/js/sb-admin-2.js"></script>
 
-	<!-- Custom Theme JavaScript -->
-	<script
-		src="../resources/templet/dist/js/sb-admin-2.js"></script>
-	
-	<!-- datepicker -->
-	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		
-	<!-- JS -->
-	<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$('.companyInfo').click(menuPage);
-	});
-	function menuPage(){
-		var menuPage = $(this).attr('value');
-		location.href = menuPage;
-	}
-	</script>
+<!-- DataTables JavaScript -->
+<script
+	src="../resources/templet/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script
+	src="../resources/templet/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script
+	src="../resources/templet/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-	<script>
-		function check(){
-			// 날짜 비교
-			var startValue = $('#startDate').val();
-			startValue = startValue.split('-');
-			var startDate = new Date();
-			startDate.setFullYear(startValue[0],(startValue[1]-1),startValue[2]);
-			
-			var endValue = $('#deadLine').val();
-			endValue = endValue.split('-');
-			var deadLine = new Date();
-			deadLine.setFullYear(endValue[0],(endValue[1]-1),endValue[2]);
-			if (startDate > deadLine) {
-				alert("시작날짜와 마감날짜를 확인해주세요");
-				return false;
-			}
-			startDate = $('#startDate').val();
-			deadLine = $('#deadLine').val();
-			
-			return true;
-		}
-	</script>
+<!-- Custom Theme JavaScript -->
+<script src="../resources/templet/dist/js/sb-admin-2.js"></script>
 
+<!-- datepicker -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
-		$(document).ready(function() {
-			$('#dataTables-example').DataTable({
-				responsive : true
-			});
-		});
-	</script>
+<!-- JS -->
+<!-- <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script> -->
 
 <style>
 p {
@@ -198,6 +156,49 @@ option {
 }
 </style>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.companyInfo').click(menuPage);
+	});
+	function menuPage(){
+		var menuPage = $(this).attr('value');
+		location.href = menuPage;
+	}
+	</script>
+
+<script>
+		function check(){
+			// 날짜 비교
+			var startValue = $('#startDate').val();
+			startValue = startValue.split('-');
+			var startDate = new Date();
+			startDate.setFullYear(startValue[0],(startValue[1]-1),startValue[2]);
+			
+			var endValue = $('#deadLine').val();
+			endValue = endValue.split('-');
+			var deadLine = new Date();
+			deadLine.setFullYear(endValue[0],(endValue[1]-1),endValue[2]);
+			if (startDate > deadLine) {
+				alert("시작날짜와 마감날짜를 확인해주세요");
+				return false;
+			}
+			startDate = $('#startDate').val();
+			deadLine = $('#deadLine').val();
+			
+			return true;
+		}
+	</script>
+
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive : true
+			});
+		});
+	</script>
+
 <script>
 	function popup() {
 		$('#joinPopup').slideDown('fast');
@@ -211,7 +212,7 @@ option {
 		}
 	}
 
-	function makeTask() {
+	function makeTask(pj_group) {
 		check();		
 		
 		var gs_Name = $('#gs_Name').val();
@@ -220,7 +221,7 @@ option {
 		var deadLine = $('#deadLine').val();
 		var gp_Pri = $('#gp_Pri').val();
 		var taskCategory = $('#taskCategory').val();
-		var gp_Num = ${pj_group.gp_Num};
+		var gp_Num = pj_group;
 		// var GP_Work = $('form[name=taskForm]').serialize();
 		
 		$.ajax({
@@ -393,21 +394,19 @@ option {
 			error: function(cnt) {
 				alert('에러');
 			}				
-		}); 
-	}*/
+		});*/ 
+	}
 	
-	/* //새 메세지 추가
+	//새 메세지 추가
 	function insertReply() {
 		var btn_input = $('#btn-input').val();
-	
+		alert(1);
+		alert(btn_input);
 		$.ajax({
 			url: 'insertMemo', // 컨트롤러 value
 			type: 'POST', // 타입
 			data: {
-				vv: btn_input
-				, ...  
-				, ...
-				
+				tl_Content: btn_input
 			},
 			dataType: 'text',
 			success: function(str) {
@@ -419,7 +418,7 @@ option {
 				alert('에러');
 			}				
 		});	 
-	}	 */
+	}
 
 </script>
 
@@ -428,8 +427,9 @@ option {
 <body>
 	<div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
@@ -437,160 +437,131 @@ option {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="about">About</a>
-				<a class="companyInfo" value="contact">Contact Us</a>
-				<a class="companyInfo" value="help">Help</a>
-            </div>
-            <!-- /.navbar-header -->
+				<a class="navbar-brand" href="goToMain">BLUE MINE</a> <a
+					class="companyInfo" value="about">About</a> <a class="companyInfo"
+					value="contact">Contact Us</a> <a class="companyInfo" value="help">Help</a>
+			</div>
+			<!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profileImg">
-                      <img src="showProfile" width="50px">
-					  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-        <div class="navbar-default sidebar" role="navigation"> 
-                <div class="sidebar-nav navbar-collapse"> 
-                    <ul class="nav" id="side-menu"> 
-                        <li class="sidebar-search"> 
-                            <div class="input-group custom-search-form"> 
-                                <input type="text" class="form-control" placeholder="Search..."> 
-                                <span class="input-group-btn"> 
-                                <button class="btn btn-default" type="button"> 
-                                    <i class="fa fa-search"></i> 
-                                </button> 
-                            </span> 
-                            </div> 
-                            <!-- /input-group --> 
-                        </li> 
-                        <li> 
-                            <a href="goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
-                        </li> 
-                        <li> 
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline<span class="fa arrow"></span></a> 
-                            <ul class="nav nav-second-level"> 
-                                <li> 
-                                    <a href="#">My Timeline</a> 
-                                </li> 
-                                <li> 
-                                    <a href="#">Company Timeline</a> 
-                                </li> 
-                            </ul> 
-                            <!-- /.nav-second-level --> 
-                        </li> 
-                        <li> 
-                          <a href="#"><i class="fa fa-edit fa-fw"></i> Board</a> 
-                        </li> 
-                        <li> 
-                            <a href="#"><i class="fa fa-paste fa-fw"></i> Task</a> 
-                        </li> 
-                        <li> 
-                            <a href="inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
-                        </li> 
-                       </li>
-                    </ul> 
-                </div> 
-                <!-- /.sidebar-collapse --> 
-            </div> 
-            <!-- /.navbar-static-side --> 
-        </nav> 
- 
-        <div id="page-wrapper"> 
-        <h1>${prjNum}</h1> 
-        </div> 
-        <!-- /#page-wrapper --> 
+			<ul class="nav navbar-top-links navbar-right">
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
+						<i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-alerts">
+						<li><a href="#">
+								<div>
+									<i class="fa fa-comment fa-fw"></i> New Comment <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
+										class="pull-right text-muted small">12 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-tasks fa-fw"></i> New Task <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>See
+									All Alerts</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-alerts --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" id="profileImg"> <img
+						src="../showProfile" width="50px"> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="profilePage"><i class="fa fa-user fa-fw"></i>
+								User Profile</a></li>
+						<li class="divider"></li>
+						<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i>
+								Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li class="sidebar-search">
+							<div class="input-group custom-search-form">
+								<input type="text" class="form-control" placeholder="Search...">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">
+										<i class="fa fa-search"></i>
+									</button>
+								</span>
+							</div> <!-- /input-group -->
+						</li>
+						<li><a href="goToMain"><i class="fa fa-desktop fa-fw"></i>
+								Main Page</a></li>
+						<li><a href="#"><i class="fa fa-paper-plane-o fa-fw"></i>
+								Timeline<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="#">My Timeline</a></li>
+								<li><a href="#">Company Timeline</a></li>
+							</ul> <!-- /.nav-second-level --></li>
+						<li><a href="#"><i class="fa fa-edit fa-fw"></i> Board</a></li>
+						<li><a href="#"><i class="fa fa-paste fa-fw"></i> Task</a></li>
+						<li><a href="inside/broadcast"><i
+								class="fa fa-comments fa-fw"></i> Chats</a></li>
+						</li>
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
 
-    </div>
-    <!-- /#wrapper -->
+		<div id="page-wrapper">
+			<h1>${prjNum}</h1>
+		</div>
+		<!-- /#page-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
 
 	<!-- 여기서부터 변경. -->
-		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">${pj_group.gp_Name}</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
-			<!-- /.row -->
+	<div id="page-wrapper">
+	<div class="test">
+	</div>
 
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">${prj_Name}</h1>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		<c:forEach var="k" items="${pjgroupList}" varStatus="st">
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="panel panel-default">
-						<div class="panel-heading">${sectionName }</div>
+						<div class="panel-heading">${k.gp_Name }</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<div class="table-responsive">
@@ -598,39 +569,24 @@ option {
 									<thead>
 										<tr>
 											<th>Progress</th>
-											<th>Task Number</th>
+											<!-- private int progress;// 진행도 -->
+											<th>Task Name</th>
+											<!-- private String gs_Name;// 그룹 스케줄 이름 -->
+											<th>Content</th>
+											<!-- private String gs_Content;// 내용 -->
 											<th>Category</th>
+											<!-- private String taskCategory;//유형 -->
 											<th>Start Date</th>
+											<!-- private String start_Date;// 시작일 -->
 											<th>Deadline</th>
+											<!-- private String deadLine;// 마감일 -->
 											<th>Priority</th>
+											<!-- private int gp_Pri;// 중요도 -->
 										</tr>
 									</thead>
 									<tbody>
-										<!-- 반복 시작 -->
-										<c:if test="${sessionScope.loginId != null}">
-											<c:forEach var="t" items="${tasklist}" varStatus="status">
-												<tr class="info" class="${t.gs_Num}">
-													<td>
-														<div class="btn-group" data-toggle="buttons">
-														<c:if test="${t.progress == 0}">
-															<input type="checkbox" class="ckbox" id="${t.gs_Num} + ${status.count}" value="${t.gs_Num}" name="getNums"> 
-														</c:if>
-														<c:if test="${t.progress == 1}">
-															<input type="checkbox" class="ckbox" id="${t.gs_Num} + ${status.count}" value="${t.gs_Num}" checked="checked" name="getNums"> 
-														</c:if>
-														</div>
-													</td>
-													<%-- <td><a href="read?boardnum=${board.boardnum}">${board.title}</a>
-													</td> --%>
-													<td>${t.gs_Num}</td>
-													<td>${t.taskCategory}</td>
-													<td>${t.start_Date}</td>
-													<td>${t.deadLine}</td>
-													<td>${t.gp_Pri}</td>
-												</tr>
-											</c:forEach>
-										</c:if>
-										
+	
+
 										<tr>
 											<td class="table">
 												<button class="btn btn-primary" onclick="completeTask()">저장</button>
@@ -640,12 +596,15 @@ option {
 								</table>
 							</div>
 							<!-- /.table-responsive -->
-							<button class="btn fifth" style="width: 566px; height: 180px; font-size: 50px;" onclick="popup()">+</button>
-																		
-							<div id="joinPopup" class="white_content" style="width: 800px; height: 673px;">
-								<a href = "#" onclick="workPopupClose();">
-        	  						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-               					</a>
+							<button class="btn fifth"
+								style="width: 566px; height: 180px; font-size: 50px;"
+								onclick="popup()">+</button>
+
+							<div id="joinPopup" class="white_content"
+								style="width: 800px; height: 673px;">
+								<a href="#" onclick="workPopupClose();"> <span
+									class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</a>
 								<div id="wrapper">
 									<div class="row">
 										<div class="col-lg-12">
@@ -661,134 +620,130 @@ option {
 												<div class="panel-heading">Task</div>
 												<div class="panel-body">
 													<div class="row">
-															<div class="col-lg-6">
-																<div class="form-group">
-																	<label>유형</label> <select class="form-control"
-																		name="taskCategory" id="taskCategory">
-																		<option value="이슈">이슈</option>
-																		<option value="결함">결함</option>
-																		<option value="테스트케이스">테스트케이스</option>
-																		<option value="설계">설계</option>
-																		<option value="개발">개발</option>
-																		<option value="코드 리뷰">코드 리뷰</option>
-																	</select>
-																</div>
-
-																<div class="form-group">
-																	<label>제목</label> <input class="form-control"
-																		name="gs_Name" id="gs_Name" placeholder="Title">
-																</div>
-
-																<div class="form-group">
-																	<label>시작일</label>
-																		<input type="text" class="form-control" name="startDate" id="startDate">
-																	</div>
-																</div>
-
-																<div class="form-group">
-																	<label>마감일</label>
-																		<input type="text" class="form-control" name="deadLine" id="deadLine">
-																</div>
-
-																<div class="form-group">
-																	<label>중요도</label> <select class="form-control"
-																		name="gp_Pri" id="gp_Pri">
-																		<option value="4">즉시</option>
-																		<option value="3">긴급</option>
-																		<option value="2">높음</option>
-																		<option value="1">보통</option>
-																		<option value="0">낮음</option>
-																	</select>
-																</div>
-															
-														</div>
-														<!-- /.col-lg-6 (nested) -->
 														<div class="col-lg-6">
-																<div class="form-group">
-																	<label>설명</label>
-																	<textarea style="resize: none;" class="form-control"
-																		name="gs_Content" id="gs_Content" rows="17"></textarea>
-																</div>
-																<div class="form-group">
-																	<button class="btn btn-primary" style="float: right;"
-																		onclick="makeTask()">만들기</button>
-																</div>
+															<div class="form-group">
+																<label>유형</label> <select class="form-control"
+																	name="taskCategory" id="taskCategory">
+																	<option value="이슈">이슈</option>
+																	<option value="결함">결함</option>
+																	<option value="테스트케이스">테스트케이스</option>
+																	<option value="설계">설계</option>
+																	<option value="개발">개발</option>
+																	<option value="코드 리뷰">코드 리뷰</option>
+																</select>
+															</div>
+
+															<div class="form-group">
+																<label>제목</label> <input class="form-control"
+																	name="gs_Name" id="gs_Name" placeholder="Title">
+															</div>
+
+															<div class="form-group">
+																<label>시작일</label> <input type="text"
+																	class="form-control" name="startDate" id="startDate">
+															</div>
 														</div>
-														<!-- /.col-lg-6 (nested) -->
-														
+
+														<div class="form-group">
+															<label>마감일</label> <input type="text"
+																class="form-control" name="deadLine" id="deadLine">
+														</div>
+
+														<div class="form-group">
+															<label>중요도</label> <select class="form-control"
+																name="gp_Pri" id="gp_Pri">
+																<option value="4">즉시</option>
+																<option value="3">긴급</option>
+																<option value="2">높음</option>
+																<option value="1">보통</option>
+																<option value="0">낮음</option>
+															</select>
+														</div>
+
 													</div>
-													<!-- /.row (nested) -->
+													<!-- /.col-lg-6 (nested) -->
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label>설명</label>
+															<textarea style="resize: none;" class="form-control"
+																name="gs_Content" id="gs_Content" rows="17"></textarea>
+														</div>
+														<div class="form-group">
+															<button class="btn btn-primary" style="float: right;"
+																onclick="makeTask()">만들기</button>
+														</div>
+													</div>
+													<!-- /.col-lg-6 (nested) -->
+
 												</div>
-												<!-- /.panel-body -->
+												<!-- /.row (nested) -->
 											</div>
-											<!-- /.panel -->
+											<!-- /.panel-body -->
 										</div>
-										<!-- /.col-lg-12 -->
+										<!-- /.panel -->
 									</div>
-									<!-- /.row -->
-									<!--  </div> -->
-									<!-- /#page-wrapper -->
-
+									<!-- /.col-lg-12 -->
 								</div>
-								<!-- /#wrapper -->
+								<!-- /.row -->
+								<!--  </div> -->
+								<!-- /#page-wrapper -->
+
 							</div>
-							<div id="popupBack" class="black_overlay"></div>
-
+							<!-- /#wrapper -->
 						</div>
-						<!-- /.panel-body -->
-					</div>
-					<!-- /.panel -->
-				</div>
-				<!-- /.col-lg-6 -->
+						<div id="popupBack" class="black_overlay"></div>
 
-				<div class="col-lg-4">
-					<div class="chat-panel panel panel-default">
-						<div class="panel-body">
-							<ul class="chat">
-							
-							<%-- <c:if test="${list != null }">
-								<c:forEach var="i" items="${list }"> --%>
-									<li class="left clearfix">
-									<span class="chat-img pull-left">
-										<!-- 기본이미지 가지고오기 --> 
-										<!-- <img width="500" height="300" src=""/>  -->
-										<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-									</span>
-									
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+		</c:forEach>
+		<!-- /.col-lg-6 -->
+
+		<div class="col-lg-4">
+			<div class="chat-panel panel panel-default">
+				<div class="panel-body">
+					<ul class="chat">
+						<c:if test="${timelineList != null }">
+							<c:forEach var="i" items="${timelineList }">
+								<li class="left clearfix"><span class="chat-img pull-left">
+										<!-- 기본이미지 가지고오기 --> <!-- <img width="500" height="300" src=""/>  -->
+										<img src="../showProfile" alt="User Avatar" class="img-circle" />
+								</span>
 									<div class="chat-body clearfix">
 										<div class="header">
-											<strong class="primary-font">ddddddd</strong> 
-											<small class="pull-right text-muted">
-												<i class="fa fa-clock-o fa-fw"></i> 12 mins ago
+											<strong class="primary-font">${i.writer }</strong> <small
+												class="pull-right text-muted"> <i
+												class="fa fa-clock-o fa-fw"></i> ${i.w_Date} mins ago
 											</small>
 										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit. Curabitur bibendum ornare dolor, quis ullamcorper
-											ligula sodales.</p>
-									</div>
-									</li>
-							</ul>
-						</div>
-						<!-- /.panel-body -->
-						<div class="panel-footer">
-							<div class="input-group">
-								<input id="btn-input" type="text" class="form-control input-sm"
-									placeholder="Type your message here..." /> <span
-									class="input-group-btn">
-									<button class="btn btn-warning btn-sm" id="btn-chat" onclick="insertReply();">
-										WRITE</button>
-								</span>
-							</div>
-						</div>
-						<!-- /.panel-footer -->
-					</div>
-					<!-- /.panel .chat-panel -->
+										<p>${i.tl_Content }</p>
+									</div></li>
+							</c:forEach>
+						</c:if>
+					</ul>
 				</div>
-				<!-- /.col-lg-4 -->
+				<!-- /.panel-body -->
+				<div class="panel-footer">
+					<div class="input-group">
+						<input id="btn-input" type="text" class="form-control input-sm"
+							placeholder="Type your message here..." /> <span
+							class="input-group-btn">
+							<button class="btn btn-warning btn-sm" id="btn-chat"
+								onclick="insertReply()">WRITE</button>
+						</span>
+					</div>
+				</div>
+				<!-- /.panel-footer -->
 			</div>
-			<!-- /.row -->
+			<!-- /.panel .chat-panel -->
 		</div>
-		<!-- /#page-wrapper -->
+		<!-- /.col-lg-4 -->
+	</div>
+	<!-- /.row -->
+	</div>
+	<!-- /#page-wrapper -->
 	</div>
 	<!-- /#wrapper -->
 </body>

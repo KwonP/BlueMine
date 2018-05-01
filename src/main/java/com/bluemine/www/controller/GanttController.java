@@ -62,7 +62,6 @@ public class GanttController {
 		ArrayList<String> startdateList = new ArrayList<>(); // startdate
 		ArrayList<String> deadlineList = new ArrayList<>(); // deadline
 		ArrayList<String> groupList = new ArrayList<>(); // 각 작업들의 그룹이름
-		
 		for (PJ_Group pj_group : list) { // 해당세션들의 작업들을 가지고 퍼센티지를 계산.
 			allGpworkList = dao.selectAllGpwork(pj_group);
 			for (GP_Work gp_Work : allGpworkList) {
@@ -116,14 +115,24 @@ public class GanttController {
 			}
 		}
 		
-		/*for (String string : startdateList) {
+		for (String string : startdateList) {
 			System.out.println(string);
-		}*/
+		}
 		for (String string : deadlineList) {
 			System.out.println(string);
 		}
-		
-		
+		for (String string : groupList) {
+			System.out.println(string);
+		}
+		for (String string : onComList) {
+			System.out.println(string);
+		}
+		for (String string : gsnameList) {
+			System.out.println(string);
+		}
+		for (GP_Work string2 : allGpworkList) {
+			System.out.println(string2);
+		}
 		model.addAttribute("startdateList", startdateList); // 날짜 형식 맞춘 String 리스트
 		model.addAttribute("deadlineList", deadlineList); // 날짜 형식 맞춘 String 리스트
 		model.addAttribute("groupList",groupList); // 각 작업들의 그룹이름

@@ -1,6 +1,5 @@
 package com.bluemine.www.controller;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -47,18 +46,27 @@ public class TaskController {
 		String getId = (String)session.getAttribute("loginId");
 		uDao.logOut(getId);
 		
-		int prjNum = (int)session.getAttribute("prjNum");
-		PJ_Group pj_group = dao.selectGroup(prjNum);
-		ArrayList<GP_Work> gp_work_list = dao.printTask(pj_group.getGp_Num());
-		if (gp_work_list.isEmpty()) {
-			System.out.println("널이다");
-		} else {
-			model.addAttribute("sectionName",gp_work_list.get(0).getGs_Name());
+		int prj_Num = (int)session.getAttribute("prjNum");
+		
+		// 프로젝트 이름 가져오기
+		String prj_Name = dao.selectPrjName(prj_Num);
+		
+		// 해당 프로젝트의 모든 그룹 가져오기
+		ArrayList<PJ_Group> pjgroupList = dao.selectAllGroups(prj_Num);
+		
+		HashMap<Integer, ArrayList<GP_Work>> map = new HashMap<>();
+		
+		for (PJ_Group pj_Group : pjgroupList) {
+			map.put(pj_Group.getGp_Num(), dao.selectEachGpworks(pj_Group.getGp_Num()));
 		}
-		System.out.println(gp_work_list.get(0).getGs_Name());
-		model.addAttribute("tasklist",gp_work_list);
-		model.addAttribute("pj_group",pj_group);
-		model.addAttribute("prjNum",prjNum);
+		
+		// TimeLine(Memo가져오기)
+		ArrayList<TimeLine> timelineList = dao.selectTimeLine(prj_Num);
+		
+		model.addAttribute("prj_Name",prj_Name);
+		model.addAttribute("pjgroupList",pjgroupList);
+		model.addAttribute("map",map);
+		model.addAttribute("timelineList",timelineList);
 		return "project/task";
 	}
 	

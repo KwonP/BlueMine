@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -206,7 +207,20 @@ public class TimeLineController {
 			if (list != null && list.size() > 0) {
 				for (int i = list.size()-1; i >=0 ; i--) {
 					boolean check = true;
+					
 					if(list.get(i).getInfo_Type().equals("gp_Work")) {
+						/*
+						HashMap<String,Object> map = new HashMap<>();
+						map.put("id", loginId);
+						map.put("gs_Num", list.get(i).getInfo_Num());
+						HashMap<String,Object> mapInfo=tlDAO.getGSInfo(map);
+						Iterator<String> iterator = mapInfo.keySet().iterator();
+			
+						while (iterator.hasNext()) { 
+							String key = (String)iterator.next(); 
+							logger.info("key="+key+" / value="+mapInfo.get(key)); 
+						}
+						*/
 						while(true) {
 						GP_Work gw = tlDAO.getGP_Work_Gs_Num(list.get(i).getInfo_Num());
 						if(gw==null)break;
@@ -227,6 +241,7 @@ public class TimeLineController {
 						}
 						break;
 						}
+						
 						
 					}else if(list.get(i).getInfo_Type().equals("prjList")) {
 						ArrayList<UserInfo> uList = tlDAO.getUserList(list.get(i).getInfo_Num());
@@ -261,7 +276,7 @@ public class TimeLineController {
 						} else {
 							result = list.get(i).getUpdate_Date();
 						}
-						list.get(i).setUpdate_Date(list.get(i).getUpdate_Date() + "***" + result+"***"+info0+"***"+info1);
+						list.get(i).setUpdate_Date(list.get(i).getUpdate_Date() + "*-*" + result+"*-*"+info0+"*-*"+info1);
 						logger.info("정보들 : "+list.get(i).getUpdate_Date());
 						tlDAO.deleteTriggerInfo(list.get(i).getTrigger_Num());
 						
@@ -291,5 +306,45 @@ public class TimeLineController {
 			Thread.sleep(500);
 		}
 
+	}
+	@ResponseBody
+	@RequestMapping(value = "dateinfo", method = RequestMethod.GET)
+	public String dateInfo(String str){
+		
+		logger.info("=========="+str);
+			String [] array = str.split("\\*-*");
+			Calendar cal = Calendar.getInstance();
+			int nowTime = (int) (cal.getTimeInMillis() / 1000);
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			try {	
+				
+				String result = "";
+				Date date = df.parse(array[0]);
+				Calendar dCal = Calendar.getInstance();
+				dCal.setTime(date);
+				int writerTime = (int) (dCal.getTimeInMillis() / 1000);
+				if (nowTime - writerTime < 60) {
+					result = nowTime - writerTime + "Seconds Ago";
+				} else if ((nowTime - writerTime) / 60 < 60) {
+					result = (nowTime - writerTime) / 60 + "Minutes Ago";
+				} else if ((nowTime - writerTime) / 3600 < 24) {
+					result = (nowTime - writerTime) / 3600 + "Hours Ago";
+				} else if ((nowTime - writerTime) / (3600 * 24) < 7) {
+					result = (nowTime - writerTime) / (3600 * 24) + "Days Ago";
+				} else {
+					result = array[0];
+				}
+				str = array[0] + "*-*" + result+"*-*"+array[2]+"*-*"+array[3];
+				
+			
+				
+				
+			} catch (Exception e) {
+				logger.info(e.toString());
+			}
+			logger.info("=========="+str);
+		return str;
+		
+		
 	}
 }

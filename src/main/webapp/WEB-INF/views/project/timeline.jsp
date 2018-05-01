@@ -96,7 +96,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="noticeCheck">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-bell fa-fw" id="bell"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul id="notificationList" class="dropdown-menu dropdown-alerts">
                        
@@ -106,14 +106,14 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profileImg">
-                      <img src="showProfile" width="50px">
+                      <img src="../showProfile" width="50px">
 					  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -151,13 +151,16 @@
                             <!-- /.nav-second-level --> 
                         </li> 
                         <li> 
-                          <a href="#"><i class="fa fa-edit fa-fw"></i> Board</a> 
+                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a> 
                         </li> 
                         <li> 
-                            <a href="#"><i class="fa fa-paste fa-fw"></i> Task</a> 
-                        </li> 
+                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> Task</a> 
+                        </li>
                         <li> 
-                            <a href="inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
+                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> Gantt Chart</a> 
+                        </li>  
+                        <li> 
+                            <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
                         </li> 
                        </li>
                     </ul> 

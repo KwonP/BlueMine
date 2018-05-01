@@ -51,7 +51,35 @@
  <script type="text/javascript" src="./resources/js/mainPage.js"></script>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
-</head>
+</head><script src="./resources/toastr/toastr.min.js"></script>
+<link href="./resources/toastr/toastr.css" rel="stylesheet">
+<script src="./resources/js/notificationList.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.companyInfo').click(menuPage);
+    	updateCheck('${loginId}','./');
+    	getNotice();
+	});
+	function menuPage(){
+		var menuPage = $(this).attr('value');
+		location.href = menuPage;
+	}
+	function getNotice(){ 
+		if(${nList==null}){
+			return ;
+		}
+			var list = new Array();
+			<c:forEach items="${nList}" var="item">
+			var trigger_Num="${item.trigger_Num}";
+			var info_Type="${item.info_Type}";
+			var info_Num="${item.info_Num}";
+			var info_Content="${item.info_Content}";
+			var update_Date="${item.update_Date}";
+			var command_Check="${item.command_Check}";
+			showNotice({trigger_Num : trigger_Num, info_Type : info_Type, info_Num:info_Num, info_Content:info_Content, update_Date:update_Date, command_Check:command_Check},'./');
+			</c:forEach>
+	}
+	</script>
 
 <body>
 <div id="load">
@@ -80,49 +108,12 @@
 
 			<ul class="nav navbar-top-links navbar-right">
 				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
+				<li class="dropdown"><a class="dropdown-toggle" id="noticeCheck"
+					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw" id="bell"></i>
 						<i class="fa fa-caret-down"></i>
 				</a>
-					<ul class="dropdown-menu dropdown-alerts">
-						<li><a href="#">
-								<div>
-									<i class="fa fa-comment fa-fw"></i> New Comment <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
-										class="pull-right text-muted small">12 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-tasks fa-fw"></i> New Task <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a class="text-center" href="#"> <strong>See
-									All Alerts</strong> <i class="fa fa-angle-right"></i>
-						</a></li>
+					<ul id="notificationList" class="dropdown-menu dropdown-alerts">
+						
 					</ul> <!-- /.dropdown-alerts --></li>
 				<!-- /.dropdown -->
 				<li class="dropdown">
@@ -222,7 +213,7 @@
 		</select>							
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.href='goToMain'">Close</button> 
         <button id="CreatePrj" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addGroup">Create</button>
         
       </div>
@@ -255,7 +246,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 		
-	
+	<script src="./resources/js/worker.js"></script>
 </body>
 
 </html>
