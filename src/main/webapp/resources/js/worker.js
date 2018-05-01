@@ -1,21 +1,24 @@
 /**
  * 
  */
-
-var updateCheck = function(loginId){
+var pass = '../';
+var updateCheck = function(loginId,addPass){
+	if(addPass!=null){
+		pass=addPass;
+	}
 	
 	if(loginId==null||loginId==''){
 		console.log('로그인 아이디 없음');
 		loginId='test';//임시
 	}
-	checkNotifications(loginId)
-	setTimeout('updateCheck("'+loginId+'")',5000);
+	checkNotifications(loginId,addPass)
+	setTimeout('updateCheck("'+loginId+'","'+pass+'")',5000);
 };
 
 function checkNotifications(loginId){
 	
 	$.ajax({
-		url : 'checknotifications',
+		url : pass+'project/checknotifications',
 		tpue : 'get',
 		data : {loginId:loginId},
 		dataType : 'JSON',
@@ -39,6 +42,7 @@ function postNotifications(list){
 		
 		var type='';
 		var command = '';
+		var splitArray = list[i].update_Date.split('***');
 		toastr.options = {
 				  "closeButton": true,
 				  "debug": true,
@@ -59,7 +63,6 @@ function postNotifications(list){
 				  "hideMethod": "fadeOut",
 				  "tapToDismiss": false
 				}
-		
 		if((list[i].command_Check==null||list[i].command_Check=='')&&(list[i].info_Content!=null&&list[i].info_Content!='')){
 			//INSERT
 			toastr.options.onclick=null;
@@ -67,23 +70,35 @@ function postNotifications(list){
 				type='프로젝트 ';
 				toastr.info(''+'<button type="button" class="btn clear" onclick="goProjectMain('+list[i].info_Num+')"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'(이)가 생성되었습니다.');
 			}else if(list[i].info_Type=='gp_Work'){
-				type='일감 ';
-				toastr.info(''+'<button type="button" class="btn clear" onclick="alert('+"'이동 주소를 설정해 주세요.'"+');">Yes</button>',type+ list[i].info_Content+'(이)가 생성되었습니다.');
+				type='프로젝트 '+splitArray[2]+' -그룹 '+splitArray[3]+'의 일감';
+				toastr.info(''+'<button type="button" class="btn clear" onclick="alert('+"'이동 주소를 설정해 주세요.'"+');"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'(이)가 생성되었습니다.');
 			}
 			
 		}else if((list[i].command_Check!=null&&list[i].command_Check!='')&&(list[i].info_Content==null||list[i].info_Content=='')){
 			//DELETE
 			toastr.options.onclick=null;
+			if(list[i].info_Type=='prjList'){
+				type='프로젝트 ';
+			}else if(list[i].info_Type=='gp_Work'){
+				type='프로젝트 '+splitArray[2]+' -그룹 '+splitArray[3]+'의 일감';
+			
+			}
 			toastr.error('', type+list[i].command_Check+'(이)가 삭제되었습니다.');
 		}else{
 			//UPDATE
 			//JSON.stringify(list[i])
-			toastr.success('', type+list[i].info_Content+'(이)가 수정되었습니다.');
+			toastr.options.onclick=null;
+			if(list[i].info_Type=='prjList'){
+				type='프로젝트 ';
+				toastr.success(''+'<button type="button" class="btn clear" onclick="goProjectMain('+list[i].info_Num+')"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'(이)가 수정되었습니다.');
+			}else if(list[i].info_Type=='gp_Work'){
+				type='프로젝트 '+splitArray[2]+' -그룹 '+splitArray[3]+'의 일감';
+				toastr.success(''+'<button type="button" class="btn clear" onclick="alert('+"'이동 주소를 설정해 주세요.'"+');"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'(이)가 수정되었습니다.');
+			}
 		}
 		showNotice(list[i]);
 	}
 }
 function goProjectMain(prj_Num){
-	alert('이동합니다.');
-	location.href = "../project/sendNum?prj_Num="+prj_Num;
+	location.href = pass+"project/sendNum?prj_Num="+prj_Num;
 }

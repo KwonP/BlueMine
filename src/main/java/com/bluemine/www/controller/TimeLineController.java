@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.bluemine.www.HomeController;
 import com.bluemine.www.dao.ProjectDAO;
 import com.bluemine.www.dao.TimeLineDAO;
-import com.bluemine.www.dao.UserInfoDAO;
 import com.bluemine.www.util.PageNavigator;
 import com.bluemine.www.vo.GP_Work;
 import com.bluemine.www.vo.PJ_Group;
@@ -48,16 +47,9 @@ public class TimeLineController {
 	TimeLineDAO tlDAO;
 	@Inject
 	ProjectDAO pjDAO;
-	
-	@Inject
-	UserInfoDAO uDao;
 
 	@RequestMapping("/xxx")
-	public String xxx(HttpSession session) {
-		// 채팅 페이지 로그아웃
-		String getId = (String)session.getAttribute("loginId");
-		uDao.logOut(getId);
-		
+	public String xxx() {
 		return "/project/timeline";
 	}
 
@@ -204,25 +196,33 @@ public class TimeLineController {
 
 			ArrayList<TriggerInfo> list = new ArrayList<>();
 			list = tlDAO.getTriggerInfo();
-			
+			String info0 = "/";	//프로젝트 이름 넣을 곳
+			String info1="/";	//그룹 이름 넣을 곳
 			Calendar cal = Calendar.getInstance();
 			int nowTime = (int) (cal.getTimeInMillis() / 1000);
 			if (list != null || list.size() > 0) {
 				for (int i = list.size()-1; i >=0 ; i--) {
-					logger.info(session.getAttributeNames().toString());
 					boolean check = true;
 					if(list.get(i).getInfo_Type().equals("gp_Work")) {
+						while(true) {
 						GP_Work gw = tlDAO.getGP_Work_Gs_Num(list.get(i).getInfo_Num());
+						if(gw==null)break;
 						PJ_Group pg = tlDAO.getPJ_Group_Gp_Num(gw.getGp_Num());
+						if(pg==null)break;
 						PRJList prj = tlDAO.getProjectInfo(pg.getPrj_Num());
+						if(prj==null)break;
 						ArrayList<UserInfo> uList = tlDAO.getUserList(prj.getPrj_Num());
+						if(uList==null)break;
 						for(int j=0;j<uList.size();j++) {
 							
 							if(loginId.equals(uList.get(j).getUserId())) {
-								logger.info(list.get(i).toString());
+								info0=prj.getPrj_Name();
+								info1=pg.getGp_Name();
 								check=false;
 								break;
 							}
+						}
+						break;
 						}
 						
 					}else if(list.get(i).getInfo_Type().equals("prjList")) {
@@ -230,7 +230,6 @@ public class TimeLineController {
 						logger.info(loginId+"===="+uList.toString());
 						for(int j=0;j<uList.size();j++) {
 							if(loginId.equals(uList.get(j).getUserId())) {
-								logger.info(list.get(i).toString());
 								check=false;
 								break;
 							}
@@ -259,13 +258,12 @@ public class TimeLineController {
 						} else {
 							result = list.get(i).getUpdate_Date();
 						}
-						list.get(i).setUpdate_Date(list.get(i).getUpdate_Date() + "***" + result);
-						logger.info(i + "반복");
+						list.get(i).setUpdate_Date(list.get(i).getUpdate_Date() + "***" + result+"***"+info0+"***"+info1);
+						logger.info("정보들 : "+list.get(i).getUpdate_Date());
 						// tlDAO.deleteTriggerInfo(list.get(i).getTrigger_Num());
 						
 						
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						logger.info(e.toString());
 					}
 			
