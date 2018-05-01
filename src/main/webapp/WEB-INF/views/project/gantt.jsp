@@ -83,7 +83,9 @@ img{
 	      var oncomlist = [];
 	      var allgpworklist = [];
 	      var gpnamelist = [];
-	     
+	      var startdateList = [];
+	      var deadlineList = [];
+	      
 	      <c:forEach items="${pjgroupList}" var="item">
 
 	      pglist.push("${item}");
@@ -108,20 +110,44 @@ img{
 
 	      </c:forEach>
 	      
+	      <c:forEach items="${startdateList}" var="item">
+
+	      startdateList.push("${item}");
+
+	      </c:forEach>
+	      
+	      <c:forEach items="${deadlineList}" var="item">
+
+	      deadlineList.push("${item}");
+
+	      </c:forEach>
+	      var inside = [];
 	      for (var i = 0; i < allgpworklist.length; i++) {
-	    	  alert(gpnamelist[i]);
-	    	  alert(gpnamelist[i]);
-	    	  alert(pglist[i]);
-	    	  alert(gpnamelist[i]);
-	    	 
-	    	  alert(allgpworklist[i].start_Date);
+	    	 var temp1 = startdateList[i].split(', ');
+	    	 var temp2 = [];
+	    	 temp2.push(parseInt(temp1[0]));
+	    	 temp2.push(parseInt(temp1[1]));
+	    	 temp2.push(parseInt(temp1[2]));
+	    	 var temp3 = deadlineList[i].split(', ');
+	    	 var temp4 = [];
+	    	 temp4.push(parseInt(temp3[0]));
+	         temp4.push(parseInt(temp3[1]));
+	    	 temp4.push(parseInt(temp3[2]));
 	    	 if(oncomlist[i] == "Completed") {
-		    	 data.addRows([ gpnamelist[i], gpnamelist[i], pglist[i],  new Date(allgpworklist[i].start_Date),  new Date(allgpworklist[i].deadLine) , null, 100, null]);
+		    	 inside.push([ gpnamelist[i], gpnamelist[i], pglist[i],  new Date(temp2[0], temp2[1], temp2[2]),  new Date(temp4[0], temp4[1], temp4[2]) , null, 100, null]);
 	    	 } else {
-	    		 data.addRows([ gpnamelist[i], gpnamelist[i], pglist[i],  new Date(allgpworklist[i].start_Date),  new Date(allgpworklist[i].deadLine) , null, 0, null]);
+	    		 inside.push([ gpnamelist[i], gpnamelist[i], pglist[i],  new Date(temp2[0], temp2[1], temp2[2]),  new Date(temp4[0], temp4[1], temp4[2]) , null, 0, null]);
 	    	 }
 	      }
-  		
+	      var outside = [];
+	      for(var t in inside) {
+	    	  outside.push(t);
+	      }
+	      for(var t in outside) {
+	    	  alert(outside.toSource());
+	      }
+	      data.addRows(outside.toSource());
+	      
 	      /* data.addRows([
 	        ['2014Spring', 'Spring 2014', 'spring',
 	         new Date(2014, 2, 22), new Date(2014, 5, 20), null, 100, null],

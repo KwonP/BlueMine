@@ -69,10 +69,11 @@ public class TaskController {
 		int num2 = Integer.parseInt(gp_Pri);
 		gp_work.setGp_Pri(num2);
 		gp_work.setTaskCategory(taskCategory);
-		System.out.println(gp_work);
+
 		int num = dao.insertTask(gp_work);
-		System.out.println(num);
+		
 		String str = String.valueOf(num);
+		
 		return str;
 	}
 	

@@ -24,8 +24,8 @@
 			, gs_Name
 			, gp_Num
 			, gs_Content
-			, TO_NUMBER(TO_CHAR(start_Date, 'YYYY, MM, DD')), 'YYYY, MM, DD')
-			, TO_NUMBER(TO_CHAR(deadLine, 'YYYY, MM, DD')), 'YYYY, MM, DD')
+			, start_Date
+			, deadLine
 			, gp_Pri
 			, progress
 			, taskCategory
