@@ -41,9 +41,13 @@
  <link href="./resources/css/basic.css" rel="stylesheet">
 	<!-- JS -->
 	<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./resources/js/jquery.flip.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('.companyInfo').click(menuPage);
+		$('#page-wrapper').fadeIn(1200);
+		$("#card").flip();
+		$('#card2').flip();
 	});
 	function menuPage(){
 		var menuPage = $(this).attr('value');
@@ -51,12 +55,31 @@
 	}
 	</script>
 	<style type="text/css">
+	#page-wrapper{ display : none;}
 	 h1 {
 	    font-size: 100px;
-	    text-align: right;
+	    text-align: center;
 	    font-weight: bold;
 	    color: #4b85c6;
 	}
+	h2{
+		font-size: 45px;
+	    font-weight: bold;
+	    color: #cf1f1f;
+	    margin-top: 60px;
+    }
+	.imgs{text-align: center;}
+	#card{position: absolute !important; left: 0px; width: 626px; margin-left: 75px;}
+	#card2{position: absolute !important; right: 65px; width: 626px;}
+	.back{text-align: center;}
+	ul{
+		margin-top: 0;
+	    margin-bottom: 10px;
+	    list-style: none;
+	    line-height: 110px;
+	    padding: 0;
+	    font-size: 30px;
+	   }
 	</style>
 </head>
 
@@ -84,18 +107,40 @@
  
         <div id="page-wrapper"> 
           <h1 class="header">Blue Mine</h1>
-          <div class="imgs">
-	          <img src="./resources/img/office1.jpg">
-	          <img src="./resources/img/office2.jpg">
-          </div>
+          <div id="card"> 
+			  <div class="front"> 
+		          <img src="./resources/img/office1.jpg">
+			  </div> 
+			  <div class="back" id="back1">
+			  <h2>시간효율성 증대</h2>
+			  <ul>
+			  	<li>개인 스케줄, 회사 스케줄 동시 정리!</li>
+				<li>멀티 태스킹 능력 향상!</li>			  	
+				<li>일정을 체크하며 효율적인 시간 관리!</li>
+			  </ul>
+			  </div> 
+		  </div>
+			
+		  <div id="card2"> 
+			  <div class="front"> 
+		          <img src="./resources/img/office2.jpg">
+			  </div> 
+			  <div class="back" id="back2">
+			  <h2>체계적인 관리</h2>
+			  <ul>
+			  	<li>다양한 스케줄 동시에 관리!</li>
+			  	<li>간트차트로 데이터 한 눈에 보기!</li>
+			  	<li>알림으로 그때 그때 일정 확인하기!</li>
+			  </ul>
+			  </div> 
+		  </div>
+         </div>
         </div> 
         <!-- /#page-wrapper --> 
 
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="./resources/templet/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="./resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
