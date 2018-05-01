@@ -154,7 +154,7 @@
                           <a href="#"><i class="fa fa-edit fa-fw"></i> Board</a> 
                         </li> 
                         <li> 
-                            <a href="#"><i class="fa fa-paste fa-fw"></i> Task</a> 
+                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> Task</a> 
                         </li> 
                         <li> 
                             <a href="inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 

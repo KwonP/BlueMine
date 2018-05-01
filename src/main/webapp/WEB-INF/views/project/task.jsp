@@ -86,50 +86,8 @@
 		
 	<!-- JS -->
 	<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$('.companyInfo').click(menuPage);
-	});
-	function menuPage(){
-		var menuPage = $(this).attr('value');
-		location.href = menuPage;
-	}
-	</script>
-
-	<script>
-		function check(){
-			// 날짜 비교
-			var startValue = $('#startDate').val();
-			startValue = startValue.split('-');
-			var startDate = new Date();
-			startDate.setFullYear(startValue[0],(startValue[1]-1),startValue[2]);
-			
-			var endValue = $('#deadLine').val();
-			endValue = endValue.split('-');
-			var deadLine = new Date();
-			deadLine.setFullYear(endValue[0],(endValue[1]-1),endValue[2]);
-			if (startDate > deadLine) {
-				alert("시작날짜와 마감날짜를 확인해주세요");
-				return false;
-			}
-			startDate = $('#startDate').val();
-			deadLine = $('#deadLine').val();
-			
-			return true;
-		}
-	</script>
-
-
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
-		$(document).ready(function() {
-			$('#dataTables-example').DataTable({
-				responsive : true
-			});
-		});
-	</script>
-
-<style>
+	
+	<style>
 p {
 	font-size: 24px;
 }
@@ -197,6 +155,49 @@ option {
 	opacity: 1;
 }
 </style>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('.companyInfo').click(menuPage);
+	});
+	function menuPage(){
+		var menuPage = $(this).attr('value');
+		location.href = menuPage;
+	}
+	</script>
+
+	<script>
+		function check(){
+			// 날짜 비교
+			var startValue = $('#startDate').val();
+			startValue = startValue.split('-');
+			var startDate = new Date();
+			startDate.setFullYear(startValue[0],(startValue[1]-1),startValue[2]);
+			
+			var endValue = $('#deadLine').val();
+			endValue = endValue.split('-');
+			var deadLine = new Date();
+			deadLine.setFullYear(endValue[0],(endValue[1]-1),endValue[2]);
+			if (startDate > deadLine) {
+				alert("시작날짜와 마감날짜를 확인해주세요");
+				return false;
+			}
+			startDate = $('#startDate').val();
+			deadLine = $('#deadLine').val();
+			
+			return true;
+		}
+	</script>
+
+
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive : true
+			});
+		});
+	</script>
 
 <script>
 	function popup() {
