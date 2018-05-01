@@ -19,11 +19,13 @@ import com.bluemine.www.interfaces.TaskMapper;
 import com.bluemine.www.interfaces.TimeLineMapper;
 import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.MatchGP_Work;
 import com.bluemine.www.vo.PJ_Group;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
 import com.bluemine.www.vo.TriggerInfo;
 import com.bluemine.www.vo.UserInfo;
+import com.fasterxml.jackson.databind.deser.DataFormatReaders.Match;
 
 /**
  * 일감 관련 DAO
@@ -118,5 +120,101 @@ public class TaskDAO implements TaskMapper{
 		}
 
 		return result;
+	}
+
+	/**
+	 * 아이디 
+	 * @param 
+	 */	
+	public MatchGP_Work selectMatchgpWork(String getId) {
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		
+		MatchGP_Work list = null;
+		try {
+			list = mapper.selectMatchgpWork(getId);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	/**
+	 * 그룹의 모든 작업가져오기 
+	 * @param gs_num
+	 */	
+	public ArrayList<GP_Work> selectGpwork(int gs_Num) {
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		
+		ArrayList<GP_Work> gpwork = null;
+		try {
+			gpwork = mapper.selectGpwork(gs_Num);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return gpwork;
+	}
+
+	/**
+	 * 모든 타임라인 가져오기 
+	 * @param prj_num
+	 */	
+	public ArrayList<TimeLine> selectTimeLine(int prj_Num) {
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		
+		ArrayList<TimeLine> list = null;
+		try {
+			list = mapper.selectTimeLine(prj_Num);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	public ArrayList<PJ_Group> selectAllGroups(int prj_Num) {
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		
+		ArrayList<PJ_Group> list = null;
+		try {
+			list = mapper.selectAllGroups(prj_Num);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	public  ArrayList<GP_Work> selectEachGpworks(int gp_Num) {
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		
+		 ArrayList<GP_Work> gpwork = null;
+		try {
+			gpwork = mapper.selectEachGpworks(gp_Num);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return gpwork;
+	}
+
+	public String selectPrjName(int prj_Num) {
+		TaskMapper mapper = sqlSession.getMapper(TaskMapper.class);
+		
+		String gpwork = null;
+		try {
+			gpwork = mapper.selectPrjName(prj_Num);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return gpwork;
 	}	
 }

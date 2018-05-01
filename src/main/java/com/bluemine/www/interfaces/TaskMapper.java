@@ -1,18 +1,10 @@
 package com.bluemine.www.interfaces;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.ibatis.session.RowBounds;
-
-import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.MatchGP_Work;
 import com.bluemine.www.vo.PJ_Group;
-import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
-import com.bluemine.www.vo.TriggerInfo;
-import com.bluemine.www.vo.UserInfo;
 
 /**
  * 일감 관련 Mybatis 사용 메서드
@@ -33,5 +25,21 @@ public interface TaskMapper {
 
 	//메모 추가
 	public int insertMemo(TimeLine timeline);
+
+	//개인이 속한 모든 그룹 가져오기
+	public MatchGP_Work selectMatchgpWork(String getId);
+
+	//매칭된 모든 작업들 가져오기
+	public ArrayList<GP_Work> selectGpwork(int gs_Num);
+
+	//해당 프로젝트의 타임라인 가져오기 가져오기
+	public ArrayList<TimeLine> selectTimeLine(int prj_Num);
+
+	public ArrayList<PJ_Group> selectAllGroups(int prj_Num);
+
+	public  ArrayList<GP_Work> selectEachGpworks(int gp_Num);
+
+	public String selectPrjName(int prj_Num);
+	
 	
 }

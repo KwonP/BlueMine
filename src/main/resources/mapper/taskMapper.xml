@@ -85,4 +85,84 @@
 			, #{tl_Content}
 		)
 	</insert>
+
+	<!-- Task 가져오기 -->
+	<select id="selectMatchgpWork" parameterType="String" resultType="matchgpWork">
+		select
+			gs_Num 
+			, userId 
+		from
+			MATCHGP_WORK
+		where
+			userId = #{userId}
+	</select>
+	
+	<!-- Task 가져오기 -->
+	<select id="selectGpwork" parameterType="int" resultType="gpWork">
+		select
+			gs_Num
+			, gs_Name
+			, gp_Num
+			, gs_Content
+			, start_Date
+			, deadLine
+			, gp_Pri
+			, progress
+			, taskCategory
+		from
+			GP_WORK
+		where
+			gs_Num = #{gs_Num}
+	</select>
+	
+	<!-- Task 가져오기 -->
+	<select id="selectTimeLine" parameterType="int" resultType="timeLine">
+		select
+			tl_Num
+			, prj_Num
+			, writer
+			, w_Date
+			, tl_Content
+		from
+			TIMELINE
+		where
+			prj_Num = #{prj_Num}
+	</select>
+
+	<select id="selectAllGroups" parameterType="int" resultType="group">
+		select
+			gp_Num
+			, prj_Num
+			, gp_Name
+		from
+			PJ_GROUP
+		where
+			prj_Num = #{prj_Num}
+	</select>
+	
+	<select id="selectEachGpworks" parameterType="int" resultType="gpWork">
+		select
+			gs_Num
+			, gs_Name
+			, gp_Num
+			, gs_Content
+			, start_Date
+			, deadLine
+			, gp_Pri
+			, progress
+			, taskCategory
+		from
+			GP_WORK
+		where
+			gp_Num = #{gp_Num}
+	</select>
+	
+	<select id="selectPrjName" parameterType="int" resultType="String">
+		select
+			prj_Name
+		from
+			PRJLIST
+		where
+			prj_Num = #{prj_Num}
+	</select>
 </mapper>
