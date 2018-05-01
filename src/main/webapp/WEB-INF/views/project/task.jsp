@@ -388,9 +388,8 @@ option {
 			error: function(cnt) {
 				alert('에러');
 			}				
-		});*/ 
-	}
-	
+		});}*/ 
+		
 	//새 메세지 추가
 	function insertReply() {
 		var btn_input = $('#btn-input').val();
