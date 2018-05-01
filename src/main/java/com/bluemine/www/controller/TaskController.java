@@ -1,5 +1,6 @@
 package com.bluemine.www.controller;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
@@ -101,5 +102,16 @@ public class TaskController {
 		String str = String.valueOf(num);
 		
 		return str;
+	}
+	
+	// 다중 일감 진행도 변경
+	@ResponseBody
+	@RequestMapping(value="/changeProgress",method=RequestMethod.POST)
+	public String changeProgress(ArrayList<String> checked){
+		for(int i = 0; i < checked.size(); i++){
+			System.out.println(checked.get(i));
+		}
+		System.out.println(checked);
+		return null;
 	}
 }

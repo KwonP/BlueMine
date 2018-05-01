@@ -447,7 +447,7 @@
 </body>
 <script type="text/javascript">
 var textarea = document.getElementById("messageWindow");
-var webSocket = new WebSocket('ws://localhost:8888/www/broadcasting');
+var webSocket = new WebSocket('ws://10.10.12.18:8888/www/broadcasting');
 var inputMessage = document.getElementById('inputMessage');
 webSocket.onerror = function(event) {
     onError(event)

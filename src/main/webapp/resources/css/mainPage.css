@@ -29,6 +29,7 @@ body {
 }
 .navbar{z-index: 9;}
 .navbar-header {padding: 10px 15px; float: left; }
+#page-wrapper{margin: unset;}
 .navbar-brand {font-size: 25px;}
 #profileImg{padding: 10px 0px 0px 0px;}
 #profileImg:hover{background-color: none;}
