@@ -62,9 +62,6 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
 
-<!-- Morris Charts JavaScript -->
-<script src="../resources/templet/vendor/raphael/raphael.min.js"></script>
-
 <!-- Custom Theme JavaScript -->
 <script src="../resources/templet/dist/js/sb-admin-2.js"></script>
 
@@ -83,9 +80,6 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<!-- JS -->
-<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
 
 <style>
 p {
@@ -297,7 +291,7 @@ option {
 			});	 
 		});
 	 */
-	function completeTask() {
+	/* function completeTask() { */
 		/* $(".ckbox").prop("checked", true) */
 		/* ${t.gs_Num} + ${status.count} */
 /* 		$(".ckbox").prop("checked", true).each(function(){
@@ -417,7 +411,8 @@ option {
 			error: function(cnt) {
 				alert('에러');
 			}				
-		});	 
+		});	
+		return;
 	}
 
 </script>
@@ -426,7 +421,6 @@ option {
 
 <body>
 	<div id="wrapper">
-
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0">
@@ -584,45 +578,42 @@ option {
 									</thead>
 									<tbody>
 										<!-- 반복 시작 -->
-										<%-- <c:forEach var="key" items="${keys}"> --%>
 										<c:if test="${sessionScope.loginId != null}">
-											<c:if test="${pjgroupList != null}">
-												<c:forEach var="key" items="${map}" varStatus="status">
-													<c:forEach var="m" items="${key[k.gp_Num][status.count]}">
-														<tr class="info" class="tt">
+											<c:if test="${gpworkList == null}">
+											</c:if>
+											<c:if test="${gpworkList != null}">
+												<c:forEach var="r" items="${gpworkList}">
+													<c:if test="${k.gp_Num == r.gp_Num}">
+														<tr class="info" class="${r.gp_Num}">
 															<td>
 																<div class="btn-group" data-toggle="buttons">
-																	<c:if
-																		test="${key[k.gp_Num][status.count].progress == 0}">
+																	<c:if test="${r.progress == 0}">
 																		<input type="checkbox" class="ckbox"
-																			id="${key[k.gp_Num][status.count].gs_Num} + ${status.count}"
-																			value="${key[k.gp_Num][status.count].gs_Num}"
-																			name="getNums">
+																			id="${r.gs_Num} + ${status.count}"
+																			value="${r.gs_Num}" name="getNums">
 																	</c:if>
-																	<c:if
-																		test="${key[k.gp_Num][status.count].progress == 1}">
+																	<c:if test="${r.progress == 1}">
 																		<input type="checkbox" class="ckbox"
-																			id="${key[k.gp_Num][status.count].gs_Num} + ${status.count}"
-																			value="${key[k.gp_Num][status.count].gs_Num}"
-																			checked="checked" name="getNums">
+																			id="${r.gs_Num} + ${status.count}"
+																			value="${r.gs_Num}" checked="checked" name="getNums">
 																	</c:if>
 																</div>
 															</td>
-															<td>${key[k.gp_Num][status.count].gs_Name}</td>
-															<td>${key[k.gp_Num][status.count].gs_Content}</td>
-															<td>${key[k.gp_Num][status.count].taskCategory}</td>
-															<td>${key[k.gp_Num][status.count].start_Date}</td>
-															<td>${key[k.gp_Num][status.count].deadLine}</td>
-															<td>${key[k.gp_Num][status.count].gp_Pri}</td>
+															<td>${r.gs_Name}</td>
+															<td>${r.gs_Content}</td>
+															<td>${r.taskCategory}</td>
+															<td>${r.start_Date}</td>
+															<td>${r.deadLine}</td>
+															<td>${r.gp_Pri}</td>
 														</tr>
-													</c:forEach>
+													</c:if>
 												</c:forEach>
 											</c:if>
 										</c:if>
 
 										<tr>
 											<td class="table">
-												<button class="btn btn-primary" onclick="completeTask()">저장</button>
+												<button class="btn btn-primary" onclick="completeTask(${r.gp_Num})">저장</button>
 											</td>
 										</tr>
 									</tbody>
@@ -742,13 +733,13 @@ option {
 							<c:forEach var="i" items="${timelineList }">
 								<li class="left clearfix"><span class="chat-img pull-left">
 										<!-- 기본이미지 가지고오기 --> <!-- <img width="500" height="300" src=""/>  -->
-										<img src="../showProfile" alt="User Avatar" class="img-circle" />
+										<img src="../showProfile" class="img-circle" />
 								</span>
 									<div class="chat-body clearfix">
 										<div class="header">
 											<strong class="primary-font">${i.writer }</strong> <small
 												class="pull-right text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i> ${i.w_Date} mins ago
+												class="fa fa-clock-o fa-fw"></i> ${i.w_Date}
 											</small>
 										</div>
 										<p>${i.tl_Content }</p>
