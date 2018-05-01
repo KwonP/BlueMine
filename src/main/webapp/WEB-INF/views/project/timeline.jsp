@@ -85,10 +85,10 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="about">About</a>
-				<a class="companyInfo" value="contact">Contact Us</a>
-				<a class="companyInfo" value="help">Help</a>
+				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
+				<a class="companyInfo" value="../about">About</a>
+				<a class="companyInfo" value="../contact">Contact Us</a>
+				<a class="companyInfo" value="../help">Help</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -99,57 +99,7 @@
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul id="notificationList" class="dropdown-menu dropdown-alerts">
-                        <li style="background-color:#222222;border: 1px solid #222222; border-radius: 8px">
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
+                       
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
@@ -186,7 +136,7 @@
                             <!-- /input-group --> 
                         </li> 
                         <li> 
-                            <a href="goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
+                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
                         </li> 
                         <li> 
                             <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline<span class="fa arrow"></span></a> 

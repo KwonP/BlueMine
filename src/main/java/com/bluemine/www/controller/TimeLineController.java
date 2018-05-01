@@ -200,7 +200,10 @@ public class TimeLineController {
 			String info1="/";	//그룹 이름 넣을 곳
 			Calendar cal = Calendar.getInstance();
 			int nowTime = (int) (cal.getTimeInMillis() / 1000);
-			if (list != null || list.size() > 0) {
+			if(list == null || list.size() == 0){
+				return null;
+			}
+			if (list != null && list.size() > 0) {
 				for (int i = list.size()-1; i >=0 ; i--) {
 					boolean check = true;
 					if(list.get(i).getInfo_Type().equals("gp_Work")) {
@@ -260,7 +263,7 @@ public class TimeLineController {
 						}
 						list.get(i).setUpdate_Date(list.get(i).getUpdate_Date() + "***" + result+"***"+info0+"***"+info1);
 						logger.info("정보들 : "+list.get(i).getUpdate_Date());
-						// tlDAO.deleteTriggerInfo(list.get(i).getTrigger_Num());
+						tlDAO.deleteTriggerInfo(list.get(i).getTrigger_Num());
 						
 						
 					} catch (Exception e) {

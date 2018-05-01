@@ -55,8 +55,8 @@ function postNotifications(list){
 				  "preventDuplicates": false,
 				  "showDuration": "300",
 				  "hideDuration": "1000",
-				  "timeOut": "1000",
-				  "extendedTimeOut": "1000",
+				  "timeOut": "0",
+				  "extendedTimeOut": "0",
 				  "showEasing": "swing",
 				  "hideEasing": "linear",
 				  "showMethod": "fadeIn",
@@ -70,7 +70,7 @@ function postNotifications(list){
 				type='프로젝트 ';
 				toastr.info(''+'<button type="button" class="btn clear" onclick="goProjectMain('+list[i].info_Num+')"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'(이)가 생성되었습니다.');
 			}else if(list[i].info_Type=='gp_Work'){
-				type='프로젝트 '+splitArray[2]+' -그룹 '+splitArray[3]+'의 일감';
+				type='프로젝트 '+splitArray[2]+'의 그룹 '+splitArray[3]+'에 일감';
 				toastr.info(''+'<button type="button" class="btn clear" onclick="alert('+"'이동 주소를 설정해 주세요.'"+');"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'(이)가 생성되었습니다.');
 			}
 			
@@ -80,7 +80,7 @@ function postNotifications(list){
 			if(list[i].info_Type=='prjList'){
 				type='프로젝트 ';
 			}else if(list[i].info_Type=='gp_Work'){
-				type='프로젝트 '+splitArray[2]+' -그룹 '+splitArray[3]+'의 일감';
+				type='프로젝트 '+splitArray[2]+'의 그룹 '+splitArray[3]+'에 일감';
 			
 			}
 			toastr.error('', type+list[i].command_Check+'(이)가 삭제되었습니다.');
@@ -92,7 +92,7 @@ function postNotifications(list){
 				type='프로젝트 ';
 				toastr.success(''+'<button type="button" class="btn clear" onclick="goProjectMain('+list[i].info_Num+')"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'(이)가 수정되었습니다.');
 			}else if(list[i].info_Type=='gp_Work'){
-				type='프로젝트 '+splitArray[2]+' -그룹 '+splitArray[3]+'의 일감';
+				type='프로젝트 '+splitArray[2]+'의 그룹 '+splitArray[3]+'에 일감';
 				toastr.success(''+'<button type="button" class="btn clear" onclick="alert('+"'이동 주소를 설정해 주세요.'"+');"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'(이)가 수정되었습니다.');
 			}
 		}

@@ -35,7 +35,7 @@ function showNotice(list,addPass){
 			link = ' onclick="goNotificationPage('+nList[i].info_Num+','+"'"+nList[i].info_Type+"'"+')"';
 			
 		}else if(nList[i].info_Type=='gp_Work'){
-			type='프로젝트 '+splitArray[2]+' -그룹 '+splitArray[3]+'의 일감';
+			type='프로젝트 '+splitArray[2]+'의 그룹 '+splitArray[3]+'에 일감';
 			link = ' onclick=""';
 	
 		}
@@ -61,7 +61,7 @@ function showNotice(list,addPass){
 		
 	
 	str='';
-	str+='<li ><a href="#" '+link+' style="background-color:'+color+';border: 1px solid '+color+'; border-radius: 8px; color:#333333;><i class="'+icon+'"></i>'+type+message+t+ '<span';
+	str+='<li ><a href="#" '+link+' style="background-color:'+color+';border: 1px solid '+color+'; border-radius: 8px; color:#333333;"><div><i class="'+icon+'"></i>'+type+message+ '<span';
 	str+='class="pull-right text-muted small"><br>'+splitArray[1]+'</span></div>';
 	str+='</a></li><li class="divider" style="background-color:rgba(255,255,255,0); "></li>';
 	$('#notificationList').css('background-color','rgba(255,255,255,0)');
