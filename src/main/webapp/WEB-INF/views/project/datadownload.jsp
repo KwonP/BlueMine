@@ -194,7 +194,7 @@ img{
                             <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
                         </li> 
                         <li> 
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline</a> 
+                            <a href="../project/timeline"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline</a> 
                         </li> 
                         <li> 
                           <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a> 
