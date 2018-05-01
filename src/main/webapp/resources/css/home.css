@@ -160,6 +160,7 @@ h1{
     position: relative;
     text-shadow: 2px 2px 1px #332c2cc4;
 }
+.findPw:hover{ cursor : pointer;}
 .findForm{
 	top: 175px;
     left: 110px;
