@@ -11,7 +11,7 @@ var updateCheck = function(loginId,addPass){
 		console.log('로그인 아이디 없음');
 		loginId='test';//임시
 	}
-	checkNotifications(loginId,addPass)
+	checkNotifications(loginId)
 	setTimeout('updateCheck("'+loginId+'","'+pass+'")',5000);
 };
 
@@ -42,7 +42,7 @@ function postNotifications(list){
 		
 		var type='';
 		var command = '';
-		var splitArray = list[i].update_Date.split('***');
+		var splitArray = list[i].update_Date.split('*-*');
 		toastr.options = {
 				  "closeButton": true,
 				  "debug": true,
