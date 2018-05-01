@@ -212,7 +212,7 @@ option {
 		}
 	}
 
-	function makeTask() {
+	function makeTask(pj_group) {
 		check();		
 		
 		var gs_Name = $('#gs_Name').val();
@@ -221,7 +221,7 @@ option {
 		var deadLine = $('#deadLine').val();
 		var gp_Pri = $('#gp_Pri').val();
 		var taskCategory = $('#taskCategory').val();
-		var gp_Num = ${pj_group.gp_Num};
+		var gp_Num = pj_group;
 		// var GP_Work = $('form[name=taskForm]').serialize();
 		
 		$.ajax({
@@ -400,7 +400,8 @@ option {
 	//새 메세지 추가
 	function insertReply() {
 		var btn_input = $('#btn-input').val();
-	
+		alert(1);
+		alert(btn_input);
 		$.ajax({
 			url: 'insertMemo', // 컨트롤러 value
 			type: 'POST', // 타입
@@ -741,9 +742,8 @@ option {
 							<c:forEach var="i" items="${timelineList }">
 								<li class="left clearfix"><span class="chat-img pull-left">
 										<!-- 기본이미지 가지고오기 --> <!-- <img width="500" height="300" src=""/>  -->
-										<img src="showProfile" alt="User Avatar" class="img-circle" />
+										<img src="../showProfile" alt="User Avatar" class="img-circle" />
 								</span>
-
 									<div class="chat-body clearfix">
 										<div class="header">
 											<strong class="primary-font">${i.writer }</strong> <small
@@ -764,7 +764,7 @@ option {
 							placeholder="Type your message here..." /> <span
 							class="input-group-btn">
 							<button class="btn btn-warning btn-sm" id="btn-chat"
-								onclick="insertReply();">WRITE</button>
+								onclick="insertReply()">WRITE</button>
 						</span>
 					</div>
 				</div>

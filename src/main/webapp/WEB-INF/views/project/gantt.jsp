@@ -14,6 +14,54 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>BLUE MINE</title>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="../resources/templet/vendor/raphael/raphael.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../resources/templet/dist/js/sb-admin-2.js"></script>
+
+<!-- Bootstrap Core CSS -->
+<link href="../resources/templet/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="../resources/templet/vendor/metisMenu/metisMenu.min.css"
+	rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="../resources/templet/dist/css/sb-admin-2.css"
+	rel="stylesheet">
+
+<!-- Morris Charts CSS -->
+<link href="../resources/templet/vendor/morrisjs/morris.css"
+	rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link
+	href="../resources/templet/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- modified CSS -->
+<link href="../resources/css/basic.css" rel="stylesheet">
+<!-- JS -->
+<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.companyInfo').click(menuPage);
+	});
+	function menuPage() {
+		var menuPage = $(this).attr('value');
+		location.href = menuPage;
+	}
+</script>
+
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -23,6 +71,7 @@
 	google.charts.setOnLoadCallback(drawChart);
 
 	function drawChart() {
+
 		var data = new google.visualization.DataTable();
 		data.addColumn('string', 'Task ID');
 		data.addColumn('string', 'Task Name');
@@ -140,7 +189,90 @@
 </head>
 
 <body>
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="goToMain">BLUE MINE</a> <a
+					class="companyInfo" value="about">About</a> <a class="companyInfo"
+					value="contact">Contact Us</a> <a class="companyInfo" value="help">Help</a>
+			</div>
+			<!-- /.navbar-header -->
+
+			<ul class="nav navbar-top-links navbar-right">
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
+						<i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-alerts">
+						<li><a href="#">
+								<div>
+									<i class="fa fa-comment fa-fw"></i> New Comment <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
+										class="pull-right text-muted small">12 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-tasks fa-fw"></i> New Task <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>See
+									All Alerts</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-alerts --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" id="profileImg"> <img
+						src="showProfile" width="50px"> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="profilePage"><i class="fa fa-user fa-fw"></i>
+								User Profile</a></li>
+						<li class="divider"></li>
+						<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i>
+								Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
+		</nav>
+	</div>
+	<br><br><br><br><br><br><br><br><br>
 	<div id="chart_div"></div>
+
 </body>
 
 </html>

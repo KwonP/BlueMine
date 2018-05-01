@@ -1,6 +1,5 @@
 package com.bluemine.www.controller;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bluemine.www.dao.TaskDAO;
 import com.bluemine.www.dao.UserInfoDAO;
 import com.bluemine.www.vo.GP_Work;
-import com.bluemine.www.vo.MatchGP_Work;
 import com.bluemine.www.vo.PJ_Group;
 import com.bluemine.www.vo.TimeLine;
 

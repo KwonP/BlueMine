@@ -151,11 +151,14 @@
                             <!-- /.nav-second-level --> 
                         </li> 
                         <li> 
-                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Board</a> 
+                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a> 
                         </li> 
                         <li> 
                             <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> Task</a> 
-                        </li> 
+                        </li>
+                        <li> 
+                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> Gantt Chart</a> 
+                        </li>  
                         <li> 
                             <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
                         </li> 
