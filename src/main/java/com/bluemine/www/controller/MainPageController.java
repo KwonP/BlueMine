@@ -20,12 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bluemine.www.dao.GroupDAO;
 import com.bluemine.www.dao.PositionDAO;
 import com.bluemine.www.dao.ProjectDAO;
 import com.bluemine.www.dao.UserInfoDAO;
 import com.bluemine.www.vo.CP_Department;
 import com.bluemine.www.vo.CP_Position;
 import com.bluemine.www.vo.MatchPRJ;
+import com.bluemine.www.vo.PJ_Group;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.UserInfo;
 
@@ -41,6 +43,9 @@ public class MainPageController {
 	PositionDAO posiDao;
 	@Inject
 	UserInfoDAO uDao;
+	@Inject
+	GroupDAO gDao;
+	
 	
 	@RequestMapping("/goToMain")
 	public String goToMail(HttpSession session){
@@ -178,7 +183,7 @@ public class MainPageController {
 	}
 	@ResponseBody
 	@RequestMapping(value="/setRelation",method=RequestMethod.POST)
-	public int makePrj(int prj_Num, String userId, RedirectAttributes ra){
+	public int makePrj(int prj_Num, String userId){
 		int result = 0;
 		logger.debug("관계 설정");
 		logger.debug("Prj_Num"+prj_Num);
@@ -188,5 +193,17 @@ public class MainPageController {
 		result=prjDao.setRelation(mp);
 		logger.debug("관계 설정 완료");
 		return mp.getPrjNum();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/makeGroup",method=RequestMethod.POST)
+	public int makeGroup(int prj_Num, String gp_Name){
+		int result = 0;
+		logger.debug("그룹 생성");
+		PJ_Group group = new PJ_Group();
+		group.setPrj_Num(prj_Num);
+		group.setGp_Name(gp_Name);
+		gDao.addGroup(group);
+		return group.getGp_Num();
 	}
 }

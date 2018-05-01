@@ -58,6 +58,7 @@
 	<img src="resources/img/loading.gif" alt="loading">
 </div>
 <input type="hidden" id="userId" value="${sessionScope.loginId}">
+<input type="hidden" name="prj_Num" id="prj_Num" value="" >
 	<div id="wrapper">
 
 		<!-- Navigation -->
@@ -269,8 +270,8 @@
 		
 		  <!-- 본인이 가진 project수 만큼 div 뿌려주기 -->
 		 <div class="panel panel-default">
-		  <div class="panel-heading">My Projects<div id="make" class="btn " val="one"
-		  data-toggle="modal" data-target="#myModal">생성</div></div>
+		  <div class="panel-heading">My Projects<div id="make" class="btn "
+		  data-toggle="modal" data-target="#addPrj">생성</div></div>
 		   <div class="panel-body" id="listWrap">
 			<c:forEach items="${pro_list}" var="list">
 			  <div class="panel panel-primary" value="${list.prj_Num}">
@@ -299,7 +300,7 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="./resources/templet/dist/js/sb-admin-2.js"></script>
 </div>
-<div class="modal" tabindex="-1" role="dialog" id="myModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="addPrj">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -308,7 +309,7 @@
       </div>
       <div class="modal-body">
       	<label >프로젝트 제목</label><br>
-        <input type="text" name="prj_Name" id="prj_Name" placeholder="Title" style="width: 100%"/>
+        <input type="text" name="prj_Name" id="prj_Name" placeholder="Title" style="width: 100%" maxlength="50"/>
       </div>
       <div class="modal-body">
         <label>책임자</label>
@@ -329,7 +330,7 @@
       </div>
       <div class="modal-body">
         <input class="form-control" name="planner"
-			id="planner" placeholder="성명" type="text" >
+			id="planner" placeholder="성명" type="text" maxlength="50" >
       </div>
       <div class="modal-body">
         <label>접근권한</label>
@@ -340,7 +341,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="CreatePrj" type="button" class="btn btn-primary">Create</button>
+        <button id="CreatePrj" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addGroup">Create</button>
+        
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -348,7 +350,7 @@
 
 
 
-<div class="modal" tabindex="-1" role="dialog" id="myModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="addGroup">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -357,15 +359,15 @@
       </div>
       <div class="modal-body">
       	<label >그룹 이름</label><br>
-        <input type="text" name="gp_Name" id="gp_Name" placeholder="Title" style="width: 100%"/>
-        <input type="hidden" name="prj_Num" id="prj_Num">
+        <input type="text" name="gp_Name" id="gp_Name" placeholder="Title" style="width: 100%" maxlength="50"/>
+        
       </div>
       <div class="modal-body">
         						
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="CreatePrj" type="button" class="btn btn-primary">Create</button>
+        <button id="CreateGroup" type="button" class="btn btn-primary">Create</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

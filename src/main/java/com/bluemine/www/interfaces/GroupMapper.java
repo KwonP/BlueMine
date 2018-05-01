@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.MatchGP_Work;
 import com.bluemine.www.vo.PJ_Group;
 
 public interface GroupMapper {
@@ -24,4 +25,6 @@ public interface GroupMapper {
 	// ex)디폴트 {'gs_Num':gs_Num, 'sort':null} 진행도순 {'gs_Num':gs_Num,
 	// 'sort':'progress'}
 	public ArrayList<GP_Work> getListGP_Work(HashMap<String, Object> map);
+	//그룹스케줄과 유저의 관계 설정
+	public int relationGP_Work(MatchGP_Work mgw);
 }

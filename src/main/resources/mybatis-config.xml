@@ -10,6 +10,7 @@
  		<typeAlias type="com.bluemine.www.vo.FileInfo" alias="fileInfo"/>
  		<typeAlias type="com.bluemine.www.vo.GP_Work" alias="gpWork"/>
  		<typeAlias type="com.bluemine.www.vo.MatchPRJ" alias="matchPrj"/>
+ 		<typeAlias type="com.bluemine.www.vo.MatchGP_Work" alias="matchgpWork"/>
  		<typeAlias type="com.bluemine.www.vo.PJ_Group" alias="group"/>
  		<typeAlias type="com.bluemine.www.vo.PRJList" alias="prjList"/>
  		<typeAlias type="com.bluemine.www.vo.PS_Work" alias="psWork"/>

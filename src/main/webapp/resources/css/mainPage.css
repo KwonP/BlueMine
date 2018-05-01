@@ -27,7 +27,8 @@ body {
   	  	margin-top: -115px;
 		z-index: 100;
 }
-.navbar-header {padding: 10px 15px; float: left;}
+.navbar{z-index: 9;}
+.navbar-header {padding: 10px 15px; float: left; }
 .navbar-brand {font-size: 25px;}
 #profileImg{padding: 10px 0px 0px 0px;}
 #profileImg:hover{background-color: none;}
@@ -39,7 +40,12 @@ body {
     cursor: pointer;
 }
 /* 여기까지는 기본 틀 */
-#listWrap {padding: 25px 55px;}
+#listWrap {
+	padding: 25px 55px;
+	overflow-x: auto;
+    height: 500px;
+    width: 100%;	
+}
 .panel-primary {
     border-color: #337ab7;
     width: 300px;
@@ -140,7 +146,7 @@ html.modal-active, body.modal-active {
 }
 .modal {
         text-align: center;
-        z-index: 10;
+        z-index: 30;
 }
 .modal-backdrop {
     position: fixed;
@@ -163,4 +169,14 @@ html.modal-active, body.modal-active {
                 content: " ";
                 height: 100%;
         }
+}
+.modal-title{
+	padding-left: 10px;
+}
+
+.modal-body .modal-footer{
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }

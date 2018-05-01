@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bluemine.www.interfaces.GroupMapper;
 import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.MatchGP_Work;
 import com.bluemine.www.vo.PJ_Group;
 
 //개인,그룹스케줄 및 체크리스트 관리
@@ -66,9 +67,15 @@ public class GroupDAO implements GroupMapper {
 	public ArrayList<GP_Work> getListGP_Work(HashMap<String, Object> map) {
 		ArrayList<GP_Work> list = session.getMapper(GroupMapper.class).getListGP_Work(map);
 		return list;
+	}	
+	//그룹 스케줄과 관계 세팅
+	@Override
+	public int relationGP_Work(MatchGP_Work mgw) {
+		int result = session.getMapper(GroupMapper.class).relationGP_Work(mgw);
+		return result;
 	}
 
-	
+
 
 	
 }

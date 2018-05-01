@@ -8,12 +8,18 @@
 
 <!-- 그룹 생성 -->
 <insert id="addGroup" parameterType="group">
+<selectKey resultType="int" keyProperty="GP_NUM" order="BEFORE">
+SELECT
+	GP_SEQ.NEXTVAL
+FROM 
+	dual
+</selectKey>
 INSERT INTO PJ_GROUP(
     GP_NUM
     ,PRJ_NUM
     ,GP_NAME
 )VALUES(
-    GP_SEQ.NEXTVAL
+    #{gp_Num}
     ,#{prj_Num}
     ,#{gp_Name}
 )
@@ -119,5 +125,15 @@ order by
 	<if test="sort=null">
 	gs_num
 	</if>		
+</select>
+
+<select id="relationGP_Work" parameterType="matchgpWork" >
+INSERT into MatchGP_Work(
+	gs_num
+	,userId
+)values(
+	#{gs_num}
+	,#{userId}
+);
 </select>
 </mapper>

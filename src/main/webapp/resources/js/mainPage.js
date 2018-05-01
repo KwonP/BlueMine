@@ -6,15 +6,15 @@ $(document).ready(function(){
 	$('.companyInfo').click(menuPage);
 	$('#schedule').click(mySchedule);
 	$('.panel-primary').click(projectMain);
-	
-
 
     //자동완성을 위한 정보 검색
     $('#cp_posi').on('change',check);
     $('#cp_dep').on('change',check);
     
     //프로젝트 생성
-    $('#CreatePrj').click(addPrj);
+    $('#CreatePrj').on('click',addPrj);
+    $('#CreateGroup').on('click',addGroup);
+    
 });
 function menuPage(){
 	var menuPage = $(this).attr('value');
@@ -68,7 +68,7 @@ function addPrj() {
 	const planner =document.getElementById("planner");
 	const access_Control = $("#access_Control option:selected").val();
 	const userId = $("#userId").val();
-	let prj_Num;
+	let prj_Num = document.getElementById('prj_Num');
 	
 	if (prj_Name.value == '') {
 	  ps_name.focus();
@@ -101,8 +101,13 @@ function addPrj() {
      	         success: function(e){
      	         	console.log('관계 세팅완료');
      	         	console.log('프로젝트 번호 : '+e);
-     	         	prj_Num=e;
      	         	console.log('prj_Num : '+e);
+     	         	$('#addPrj').removeAttr('class').addClass('out');
+     	         	$('#addGroup').css('display','block').addClass('in');
+     	         	$('#prj_Num').attr('value',e);
+     	         	prj_Num=$('#prj_Num').attr('value');
+     	         	console.log(prj_Num);
+     	         	$('#planner').val();
      	         },
      	         error: function(e) {
      	            alert('관계설정 실패');
@@ -112,8 +117,28 @@ function addPrj() {
          error: function(e) {
             alert('생성 실패');
          }
+      });  
+}
+function addGroup(){
+	var prj_Num = $('#prj_Num').val();
+	var gp_Name = $('#gp_Name').val();
+	console.log(prj_Num);
+	console.log(gp_Name);
+	$.ajax({
+         url: 'makeGroup',
+         type: 'POST',
+         data: {
+        	 prj_Num : prj_Num
+        	 ,gp_Name :gp_Name},
+         success: function(result){
+         	console.log('그룹 생성완료');
+         	console.log('그룹 번호 : '+result);
+         	console.log('gp_Num : '+result);
+         	$('gp_Name').val('');
+         },
+         error: function(error) {
+            alert('그룹생성 실패');
+            console.log(error);
+         }
       });
-  
-      
-   
 }
