@@ -43,10 +43,14 @@
     
 <!-- Modify css -->
  <link href="./resources/css/mainPage.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.min.css" />
+
 <!-- js -->
  <!-- jQuery -->
  <script src="./resources/templet/vendor/jquery/jquery.min.js"></script>
  <script type="text/javascript" src="./resources/js/mainPage.js"></script>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 </head>
 
 <body>
@@ -260,7 +264,8 @@
 		
 		  <!-- 본인이 가진 project수 만큼 div 뿌려주기 -->
 		 <div class="panel panel-default">
-		  <div class="panel-heading">My Projects<div class="btn" id="make">생성</div></div>
+		  <div class="panel-heading">My Projects<div id="make" class="btn " val="one"
+		  data-toggle="modal" data-target="#myModal">생성</div></div>
 		   <div class="panel-body" id="listWrap">
 			<c:forEach items="${pro_list}" var="list">
 			  <div class="panel panel-primary" value="${list.prj_Num}">
@@ -289,86 +294,79 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="./resources/templet/dist/js/sb-admin-2.js"></script>
 </div>
-<div id="layer" ></div>
-<!-- ポップアップ -->
-<div id="popup" class="white_content"
-	style="width: 800px; height: 570px;">
-	<div id="wrapper">
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">프로젝트 생성</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">Basic Form Elements</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<!-- <form role="form" action="makePrj" method="get" enctype="multipart/form-data" onsubmit=""> -->
-									<div class="form-group col-lg-12">
-										<label>제목</label> <input class="form-control" name="prj_Name"
-											id="prj_Name" placeholder="Title">
-									</div>
-									<div class="form-group col-lg-12">
-										<label>책임자</label>
-										<div class="row">
-										<div class="col-lg-4">
-										<select class="form-control" name="cp_dep"
-											id="cp_dep">
-											<option value=""  selected="selected">부서</option>
-											<c:forEach  items="${sessionScope.dep_list}" var="list">
-											<option value="${list.depNameKr}">${list.depNameKr}</option>
-											</c:forEach>
-										</select>
-										</div>
-										<div class="col-lg-4 ">
-										<select class="form-control" name="cp_posi"
-											id="cp_posi" onselect="">
-											<option value="" selected="selected">직급</option>
-											<c:forEach items="${sessionScope.posi_list}" var="list">
-											<option value="${list.positionName}">${list.positionName}</option>
-											</c:forEach>
-										</select>
-										</div>
-								 		<div class="col-lg-4">
-										<input class="form-control" name="planner"
-											id="planner" placeholder="성명">
-										</div>
-										</div>
-									</div>
-									<div class="form-group col-lg-12">
-										<label>접근권한</label> <select class="form-control"
-											name="access_Control" id="access_Control">
-											<option value="1" selected="selected">공개</option>
-											<option value="0">비공개</option>
-										</select>
-									</div>
-									<div class="row">
-									<div class="btn col-lg-1" style="margin-right: 30px;">취소</div>
-								
-									<div class="btn col-lg-2"  id="makePrj" >생성</div>
-									<div></div>
-									</div>
-									<!-- </form> -->
-							</div>
-							
-								<!-- /.col-lg-6 (nested) -->
-							</div>
-							<!-- /.row (nested) -->
-						</div>
-						<!-- /.panel-body -->
-					</div>
-					<!-- /.panel -->
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">프로젝트 생성</h3>
+      </div>
+      <div class="modal-body">
+      	<label >프로젝트 제목</label><br>
+        <input type="text" name="prj_Name" id="prj_Name" placeholder="Title" style="width: 100%"/>
+      </div>
+      <div class="modal-body">
+        <label>책임자</label>
+        <select class="form-control" name="cp_dep" id="cp_dep">
+			<option value="void"  selected="selected">부서</option>
+			<c:forEach  items="${sessionScope.dep_list}" var="list">
+			<option value="${list.depNameKr}">${list.depNameKr}</option>
+			</c:forEach>
+		</select>
+      </div>
+      <div class="modal-body">
+        <select class="form-control" name="cp_posi" id="cp_posi" onselect="">
+			<option value="" selected="selected">직급</option>
+			<c:forEach items="${sessionScope.posi_list}" var="list">
+			<option value="${list.positionName}">${list.positionName}</option>
+			</c:forEach>
+		</select>
+      </div>
+      <div class="modal-body">
+        <input class="form-control" name="planner"
+			id="planner" placeholder="성명" type="text" >
+      </div>
+      <div class="modal-body">
+        <label>접근권한</label>
+        <select class="form-control" name="access_Control" id="access_Control">
+			<option value="1" selected="selected">공개</option>
+			<option value="0">비공개</option>
+		</select>							
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="CreatePrj" type="button" class="btn btn-primary">Create</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
-		</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">그룹(분류) 생성</h3>
+      </div>
+      <div class="modal-body">
+      	<label >그룹 이름</label><br>
+        <input type="text" name="gp_Name" id="gp_Name" placeholder="Title" style="width: 100%"/>
+        <input type="hidden" name="prj_Num" id="prj_Num">
+      </div>
+      <div class="modal-body">
+        						
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="CreatePrj" type="button" class="btn btn-primary">Create</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 		
-	</div>
+	
 </body>
 
 </html>

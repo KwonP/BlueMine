@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bluemine.www.dao.PositionDAO;
 import com.bluemine.www.dao.ProjectDAO;
@@ -138,26 +139,25 @@ public class MainPageController {
 		return "inside/help";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/getUser",method=RequestMethod.POST)
-	public ArrayList<UserInfo> getUser(@RequestBody HashMap<String, String> user) {
-		logger.debug("ajax 연결:현재 서버");
-		logger.debug(user.get("position"));
-		if((user.get("position").length()<=1)) {
-			user.remove("position");
+	  // AutoComplete test
+	   @ResponseBody
+	   @RequestMapping(value="/getSort",method=RequestMethod.POST)
+	   public ArrayList<UserInfo> getSort(String getDep,String getPo){
+	      ArrayList<UserInfo> getVal = new ArrayList<>();
+	      HashMap<String, String> putVal = new HashMap<>();
+	      if (getDep.length()>=1) {
+	    	  putVal.put("department", getDep);
+	      }
+	      if (getPo.length()>=1) {
+	    	  putVal.put("position", getPo);
+	      }
+	      getVal = uDao.getUser(putVal);
+	      for (int i = 0; i < getVal.size(); i++) {
+	    	  logger.debug(getVal.get(i).toString());
 		}
-		logger.debug(user.get("department"));
-		if (user.get("department").length()<=1) {
-			user.remove("department");
-		}
-		ArrayList<UserInfo> list = new ArrayList<>();
-		list = uDao.getUser(user);
-		for (int i = 0; i < list.size(); i++) {
-			logger.debug(list.get(i).getName());
-			logger.debug(list.get(i).getEmail());
-		}
-		return list;
-	}
+	      
+	      return getVal;
+	   }
 	@ResponseBody
 	@RequestMapping(value="/makePrj",method=RequestMethod.POST)
 	public String makePrj(String ps_name,String planner,int access_Control){
@@ -176,7 +176,7 @@ public class MainPageController {
 	}
 	@ResponseBody
 	@RequestMapping(value="/setRelation",method=RequestMethod.POST)
-	public int makePrj(int prj_Num, String userId){
+	public int makePrj(int prj_Num, String userId, RedirectAttributes ra){
 		int result = 0;
 		logger.debug("관계 설정");
 		logger.debug("Prj_Num"+prj_Num);
@@ -185,6 +185,6 @@ public class MainPageController {
 		mp.setPrjNum(prj_Num);
 		result=prjDao.setRelation(mp);
 		logger.debug("관계 설정 완료");
-		return result;
+		return mp.getPrjNum();
 	}
 }

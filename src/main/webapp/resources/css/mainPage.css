@@ -31,7 +31,6 @@ body {
 .navbar-brand {font-size: 25px;}
 #profileImg{padding: 10px 0px 0px 0px;}
 #profileImg:hover{background-color: none;}
-#page-wrapper{margin: 0; height: 90%;}
 .companyInfo{
 	float: left;
     height: 50px;
@@ -73,35 +72,7 @@ body {
     transform: translate(-5px, -5px); 
     cursor: pointer;
 }
-#layer {
-	display: none;
-	position: absolute;
-	top: 0%;
-	left: 0%;
-	width: 100%;
-	height: 100%;
-	background-color: #7c79798f;
-	z-index: 1001;
-	-moz-opacity: 0.8;
-	opacity: .80;
-	filter: alpha(opacity = 60);
-}
-#popup {
-    display: none;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 735px;
-	height: 580px;
-	padding: 16px;
-	background-color: #dbdbdbe6;
-	z-index: 1002;
-	overflow: auto;
-	margin-top: -300px;
-	margin-left: -355px;
-	border-radius: 15px;
-	border: solid 5px #757373;
-}
+
 .btn{
 	vertical-align: middle;
     color: #fff;
@@ -150,4 +121,46 @@ body {
     line-height: 1.42857143;
     float: none;
     
+}
+
+
+html.modal-active, body.modal-active {
+  overflow: hidden;
+}
+
+#modal-container {
+  position: fixed;
+  display: table;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: 1;
+}
+.modal {
+        text-align: center;
+        z-index: 10;
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    background-color: #000;
+}
+.modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+}
+@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
 }
