@@ -54,5 +54,6 @@ public interface UserInfoMapper {
 		public void logOut(String id);
 		//ajax자동완성 기능을 위한 목록 부르기
 		public ArrayList<UserInfo> getUser(HashMap<String, String> map);
-
+		//유저사진가져오기
+		public String getPic(String loginId);
 }

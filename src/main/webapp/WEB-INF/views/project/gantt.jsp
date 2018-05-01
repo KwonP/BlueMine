@@ -79,16 +79,16 @@ img{
 	      data.addColumn('number', 'Percent Complete');
 	      data.addColumn('string', 'Dependencies');
 	  	
-	      var pglist = [];
+	      var groupList = [];
 	      var oncomlist = [];
 	      var allgpworklist = [];
-	      var gpnamelist = [];
+	      var gsnamelist = [];
 	      var startdateList = [];
 	      var deadlineList = [];
 	      
-	      <c:forEach items="${pjgroupList}" var="item">
+	      <c:forEach items="${groupList}" var="item">
 
-	      pglist.push("${item}");
+	      groupList.push("${item}");
 
 	      </c:forEach>
 	      
@@ -104,9 +104,9 @@ img{
 
 	      </c:forEach>
 	      
-	      <c:forEach items="${gpnameList}" var="item">
+	      <c:forEach items="${gsnameList}" var="item">
 
-	      gpnamelist.push("${item}");
+	      gsnamelist.push("${item}");
 
 	      </c:forEach>
 	      
@@ -121,32 +121,56 @@ img{
 	      deadlineList.push("${item}");
 
 	      </c:forEach>
+	      
+	      var temp1 = [];
+	      var temp2 = [];
+	      var temp3 = [];
+	      var temp4 = [];
 	      var inside = [];
 	      for (var i = 0; i < allgpworklist.length; i++) {
-	    	 var temp1 = startdateList[i].split(', ');
-	    	 var temp2 = [];
+	    	 temp1 = startdateList[i].split(', ');
 	    	 temp2.push(parseInt(temp1[0]));
 	    	 temp2.push(parseInt(temp1[1]));
 	    	 temp2.push(parseInt(temp1[2]));
-	    	 var temp3 = deadlineList[i].split(', ');
-	    	 var temp4 = [];
+	    	 temp3 = deadlineList[i].split(', ');
 	    	 temp4.push(parseInt(temp3[0]));
 	         temp4.push(parseInt(temp3[1]));
 	    	 temp4.push(parseInt(temp3[2]));
 	    	 if(oncomlist[i] == "Completed") {
-		    	 inside.push([ gpnamelist[i], gpnamelist[i], pglist[i],  new Date(temp2[0], temp2[1], temp2[2]),  new Date(temp4[0], temp4[1], temp4[2]) , null, 100, null]);
+		    	 if(i == allgpworklist.length - 1) {
+		    		 inside.push([ gsnamelist[i], gsnamelist[i], groupList[i],  new Date(temp2[0], temp2[1], temp2[2]),  new Date(temp4[0], temp4[1], temp4[2]) , null, 100, null]);
+		    	 }
+		    	 else {
+		    	 	inside.push([ gsnamelist[i], gsnamelist[i], groupList[i],  new Date(temp2[0], temp2[1], temp2[2]),  new Date(temp4[0], temp4[1], temp4[2]) , null, 100, null]);
+		    	 }
 	    	 } else {
-	    		 inside.push([ gpnamelist[i], gpnamelist[i], pglist[i],  new Date(temp2[0], temp2[1], temp2[2]),  new Date(temp4[0], temp4[1], temp4[2]) , null, 0, null]);
+	    		 if(i == allgpworklist.length - 1) {
+		    		 inside.push([ gsnamelist[i], gsnamelist[i], groupList[i],  new Date(temp2[0], temp2[1], temp2[2]),  new Date(temp4[0], temp4[1], temp4[2]) , null, 0, null]);
+		    	 }
+		    	 else {
+		    	 	inside.push([ gsnamelist[i], gsnamelist[i], groupList[i],  new Date(temp2[0], temp2[1], temp2[2]),  new Date(temp4[0], temp4[1], temp4[2]) , null, 0, null]);
+		    	 }
 	    	 }
+	    	 
+	    	 temp1.splice(0, 3);
+	    	 temp2.splice(0, 3);
+	    	 temp3.splice(0, 3);
+	    	 temp4.splice(0, 3);
 	      }
-	      var outside = [];
+	      
+	      /* var outside = [];
 	      for(var t in inside) {
-	    	  outside.push(t);
+	    	  if(t == inside.length -1) {
+	    		  outside.push(inside[t]);	
+	    	  }
+	    	  else {
+	    		  outside.push(inside[t] + ",");
+	    	  }
 	      }
 	      for(var t in outside) {
-	    	  alert(outside.toSource());
-	      }
-	      data.addRows(outside.toSource());
+	    	  alert(outside[t]);
+	      } */
+	      data.addRows(inside);
 	      
 	      /* data.addRows([
 	        ['2014Spring', 'Spring 2014', 'spring',

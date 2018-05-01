@@ -139,5 +139,13 @@ public class UserInfoDAO implements UserInfoMapper{
 		list = session.getMapper(UserInfoMapper.class).getUser(map);
 		return list;
 	}
+	
+	//사진 가져와서 세션에 넣기
+	@Override
+	public String getPic(String loginId) {
+		String result;
+		result=session.getMapper(UserInfoMapper.class).getPic(loginId);
+		return result;
+	}
 
 }

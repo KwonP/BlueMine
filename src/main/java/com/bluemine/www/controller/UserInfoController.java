@@ -130,6 +130,8 @@ public class UserInfoController {
 		if (loginId != null) {
 			uDao.loginCheck(loginId);
 			session.setAttribute("loginId", loginId);
+			String selfie = uDao.getPic(loginId);
+			session.setAttribute("selfie", selfie);
 			result = "login";
 		}
 		

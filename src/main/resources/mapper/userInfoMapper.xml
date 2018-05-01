@@ -233,6 +233,16 @@ Order By positionNum
 		loginOk = 1		
 	</update>
 
+	<!-- 사진 가져오기 -->
+	<select id="getPic" parameterType="String" resultType="String">
+	select 
+		originalFile
+	from 
+		USERINFO
+	where
+		userId = #{userId}
+	</select>
+
 <!-- ajax자동완성을 위한 코드 -->
 <select id="getUser" parameterType="map" resultType="userInfo">
 SELECT

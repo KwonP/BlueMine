@@ -239,7 +239,12 @@
 				<!-- /.dropdown -->
 				<li class="dropdown">
 				  <a class="dropdown-toggle"data-toggle="dropdown" href="#" id="profileImg"> 
-					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdsHwPSlt3V55OxNR34jqoBtFyxThIWBtmQQE1ocFgbB9FJjQR" width="50px">
+					<c:if test="${sessionScope.selfie != null }">
+						<img src="showProfile" width="50px">
+					</c:if>
+					<c:if test="${sessionScope.selfie == null }">
+						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdsHwPSlt3V55OxNR34jqoBtFyxThIWBtmQQE1ocFgbB9FJjQR" width="50px">
+					</c:if>
 					<i class="fa fa-caret-down"></i>
 				  </a>
 					<ul class="dropdown-menu dropdown-user">
