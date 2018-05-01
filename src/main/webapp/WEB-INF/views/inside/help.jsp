@@ -39,17 +39,31 @@
 
 	<!-- modified CSS -->
  	<link href="./resources/css/basic.css" rel="stylesheet">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<!-- JS -->
 	<script type="text/javascript" src="./resources/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./resources/js/jquery-ui.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.companyInfo').click(menuPage);
+		    $( "#helpList" ).accordion();
 		});
 		function menuPage(){
 			var menuPage = $(this).attr('value');
 			location.href = menuPage;
 		}
 	</script>
+	<style type="text/css">
+	#ui-id-1, #ui-id-3, #ui-id-5{
+	    background: #4981b1;
+	    font-weight: bold;
+	    font-size: 20px;
+	}
+	#ui-id-4,#ui-id-6{
+		height: unset !important; 
+	}
+	#helpList{margin-top: 30px;}
+	</style>
 </head>
 
 <body>
@@ -280,73 +294,83 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">My Timeline</a>
-                                </li>
-                                <li>
-                                    <a href="#">Company Timeline</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                        	<a href="#"><i class="fa fa-edit fa-fw"></i> Board</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-paste fa-fw"></i> Progress<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">My tasks</a>
-                                </li>
-                                <li>
-                                    <a href="#">Project</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                        	<a href="#"><i class="fa fa-calendar fa-fw"></i>Work Schedule</a>
-                        <li>
-                            <a href="#"><i class="fa fa-comments fa-fw"></i> Chats</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
         </nav>
 
         <div id="page-wrapper">
-  		  <h1>${prjNum}</h1>
+        	<div id="helpList">
+        		<h3>Project - Timeline</h3>
+        		<div class="details">
+        		  <ul>
+        		  	<li>
+        		  	  <i class="subject">Project - MainPage</i>
+        		  	  <p>
+        		  	  	다시 자신의 스케줄과 프로젝트 리스트가 나오는 화면으로 돌아갑니다.
+        		  	  </p>
+        		  	</li>
+        		  	<li>
+        		  	  <i class="subject">Project - Timeline</i>
+        		  	  <p>
+        		  	  	본인이 속한 프로젝트 내에서의 업데이트 상황을 한 눈에 볼 수 있습니다.
+        		  	  </p>
+        		  	</li>
+        		  	<li>
+        		  	  <i class="subject">Project - Data Download</i>
+        		  	  <p>
+        		  	  	프로젝트 내에서 공유되는 파일들의 저장소입니다. <br>
+        		  	  	File Upload를 누르면 원하는 파일의 업데이트가 가능합니다.<br>
+        		  	  	사진파일, 텍스트파일, 음악파일 순으로 정리되어 있어 한 눈에 보기 쉽습니다.
+        		  	  </p>
+        		  	</li>
+        		  	<li>
+        		  	  <i class="subject">Project - Task</i>
+        		  	  <p>
+        		  	  	본인이 속한 그룹 내에서의 일감 생성, 완료, 수정 등이 가능합니다.
+        		  	  </p>
+        		  	</li>
+        		  	<li>
+        		  	  <i class="subject">Project - Gantt Chart</i>
+        		  	  <p>
+        		  	  	한 프로젝트 안에서 여러가지 일감이 시작되고 마감된 기간동안을 한 눈에 볼 수 있습니다.
+        		  </ul>
+        		</div>
+        		<h3>My Schedule</h3>
+        		<div class="details">
+        		  <ul>
+        			<li>
+        			  <i class="subject"> My work 등록 </i>
+        			  <p>
+        			  	Create 버튼을 누르면 원하는 시작날짜와 종료날짜를 지정하여 자신이 해야할 일을 추가할 수 있습니다.
+        			  </p>
+        			</li>
+        			<li>
+        			  <i class="subject">My Work 읽기 및 수정</i>
+        			  <p>
+        			    보여지는 My Work 리스트에서 하나를 클릭하면 상세정보 보기가 가능합니다.<br>
+        			    또한, Modify버튼을 클릭함 과 동시에, 해당하는 일의 정보 수정이 가능합니다.<br>
+        			    완료가 되시면 Update 버튼을 눌러주시고, 취소를 원할시에는 Cancel 버튼을 눌러주세요.
+        			  </p>
+        			</li>
+        		  </ul>
+        		</div>
+        		<h3>Chat</h3>
+        		<div class="details">
+        		  <ul>
+        		  	<li>
+        		  	  <i class="subject">Chat</i>
+        		  	  <p>
+        		  	  	현재 접속한 사람들의 목록을 보여줍니다.<br>
+        		  	  	접속자를 클릭하면 채팅 페이지로 넘어갑니다.
+        		  	  </p>
+        		  	</li>
+        		  </ul>
+        		</div>
+        	</div>
         </div>
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="./resources/templet/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="./resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>

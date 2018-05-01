@@ -33,6 +33,7 @@
 			<mvc:mapping path="/about" />
 			<mvc:mapping path="/contact" />
 			<mvc:mapping path="/help" />
+			<mvc:mapping path="/profilePage"/>
 			<mvc:mapping path="/project/*"/>
 			<mvc:mapping path="/mySchedule/*" />
 			<mvc:mapping path="/logout"/>

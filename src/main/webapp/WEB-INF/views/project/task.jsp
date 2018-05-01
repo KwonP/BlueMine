@@ -257,12 +257,12 @@ option {
 	function completeTask() {
 		var checked = new Array();
 		var unchecked = new Array();
-		/* $('input[name=changeProg]:checked') */
 		/* $(".ckbox").prop("checked", true) */
 	/* ${t.gs_Num} + ${status.count}
 		 */
 		// Check
-		$(".ckbox").prop("checked", true).each(function(){
+		$('input[name=changeProg]:checked')
+/* 		$(".ckbox").prop("checked", true).each(function(){
 			var getCheck = $(this).val();
 			checked.push(getCheck);
 		});
@@ -272,7 +272,7 @@ option {
 			var getCheck = $(this).val();
 			unchecked.push(getCheck);
 		});
-
+ */
 		for(var i = 0; i < checked.length; i++){
 			alert(checked[i]);
 		}
