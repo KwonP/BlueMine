@@ -55,6 +55,13 @@
 		var menuPage = $(this).attr('value');
 		location.href = menuPage;
 	}
+	
+	/* function chgColor(c)
+	{
+		var box = document.getElementById('page-wrapper');
+		box.style.backgroundColor=c.value;
+		document.bgColor=c.value
+	} */
 	</script>
 </head>
 
@@ -65,7 +72,7 @@
 	<div class="chat_body">
 		<c:forEach var="login" items="${loginUserList}" varStatus="log">
 			<div class="user">
-				<a id="check${log.index }" style="text-decoration:none" >${login.name }</a> <br>
+				 <img src="../showProfile" width="30px" style="border-radius: 100%"> <a id="check${log.index }" style="text-decoration:none" >${login.name }</a> <br>
 				<input type="hidden" value="${login.name }">
 			</div>
 		</c:forEach>
@@ -249,12 +256,17 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
+                            <!-- <div style="max-height: 655px;">
+								<button id="btnbox" class="box" role="button" title="blue" value="ffce00" style="background-color: rgb(0, 121, 191);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="orange" value="orange" style="background-color: rgb(210, 144, 52);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="green" value="green" style="background-color: rgb(81, 152, 57);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="red" value="red" style="background-color: rgb(176, 70, 50);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="pruple" value=pruple style="background-color: rgb(137, 96, 158);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="pink" value="pink" style="background-color: rgb(205, 90, 145);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="lime" value="lime" style="background-color: rgb(75, 191, 107);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="sky" value="sky" style="background-color: rgb(0, 174, 204);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="grey" value="grey" style="background-color: rgb(131, 140, 145);" onclick="chgColor(this)"></button>
+							</div> -->
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -385,28 +397,28 @@
 			<input type="hidden" value=${loginName } id='chat_id' />
 			<!-- /.panel-heading -->
 			<div class="panel-body">
-			<ul class="chat">
-				<!--내 채팅 메시지-->
-				<li class="left clearfix">
-					<span class="chat-img pull-left">
-						<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-					</span>
-					<div class="chat-body clearfix">
-						<!--메시지 내용 출력-->
-						<!-- <div class="from-me">
-						   <div id="messageWindow"></div>
+				<ul class="chat">
+					<!--내 채팅 메시지-->
+					<li class="left clearfix">
+						<span class="chat-img pull-left">
+							<img src="../showProfile" width="50px" style="border-radius: 70%">
+						</span>
+						<div class="chat-body clearfix">
+							<!--메시지 내용 출력-->
+							<!-- <div class="from-me">
+							   <div id="messageWindow"></div>
+							</div>
+							
+							<div class="clear">
+							</div>  -->
+							<div class="header">
+								${loginName }<br>
+								<strong class="primary-font" id="messageWindow"></strong>
+							</div>
 						</div>
-						
-						<div class="clear">
-						</div>  -->
-						<div class="header">
-							${loginName }<br>
-							<strong class="primary-font" id="messageWindow"></strong>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
+					</li>
+				</ul>
+			</div>
 		
 		<!-- /.panel-body -->
 		<div class="panel-footer">
@@ -501,8 +513,7 @@ function enterkey() {
     }
 }
 // 채팅이 많아져 스크롤바가 넘어가더라도 자동적으로 스크롤바가 내려가게함
-	window.setInterval(function() {
-
+window.setInterval(function() {
     var elem = document.getElementById('messageWindow');
 	elem.scrollTop = elem.scrollHeight;
 }, 0);

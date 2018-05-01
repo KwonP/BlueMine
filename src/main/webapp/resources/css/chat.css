@@ -60,7 +60,7 @@ section div {
   color: black;
   float: left;
 }
-.from-them:before {
+/* .from-them:before {
   content: "";
   position: absolute;
   z-index: 2;
@@ -70,7 +70,7 @@ section div {
   border-left: 20px solid #E5E5EA;
   border-bottom-right-radius: 16px 14px;
   -webkit-transform: translate(0, -2px);
-}
+} */
 .from-them:after {
   content: "";
   position: absolute;
@@ -84,3 +84,14 @@ section div {
   -webkit-transform: translate(-30px, -2px);
 }
 
+.user-photo {
+	width: 60px;
+	height: 60px;
+	background: #ccc;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.user-photo img { 
+	width: 100%;
+}
