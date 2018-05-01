@@ -9,7 +9,7 @@
 		display: block;
 		opacity: 0.8;
 		background: white;
-		z-index: 99;
+		z-index: 1010;
 		text-align: center;
 }
 #load > img{

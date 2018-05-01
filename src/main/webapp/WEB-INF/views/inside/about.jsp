@@ -50,6 +50,14 @@
 		location.href = menuPage;
 	}
 	</script>
+	<style type="text/css">
+	 h1 {
+	    font-size: 100px;
+	    text-align: right;
+	    font-weight: bold;
+	    color: #4b85c6;
+	}
+	</style>
 </head>
 
 <body>
@@ -71,134 +79,15 @@
 				<a class="companyInfo" value="help">Help</a>
             </div>
             <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profileImg">
-                      <img src="showProfile" width="50px">
-					  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-        <div class="navbar-default sidebar" role="navigation"> 
-                <div class="sidebar-nav navbar-collapse"> 
-                    <ul class="nav" id="side-menu"> 
-                        <li class="sidebar-search"> 
-                            <div class="input-group custom-search-form"> 
-                                <input type="text" class="form-control" placeholder="Search..."> 
-                                <span class="input-group-btn"> 
-                                <button class="btn btn-default" type="button"> 
-                                    <i class="fa fa-search"></i> 
-                                </button> 
-                            </span> 
-                            </div> 
-                            <!-- /input-group --> 
-                        </li> 
-                        <li> 
-                            <a href="goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
-                        </li> 
-                        <li> 
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline<span class="fa arrow"></span></a> 
-                            <ul class="nav nav-second-level"> 
-                                <li> 
-                                    <a href="#">My Timeline</a> 
-                                </li> 
-                                <li> 
-                                    <a href="#">Company Timeline</a> 
-                                </li> 
-                            </ul> 
-                            <!-- /.nav-second-level --> 
-                        </li> 
-                        <li> 
-                          <a href="#"><i class="fa fa-edit fa-fw"></i> Board</a> 
-                        </li> 
-                        <li> 
-                            <a href="#"><i class="fa fa-paste fa-fw"></i> Task</a> 
-                        </li> 
-                        <li> 
-                            <a href="inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
-                        </li> 
-                       </li>
-                    </ul> 
-                </div> 
-                <!-- /.sidebar-collapse --> 
-            </div> 
             <!-- /.navbar-static-side --> 
         </nav> 
  
         <div id="page-wrapper"> 
-        <h1>${prjNum}</h1> 
+          <h1 class="header">Blue Mine</h1>
+          <div class="imgs">
+	          <img src="./resources/img/office1.jpg">
+	          <img src="./resources/img/office2.jpg">
+          </div>
         </div> 
         <!-- /#page-wrapper --> 
 
