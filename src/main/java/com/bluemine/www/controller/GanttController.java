@@ -64,9 +64,10 @@ public class GanttController {
 		ArrayList<String> groupList = new ArrayList<>(); // 각 작업들의 그룹이름
 		
 		for (PJ_Group pj_group : list) { // 해당세션들의 작업들을 가지고 퍼센티지를 계산.
-			groupList.add(pj_group.getGp_Name());
 			allGpworkList = dao.selectAllGpwork(pj_group);
 			for (GP_Work gp_Work : allGpworkList) {
+				String temp = dao.selectGroupName(gp_Work);
+				groupList.add(temp);
 				System.out.println(gp_Work);
 				if(gp_Work.getProgress() == 1) {
 					onComList.add("Completed");

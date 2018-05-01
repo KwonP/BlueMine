@@ -5,6 +5,16 @@
 
 <!-- 자료실 처리 SQL -->
 <mapper namespace="com.bluemine.www.interfaces.GanttMapper">
+	<!-- 그룹이름가져오기 -->
+	<select id="selectGroupName" parameterType="gpWork" resultType="String">
+		select
+			gp_Name
+		from
+			PJ_Group
+		where
+			gp_Num = #{gp_Num}
+	</select>
+
 	<!-- 해당 프로젝트에 있는 섹션 전부 가져오기 -->
 	<select id="selectAllPjgroup" parameterType="int" resultType="group">
 		select

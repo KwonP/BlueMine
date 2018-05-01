@@ -24,6 +24,9 @@ public interface GanttMapper {
 
 	//Task가져오기
 	ArrayList<GP_Work> selectAllGpwork(PJ_Group pj_group);
+
+	//그룹이름가져오기
+	String selectGroupName(GP_Work gp_Work);
 	
 	/*//자료 저장
 	public int insertFile(FileInfo file);

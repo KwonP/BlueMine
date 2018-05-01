@@ -51,5 +51,15 @@ public class GanttDAO implements GanttMapper{
 		GanttMapper mapper = sqlSession.getMapper(GanttMapper.class);
 		ArrayList<GP_Work> list = mapper.selectAllGpwork(pj_group);
 		return list;
+	}
+
+	/**
+	 * 그룹이름가져오기
+	 * @param 작업
+	 */
+	public String selectGroupName(GP_Work gp_Work) {
+		GanttMapper mapper = sqlSession.getMapper(GanttMapper.class);
+		String list = mapper.selectGroupName(gp_Work);
+		return list;
 	}	
 }
