@@ -85,8 +85,9 @@
 <div id="load">
 	<img src="resources/img/loading.gif" alt="loading">
 </div>
-<input type="hidden" id="userId" value="${sessionScope.loginId}">
+<input type="hidden" id="loginId" value="${sessionScope.loginId}">
 <input type="hidden" name="prj_Num" id="prj_Num" value="" >
+<input type="hidden" name="userId" id="userId" value="">
 	<div id="wrapper">
 
 		<!-- Navigation -->

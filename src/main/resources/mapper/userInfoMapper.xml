@@ -246,7 +246,8 @@ Order By positionNum
 <!-- ajax자동완성을 위한 코드 -->
 <select id="getUser" parameterType="map" resultType="userInfo">
 SELECT
-	name
+	userId
+	,name
 	,email
 FROM
 	USERINFO

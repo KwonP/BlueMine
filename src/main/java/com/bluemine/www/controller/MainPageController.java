@@ -173,6 +173,7 @@ public class MainPageController {
 		logger.debug(ps_name);
 		logger.debug(planner);
 		logger.debug(access_Control+"");
+		
 		prj.setPrj_Name(ps_name);
 		prj.setPlanner(planner);
 		prj.setAccess_Control(access_Control);
