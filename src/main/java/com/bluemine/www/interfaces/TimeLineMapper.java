@@ -42,4 +42,6 @@ public int deleteTriggerInfo(int trigger_Num);
 public PJ_Group getPJ_Group_Gp_Num(int gp_Num);
 //gs_Num으로 GP_Work정보 가져오기
 public GP_Work getGP_Work_Gs_Num(int gs_Num);
+
+public HashMap<String, Object> getGSInfo(HashMap<String, Object> map);
 }

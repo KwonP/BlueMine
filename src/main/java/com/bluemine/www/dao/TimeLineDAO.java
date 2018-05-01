@@ -110,5 +110,11 @@ public class TimeLineDAO implements TimeLineMapper{
 		GP_Work gw = session.getMapper(TimeLineMapper.class).getGP_Work_Gs_Num(gs_Num);
 		return gw;
 	}
+	@Override
+	public HashMap<String, Object> getGSInfo(HashMap<String, Object> map) {
+		HashMap<String, Object> hashmap = session.getMapper(TimeLineMapper.class).getGSInfo(map);
+		
+		return hashmap;
+	}
 
 }

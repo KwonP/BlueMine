@@ -9,27 +9,48 @@ function showNotice(list,addPass){
 	if(addPass!=null){
 		pass= addPass;
 	}
-	nList.unshift(list);
+	nList.push(list);
 	
 	var str ='';
 	if(nList==null||nList.length==0){
 		return ;
 	}else{
-		$('#noticeCheck').css("background-color", "yellow");
+		$('#noticeCheck').css("background-color", "red");
 		$('#noticeCheck').css("border", "1px solid black");
 		$('#noticeCheck').css("border-radius", "8px");
 	}
 	if(nList.length>7){
 		nList.pop();
 	}
+	
+	
 	$('#notificationList').html('');
 	for(var i=0;i<nList.length;i++){
+		$.ajax({
+			url : pass+'project/dateinfo',
+			tpue : 'get',
+			data : {str:nList[i].update_Date},
+			dataType : 'text',
+			async : false,
+			success : function(l) {
+				if (l == null) {
+					return;
+				}
+				nList[i].update_Date=l;
+				
+				
+			},
+			error : function(error) {
+				console.info('날씨계산 오류' + error.status);
+			}
+		}
+		);
 		var type='';
 		var message='';
 		var link='';
 		var icon = 'fa fa-exclamation-circle';
 		var date = nList[i].update_Date+'';
-		var splitArray = date.split('***');
+		var splitArray = date.split('*-*');
 		if(nList[i].info_Type=='prjList'){
 			type='프로젝트 ';
 			link = ' onclick="goNotificationPage('+nList[i].info_Num+','+"'"+nList[i].info_Type+"'"+')"';
