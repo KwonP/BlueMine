@@ -255,13 +255,8 @@ option {
 		});
 	 */
 	function completeTask() {
-		var checked = new Array();
-		var unchecked = new Array();
 		/* $(".ckbox").prop("checked", true) */
-	/* ${t.gs_Num} + ${status.count}
-		 */
-		// Check
-		$('input[name=changeProg]:checked')
+		/* ${t.gs_Num} + ${status.count} */
 /* 		$(".ckbox").prop("checked", true).each(function(){
 			var getCheck = $(this).val();
 			checked.push(getCheck);
@@ -272,14 +267,53 @@ option {
 			var getCheck = $(this).val();
 			unchecked.push(getCheck);
 		});
- */
+		
+		// Check
+		$('input[name=changeProg]:checked')
+ */		
+
+ 	
+		
+ 
+ 		/*		$("input[name=getNums]:checked").each(function(){
+			var com = $(this).val();
+			alert("비교할 값" + com);
+			var com2 = 0;
+			for(var i = 0; i < checked.length; i++){
+				if (com == checked[i]) {
+					alert("포함" + checked[i]);
+					return true;
+				}
+			com2 = checked[i];
+			alert("체크가 안됨" + com2);
+			}
+		}); */
+		
+		/* return;
 		for(var i = 0; i < checked.length; i++){
 			alert(checked[i]);
 		}
-		
 		for(var j = 0; j < unchecked.length; j++){
-			alert(unchecked[j]);
+			alert(unchecked[i]);
 		}
+		$.ajax({
+			url : 'changeProgress',
+			type : 'post',
+	        data: {checked : checked},
+	        dataType : "json",
+			success : function(result){
+				if (result == 'ok') {
+					alert('변경되었습니다.');
+				} else {
+					alert('변경에 실패하였습니다. 다시 시도해 주세요.');
+				}
+			},
+			error : function(){
+				alert('서버 오류');
+			}
+		}) */
+	//}
+
 		
 		/* if($('#'+l[i]).prop("checked")) {
 			alert(3);
@@ -317,8 +351,8 @@ option {
 			error: function(cnt) {
 				alert('에러');
 			}				
-		}); */
-	}
+		}); 
+	}*/
 	
 	/* function getsroom2() {
 		var sroomnum = $(this).attr('value');
@@ -680,16 +714,12 @@ option {
 												<tr class="info" class="${t.gs_Num}">
 													<td>
 														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default"> 
-																<c:if test="${t.progress == 1}">
-																	<input type="checkbox" class="ckbox" id="${t.gs_Num} + ${status.count}" value="${t.gs_Num}" checked="checked"> 
-																	<span class="glyphicon glyphicon-ok"></span>
-																</c:if>
-																<c:if test="${t.progress == 0}">
-																	<input type="checkbox" class="ckbox" id="${t.gs_Num} + ${status.count}" value="${t.gs_Num}"> 
-																	<span class="glyphicon glyphicon-ok"></span>
-																</c:if>
-															</label>
+														<c:if test="${t.progress == 0}">
+															<input type="checkbox" class="ckbox" id="${t.gs_Num} + ${status.count}" value="${t.gs_Num}" name="getNums"> 
+														</c:if>
+														<c:if test="${t.progress == 1}">
+															<input type="checkbox" class="ckbox" id="${t.gs_Num} + ${status.count}" value="${t.gs_Num}" checked="checked" name="getNums"> 
+														</c:if>
 														</div>
 													</td>
 													<%-- <td><a href="read?boardnum=${board.boardnum}">${board.title}</a>
