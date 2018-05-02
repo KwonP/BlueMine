@@ -165,11 +165,32 @@ option {
     left: 695px;
     top: 115px;
 }
+#load{
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		position: fixed;
+		display: block;
+		opacity: 0.8;
+		background: white;
+		z-index: 1010;
+		text-align: center;
+}
+#load > img{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -100px;
+  	  	margin-top: -115px;
+		z-index: 100;
+}
 </style>
 
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.companyInfo').click(menuPage);
+		$('#load').hide();
 	});
 	function menuPage(){
 		var menuPage = $(this).attr('value');
@@ -326,7 +347,9 @@ option {
 </head>
 
 <body>
-
+<div id="load">
+	<img src="../resources/img/loading.gif" alt="loading">
+</div>
 	<div id="wrapper">
 		<!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">

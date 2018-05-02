@@ -240,7 +240,7 @@ function endCklist(loopNum){
 function addList(){
 	var childDiv = '';
 	childDiv += '<table class="getCKList" id="getCKList">';
-	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="getOneName" onkeyup="nameLimit(this,40)" value="" ></td></tr>'; 
+	childDiv += '<tr><td>Name</td><td>:</td><td><input type="text" id="getOneName" onkeyup="nameLimit(this,30)" value="" ></td></tr>'; 
 	childDiv += '<tr><td>Day </td><td> : </td><td>';
 	childDiv += '<c:forEach begin="1" end="7" varStatus="status">';
 	childDiv += '<c:if test="${status.current == 1}">';
