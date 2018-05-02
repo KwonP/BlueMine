@@ -50,8 +50,7 @@
  <script src="./resources/templet/vendor/jquery/jquery.min.js"></script>
  <script type="text/javascript" src="./resources/js/mainPage.js"></script>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
-</head><script src="./resources/toastr/toastr.min.js"></script>
+	<script src="./resources/toastr/toastr.min.js"></script>
 <link href="./resources/toastr/toastr.css" rel="stylesheet">
 <script src="./resources/js/notificationList.js"></script>
 <script type="text/javascript">
@@ -80,6 +79,7 @@
 			</c:forEach>
 	}
 	</script>
+</head>
 
 <body>
 <div id="load">

@@ -83,6 +83,9 @@ function menuPage() {
 		var timeLineHead = '<div class="panel-body"><ul class="timeline">';
 		for (var i = 0; i < list.length; i++) {
 			var splitArray = list[i].tl_Content.split('///');
+			if(prj_Num==splitArray[3]){
+				$('#projectName').text(' :: '+splitArray[0]);
+			}
 			//0:프로젝트 이름 , 1:프로젝트 참여인원
 			timeLine += '<li';
 			if (i % 2 == 1) {
@@ -102,7 +105,7 @@ function menuPage() {
 			timeLine += list[i].w_Date + '</small>';
 			timeLine += '</p></div><div class="timeline-body"><p id="tlText' + list[i].tl_Num + '">' + splitArray[1];
 			timeLine += '' + '</p>';
-			if (list[i].writer == sessionInfo) { //타임라인 작성자와 
+			if (list[i].writer == sessionInfo) { //해당 프로젝트 플래너와 접속한 아이디가 같을경우 타임라인 삭제 또는 편집 가능
 				timeLine += '<hr><div class="btn-group"><button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">';
 				timeLine += '<i class="fa fa-gear"></i> <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a href="#layer1"';
 				timeLine += ' tl_Num="' + list[i].tl_Num + '" id="tlUpdate' + list[i].tl_Num + '" onclick="javascript:updateStep(' + "'#layer1'," + list[i].tl_Num + ')">Update</a></li><li><a href="#"';

@@ -29,14 +29,14 @@ function showNotice(list,addPass){
 		$.ajax({
 			url : pass+'project/dateinfo',
 			tpue : 'get',
-			data : {str:nList[i].update_Date},
-			dataType : 'text',
+			data : {t:nList[i].update_Date},
+			dataType : 'JSON',
 			async : false,
 			success : function(l) {
 				if (l == null) {
 					return;
 				}
-				nList[i].update_Date=l;
+				nList[i].update_Date=l.update_Date;
 				
 				
 			},
@@ -50,32 +50,32 @@ function showNotice(list,addPass){
 		var link='';
 		var icon = 'fa fa-exclamation-circle';
 		var date = nList[i].update_Date+'';
-		var splitArray = date.split('*-*');
+		var splitArray = date.split('!@#');
 		if(nList[i].info_Type=='prjList'){
-			type='프로젝트 ';
+			type='프로젝트 [';
 			link = ' onclick="goNotificationPage('+nList[i].info_Num+','+"'"+nList[i].info_Type+"'"+')"';
 			
 		}else if(nList[i].info_Type=='gp_Work'){
-			type='프로젝트 '+splitArray[2]+'의 그룹 '+splitArray[3]+'에 일감';
-			link = ' onclick=""';
+			type='프로젝트 ['+splitArray[2]+']의 그룹 ['+splitArray[3]+']에 일감 [';
+			link = ' onclick="goNotificationPage('+splitArray[4]+','+"'"+nList[i].info_Type+"'"+')"';
 	
 		}
 		if((nList[i].command_Check==null||nList[i].command_Check=='')&&(nList[i].info_Content!=null&&nList[i].info_Content!='')){
 			//INSERT
 			color='rgba(0,0,255,0.6)';
 			
-			 message=nList[i].info_Content+'이(가) 생성되었습니다.';
+			 message=nList[i].info_Content+']이(가) 생성되었습니다.';
 			
 		}else if((nList[i].command_Check!=null&&nList[i].command_Check!='')&&(nList[i].info_Content==null||nList[i].info_Content=='')){
 			//DELETE
 			color='rgba(255,0,0,0.6)';
-			 message=nList[i].command_Check+'이(가) 삭제되었습니다.';
+			 message=nList[i].command_Check+']이(가) 삭제되었습니다.';
 			 link='';
 		}else{
 			//UPDATE
 			color='rgba(0,255,0,0.6)';
 			icon='fa fa-wrench';
-			 message=nList[i].info_Content+'이(가) 수정되었습니다.';
+			 message=nList[i].info_Content+']이(가) 수정되었습니다.';
 		}
 		
 		
@@ -99,7 +99,7 @@ function goNotificationPage(info_Num,info_Type){
 	if(info_Type=='prjList'){
 		url = pass+"project/sendNum?prj_Num="+info_Num;
 	}else if(info_Type=='gp_Work'){
-		url = "";
+		url = pass+"task/taskMain?prj_Num="+info_Num;
 	}
 	var length = nList.length;
 	for(var i=length-1;i>=0;i--){
