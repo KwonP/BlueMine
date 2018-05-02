@@ -111,8 +111,8 @@ public class TimeLineDAO implements TimeLineMapper{
 		return gw;
 	}
 	@Override
-	public HashMap<String, Object> getGSInfo(HashMap<String, Object> map) {
-		HashMap<String, Object> hashmap = session.getMapper(TimeLineMapper.class).getGSInfo(map);
+	public HashMap<String, String> getGSInfo(HashMap<String, String> map) {
+		HashMap<String, String> hashmap = session.getMapper(TimeLineMapper.class).getGSInfo(map);
 		
 		return hashmap;
 	}

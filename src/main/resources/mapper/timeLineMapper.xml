@@ -115,7 +115,7 @@ select * from pj_group where gp_num=#{value}
 <select id="getGP_Work_Gs_Num" parameterType="int" resultType="gpWork">
 select * from gp_work where gs_num=#{value}
 </select>
-<select id="getGSInfo" resultType="map" parameterType="map" >
+<select id="getGSInfo" resultType="hashMap" parameterType="hashMap" >
 select p.prj_name,e.GP_NAME,d.*,mp.MEMBERID
 
 From pj_group e
@@ -132,6 +132,6 @@ on p.PRJ_NUM=e.prj_num
 join matchPrj mp
 on mp.MEMBERID=j.USERID
 
-where j.GS_NUM= #{gs_Num} AND mp.MEMBERID= #{id};
+where j.GS_NUM= #{gs_Num} AND mp.MEMBERID= #{id}
 </select>
 </mapper>

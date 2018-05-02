@@ -115,7 +115,7 @@ public class TimeLineController {
 				obj[2] = "삭제되었습니다."; // 프로젝트의 참여한 인원들
 			}
 			
-			list.get(i).setTl_Content((String) obj[1] + "///" + (String) obj[2]+"///"+splitArray[0]);
+			list.get(i).setTl_Content((String) obj[1] + "///" + (String) obj[2]+"///"+splitArray[0]+"///"+obj[0]);
 			
 			
 			// 작성(수정)시간과 현재 시간계산
@@ -199,6 +199,7 @@ public class TimeLineController {
 			list = tlDAO.getTriggerInfo();
 			String info0 = "/";	//프로젝트 이름 넣을 곳
 			String info1="/";	//그룹 이름 넣을 곳
+			int info2=0;	//프로젝트 번호 넣을 곳
 			Calendar cal = Calendar.getInstance();
 			int nowTime = (int) (cal.getTimeInMillis() / 1000);
 			if(list == null || list.size() == 0){
@@ -209,18 +210,20 @@ public class TimeLineController {
 					boolean check = true;
 					
 					if(list.get(i).getInfo_Type().equals("gp_Work")) {
-						/*
-						HashMap<String,Object> map = new HashMap<>();
+						
+						HashMap<String,String> map = new HashMap<>();
 						map.put("id", loginId);
-						map.put("gs_Num", list.get(i).getInfo_Num());
-						HashMap<String,Object> mapInfo=tlDAO.getGSInfo(map);
+						map.put("gs_Num", list.get(i).getInfo_Num()+"");
+						HashMap<String,String> mapInfo=tlDAO.getGSInfo(map);
+						if(mapInfo!=null) {
 						Iterator<String> iterator = mapInfo.keySet().iterator();
 			
 						while (iterator.hasNext()) { 
 							String key = (String)iterator.next(); 
 							logger.info("key="+key+" / value="+mapInfo.get(key)); 
 						}
-						*/
+						}
+						
 						while(true) {
 						GP_Work gw = tlDAO.getGP_Work_Gs_Num(list.get(i).getInfo_Num());
 						if(gw==null)break;
@@ -235,6 +238,7 @@ public class TimeLineController {
 							if(loginId.equals(uList.get(j).getUserId())) {
 								info0=prj.getPrj_Name();
 								info1=pg.getGp_Name();
+								info2=prj.getPrj_Num();
 								check=false;
 								break;
 							}
@@ -276,7 +280,7 @@ public class TimeLineController {
 						} else {
 							result = list.get(i).getUpdate_Date();
 						}
-						list.get(i).setUpdate_Date(list.get(i).getUpdate_Date() + "*-*" + result+"*-*"+info0+"*-*"+info1);
+						list.get(i).setUpdate_Date(list.get(i).getUpdate_Date() + "!@#" + result+"!@#"+info0+"!@#"+info1+"!@#"+info2);
 						logger.info("정보들 : "+list.get(i).getUpdate_Date());
 						tlDAO.deleteTriggerInfo(list.get(i).getTrigger_Num());
 						
@@ -309,10 +313,11 @@ public class TimeLineController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "dateinfo", method = RequestMethod.GET)
-	public String dateInfo(String str){
-		
-		logger.info("=========="+str);
-			String [] array = str.split("\\*-*");
+	public TriggerInfo dateInfo(String t){
+		TriggerInfo tri = new TriggerInfo();
+		logger.info("=========="+t);
+			String [] array = t.split("!@#");
+			logger.info("========== array[0]"+array[0] + "!@#array[1]" + array[1]+"!@#array[2]"+array[2]+"!@#array[3]"+array[3]+"!@#array[4]"+array[4]);
 			Calendar cal = Calendar.getInstance();
 			int nowTime = (int) (cal.getTimeInMillis() / 1000);
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -334,7 +339,7 @@ public class TimeLineController {
 				} else {
 					result = array[0];
 				}
-				str = array[0] + "*-*" + result+"*-*"+array[2]+"*-*"+array[3];
+				tri.setUpdate_Date(array[0] + "!@#" + result+"!@#"+array[2]+"!@#"+array[3]+"!@#"+array[4]);
 				
 			
 				
@@ -342,9 +347,7 @@ public class TimeLineController {
 			} catch (Exception e) {
 				logger.info(e.toString());
 			}
-			logger.info("=========="+str);
-		return str;
-		
+		return tri;
 		
 	}
 }
