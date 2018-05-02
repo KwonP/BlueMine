@@ -84,11 +84,15 @@
 <link href="../resources/css/basic.css" rel="stylesheet">
 
 <style>
-html{background: #ffffff;}
-#wrapper {
-    width: 100%;
-    height: 100%;
+html {
+	background: #ffffff;
 }
+
+#wrapper {
+	width: 100%;
+	height: 100%;
+}
+
 p {
 	font-size: 24px;
 }
@@ -155,15 +159,17 @@ option {
 .btn.active span.glyphicon {
 	opacity: 1;
 }
-#page-wrapper{
-    position: relative;
-    width: 1260px;
-    left: 250px;
+
+#page-wrapper {
+	position: relative;
+	width: 1260px;
+	left: 250px;
 }
+
 #write {
-    position: absolute;
-    left: 695px;
-    top: 115px;
+	position: absolute;
+	left: 695px;
+	top: 115px;
 }
 #load{
 		width: 100%;
@@ -282,17 +288,16 @@ option {
 	}
 	
 	function completeTask(gp_Num) {
-		var array = [];
-		$('#' + gp_Num).each(function(i, l){
+		$('.' + gp_Num).each(function(i, l){
 			if($(this).prop("checked", true)) {
 				$(this).attr("value", 1);
 				var progress = $(this).val();
-				$('#' + gp_Num).attr("class", "success");
+				$('#gg').attr("class", "success");
 			}
-			if($(this).prop("checked", false)) {
+			else if($(this).prop("checked", false)) {
 				$(this).attr("value", 0);
 				var progress = $(this).val();
-				$('#' + gp_Num).attr("class", "info");
+				$('#ff').attr("class", "info");
 			}
 			
 			$.ajax({
@@ -352,7 +357,8 @@ option {
 </div>
 	<div id="wrapper">
 		<!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
@@ -360,94 +366,53 @@ option {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">About</a>
-				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">Help</a>
-            </div>
-            <!-- /.navbar-header -->
+				<a class="navbar-brand" href="../goToMain">BLUE MINE</a> <a
+					class="companyInfo" value="../about">About</a> <a
+					class="companyInfo" value="../contact">Contact Us</a> <a
+					class="companyInfo" value="../help">Help</a>
+			</div>
+			<!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="noticeCheck">
-                        <i class="fa fa-bell fa-fw" id="bell"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul id="notificationList" class="dropdown-menu dropdown-alerts">
-                       
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profileImg">
-                      <img src="../showProfile" width="50px">
-					  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-        <div class="navbar-default sidebar" role="navigation"> 
-                <div class="sidebar-nav navbar-collapse"> 
-                    <ul class="nav" id="side-menu"> 
-                        <li> 
-                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
-                        </li> 
-                        <li> 
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline</a> 
-                        </li> 
-                        <li> 
-                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a> 
-                        </li> 
-                        <li> 
-                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> Task</a> 
-                        </li>
-                        <li> 
-                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> Gantt Chart</a> 
-                        </li>  
-                        <li> 
-                            <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
-                        </li> 
-                       </li>
-                    </ul> 
-                </div> 
-                <!-- /.sidebar-collapse --> 
-            </div> 
-            <!-- /.navbar-static-side --> 
-        </nav> 
+			<ul class="nav navbar-top-links navbar-right">
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" id="noticeCheck"> <i
+						class="fa fa-bell fa-fw" id="bell"></i> <i
+						class="fa fa-caret-down"></i>
+				</a>
+					<ul id="notificationList" class="dropdown-menu dropdown-alerts">
+
+					</ul> <!-- /.dropdown-alerts --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" id="profileImg"> <img
+						src="../showProfile" width="50px"> <i
+						class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="../profilePage"><i class="fa fa-user fa-fw"></i>
+								User Profile</a></li>
+						<li class="divider"></li>
+						<li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i>
+								Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
-						<li class="sidebar-search">
-							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" placeholder="Search...">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div> <!-- /input-group -->
-						</li>
-						<li><a href="goToMain"><i class="fa fa-desktop fa-fw"></i>
+						<li><a href="../goToMain"><i class="fa fa-desktop fa-fw"></i>
 								Main Page</a></li>
 						<li><a href="#"><i class="fa fa-paper-plane-o fa-fw"></i>
-								Timeline<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="#">My Timeline</a></li>
-								<li><a href="#">Company Timeline</a></li>
-							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="#"><i class="fa fa-edit fa-fw"></i> Board</a></li>
-						<li><a href="#"><i class="fa fa-paste fa-fw"></i> Task</a></li>
-						<li><a href="inside/broadcast"><i
+								Timeline</a></li>
+						<li><a href="../data/filePrint"><i
+								class="fa fa-edit fa-fw"></i> Data Download</a></li>
+						<li><a href="../task/taskMain"><i
+								class="fa fa-paste fa-fw"></i> Task</a></li>
+						<li><a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i>
+								Gantt Chart</a></li>
+						<li><a href="../inside/broadcast"><i
 								class="fa fa-comments fa-fw"></i> Chats</a></li>
 						</li>
 					</ul>
@@ -456,240 +421,284 @@ option {
 			</div>
 			<!-- /.navbar-static-side -->
 		</nav>
-
-	<!-- 여기서부터 변경. -->
-	<div id="page-wrapper">
-
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">${prj_Name}</h1>
+		<div class="navbar-default sidebar" role="navigation">
+			<div class="sidebar-nav navbar-collapse">
+				<ul class="nav" id="side-menu">
+					<li class="sidebar-search">
+						<div class="input-group custom-search-form">
+							<input type="text" class="form-control" placeholder="Search...">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+							</span>
+						</div> <!-- /input-group -->
+					</li>
+					<li><a href="goToMain"><i class="fa fa-desktop fa-fw"></i>
+							Main Page</a></li>
+					<li><a href="#"><i class="fa fa-paper-plane-o fa-fw"></i>
+							Timeline<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="#">My Timeline</a></li>
+							<li><a href="#">Company Timeline</a></li>
+						</ul> <!-- /.nav-second-level --></li>
+					<li><a href="#"><i class="fa fa-edit fa-fw"></i> Board</a></li>
+					<li><a href="#"><i class="fa fa-paste fa-fw"></i> Task</a></li>
+					<li><a href="inside/broadcast"><i
+							class="fa fa-comments fa-fw"></i> Chats</a></li>
+					</li>
+				</ul>
 			</div>
-			<!-- /.col-lg-12 -->
+			<!-- /.sidebar-collapse -->
 		</div>
-		<!-- /.row -->
-		<c:forEach var="k" items="${pjgroupList}" varStatus="st">
+		<!-- /.navbar-static-side -->
+		</nav>
+
+		<!-- 여기서부터 변경. -->
+		<div id="page-wrapper">
+
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">${k.gp_Name }</div>
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Progress</th>
-											<!-- private int progress;// 진행도 -->
-											<th>Task Name</th>
-											<!-- private String gs_Name;// 그룹 스케줄 이름 -->
-											<th>Content</th>
-											<!-- private String gs_Content;// 내용 -->
-											<th>Category</th>
-											<!-- private String taskCategory;//유형 -->
-											<th>Start Date</th>
-											<!-- private String start_Date;// 시작일 -->
-											<th>Deadline</th>
-											<!-- private String deadLine;// 마감일 -->
-											<th>Priority</th>
-											<!-- private int gp_Pri;// 중요도 -->
-										</tr>
-									</thead>
-									<tbody>
-										<!-- 반복 시작 -->
-										<c:if test="${sessionScope.loginId != null}">
-											<c:if test="${gpworkList == null }">
-											</c:if>
-											<c:if test="${gpworkList != null }">
-											</c:if>
-											<c:forEach var="r" items="${gpworkList}" varStatus="status">
-												<c:if test="${k.gp_Num == r.gp_Num}"></c:if>
-												<c:if test="${r.progress == 0}">
-													<tr class="info" id="${r.gp_Num}">
-														<td>
-															<div class="btn-group" data-toggle="buttons">
-																<input type="checkbox"
-																	class="${r.gs_Num} + ${status.count}" id="ff"
-																	value="${r.progress}" name="getNums">
-															</div>
-														</td>
-													</tr>
+				<div class="col-lg-12">
+					<h1 class="page-header">${prj_Name}</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			<c:forEach var="k" items="${pjgroupList}" varStatus="st">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">${k.gp_Name }</div>
+							<!-- /.panel-heading -->
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Progress</th>
+												<!-- private int progress;// 진행도 -->
+												<th>Task Name</th>
+												<!-- private String gs_Name;// 그룹 스케줄 이름 -->
+												<th>Content</th>
+												<!-- private String gs_Content;// 내용 -->
+												<th>Category</th>
+												<!-- private String taskCategory;//유형 -->
+												<th>Start Date</th>
+												<!-- private String start_Date;// 시작일 -->
+												<th>Deadline</th>
+												<!-- private String deadLine;// 마감일 -->
+												<th>Priority</th>
+												<!-- private int gp_Pri;// 중요도 -->
+											</tr>
+										</thead>
+										<tbody>
+											<!-- 반복 시작 -->
+											<c:if test="${sessionScope.loginId != null}">
+												<c:if test="${gpworkList == null }">
 												</c:if>
-												<c:if test="${r.progress == 1}">
-													<tr class="'success" id="${r.gp_Num}">
-														<td>
-															<div class="btn-group" data-toggle="buttons">
-																<input type="checkbox"
-																	class="${r.gs_Num} + ${status.count}" id="gg"
-																	value="${r.progress}" name="getNums">
-															</div>
-														</td>
-													</tr>
+												<c:if test="${gpworkList != null }">
 												</c:if>
-												<td>${r.gs_Name}</td>
-												<td>${r.gs_Content}</td>
-												<td>${r.taskCategory}</td>
-												<td>${r.start_Date}</td>
-												<td>${r.deadLine}</td>
-												<td>${r.gp_Pri}</td>
-											</c:forEach>
-										</c:if>
+												<c:forEach var="r" items="${gpworkList}" varStatus="status">
+													<c:if test="${k.gp_Num == r.gp_Num}"></c:if>
+													<c:if test="${r.progress == 0}">
+														<tr class="info" id="ff">
+															<td>
+																<div class="btn-group" data-toggle="buttons">
+																	<input type="checkbox"
+																		class="${r.gp_Num}"
+																		value="${r.progress}" name="${r.gs_Num}">
+																</div>
+															</td>
+															<td>${r.gs_Name}</td>
+															<td>${r.gs_Content}</td>
+															<td>${r.taskCategory}</td>
+															<td>${r.start_Date}</td>
+															<td>${r.deadLine}</td>
+															<td>${r.gp_Pri}</td>
+														</tr>
+													</c:if>
+													<c:if test="${r.progress == 1}">
+														<tr class="success" id="gg">
+															<td>
+																<div class="btn-group" data-toggle="buttons">
+																	<input type="checkbox"
+																		class="${r.gp_Num}"
+																		value="${r.progress}" name="${r.gs_Num}">
+																</div>
+															</td>
+															<td>${r.gs_Name}</td>
+															<td>${r.gs_Content}</td>
+															<td>${r.taskCategory}</td>
+															<td>${r.start_Date}</td>
+															<td>${r.deadLine}</td>
+															<td>${r.gp_Pri}</td>
+														</tr>
+													</c:if>
+													<%-- <td>${r.gs_Name}</td>
+													<td>${r.gs_Content}</td>
+													<td>${r.taskCategory}</td>
+													<td>${r.start_Date}</td>
+													<td>${r.deadLine}</td>
+													<td>${r.gp_Pri}</td> --%>
+												</c:forEach>
+											</c:if>
 
-										<tr>
-											<td class="table">
-												<button class="btn btn-primary"
-													onclick="completeTask(${k.gp_Num})">저장</button>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<!-- /.table-responsive -->
-							<button class="btn fifth"
-								style="width: 566px; height: 180px; font-size: 50px;"
-								onclick="popup()">+</button>
+											<tr>
+												<td class="table">
+													<button class="btn btn-primary"
+														onclick="completeTask(${k.gp_Num})">저장</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- /.table-responsive -->
+								<button class="btn fifth"
+									style="width: 566px; height: 180px; font-size: 50px;"
+									onclick="popup()">+</button>
 
-							<div id="joinPopup" class="white_content"
-								style="width: 800px; height: 673px;">
-								<a href="#" onclick="workPopupClose();"> <span
-									class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</a>
-								<div id="wrapper">
-									<div class="row">
-										<div class="col-lg-12">
-											<h1 class="page-header">Form</h1>
+								<div id="joinPopup" class="white_content"
+									style="width: 800px; height: 673px;">
+									<a href="#" onclick="workPopupClose();"> <span
+										class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									</a>
+									<div id="wrapper">
+										<div class="row">
+											<div class="col-lg-12">
+												<h1 class="page-header">Form</h1>
+											</div>
+											<!-- /.col-lg-12 -->
+										</div>
+										<!-- /.row -->
+
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="panel panel-default">
+													<div class="panel-heading">Task</div>
+													<div class="panel-body">
+														<div class="row">
+															<div class="col-lg-6">
+																<div class="form-group">
+																	<label>유형</label> <select class="form-control"
+																		name="taskCategory" id="taskCategory">
+																		<option value="이슈">이슈</option>
+																		<option value="결함">결함</option>
+																		<option value="테스트케이스">테스트케이스</option>
+																		<option value="설계">설계</option>
+																		<option value="개발">개발</option>
+																		<option value="코드 리뷰">코드 리뷰</option>
+																	</select>
+																</div>
+
+																<div class="form-group">
+																	<label>제목</label> <input class="form-control"
+																		name="gs_Name" id="gs_Name" placeholder="Title">
+																</div>
+
+																<div class="form-group">
+																	<label>시작일</label> <input type="date"
+																		class="form-control" name="startDate" id="startDate">
+																</div>
+
+
+																<div class="form-group">
+																	<label>마감일</label> <input type="date"
+																		class="form-control" name="deadLine" id="deadLine">
+																</div>
+
+																<div class="form-group">
+																	<label>중요도</label> <select class="form-control"
+																		name="gp_Pri" id="gp_Pri">
+																		<option value="4">즉시</option>
+																		<option value="3">긴급</option>
+																		<option value="2">높음</option>
+																		<option value="1">보통</option>
+																		<option value="0">낮음</option>
+																	</select>
+																</div>
+															</div>
+
+															<!-- /.col-lg-6 (nested) -->
+															<div class="col-lg-6">
+																<div class="form-group">
+																	<label>설명</label>
+																	<textarea style="resize: none;" class="form-control"
+																		name="gs_Content" id="gs_Content" rows="17"></textarea>
+																</div>
+																<div class="form-group">
+																	<button class="btn btn-primary" style="float: right;"
+																		onclick="makeTask(${k.gp_Num})">만들기</button>
+																</div>
+															</div>
+															<!-- /.col-lg-6 (nested) -->
+														</div>
+													</div>
+													<!-- /.row (nested) -->
+												</div>
+												<!-- /.panel-body -->
+											</div>
+											<!-- /.panel -->
 										</div>
 										<!-- /.col-lg-12 -->
 									</div>
 									<!-- /.row -->
+									<!--  </div> -->
+									<!-- /#page-wrapper -->
 
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="panel panel-default">
-												<div class="panel-heading">Task</div>
-												<div class="panel-body">
-													<div class="row">
-														<div class="col-lg-6">
-															<div class="form-group">
-																<label>유형</label> <select class="form-control"
-																	name="taskCategory" id="taskCategory">
-																	<option value="이슈">이슈</option>
-																	<option value="결함">결함</option>
-																	<option value="테스트케이스">테스트케이스</option>
-																	<option value="설계">설계</option>
-																	<option value="개발">개발</option>
-																	<option value="코드 리뷰">코드 리뷰</option>
-																</select>
-															</div>
-
-															<div class="form-group">
-																<label>제목</label> <input class="form-control"
-																	name="gs_Name" id="gs_Name" placeholder="Title">
-															</div>
-
-															<div class="form-group">
-																<label>시작일</label> <input type="text"
-																	class="form-control" name="startDate" id="startDate">
-															</div>
-														</div>
-
-														<div class="form-group">
-															<label>마감일</label> <input type="text"
-																class="form-control" name="deadLine" id="deadLine">
-														</div>
-
-														<div class="form-group">
-															<label>중요도</label> <select class="form-control"
-																name="gp_Pri" id="gp_Pri">
-																<option value="4">즉시</option>
-																<option value="3">긴급</option>
-																<option value="2">높음</option>
-																<option value="1">보통</option>
-																<option value="0">낮음</option>
-															</select>
-														</div>
-
-													</div>
-													<!-- /.col-lg-6 (nested) -->
-													<div class="col-lg-6">
-														<div class="form-group">
-															<label>설명</label>
-															<textarea style="resize: none;" class="form-control"
-																name="gs_Content" id="gs_Content" rows="17"></textarea>
-														</div>
-														<div class="form-group">
-															<button class="btn btn-primary" style="float: right;"
-																onclick="makeTask(${k.gp_Num})">만들기</button>
-														</div>
-													</div>
-													<!-- /.col-lg-6 (nested) -->
-
-												</div>
-												<!-- /.row (nested) -->
-											</div>
-											<!-- /.panel-body -->
-										</div>
-										<!-- /.panel -->
-									</div>
-									<!-- /.col-lg-12 -->
 								</div>
-								<!-- /.row -->
-								<!--  </div> -->
-								<!-- /#page-wrapper -->
-
+								<!-- /#wrapper -->
 							</div>
-							<!-- /#wrapper -->
-						</div>
-						<div id="popupBack" class="black_overlay"></div>
+							<div id="popupBack" class="black_overlay"></div>
 
+						</div>
+						<!-- /.panel-body -->
+					</div>
+					<!-- /.panel -->
+				</div>
+			</c:forEach>
+			<!-- /.col-lg-6 -->
+
+			<div class="col-lg-4" id="write">
+				<div class="chat-panel panel panel-default">
+					<div class="panel-body">
+						<ul class="chat">
+							<c:if test="${timelineList != null }">
+								<c:forEach var="i" items="${timelineList }">
+									<li class="left clearfix"><span class="chat-img pull-left">
+											<!-- 기본이미지 가지고오기 --> <!-- <img width="500" height="300" src=""/>  -->
+											<img src="../showProfile" class="img-circle" />
+									</span>
+										<div class="chat-body clearfix">
+											<div class="header">
+												<strong class="primary-font">${i.writer }</strong> <small
+													class="pull-right text-muted"> <i
+													class="fa fa-clock-o fa-fw"></i> ${i.w_Date}
+												</small>
+											</div>
+											<p>${i.tl_Content }</p>
+										</div></li>
+								</c:forEach>
+							</c:if>
+						</ul>
 					</div>
 					<!-- /.panel-body -->
-				</div>
-				<!-- /.panel -->
-			</div>
-		</c:forEach>
-		<!-- /.col-lg-6 -->
-
-		<div class="col-lg-4" id="write">
-			<div class="chat-panel panel panel-default">
-				<div class="panel-body">
-					<ul class="chat">
-						<c:if test="${timelineList != null }">
-							<c:forEach var="i" items="${timelineList }">
-								<li class="left clearfix"><span class="chat-img pull-left">
-										<!-- 기본이미지 가지고오기 --> <!-- <img width="500" height="300" src=""/>  -->
-										<img src="../showProfile" class="img-circle" />
-								</span>
-									<div class="chat-body clearfix">
-										<div class="header">
-											<strong class="primary-font">${i.writer }</strong> <small
-												class="pull-right text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i> ${i.w_Date}
-											</small>
-										</div>
-										<p>${i.tl_Content }</p>
-									</div></li>
-							</c:forEach>
-						</c:if>
-					</ul>
-				</div>
-				<!-- /.panel-body -->
-				<div class="panel-footer">
-					<div class="input-group">
-						<input id="btn-input" type="text" class="form-control input-sm"
-							placeholder="Type your message here..." /> <span
-							class="input-group-btn">
-							<button class="btn btn-warning btn-sm" id="btn-chat"
-								onclick="insertReply()">WRITE</button>
-						</span>
+					<div class="panel-footer">
+						<div class="input-group">
+							<input id="btn-input" type="text" class="form-control input-sm"
+								placeholder="Type your message here..." /> <span
+								class="input-group-btn">
+								<button class="btn btn-warning btn-sm" id="btn-chat"
+									onclick="insertReply()">WRITE</button>
+							</span>
+						</div>
 					</div>
+					<!-- /.panel-footer -->
 				</div>
-				<!-- /.panel-footer -->
+				<!-- /.panel .chat-panel -->
 			</div>
-			<!-- /.panel .chat-panel -->
+			<!-- /.col-lg-4 -->
 		</div>
-		<!-- /.col-lg-4 -->
-	</div>
-	<!-- /.row -->
+		<!-- /.row -->
 	</div>
 	<!-- /#wrapper -->
 </body>

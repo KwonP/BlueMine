@@ -114,12 +114,12 @@ public class TaskController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/updateProgress", method = RequestMethod.POST)
-	public String updateProgress(String gp_Num, String progress) {
+	public String updateProgress(int gp_Num, int progress) {
 		System.out.println(gp_Num);
 		System.out.println(progress);
 		GP_Work gp_work = new GP_Work();
-		gp_work.setGp_Num(Integer.parseInt(gp_Num));
-		gp_work.setProgress(Integer.parseInt(progress));
+		gp_work.setGp_Num(gp_Num);
+		gp_work.setProgress(progress);
 	
 		int num = dao.updateProgress(gp_work);
 		String str = String.valueOf(num);

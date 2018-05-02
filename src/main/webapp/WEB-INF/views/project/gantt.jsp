@@ -190,7 +190,61 @@
 </head>
 
 <body>
-	<br><br><br><br><br><br><br><br><br>
+		<div id="wrapper">
+		<!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
+				<a class="companyInfo" value="../about">About</a>
+				<a class="companyInfo" value="../contact">Contact Us</a>
+				<a class="companyInfo" value="../help">Help</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="noticeCheck">
+                        <i class="fa fa-bell fa-fw" id="bell"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul id="notificationList" class="dropdown-menu dropdown-alerts">
+                       
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profileImg">
+                      <img src="../showProfile" width="50px">
+					  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+            </nav>
+            </div>
+		<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Gantt Chart</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+	<br><br><br><br><br><br><br>
 	<div id="chart_div"></div>
 
 </body>
