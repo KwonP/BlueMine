@@ -31,6 +31,7 @@ import com.bluemine.www.dao.ProjectDAO;
 import com.bluemine.www.dao.TimeLineDAO;
 import com.bluemine.www.util.PageNavigator;
 import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.MatchPRJ;
 import com.bluemine.www.vo.PJ_Group;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
@@ -174,9 +175,9 @@ public class TimeLineController {
 	// 타임라인 수정
 	@ResponseBody
 	@RequestMapping(value = "updatetl", method = RequestMethod.GET)
-	public String updateTL(TimeLine t) {
+	public String updateTL(MatchPRJ mr) {
 
-		tlDAO.updateTimeLine(t);
+		tlDAO.updateTimeLine(mr);
 		return "수정 성공";
 	}
 

@@ -101,15 +101,16 @@ function menuPage() {
 			}
 			timeLine += '<div class="timeline-heading"><h4 class="timeline-title">';
 			timeLine += splitArray[0];
-			timeLine += '</h4><p><small class="text-muted"><i class="fa fa-clock-o"></i>';
+			timeLine += '</h4><input type="hidden" id="writer'+list[i].tl_Num+'" value="'+list[i].writer+'"><p><small class="text-muted"><i class="fa fa-clock-o"></i>';
 			timeLine += list[i].w_Date + '</small>';
 			timeLine += '</p></div><div class="timeline-body"><p id="tlText' + list[i].tl_Num + '">' + splitArray[1];
 			timeLine += '' + '</p>';
 			if (list[i].writer == sessionInfo) { //해당 프로젝트 플래너와 접속한 아이디가 같을경우 타임라인 삭제 또는 편집 가능
 				timeLine += '<hr><div class="btn-group"><button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">';
-				timeLine += '<i class="fa fa-gear"></i> <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a href="#layer1"';
-				timeLine += ' tl_Num="' + list[i].tl_Num + '" id="tlUpdate' + list[i].tl_Num + '" onclick="javascript:updateStep(' + "'#layer1'," + list[i].tl_Num + ')">Update</a></li><li><a href="#"';
-				timeLine += ' tl_Num="' + list[i].tl_Num + '" id="tlDelete' + list[i].tl_Num + '" onclick="javascript:deleteStep(' + list[i].tl_Num + ')">Delete</a></li></ul></div>';
+				timeLine += '<i class="fa fa-gear"></i> <span class="caret"></span></button><ul class="dropdown-menu" role="menu">';
+					
+				//timeLine += '<li><a href="#layer1" tl_Num="' + list[i].tl_Num + '" id="tlUpdate' + list[i].tl_Num + '" onclick="javascript:updateStep(' + "'#layer1'," + list[i].tl_Num + ')">Update</a></li>';
+				timeLine += '<li><a href="#" tl_Num="' + list[i].tl_Num + '" id="tlDelete' + list[i].tl_Num + '" onclick="javascript:deleteStep(' + list[i].tl_Num + ')">Delete</a></li></ul></div>';
 			}
 			timeLine += '</div></div></li>';
 		}
@@ -194,7 +195,6 @@ function menuPage() {
 	//타임라인 수정
 	function updateTL() { 
 		var tl_Num = $('#TLNumber').val();
-		var writer = $("#writer").val();
 		var tl_Content = $("#timeLineContent").val();
 		
 		;
@@ -210,8 +210,7 @@ function menuPage() {
 			url : 'updatetl',
 			tpue : 'get',
 			data : {
-				writer : writer,
-				tl_Content : tl_Content,
+				memberId : tl_Content,
 				tl_Num : tl_Num
 			},
 			dataType : 'text',
@@ -223,7 +222,7 @@ function menuPage() {
 
 			},
 			error : function(error) {
-				console.info('타임라인 수정 오류' + error.status);
+				alert("적합하지 ID입니다.");
 			}
 		}
 		);

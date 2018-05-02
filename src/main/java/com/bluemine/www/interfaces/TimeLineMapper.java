@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.MatchPRJ;
 import com.bluemine.www.vo.PJ_Group;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
@@ -23,7 +24,7 @@ public ArrayList<TimeLine> getTimeLineList(RowBounds rb);
 //타임 라인 글 삭제(게시글 번호로)
 public int deleteTimeLine(int tl_Num);
 //타임 라인 글 수정
-public int updateTimeLine(TimeLine t);
+public int updateTimeLine(MatchPRJ mr);
 //파일 업로드
 public int addFile(FileInfo file);
 //파일 목록
