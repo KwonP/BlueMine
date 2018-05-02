@@ -176,9 +176,8 @@
 						<thead>
 
 							<tr>
-								<th>작성자</th>
-								<td>${sessionScope.user.name}<input type="hidden"
-									value="${loginId}" id="writer"></td>
+								<th>관리자</th>
+								<td><span id="wirterName"></span> </td>
 							</tr>
 
 
@@ -251,7 +250,7 @@
 
 
 	</div>
-
+	
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
@@ -275,6 +274,7 @@
 	function updateStep($href,tl_Num){
         $('#timeLineContent').val($('#tlText'+tl_Num).text());
         $('#TLNumber').val(tl_Num);
+        $('#wirterName').text($('#writer'+tl_Num).val());
         $('#btn-add').off('click');
         $('#btn-add').on('click',updateTL);
         $('#btn-add').text('Update');

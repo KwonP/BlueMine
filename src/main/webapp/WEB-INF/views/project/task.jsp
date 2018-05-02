@@ -186,7 +186,9 @@ option {
 		z-index: 100;
 }
 </style>
-
+<script src="../resources/toastr/toastr.min.js"></script>
+<link href="../resources/toastr/toastr.css" rel="stylesheet">
+<script src="../resources/js/notificationList.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.companyInfo').click(menuPage);
@@ -692,5 +694,6 @@ option {
 	<!-- /.row -->
 	</div>
 	<!-- /#wrapper -->
+	<script src="../resources/js/worker.js"></script>
 </body>
 </html>
