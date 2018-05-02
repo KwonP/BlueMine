@@ -124,31 +124,11 @@
         <div class="navbar-default sidebar" role="navigation"> 
                 <div class="sidebar-nav navbar-collapse"> 
                     <ul class="nav" id="side-menu"> 
-                        <li class="sidebar-search"> 
-                            <div class="input-group custom-search-form"> 
-                                <input type="text" class="form-control" placeholder="Search..."> 
-                                <span class="input-group-btn"> 
-                                <button class="btn btn-default" type="button"> 
-                                    <i class="fa fa-search"></i> 
-                                </button> 
-                            </span> 
-                            </div> 
-                            <!-- /input-group --> 
-                        </li> 
                         <li> 
                             <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
                         </li> 
                         <li> 
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline<span class="fa arrow"></span></a> 
-                            <ul class="nav nav-second-level"> 
-                                <li> 
-                                    <a href="#">My Timeline</a> 
-                                </li> 
-                                <li> 
-                                    <a href="#">Company Timeline</a> 
-                                </li> 
-                            </ul> 
-                            <!-- /.nav-second-level --> 
+                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline</a> 
                         </li> 
                         <li> 
                           <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a> 
@@ -171,7 +151,7 @@
         </nav> 
  
         <div id="page-wrapper"> 
-			<h1>프로젝트 No.${prjNum}</h1>
+			<h1>프로젝트<span id="projectName"></span> [ No.${prjNum} ] </h1>
 			<div id="timeLineDiv"></div>
 			<input type="hidden" id="getPrjNum" value="${prjNum}"> <input
 				type="hidden" id="getUserId" value="${loginId}"> <input
@@ -196,9 +176,8 @@
 						<thead>
 
 							<tr>
-								<th>작성자</th>
-								<td>${sessionScope.user.name}<input type="hidden"
-									value="${loginId}" id="writer"></td>
+								<th>관리자</th>
+								<td><span id="wirterName"></span> </td>
 							</tr>
 
 
@@ -271,7 +250,7 @@
 
 
 	</div>
-
+	
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
@@ -295,6 +274,7 @@
 	function updateStep($href,tl_Num){
         $('#timeLineContent').val($('#tlText'+tl_Num).text());
         $('#TLNumber').val(tl_Num);
+        $('#wirterName').text($('#writer'+tl_Num).val());
         $('#btn-add').off('click');
         $('#btn-add').on('click',updateTL);
         $('#btn-add').text('Update');

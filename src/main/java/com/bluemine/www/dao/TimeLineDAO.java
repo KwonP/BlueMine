@@ -16,6 +16,7 @@ import com.bluemine.www.HomeController;
 import com.bluemine.www.interfaces.TimeLineMapper;
 import com.bluemine.www.vo.FileInfo;
 import com.bluemine.www.vo.GP_Work;
+import com.bluemine.www.vo.MatchPRJ;
 import com.bluemine.www.vo.PJ_Group;
 import com.bluemine.www.vo.PRJList;
 import com.bluemine.www.vo.TimeLine;
@@ -50,8 +51,8 @@ public class TimeLineDAO implements TimeLineMapper{
 	}
 	//타임 라인 글 수정
 	@Override
-	public int updateTimeLine(TimeLine t) {
-		int result = session.getMapper(TimeLineMapper.class).updateTimeLine(t);
+	public int updateTimeLine(MatchPRJ mr) {
+		int result = session.getMapper(TimeLineMapper.class).updateTimeLine(mr);
 		return result;
 	}
 	//파일 업로드
@@ -111,8 +112,8 @@ public class TimeLineDAO implements TimeLineMapper{
 		return gw;
 	}
 	@Override
-	public HashMap<String, Object> getGSInfo(HashMap<String, Object> map) {
-		HashMap<String, Object> hashmap = session.getMapper(TimeLineMapper.class).getGSInfo(map);
+	public HashMap<String, String> getGSInfo(HashMap<String, String> map) {
+		HashMap<String, String> hashmap = session.getMapper(TimeLineMapper.class).getGSInfo(map);
 		
 		return hashmap;
 	}

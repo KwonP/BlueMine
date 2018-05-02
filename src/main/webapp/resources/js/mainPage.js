@@ -53,13 +53,19 @@ function check(){
     	  var  wholeInfo = {};
           wholeInfo.label = getVal[i].name+":"+getVal[i].email;
           wholeInfo.value = getVal[i].name;
+          wholeInfo.userId = getVal[i].userId;
           console.log(wholeInfo);
           getPeople.push(wholeInfo);
        } 
     $('#planner').autocomplete({
        source : getPeople,
-       autoFocus: true,
        collapsible: true,
+       focus: function(event, ui) {
+    	   console.log(ui);
+           event.preventDefault();
+           $(this).val(ui.item.value);
+           $('#userId').attr('value',ui.item.userId);
+       }
     });
  }
  

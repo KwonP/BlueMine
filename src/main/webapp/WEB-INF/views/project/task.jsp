@@ -62,9 +62,6 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
 
-<!-- Morris Charts JavaScript -->
-<script src="../resources/templet/vendor/raphael/raphael.min.js"></script>
-
 <!-- Custom Theme JavaScript -->
 <script src="../resources/templet/dist/js/sb-admin-2.js"></script>
 
@@ -84,10 +81,14 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<!-- JS -->
-<!-- <script type="text/javascript" src="../resources/js/jquery-3.2.1.min.js"></script> -->
+<link href="../resources/css/basic.css" rel="stylesheet">
 
 <style>
+html{background: #ffffff;}
+#wrapper {
+    width: 100%;
+    height: 100%;
+}
 p {
 	font-size: 24px;
 }
@@ -154,16 +155,50 @@ option {
 .btn.active span.glyphicon {
 	opacity: 1;
 }
+#page-wrapper{
+    position: relative;
+    width: 1260px;
+    left: 250px;
+}
+#write {
+    position: absolute;
+    left: 695px;
+    top: 115px;
+}
+#load{
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		position: fixed;
+		display: block;
+		opacity: 0.8;
+		background: white;
+		z-index: 1010;
+		text-align: center;
+}
+#load > img{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -100px;
+  	  	margin-top: -115px;
+		z-index: 100;
+}
 </style>
-
+<script src="../resources/toastr/toastr.min.js"></script>
+<link href="../resources/toastr/toastr.css" rel="stylesheet">
+<script src="../resources/js/notificationList.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.companyInfo').click(menuPage);
+		$('#load').hide();
 	});
 	function menuPage(){
 		var menuPage = $(this).attr('value');
 		location.href = menuPage;
 	}
+	
 	</script>
 
 <script>
@@ -212,7 +247,7 @@ option {
 		}
 	}
 
-	function makeTask(pj_group) {
+	function makeTask(gp_Num) {
 		check();		
 		
 		var gs_Name = $('#gs_Name').val();
@@ -221,7 +256,7 @@ option {
 		var deadLine = $('#deadLine').val();
 		var gp_Pri = $('#gp_Pri').val();
 		var taskCategory = $('#taskCategory').val();
-		var gp_Num = pj_group;
+		var gp_Num = gp_Num;
 		// var GP_Work = $('form[name=taskForm]').serialize();
 		
 		$.ajax({
@@ -248,34 +283,19 @@ option {
 		});	 
 	}
 	
-	/* function completeTask() {
+	function completeTask(gp_Num) {
 		var array = [];
-	    
-	    <c:forEach items="${tasklist}" var="item">
-			array.push("${item}");
-		</c:forEach>
-		$.each( array, function(i, l){
-			alert(i); // 0 1
-			alert(l); // GP_Work [gs_Num=123, gs_Name=tt2, gp_Num=1234, gs_Content=ff, start_Date=2018-02-05 00:00:00, deadLine=2018-01-02 00:00:00, gp_Pri=2, progress=1, taskCategory=결함]
-			alert(l[1]);// l.gs_Num
-			if($('#'+l[i]).prop("checked")) {
-				alert(3);
-				$('#'+l[i]).attr("value", 1);
-				var progress = $('#'+l[i]).val();
-				alert(progress);
-				var temp = l[i];
-				$('.' + temp).attr("class", "success");
+		$('#' + gp_Num).each(function(i, l){
+			if($(this).prop("checked", true)) {
+				$(this).attr("value", 1);
+				var progress = $(this).val();
+				$('#' + gp_Num).attr("class", "success");
 			}
-			else {
-				alert(4); // ok
-				$('#'+l[i]).attr("value", 0);
-				var progress = $('#'+l[i]).val();
-				alert(progress); // undifined!!
-				var temp = l[i];
-				$('.' + temp).attr("class", "info");
+			if($(this).prop("checked", false)) {
+				$(this).attr("value", 0);
+				var progress = $(this).val();
+				$('#' + gp_Num).attr("class", "info");
 			}
-			alert(5); // ok
-			var gp_Num = ${pj_group.gp_Num};			
 			
 			$.ajax({
 				url: 'updateProgress', 							// progress 변경
@@ -289,114 +309,17 @@ option {
 				success: function(str) { 
 					if(str == '1') {
 						alert('성공');
+						window.location.reload();
 					}
 				},
 				error: function(cnt) {
 					alert('에러');
 				}				
-			});	 
+			});	
 		});
-	 */
-	function completeTask() {
-		/* $(".ckbox").prop("checked", true) */
-		/* ${t.gs_Num} + ${status.count} */
-/* 		$(".ckbox").prop("checked", true).each(function(){
-			var getCheck = $(this).val();
-			checked.push(getCheck);
-		});
-		
-		// Uncheck
-		$(".ckbox").prop("checked", false).each(function(){
-			var getCheck = $(this).val();
-			unchecked.push(getCheck);
-		});
-		
-		// Check
-		$('input[name=changeProg]:checked')
- */		
-
- 	
-		
- 
- 		/*		$("input[name=getNums]:checked").each(function(){
-			var com = $(this).val();
-			alert("비교할 값" + com);
-			var com2 = 0;
-			for(var i = 0; i < checked.length; i++){
-				if (com == checked[i]) {
-					alert("포함" + checked[i]);
-					return true;
-				}
-			com2 = checked[i];
-			alert("체크가 안됨" + com2);
-			}
-		}); */
-		
-		/* return;
-		for(var i = 0; i < checked.length; i++){
-			alert(checked[i]);
-		}
-		for(var j = 0; j < unchecked.length; j++){
-			alert(unchecked[i]);
-		}
-		$.ajax({
-			url : 'changeProgress',
-			type : 'post',
-	        data: {checked : checked},
-	        dataType : "json",
-			success : function(result){
-				if (result == 'ok') {
-					alert('변경되었습니다.');
-				} else {
-					alert('변경에 실패하였습니다. 다시 시도해 주세요.');
-				}
-			},
-			error : function(){
-				alert('서버 오류');
-			}
-		}) */
-	//}
-
-		
-		/* if($('#'+l[i]).prop("checked")) {
-			alert(3);
-			$('#'+l[i]).attr("value", 1);
-			var progress = $('#'+l[i]).val();
-			alert(progress);
-			var temp = l[i];
-			$('.' + temp).attr("class", "success");
-		}
-		else {
-			alert(4); // ok
-			$('#'+l[i]).attr("value", 0);
-			var progress = $('#'+l[i]).val();
-			alert(progress); // undifined!!
-			var temp = l[i];
-			$('.' + temp).attr("class", "info");
-		}
-		alert(5); // ok
-		var gp_Num = ${pj_group.gp_Num};			
-		
-		$.ajax({
-			url: 'updateProgress', 							// progress 변경
-			type: 'POST', 									// 타입
-			data: {
-				gp_Num: gp_Num 								// 그룹 번호
-				, progress: progress 						// 진행도
-			},
-			dataType: 'text',
-			async: false,
-			success: function(str) { 
-				if(str == '1') {
-					alert('성공');
-				}
-			},
-			error: function(cnt) {
-				alert('에러');
-			}				
-		});*/ 
+		return;
 	}
-	
+		
 	//새 메세지 추가
 	function insertReply() {
 		var btn_input = $('#btn-input').val();
@@ -417,7 +340,8 @@ option {
 			error: function(cnt) {
 				alert('에러');
 			}				
-		});	 
+		});	
+		return;
 	}
 
 </script>
@@ -425,11 +349,12 @@ option {
 </head>
 
 <body>
+<div id="load">
+	<img src="../resources/img/loading.gif" alt="loading">
+</div>
 	<div id="wrapper">
-
 		<!-- Navigation -->
-		<nav class="navbar navbar-default navbar-static-top" role="navigation"
-			style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
@@ -437,73 +362,70 @@ option {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="goToMain">BLUE MINE</a> <a
-					class="companyInfo" value="about">About</a> <a class="companyInfo"
-					value="contact">Contact Us</a> <a class="companyInfo" value="help">Help</a>
-			</div>
-			<!-- /.navbar-header -->
+				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
+				<a class="companyInfo" value="../about">About</a>
+				<a class="companyInfo" value="../contact">Contact Us</a>
+				<a class="companyInfo" value="../help">Help</a>
+            </div>
+            <!-- /.navbar-header -->
 
-			<ul class="nav navbar-top-links navbar-right">
-				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
-						<i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-alerts">
-						<li><a href="#">
-								<div>
-									<i class="fa fa-comment fa-fw"></i> New Comment <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
-										class="pull-right text-muted small">12 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-tasks fa-fw"></i> New Task <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
-										class="pull-right text-muted small">4 minutes ago</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a class="text-center" href="#"> <strong>See
-									All Alerts</strong> <i class="fa fa-angle-right"></i>
-						</a></li>
-					</ul> <!-- /.dropdown-alerts --></li>
-				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" id="profileImg"> <img
-						src="../showProfile" width="50px"> <i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li><a href="profilePage"><i class="fa fa-user fa-fw"></i>
-								User Profile</a></li>
-						<li class="divider"></li>
-						<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i>
-								Logout</a></li>
-					</ul> <!-- /.dropdown-user --></li>
-				<!-- /.dropdown -->
-			</ul>
-			<!-- /.navbar-top-links -->
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="noticeCheck">
+                        <i class="fa fa-bell fa-fw" id="bell"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul id="notificationList" class="dropdown-menu dropdown-alerts">
+                       
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profileImg">
+                      <img src="../showProfile" width="50px">
+					  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+        <div class="navbar-default sidebar" role="navigation"> 
+                <div class="sidebar-nav navbar-collapse"> 
+                    <ul class="nav" id="side-menu"> 
+                        <li> 
+                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
+                        </li> 
+                        <li> 
+                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline</a> 
+                        </li> 
+                        <li> 
+                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a> 
+                        </li> 
+                        <li> 
+                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> Task</a> 
+                        </li>
+                        <li> 
+                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> Gantt Chart</a> 
+                        </li>  
+                        <li> 
+                            <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
+                        </li> 
+                       </li>
+                    </ul> 
+                </div> 
+                <!-- /.sidebar-collapse --> 
+            </div> 
+            <!-- /.navbar-static-side --> 
+        </nav> 
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
@@ -537,18 +459,8 @@ option {
 			<!-- /.navbar-static-side -->
 		</nav>
 
-		<div id="page-wrapper">
-			<h1>${prjNum}</h1>
-		</div>
-		<!-- /#page-wrapper -->
-
-	</div>
-	<!-- /#wrapper -->
-
 	<!-- 여기서부터 변경. -->
 	<div id="page-wrapper">
-	<div class="test">
-	</div>
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -585,11 +497,49 @@ option {
 										</tr>
 									</thead>
 									<tbody>
-	
+										<!-- 반복 시작 -->
+										<c:if test="${sessionScope.loginId != null}">
+											<c:if test="${gpworkList == null }">
+											</c:if>
+											<c:if test="${gpworkList != null }">
+											</c:if>
+											<c:forEach var="r" items="${gpworkList}" varStatus="status">
+												<c:if test="${k.gp_Num == r.gp_Num}"></c:if>
+												<c:if test="${r.progress == 0}">
+													<tr class="info" id="${r.gp_Num}">
+														<td>
+															<div class="btn-group" data-toggle="buttons">
+																<input type="checkbox"
+																	class="${r.gs_Num} + ${status.count}" id="ff"
+																	value="${r.progress}" name="getNums">
+															</div>
+														</td>
+													</tr>
+												</c:if>
+												<c:if test="${r.progress == 1}">
+													<tr class="'success" id="${r.gp_Num}">
+														<td>
+															<div class="btn-group" data-toggle="buttons">
+																<input type="checkbox"
+																	class="${r.gs_Num} + ${status.count}" id="gg"
+																	value="${r.progress}" name="getNums">
+															</div>
+														</td>
+													</tr>
+												</c:if>
+												<td>${r.gs_Name}</td>
+												<td>${r.gs_Content}</td>
+												<td>${r.taskCategory}</td>
+												<td>${r.start_Date}</td>
+												<td>${r.deadLine}</td>
+												<td>${r.gp_Pri}</td>
+											</c:forEach>
+										</c:if>
 
 										<tr>
 											<td class="table">
-												<button class="btn btn-primary" onclick="completeTask()">저장</button>
+												<button class="btn btn-primary"
+													onclick="completeTask(${k.gp_Num})">저장</button>
 											</td>
 										</tr>
 									</tbody>
@@ -670,7 +620,7 @@ option {
 														</div>
 														<div class="form-group">
 															<button class="btn btn-primary" style="float: right;"
-																onclick="makeTask()">만들기</button>
+																onclick="makeTask(${k.gp_Num})">만들기</button>
 														</div>
 													</div>
 													<!-- /.col-lg-6 (nested) -->
@@ -701,7 +651,7 @@ option {
 		</c:forEach>
 		<!-- /.col-lg-6 -->
 
-		<div class="col-lg-4">
+		<div class="col-lg-4" id="write">
 			<div class="chat-panel panel panel-default">
 				<div class="panel-body">
 					<ul class="chat">
@@ -709,13 +659,13 @@ option {
 							<c:forEach var="i" items="${timelineList }">
 								<li class="left clearfix"><span class="chat-img pull-left">
 										<!-- 기본이미지 가지고오기 --> <!-- <img width="500" height="300" src=""/>  -->
-										<img src="../showProfile" alt="User Avatar" class="img-circle" />
+										<img src="../showProfile" class="img-circle" />
 								</span>
 									<div class="chat-body clearfix">
 										<div class="header">
 											<strong class="primary-font">${i.writer }</strong> <small
 												class="pull-right text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i> ${i.w_Date} mins ago
+												class="fa fa-clock-o fa-fw"></i> ${i.w_Date}
 											</small>
 										</div>
 										<p>${i.tl_Content }</p>
@@ -743,8 +693,7 @@ option {
 	</div>
 	<!-- /.row -->
 	</div>
-	<!-- /#page-wrapper -->
-	</div>
 	<!-- /#wrapper -->
+	<script src="../resources/js/worker.js"></script>
 </body>
 </html>

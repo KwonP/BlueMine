@@ -50,23 +50,32 @@ public class TaskController {
 		
 		// 프로젝트 이름 가져오기
 		String prj_Name = dao.selectPrjName(prj_Num);
-		
+
 		// 해당 프로젝트의 모든 그룹 가져오기
 		ArrayList<PJ_Group> pjgroupList = dao.selectAllGroups(prj_Num);
-		
-		HashMap<Integer, ArrayList<GP_Work>> map = new HashMap<>();
-		
+		ArrayList<Integer> legthList = new ArrayList<>();
+		// 각 프로젝트의 GP_Work들을 각각의 어레이리스트에 넣기
+		ArrayList<GP_Work> gpworkList = new ArrayList<>();
+		int cnt = 0;
 		for (PJ_Group pj_Group : pjgroupList) {
-			map.put(pj_Group.getGp_Num(), dao.selectEachGpworks(pj_Group.getGp_Num()));
+			ArrayList<GP_Work> tempList = new ArrayList<>();
+			tempList = dao.selectEachGpworks(pj_Group.getGp_Num());
+			for (GP_Work gp_Work : tempList) {
+				gpworkList.add(gp_Work);
+				cnt++;
+			}
+			legthList.add(cnt);
+			cnt = 0;
 		}
-		
+
 		// TimeLine(Memo가져오기)
 		ArrayList<TimeLine> timelineList = dao.selectTimeLine(prj_Num);
 		
 		model.addAttribute("prj_Name",prj_Name);
 		model.addAttribute("pjgroupList",pjgroupList);
-		model.addAttribute("map",map);
+		model.addAttribute("gpworkList",gpworkList);
 		model.addAttribute("timelineList",timelineList);
+		
 		return "project/task";
 	}
 	

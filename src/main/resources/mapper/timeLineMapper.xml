@@ -48,21 +48,9 @@ from timeline
 where tl_num=#{value}
 </delete>
 <!-- 타임 라인 글 수정 -->
-<update id="updateTimeLine" parameterType="timeLine">
-update timeline
-set 
-	prj_num=#{prj_Num}
-	,w_date = sysdate
-	<if test="writer!=null">
-	,writer=#{writer}
-	</if>
-	<if test="tl_Content!=null"> 
-	,tl_content = #{tl_Content}
-	</if>
-
-where
-	tl_num=#{tl_Num}
-</update>
+<insert id="updateTimeLine" parameterType="matchPrj">
+insert into matchprj(memberid,prj_num) values(#{memberId},#{prj_Num})
+</insert>
 <!-- 파일 업로드 -->
 <insert id="addFile" parameterType="fileInfo">
 INSERT INTO FILEINFO(
@@ -115,7 +103,7 @@ select * from pj_group where gp_num=#{value}
 <select id="getGP_Work_Gs_Num" parameterType="int" resultType="gpWork">
 select * from gp_work where gs_num=#{value}
 </select>
-<select id="getGSInfo" resultType="map" parameterType="map" >
+<select id="getGSInfo" resultType="hashMap" parameterType="hashMap" >
 select p.prj_name,e.GP_NAME,d.*,mp.MEMBERID
 
 From pj_group e
@@ -132,6 +120,6 @@ on p.PRJ_NUM=e.prj_num
 join matchPrj mp
 on mp.MEMBERID=j.USERID
 
-where j.GS_NUM= #{gs_Num} AND mp.MEMBERID= #{id};
+where j.GS_NUM= #{gs_Num} AND mp.MEMBERID= #{id}
 </select>
 </mapper>

@@ -120,56 +120,6 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -336,49 +286,21 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
                         <li>
                             <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">My Timeline</a>
-                                </li>
-                                <li>
-                                    <a href="#">Company Timeline</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="../project/timeline	"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline</a>
                         </li>
                         <li>
-                        	<a href="#"><i class="fa fa-edit fa-fw"></i> Board</a>
+                        	<a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-paste fa-fw"></i> Progress<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">My tasks</a>
-                                </li>
-                                <li>
-                                    <a href="#">Project</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> Task</a>
                         </li>
-                        <li>
-                        	<a href="#"><i class="fa fa-calendar fa-fw"></i>Work Schedule</a>
+                        <li> 
+                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> Gantt Chart</a> 
+                        </li> 
                         <li>
                             <a href="#"><i class="fa fa-comments fa-fw"></i> Chats</a>
                         </li>
@@ -441,11 +363,6 @@
 
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../resources/templet/vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../resources/templet/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../resources/templet/vendor/metisMenu/metisMenu.min.js"></script>
