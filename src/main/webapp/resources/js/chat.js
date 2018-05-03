@@ -42,4 +42,9 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('#inputMessage').click(function(){
+		$('.chat_body').hide();
+		$('.msg_box').hide();
+	});
+	
 });

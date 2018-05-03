@@ -64,7 +64,7 @@
 .user:BEFORE {
 	content: "";
 	position: absolute;
-	background: #2ecc71;
+	/* background: #2ecc71; */
 	width: 10px;
 	height: 10px;
 	left: 8px;
