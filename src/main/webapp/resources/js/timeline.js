@@ -135,11 +135,11 @@ function menuPage() {
 		var tagNum = $("#horseHead option:selected").val();
 		;
 		if (writer == '' || writer == null) {
-			alert('작성자가 설정되어있지 않습니다.');
+			alert('作成者が設定されていません。');
 			return;
 		}
 		if (tl_Content == '' || tl_Content == null) {
-			alert('내용이 입력되어있지 않습니다.');
+			alert('内容が入力されていません。');
 			return;
 		}
 		$.ajax({
@@ -167,7 +167,6 @@ function menuPage() {
 	}
 	//타임라인 삭제
 	function deleteTimeLine(tl_Num) { 
-		alert('삭제 시도!')
 		$.ajax({
 			url : 'deletetimeline',
 			tpue : 'get',
@@ -179,7 +178,7 @@ function menuPage() {
 			success : function() {
 				closePopup();
 				updateTimeLine();
-				alert("타임라인이 삭제되었습니다.");
+				alert("タイムラインが削除されました。");
 
 			},
 			error : function(error) {
@@ -199,11 +198,11 @@ function menuPage() {
 		
 		;
 		if (writer == '' || writer == null) {
-			alert('작성자가 설정되어있지 않습니다.');
+			alert('作成者が設定されていません。');
 			return;
 		}
 		if (tl_Content == '' || tl_Content == null) {
-			alert('내용이 입력되어있지 않습니다.');
+			alert('内容が入力されていません。');
 			return;
 		}
 		$.ajax({

@@ -41,7 +41,7 @@ function showNotice(list,addPass){
 				
 			},
 			error : function(error) {
-				console.info('날씨계산 오류' + error.status);
+				console.info('日付計算ミス' + error.status);
 			}
 		}
 		);
@@ -52,11 +52,11 @@ function showNotice(list,addPass){
 		var date = nList[i].update_Date+'';
 		var splitArray = date.split('!@#');
 		if(nList[i].info_Type=='prjList'){
-			type='프로젝트 [';
+			type='プロジェクト[';
 			link = ' onclick="goNotificationPage('+nList[i].info_Num+','+"'"+nList[i].info_Type+"'"+')"';
 			
 		}else if(nList[i].info_Type=='gp_Work'){
-			type='프로젝트 ['+splitArray[2]+']의 그룹 ['+splitArray[3]+']에 일감 [';
+			type='プロジェクト['+splitArray[2]+']のグループ['+splitArray[3]+']に仕事[';
 			link = ' onclick="goNotificationPage('+splitArray[4]+','+"'"+nList[i].info_Type+"'"+')"';
 	
 		}
@@ -64,18 +64,18 @@ function showNotice(list,addPass){
 			//INSERT
 			color='rgba(0,0,255,0.6)';
 			
-			 message=nList[i].info_Content+']이(가) 생성되었습니다.';
+			 message=nList[i].info_Content+']が生成されました。';
 			
 		}else if((nList[i].command_Check!=null&&nList[i].command_Check!='')&&(nList[i].info_Content==null||nList[i].info_Content=='')){
 			//DELETE
 			color='rgba(255,0,0,0.6)';
-			 message=nList[i].command_Check+']이(가) 삭제되었습니다.';
+			 message=nList[i].command_Check+']が削除されました。';
 			 link='';
 		}else{
 			//UPDATE
 			color='rgba(0,255,0,0.6)';
 			icon='fa fa-wrench';
-			 message=nList[i].info_Content+']이(가) 수정되었습니다.';
+			 message=nList[i].info_Content+']が修正されました。';
 		}
 		
 		

@@ -96,7 +96,7 @@ public class TimeLineController {
 			logger.info("::프로젝트 정보::"+prj.toString());
 			int projectNum = prj.getPrj_Num();
 			String prj_Name = prj.getPrj_Name();
-			String names = "참여인원 : ";
+			String names = "担当者 : ";
 			
 			uList = tlDAO.getUserList(projectNum);
 			for (int j = 0; j < uList.size(); j++) {
@@ -113,7 +113,7 @@ public class TimeLineController {
 			}else {
 				obj[0] = list.get(i).getPrj_Num(); // 프로젝트 번호
 				obj[1] = splitArray[1]; // 프로젝트 이름
-				obj[2] = "삭제되었습니다."; // 프로젝트의 참여한 인원들
+				obj[2] = "修正されました。"; // 프로젝트의 참여한 인원들
 			}
 			
 			list.get(i).setTl_Content((String) obj[1] + "///" + (String) obj[2]+"///"+splitArray[0]+"///"+obj[0]);

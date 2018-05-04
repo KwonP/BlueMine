@@ -71,33 +71,33 @@ function postNotifications(list){
 			//INSERT
 			toastr.options.onclick=null;
 			if(list[i].info_Type=='prjList'){
-				type='프로젝트 [';
-				toastr.info(''+'<button type="button" class="btn clear" onclick="goProjectMain('+list[i].info_Num+')"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'](이)가 생성되었습니다.');
+				type='プロジェクト[';
+				toastr.info(''+'<button type="button" class="btn clear" onclick="goProjectMain('+list[i].info_Num+')"><span style="color: black;">移動する</span></button>',type+ list[i].info_Content+']が生成されました。');
 			}else if(list[i].info_Type=='gp_Work'){
-				type='프로젝트 ['+splitArray[2]+']의 그룹 ['+splitArray[3]+']에 일감 [';
-				toastr.info(''+'<button type="button" class="btn clear" onclick="goTaskMain('+splitArray[4]+')"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'](이)가 생성되었습니다.');
+				type='プロジェクト['+splitArray[2]+']のグループ['+splitArray[3]+']に仕事[';
+				toastr.info(''+'<button type="button" class="btn clear" onclick="goTaskMain('+splitArray[4]+')"><span style="color: black;">移動する</span></button>',type+ list[i].info_Content+']が生成されました。');
 			}
 			
 		}else if((list[i].command_Check!=null&&list[i].command_Check!='')&&(list[i].info_Content==null||list[i].info_Content=='')){
 			//DELETE
 			toastr.options.onclick=null;
 			if(list[i].info_Type=='prjList'){
-				type='프로젝트 [';
+				type='プロジェクト[';
 			}else if(list[i].info_Type=='gp_Work'){
-				type='프로젝트 ['+splitArray[2]+']의 그룹 ['+splitArray[3]+']에 일감[';
+				type='プロジェクト['+splitArray[2]+']のグループ['+splitArray[3]+']に仕事[';
 			
 			}
-			toastr.error('', type+list[i].command_Check+'](이)가 삭제되었습니다.');
+			toastr.error('', type+list[i].command_Check+']が削除されました。');
 		}else{
 			//UPDATE
 			//JSON.stringify(list[i])
 			toastr.options.onclick=null;
 			if(list[i].info_Type=='prjList'){
-				type='프로젝트 [';
-				toastr.success(''+'<button type="button" class="btn clear" onclick="goProjectMain('+list[i].info_Num+')"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'](이)가 수정되었습니다.');
+				type='プロジェクト[';
+				toastr.success(''+'<button type="button" class="btn clear" onclick="goProjectMain('+list[i].info_Num+')"><span style="color: black;">移動する</span></button>',type+ list[i].info_Content+']が修正されました。');
 			}else if(list[i].info_Type=='gp_Work'){
-				type='프로젝트 ['+splitArray[2]+']의 그룹 ['+splitArray[3]+']에 일감 [';
-				toastr.success(''+'<button type="button" class="btn clear" onclick="goTaskMain('+splitArray[4]+')"><span style="color: black;">이동하기</span></button>',type+ list[i].info_Content+'](이)가 수정되었습니다.');
+				type='プロジェクト['+splitArray[2]+']のグループ['+splitArray[3]+']に仕事[';
+				toastr.success(''+'<button type="button" class="btn clear" onclick="goTaskMain('+splitArray[4]+')"><span style="color: black;">移動する</span></button>',type+ list[i].info_Content+']が修正されました。');
 			}
 		}
 		if(showNumber==0){
