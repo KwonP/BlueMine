@@ -55,6 +55,13 @@
 		var menuPage = $(this).attr('value');
 		location.href = menuPage;
 	}
+	
+	/* function chgColor(c)
+	{
+		var box = document.getElementById('page-wrapper');
+		box.style.backgroundColor=c.value;
+		document.bgColor=c.value
+	} */
 	</script>
 </head>
 
@@ -65,7 +72,7 @@
 	<div class="chat_body">
 		<c:forEach var="login" items="${loginUserList}" varStatus="log">
 			<div class="user">
-				<a id="check${log.index }" style="text-decoration:none" >${login.name }</a> <br>
+				 <img src="../showProfile" width="30px" style="border-radius: 100%"> <a id="check${log.index }" style="text-decoration:none" >${login.name }</a> <br>
 				<input type="hidden" value="${login.name }">
 			</div>
 		</c:forEach>
@@ -113,6 +120,150 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-tasks">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 1</strong>
+                                        <span class="pull-right text-muted">40% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 2</strong>
+                                        <span class="pull-right text-muted">20% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 3</strong>
+                                        <span class="pull-right text-muted">60% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 4</strong>
+                                        <span class="pull-right text-muted">80% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Tasks</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <!-- <div style="max-height: 655px;">
+								<button id="btnbox" class="box" role="button" title="blue" value="ffce00" style="background-color: rgb(0, 121, 191);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="orange" value="orange" style="background-color: rgb(210, 144, 52);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="green" value="green" style="background-color: rgb(81, 152, 57);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="red" value="red" style="background-color: rgb(176, 70, 50);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="pruple" value=pruple style="background-color: rgb(137, 96, 158);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="pink" value="pink" style="background-color: rgb(205, 90, 145);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="lime" value="lime" style="background-color: rgb(75, 191, 107);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="sky" value="sky" style="background-color: rgb(0, 174, 204);" onclick="chgColor(this)"></button>
+								<button id="btnbox" class="box" role="button" title="grey" value="grey" style="background-color: rgb(131, 140, 145);" onclick="chgColor(this)"></button>
+							</div> -->
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profileImg">
@@ -168,28 +319,28 @@
 			<input type="hidden" value=${loginName } id='chat_id' />
 			<!-- /.panel-heading -->
 			<div class="panel-body">
-			<ul class="chat">
-				<!--내 채팅 메시지-->
-				<li class="left clearfix">
-					<span class="chat-img pull-left">
-						<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-					</span>
-					<div class="chat-body clearfix">
-						<!--메시지 내용 출력-->
-						<!-- <div class="from-me">
-						   <div id="messageWindow"></div>
+				<ul class="chat">
+					<!--내 채팅 메시지-->
+					<li class="left clearfix">
+						<span class="chat-img pull-left">
+							<img src="../showProfile" width="50px" style="border-radius: 70%">
+						</span>
+						<div class="chat-body clearfix">
+							<!--메시지 내용 출력-->
+							<!-- <div class="from-me">
+							   <div id="messageWindow"></div>
+							</div>
+							
+							<div class="clear">
+							</div>  -->
+							<div class="header">
+								${loginName }<br>
+								<strong class="primary-font" id="messageWindow"></strong>
+							</div>
 						</div>
-						
-						<div class="clear">
-						</div>  -->
-						<div class="header">
-							${loginName }<br>
-							<strong class="primary-font" id="messageWindow"></strong>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
+					</li>
+				</ul>
+			</div>
 		
 		<!-- /.panel-body -->
 		<div class="panel-footer">
@@ -279,8 +430,7 @@ function enterkey() {
     }
 }
 // 채팅이 많아져 스크롤바가 넘어가더라도 자동적으로 스크롤바가 내려가게함
-	window.setInterval(function() {
-
+window.setInterval(function() {
     var elem = document.getElementById('messageWindow');
 	elem.scrollTop = elem.scrollHeight;
 }, 0);
