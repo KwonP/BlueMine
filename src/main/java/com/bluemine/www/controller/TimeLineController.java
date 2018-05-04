@@ -96,7 +96,7 @@ public class TimeLineController {
 			logger.info("::프로젝트 정보::"+prj.toString());
 			int projectNum = prj.getPrj_Num();
 			String prj_Name = prj.getPrj_Name();
-			String names = "参加人員 : ";
+			String names = "担当者 : ";
 			
 			uList = tlDAO.getUserList(projectNum);
 			for (int j = 0; j < uList.size(); j++) {
