@@ -151,7 +151,7 @@
         </nav> 
  
         <div id="page-wrapper"> 
-			<h1>프로젝트<span id="projectName"></span> [ No.${prjNum} ] </h1>
+			<h1>プロジェクト<span id="projectName"></span> [ No.${prjNum} ] </h1>
 			<div id="timeLineDiv"></div>
 			<input type="hidden" id="getPrjNum" value="${prjNum}"> <input
 				type="hidden" id="getUserId" value="${loginId}"> <input
@@ -282,7 +282,7 @@
         
     }
 	function deleteStep(tl_Num){
-	    if(confirm('정말로 지우시겠습니까?')==true){
+	    if(confirm('当に消しますか。')==true){
 	    	deleteTimeLine(tl_Num);
 	    }
 	}
