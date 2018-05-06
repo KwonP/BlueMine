@@ -67,9 +67,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="about">About</a>
+				<a class="companyInfo" value="about">ブルーマインとは？</a>
 				<a class="companyInfo" value="contact">Contact Us</a>
-				<a class="companyInfo" value="help">Help</a>
+				<a class="companyInfo" value="help">ヘルプ</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -81,10 +81,10 @@
 					  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> ユーザープロフィール</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> ログアウト</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -101,15 +101,15 @@
 			  <div class="panel-body">
 			  	<img class="img-rounded" src="./resources/img/kjh.jpg" width="160" height="220">
 			  	<ul class="personal">
-			  	  <li>이름 : 경준현</li>
-			  	  <li>자신있는 분야</li>
-			  	  <li> - 알고리즘</li>
-			  	  <li> - 안드로이드</li>
+			  	  <li>名前 : ギョン　ジュンヒョン</li>
+			  	  <li>自信ある分野</li>
+			  	  <li> - アルゴリズム</li>
+			  	  <li> - アンドロイド</li>
 			  	  <li>asd8680@naver.com</li>
 			  	</ul>
 			  </div>
 			  <div class="panel-footer">
-			  	<i>File Download, Gantt chart, CSS담당</i>
+			  	<i>ファイルダウンロード, ガントチャート, CSS担当</i>
 			  </div>
 			</div>          	
           	</div>
@@ -118,15 +118,15 @@
 			  <div class="panel-body">
 			  	<img class="img-rounded" src="./resources/img/khh.jpg" width="160" height="220">
 			  	<ul class="personal">
-			  	  <li>이름 : 김훈희</li>
-			  	  <li>자신있는 분야 </li>
-			  	  <li> - 게임 개발</li>
-			  	  <li> - 다양한 프로그래밍 언어</li>
+			  	  <li>名前 : キム　フンヒ</li>
+			  	  <li>自信ある分野 </li>
+			  	  <li> - ゲーム開発</li>
+			  	  <li> - 様々なプログラミング言語</li>
 			  	  <li>hulove7@naver.com</li>
 			  	</ul>
 			  </div>
 			  <div class="panel-footer">
-			  	<i>Chat, Logon List, CSS 담당</i>
+			  	<i>チャット, ログインリスト, CSS 担当</i>
 			  </div>
 			</div>
           	</div>
@@ -137,15 +137,15 @@
 			  <div class="panel-body">
 			  	<img class="img-rounded" src="./resources/img/khj.jpg" width="160" height="220">
 			  	<ul class="personal">
-			  	  <li>이름 : 김혜지</li>
-			  	  <li>자신있는 분야</li>
+			  	  <li>名前 : キム　ヘジ</li>
+			  	  <li>自信ある分野</li>
 			  	  <li> - AJAX</li>
 			  	  <li> - Java coding</li>
 			  	  <li>hazel22kim@gmail.com</li>
 			  	</ul>
 			  </div>
 			  <div class="panel-footer">
-			  	<i>Login, My Schedule, CSS 담당</i>
+			  	<i>ログイン, My Schedule, CSS 担当</i>
 			  </div>
 			</div>   
 			</div>          
@@ -154,15 +154,15 @@
 			  <div class="panel-body">
 			  	<img class="img-rounded" src="./resources/img/pdh.jpg" width="160" height="220">
 			  	<ul class="personal">
-			  	  <li>이름 : 박대호</li>
-			  	  <li>자신있는 분야</li>
-			  	  <li> - 자바 스크립트</li>
-			  	  <li> - 자동화 시스템</li>
+			  	  <li>名前 : パク　デホ</li>
+			  	  <li>自信ある分野</li>
+			  	  <li> - JavaScript</li>
+			  	  <li> - 自動化システム</li>
 			  	  <li>qkreogh1209@gmail.com</li>
 			  	</ul>
 			  </div>
 			  <div class="panel-footer">
-			  	<i>Timeline, Alarm, CSS 담당</i>
+			  	<i>Timeline, お知らせ機能, CSS 担当</i>
 			  </div>
 			</div>   
 			</div>
@@ -171,15 +171,15 @@
 			  <div class="panel-body">
 			  	<img class="img-rounded" src="./resources/img/pcg.jpg" width="160" height="220">
 			  	<ul class="personal">
-			  	  <li>이름 : 박창권</li>
-			  	  <li>자신있는 분야</li>
+			  	  <li>名前 : パク　チャンゴン</li>
+			  	  <li>自信ある分野</li>
 			  	  <li> - 日本語（ビジネスレベル）</li>
 			  	  <li> - Java Script, Java</li>
 			  	  <li>ckdrnjs513@gmail.com</li>
 			  	</ul>
 			  </div>
 			  <div class="panel-footer">
-			  	<i>DB설계, Project, Group, CSS 담당</i>
+			  	<i>データベースの設計と構築、 プロジェクトとグループの生成, CSS 担当</i>
 			  </div>
 			</div>   
 			</div>

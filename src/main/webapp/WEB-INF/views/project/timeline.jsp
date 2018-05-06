@@ -86,9 +86,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">About</a>
+				<a class="companyInfo" value="../about">ブルーマインとは？</a>
 				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">Help</a>
+				<a class="companyInfo" value="../help">ヘルプ</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -110,10 +110,10 @@
 					  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> ユーザープロフィール</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> ログアウト</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -125,22 +125,22 @@
                 <div class="sidebar-nav navbar-collapse"> 
                     <ul class="nav" id="side-menu"> 
                         <li> 
-                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
+                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i>メインページ</a> 
                         </li> 
                         <li> 
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline</a> 
+                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i>タイムライン</a> 
                         </li> 
                         <li> 
-                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a> 
+                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i>データダウンロード</a> 
                         </li> 
                         <li> 
-                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> Task</a> 
+                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> タスク</a> 
                         </li>
                         <li> 
-                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> Gantt Chart</a> 
+                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> ガントチャート</a> 
                         </li>  
                         <li> 
-                            <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
+                            <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i> チャット</a> 
                         </li> 
                        </li>
                     </ul> 
@@ -176,7 +176,7 @@
 						<thead>
 
 							<tr>
-								<th>관리자</th>
+								<th>管理者</th>
 								<td><span id="wirterName"></span> </td>
 							</tr>
 
@@ -184,9 +184,9 @@
 						</thead>
 						<tbody>
 							<tr>
-								<th>내용</th>
+								<th>内容</th>
 								<td><textarea id="timeLineContent" class="timeLineContent"
-										rows="5" cols="60" placeholder="타임라인 내용"></textarea></td>
+										rows="5" cols="60" placeholder="タイムライン 内容"></textarea></td>
 							</tr>
 						</tbody>
 						<tfoot>
@@ -217,7 +217,7 @@
 					<table id="timeLineTable">
 						<thead>
 							<tr>
-								<th>작성자</th>
+								<th>作成者</th>
 								<td>${sessionScope.user.name}<input type="hidden"
 									value="${loginId}" id="writer"></td>
 							</tr>
@@ -226,7 +226,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<th>내용</th>
+								<th>内容</th>
 								<td><textarea id="timeLineContent" class="timeLineContent"
 										rows="5" cols="60" placeholder="타임라인 내용"></textarea></td>
 							</tr>
@@ -282,7 +282,11 @@
         
     }
 	function deleteStep(tl_Num){
+<<<<<<< Updated upstream
 	    if(confirm('当に消しますか。')==true){
+=======
+	    if(confirm('本当に消しますか?')==true){
+>>>>>>> Stashed changes
 	    	deleteTimeLine(tl_Num);
 	    }
 	}

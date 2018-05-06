@@ -80,9 +80,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="about">About</a>
+				<a class="companyInfo" value="about">ブルーマインとは？</a>
 				<a class="companyInfo" value="contact">Contact Us</a>
-				<a class="companyInfo" value="help">Help</a>
+				<a class="companyInfo" value="help">ヘルプ</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -94,10 +94,10 @@
 					  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> ユーザープロフィール</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> ログアウト</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -115,62 +115,62 @@
         		  	<li>
         		  	  <i class="subject">Project - MainPage</i>
         		  	  <p>
-        		  	  	다시 자신의 스케줄과 프로젝트 리스트가 나오는 화면으로 돌아갑니다.
+        		  	  	自分のスケジュールとプロジェクトリスト画面に戻ります。
         		  	  </p>
         		  	</li>
         		  	<li>
         		  	  <i class="subject">Project - Timeline</i>
         		  	  <p>
-        		  	  	본인이 속한 프로젝트 내에서의 업데이트 상황을 한 눈에 볼 수 있습니다.
+        		  	  	自分が属しているプロジェクトのアップデート状況を一目で確認できます。
         		  	  </p>
         		  	</li>
         		  	<li>
         		  	  <i class="subject">Project - Data Download</i>
         		  	  <p>
-        		  	  	프로젝트 내에서 공유되는 파일들의 저장소입니다. <br>
-        		  	  	File Upload를 누르면 원하는 파일의 업데이트가 가능합니다.<br>
-        		  	  	사진파일, 텍스트파일, 음악파일 순으로 정리되어 있어 한 눈에 보기 쉽습니다.
+        		  	  	プロジェクト内で共有されるファイルのストレージです。<br>
+        		  	  	アップロードボタンを押せば自分が望むファイルのアップロードが可能です。<br>
+        		  	  	画像、テキスト、音源ファイル順に整理されており確認しやすくなっております。
         		  	  </p>
         		  	</li>
         		  	<li>
         		  	  <i class="subject">Project - Task</i>
         		  	  <p>
-        		  	  	본인이 속한 그룹 내에서의 일감 생성, 완료, 수정 등이 가능합니다.
+        		  	  	自分が属しているグループ内での作業の生成、完了、修正などが可能です。
         		  	  </p>
         		  	</li>
         		  	<li>
         		  	  <i class="subject">Project - Gantt Chart</i>
         		  	  <p>
-        		  	  	한 프로젝트 안에서 여러가지 일감이 시작되고 마감된 기간동안을 한 눈에 볼 수 있습니다.
+        		  	  	1つのプロジェクトの中で色々な作業の開始日及び締め切り日を一目に確認できます。
         		  </ul>
         		</div>
         		<h3>My Schedule</h3>
         		<div class="details">
         		  <ul>
         			<li>
-        			  <i class="subject"> My work 등록 </i>
+        			  <i class="subject"> My work 登録 </i>
         			  <p>
-        			  	Create 버튼을 누르면 원하는 시작날짜와 종료날짜를 지정하여 자신이 해야할 일을 추가할 수 있습니다.
+        			  	Createボタンを押すと開始日と締め切り日を指定し自分の仕事を追加できます。
         			  </p>
         			</li>
         			<li>
-        			  <i class="subject">My Work 읽기 및 수정</i>
+        			  <i class="subject">My Work 確認、修正</i>
         			  <p>
-        			    보여지는 My Work 리스트에서 하나를 클릭하면 상세정보 보기가 가능합니다.<br>
-        			    또한, Modify버튼을 클릭함 과 동시에, 해당하는 일의 정보 수정이 가능합니다.<br>
-        			    완료가 되시면 Update 버튼을 눌러주시고, 취소를 원할시에는 Cancel 버튼을 눌러주세요.
+        			  	表示されるMy Workリスト内で一つをクリックすれば精細な情報を見る事が出来ます。<br>
+        			    また、Modifyボタンをクリックすると同時に該当する作業の情報修正が可能です。<br>
+        			    作業を完了したらUpdateボタンを押し、Cancelボタンを押せば取り消すことが可能です。
         			  </p>
         			</li>
         		  </ul>
         		</div>
-        		<h3>Chat</h3>
+        		<h3>チャット</h3>
         		<div class="details">
         		  <ul>
         		  	<li>
-        		  	  <i class="subject">Chat</i>
+        		  	  <i class="subject">チャット</i>
         		  	  <p>
-        		  	  	현재 접속한 사람들의 목록을 보여줍니다.<br>
-        		  	  	접속자를 클릭하면 채팅 페이지로 넘어갑니다.
+        		  	  	現在接続している人員のリストを表示します。<br>
+        		  	  	接続者をクリックするとチャットページへ移ります。
         		  	  </p>
         		  	</li>
         		  </ul>

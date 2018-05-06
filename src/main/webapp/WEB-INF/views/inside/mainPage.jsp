@@ -101,9 +101,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">BLUE MINE</a>
-				<a class="companyInfo" value="about">About</a>
+				<a class="companyInfo" value="about">ブルーマインとは？</a>
 				<a class="companyInfo" value="contact">Contact Us</a>
-				<a class="companyInfo" value="help">Help</a>
+				<a class="companyInfo" value="help">ヘルプ</a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -123,8 +123,7 @@
 					<i class="fa fa-caret-down"></i>
 				  </a>
 					<ul class="dropdown-menu dropdown-user">
-						<li><a href="profilePage"><i class="fa fa-user fa-fw"></i> User
-								Profile</a></li>
+						<li><a href="profilePage"><i class="fa fa-user fa-fw"></i> ユーザープロフィール</a></li>
 						<li class="divider"></li>
 						<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i>
 								Logout</a></li>
@@ -145,7 +144,7 @@
 		  <!-- 본인이 가진 project수 만큼 div 뿌려주기 -->
 		 <div class="panel panel-default">
 		  <div class="panel-heading">My Projects<div id="make" class="btn "
-		  data-toggle="modal" data-target="#addPrj">생성</div></div>
+		  data-toggle="modal" data-target="#addPrj">生成</div></div>
 		   <div class="panel-body" id="listWrap">
 			<c:forEach items="${pro_list}" var="list">
 			  <div class="panel panel-primary" value="${list.prj_Num}">
@@ -179,16 +178,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">프로젝트 생성</h3>
+        <h3 class="modal-title">プロジェクト生成</h3>
       </div>
       <div class="modal-body">
-      	<label >프로젝트 제목</label><br>
+      	<label >プロジェクト名</label><br>
         <input type="text" name="prj_Name" id="prj_Name" placeholder="Title" style="width: 100%" maxlength="50"/>
       </div>
       <div class="modal-body">
-        <label>책임자</label>
+        <label>責任者</label>
         <select class="form-control" name="cp_dep" id="cp_dep">
-			<option value="void"  selected="selected">부서</option>
+			<option value="void"  selected="selected">部署</option>
 			<c:forEach  items="${sessionScope.dep_list}" var="list">
 			<option value="${list.depNameKr}">${list.depNameKr}</option>
 			</c:forEach>
@@ -196,7 +195,7 @@
       </div>
       <div class="modal-body">
         <select class="form-control" name="cp_posi" id="cp_posi" onselect="">
-			<option value="" selected="selected">직급</option>
+			<option value="" selected="selected">肩書き</option>
 			<c:forEach items="${sessionScope.posi_list}" var="list">
 			<option value="${list.positionName}">${list.positionName}</option>
 			</c:forEach>
@@ -207,10 +206,10 @@
 			id="planner" placeholder="성명" type="text" maxlength="50" >
       </div>
       <div class="modal-body">
-        <label>접근권한</label>
+        <label>接近権限</label>
         <select class="form-control" name="access_Control" id="access_Control">
-			<option value="1" selected="selected">공개</option>
-			<option value="0">비공개</option>
+			<option value="1" selected="selected">公開</option>
+			<option value="0">非公開</option>
 		</select>							
       </div>
       <div class="modal-footer">
@@ -229,10 +228,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">그룹(분류) 생성</h3>
+        <h3 class="modal-title">グループ(分類)生成</h3>
       </div>
       <div class="modal-body">
-      	<label >그룹 이름</label><br>
+      	<label >グループ名</label><br>
         <input type="text" name="gp_Name" id="gp_Name" placeholder="Title" style="width: 100%" maxlength="50"/>
         
       </div>

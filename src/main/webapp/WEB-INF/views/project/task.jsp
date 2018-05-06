@@ -214,7 +214,7 @@ option {
 			var deadLine = new Date();
 			deadLine.setFullYear(endValue[0],(endValue[1]-1),endValue[2]);
 			if (startDate > deadLine) {
-				alert("시작날짜와 마감날짜를 확인해주세요");
+				alert("開始日と締め切り日を確認してください。");
 				return false;
 			}
 			startDate = $('#startDate').val();
@@ -278,7 +278,7 @@ option {
 				}
 			},
 			error: function(cnt) {
-				alert('에러');
+				alert('エラー');
 			}				
 		});	 
 	}
@@ -308,12 +308,12 @@ option {
 				async: false,
 				success: function(str) { 
 					if(str == '1') {
-						alert('성공');
+						alert('成功‼');
 						window.location.reload();
 					}
 				},
 				error: function(cnt) {
-					alert('에러');
+					alert('エラー');
 				}				
 			});	
 		});
@@ -338,7 +338,7 @@ option {
 				}
 			},
 			error: function(cnt) {
-				alert('에러');
+				alert('エラー');
 			}				
 		});	
 		return;
@@ -363,9 +363,9 @@ option {
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">About</a>
+				<a class="companyInfo" value="../about">ブルーマインとは？</a>
 				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">Help</a>
+				<a class="companyInfo" value="../help">ヘルプ</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -405,19 +405,19 @@ option {
                             <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
                         </li> 
                         <li> 
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline</a> 
+                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> タイムライン</a> 
                         </li> 
                         <li> 
-                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a> 
+                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> データダウンロード</a> 
                         </li> 
                         <li> 
-                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> Task</a> 
+                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> タスク</a> 
                         </li>
                         <li> 
-                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> Gantt Chart</a> 
+                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> ガントチャート</a> 
                         </li>  
                         <li> 
-                            <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
+                            <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i>チャット</a> 
                         </li> 
                        </li>
                     </ul> 
@@ -440,17 +440,17 @@ option {
 							</div> <!-- /input-group -->
 						</li>
 						<li><a href="goToMain"><i class="fa fa-desktop fa-fw"></i>
-								Main Page</a></li>
+								メインページ</a></li>
 						<li><a href="#"><i class="fa fa-paper-plane-o fa-fw"></i>
-								Timeline<span class="fa arrow"></span></a>
+								タイムライン<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="#">My Timeline</a></li>
 								<li><a href="#">Company Timeline</a></li>
 							</ul> <!-- /.nav-second-level --></li>
 						<li><a href="#"><i class="fa fa-edit fa-fw"></i> Board</a></li>
-						<li><a href="#"><i class="fa fa-paste fa-fw"></i> Task</a></li>
+						<li><a href="#"><i class="fa fa-paste fa-fw"></i> タスク</a></li>
 						<li><a href="inside/broadcast"><i
-								class="fa fa-comments fa-fw"></i> Chats</a></li>
+								class="fa fa-comments fa-fw"></i> チャット</a></li>
 						</li>
 					</ul>
 				</div>
@@ -480,19 +480,19 @@ option {
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>Progress</th>
+											<th>進行度</th>
 											<!-- private int progress;// 진행도 -->
-											<th>Task Name</th>
+											<th>タスクネーム</th>
 											<!-- private String gs_Name;// 그룹 스케줄 이름 -->
-											<th>Content</th>
+											<th>コンテンツ</th>
 											<!-- private String gs_Content;// 내용 -->
-											<th>Category</th>
+											<th>カテゴリー</th>
 											<!-- private String taskCategory;//유형 -->
-											<th>Start Date</th>
+											<th>開始日</th>
 											<!-- private String start_Date;// 시작일 -->
-											<th>Deadline</th>
+											<th>締め切り日</th>
 											<!-- private String deadLine;// 마감일 -->
-											<th>Priority</th>
+											<th>重要度</th>
 											<!-- private int gp_Pri;// 중요도 -->
 										</tr>
 									</thead>
@@ -539,7 +539,7 @@ option {
 										<tr>
 											<td class="table">
 												<button class="btn btn-primary"
-													onclick="completeTask(${k.gp_Num})">저장</button>
+													onclick="completeTask(${k.gp_Num})">セーブ</button>
 											</td>
 										</tr>
 									</tbody>
@@ -567,46 +567,46 @@ option {
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="panel panel-default">
-												<div class="panel-heading">Task</div>
+												<div class="panel-heading">タスク</div>
 												<div class="panel-body">
 													<div class="row">
 														<div class="col-lg-6">
 															<div class="form-group">
-																<label>유형</label> <select class="form-control"
+																<label>タイプ</label> <select class="form-control"
 																	name="taskCategory" id="taskCategory">
-																	<option value="이슈">이슈</option>
-																	<option value="결함">결함</option>
-																	<option value="테스트케이스">테스트케이스</option>
-																	<option value="설계">설계</option>
-																	<option value="개발">개발</option>
-																	<option value="코드 리뷰">코드 리뷰</option>
+																	<option value="問題">問題</option>
+																	<option value="欠陥">欠陥</option>
+																	<option value="テストケース">テストケース</option>
+																	<option value="設計">設計</option>
+																	<option value="開発">開発</option>
+																	<option value="コードレビュー">コードレビュー</option>
 																</select>
 															</div>
 
 															<div class="form-group">
-																<label>제목</label> <input class="form-control"
+																<label>タイトル</label> <input class="form-control"
 																	name="gs_Name" id="gs_Name" placeholder="Title">
 															</div>
 
 															<div class="form-group">
-																<label>시작일</label> <input type="text"
+																<label>開始日</label> <input type="text"
 																	class="form-control" name="startDate" id="startDate">
 															</div>
 														</div>
 
 														<div class="form-group">
-															<label>마감일</label> <input type="text"
+															<label>締め切り日</label> <input type="text"
 																class="form-control" name="deadLine" id="deadLine">
 														</div>
 
 														<div class="form-group">
-															<label>중요도</label> <select class="form-control"
+															<label>重要度</label> <select class="form-control"
 																name="gp_Pri" id="gp_Pri">
-																<option value="4">즉시</option>
-																<option value="3">긴급</option>
-																<option value="2">높음</option>
-																<option value="1">보통</option>
-																<option value="0">낮음</option>
+																<option value="4">即</option>
+																<option value="3">緊急</option>
+																<option value="2">高</option>
+																<option value="1">普通</option>
+																<option value="0">低</option>
 															</select>
 														</div>
 
@@ -614,13 +614,13 @@ option {
 													<!-- /.col-lg-6 (nested) -->
 													<div class="col-lg-6">
 														<div class="form-group">
-															<label>설명</label>
+															<label>説明</label>
 															<textarea style="resize: none;" class="form-control"
 																name="gs_Content" id="gs_Content" rows="17"></textarea>
 														</div>
 														<div class="form-group">
 															<button class="btn btn-primary" style="float: right;"
-																onclick="makeTask(${k.gp_Num})">만들기</button>
+																onclick="makeTask(${k.gp_Num})">生成</button>
 														</div>
 													</div>
 													<!-- /.col-lg-6 (nested) -->
@@ -681,7 +681,7 @@ option {
 							placeholder="Type your message here..." /> <span
 							class="input-group-btn">
 							<button class="btn btn-warning btn-sm" id="btn-chat"
-								onclick="insertReply()">WRITE</button>
+								onclick="insertReply()">書き込む</button>
 						</span>
 					</div>
 				</div>

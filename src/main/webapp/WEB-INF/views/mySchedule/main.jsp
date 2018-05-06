@@ -71,9 +71,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">About</a>
+				<a class="companyInfo" value="../about">ブルーマインとは？</a>
 				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">Help</a>
+				<a class="companyInfo" value="../help">ヘルプ</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -85,10 +85,10 @@
 					  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> ユーザープロフィール</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> ログアウト</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -112,12 +112,12 @@
           	  		  	  ~<br>
           	  		  	  <i>${list.deadLine}</i> <br>
           	  		  	  <c:if test="${list.progress == 0}">
-          	  		  	    미완료<br>
-          	  		  	   <button onclick="endWork(${list.ps_Num})" class="endWork">Finish</button>
+          	  		  	    進行中<br>
+          	  		  	   <button onclick="endWork(${list.ps_Num})" class="endWork">完了</button>
           	  		  	  </c:if>
           	  		  	  <c:if test="${list.progress == 1}">
-          	  		  	  완료<br>
-          	  		  	  <button onclick="delWork(${list.ps_Num})" class="delWork">Delete</button>
+          	  		  	  完了<br>
+          	  		  	  <button onclick="delWork(${list.ps_Num})" class="delWork">削除</button>
           	  		  	  </c:if>
           	  		  	</div>
           	  		  </li>
@@ -139,28 +139,28 @@
                   <input type="hidden" value="" name="ps_Num" id="ps_Num">
                  	<table class="workForm">
                  	  <tr>
-                 	  	<td>Title </td>
+                 	  	<td>タイトル </td>
                  	  	<td><input type="text" id="ps_Name" name="ps_Name"></td>
                  	  </tr>
                  	  <tr>
-                 	    <td>Content </td>
+                 	    <td>コンテンツ </td>
                  	    <td><textarea type="text" id="ps_Content" name="ps_Content"></textarea></td>
                  	  </tr>
                  	  <tr>
-                 	    <td>Start Date </td>
+                 	    <td>開始日 </td>
                  	    <td><input type="text" id="startDate" name="startDate"></td>
                  	  </tr>
                  	  <tr>
-                 	  	<td>End Date </td>
+                 	  	<td>締め切り日 </td>
                  	  	<td><input type="text" id="deadLine" name="deadLine"></td>
                  	  </tr>
                  	  <tr>
-                 	    <td>Importance </td>
+                 	    <td>重要度 </td>
                  	    <td> 
                  	     <select style="height: 30px;" id="ps_Pri" name="ps_Pri">
-                 	     	<option value="1"> 매우 중요</option>
-                 	     	<option value="2"> 중요</option>
-                 	     	<option value="3"> 보통</option>
+                 	     	<option value="1"> 最高</option>
+                 	     	<option value="2"> やや高め</option>
+                 	     	<option value="3"> 普通</option>
                  	     </select>
                  	    </td> 
                  	  </tr>
@@ -178,18 +178,18 @@
           	
            <!-- 체크리스트 부분 -->		
           <div class="checkList">
-          	<h3>Check List<span class="label label-default" id="manageCK" onclick="managePopup()">Manage</span></h3>
+          	<h3>チェックリスト<span class="label label-default" id="manageCK" onclick="managePopup()">Manage</span></h3>
           	<div class="days">
           	  <c:forEach begin="1" end="7" varStatus="status">
           	   <div class="day" number="${status.current}" style="display: inline-block;">
           	   <!-- 요일 div 생성 -->
-          	   	<c:if test="${status.current == 1}"><b>월요일</b><br><br></c:if>
-          	   	<c:if test="${status.current == 2}"><b>화요일</b><br><br></c:if>
-          	   	<c:if test="${status.current == 3}"><b>수요일</b><br><br></c:if>
-          	   	<c:if test="${status.current == 4}"><b>목요일</b><br><br></c:if>
-          	   	<c:if test="${status.current == 5}"><b>금요일</b><br><br></c:if>
-          	   	<c:if test="${status.current == 6}"><b>토요일</b><br><br></c:if>
-          	   	<c:if test="${status.current == 7}"><b>일요일</b><br><br></c:if>
+          	   	<c:if test="${status.current == 1}"><b>月曜日</b><br><br></c:if>
+          	   	<c:if test="${status.current == 2}"><b>火曜日</b><br><br></c:if>
+          	   	<c:if test="${status.current == 3}"><b>水曜日</b><br><br></c:if>
+          	   	<c:if test="${status.current == 4}"><b>木曜日</b><br><br></c:if>
+          	   	<c:if test="${status.current == 5}"><b>金曜日</b><br><br></c:if>
+          	   	<c:if test="${status.current == 6}"><b>土曜日</b><br><br></c:if>
+          	   	<c:if test="${status.current == 7}"><b>日曜日</b><br><br></c:if>
           	   	 <c:forEach items="${CL_Show}" var="show">
           	   	  <c:if test="${show.loopDay == status.current && show.loop_State == 0}">
           	   	  <li class="unChecked" value="${show.loopNum}">
@@ -212,16 +212,16 @@
           	 <a href = "#" onclick="ckPopupClose();">
         	  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         	 </a>
-        	  <h3>My CheckList</h3>
-        	  <button class="addList" onclick="addList()">Add</button>
+        	  <h3>マイチェックリスト</h3>
+        	  <button class="addList" onclick="addList()">追加</button>
         	  <span id="addSpan"></span>
         	   <ul class="ckList">
         	    <c:forEach items="${ckList}" var="list">
         	 	  <li id="${list.cl_Num}">
         	 	  	${list.cl_Name}
         	 	  	<div class="btns">
-        	 	  	  <a onclick="updateList(${list.cl_Num})" >Modify</a>
-        	 	  	  <a onclick="deleteList(${list.cl_Num})">Delete</a>
+        	 	  	  <a onclick="updateList(${list.cl_Num})" >修正</a>
+        	 	  	  <a onclick="deleteList(${list.cl_Num})">削除</a>
         	 	  	</div>
         	 	  </li>
         	 	</c:forEach>
