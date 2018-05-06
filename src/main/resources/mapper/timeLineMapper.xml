@@ -27,13 +27,14 @@ insert into timeline(
 <select id="getTimeLineList"
 resultType="timeLine">
 select 
-	tl_num
-	, prj_num
-	, writer
-	, w_date
-	, tl_content
+	t.tl_num
+	, t.prj_num
+	, t.writer
+	, t.w_date
+	, t.tl_content
 from
-	timeline
+	timeline t,prjlist p
+	where t.prj_num=p.prj_num and ACCESS_CONTROL='1'
 
 order by w_date desc
 </select>
