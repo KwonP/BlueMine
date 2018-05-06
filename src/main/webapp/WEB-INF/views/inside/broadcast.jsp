@@ -92,7 +92,7 @@
 				<input id="btn-minichat" type="text" class="form-control input-sm" placeholder="Type your message here..."/>
 					<span class="input-group-btn">
 						<button class="btn btn-warning btn-sm" id="btn-chat">
-						Send
+						送信
 						</button>
 					</span>
 			</div>
@@ -113,9 +113,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">About</a>
+				<a class="companyInfo" value="../about">ブルーマインとは？</a>
 				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">Help</a>
+				<a class="companyInfo" value="../help">ヘルプ</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -271,10 +271,10 @@
 					  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> ユーザープロフィール</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> ログアウト</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -290,19 +290,19 @@
                             <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a>
                         </li>
                         <li>
-                            <a href="../project/timeline	"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline</a>
+                            <a href="../project/timeline	"><i class="fa fa-paper-plane-o fa-fw"></i> タイムライン</a>
                         </li>
                         <li>
-                        	<a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a>
+                        	<a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> データダウンロード</a>
                         </li>
                         <li>
-                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> Task</a>
+                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> タスク</a>
                         </li>
                         <li> 
-                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> Gantt Chart</a> 
+                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> ガントチャート</a> 
                         </li> 
                         <li>
-                            <a href="#"><i class="fa fa-comments fa-fw"></i> Chats</a>
+                            <a href="#"><i class="fa fa-comments fa-fw"></i> チャット</a>
                         </li>
                     </ul>
                 </div>
@@ -313,7 +313,7 @@
         <div id="page-wrapper">
         	<div class="chat-panel panel panel-default pull-right" style="width: 1100px;">
 			<div class="panel-heading">
-				<i class="fa fa-comments fa-fw"></i> Chat
+				<i class="fa fa-comments fa-fw"></i> チャット
 			</div>
 			<!--로그인 아이디 정보 넘겨주기~-->
 			<input type="hidden" value=${loginName } id='chat_id' />
@@ -349,7 +349,7 @@
 				<input id="inputMessage" type="text" style="z-index: 0;" class="form-control input-sm" placeholder="Type your message here..." onkeyup="enterkey();"/>
 					<span class="input-group-btn">
 						<button class="btn btn-warning btn-sm" id="btn-chat" onclick="send()">
-						Send
+						送信
 						</button>
 					</span>
 				</div>
@@ -405,7 +405,7 @@ function onMessage(event) {
     }
 
 function onOpen(event) {
-    $("#messageWindow").html("채팅에 참여하였습니다."+"<br>");
+    $("#messageWindow").html("チャットに参加しました。"+"<br>");
 }
 function onError(event) {
     alert(event.data);
@@ -414,7 +414,7 @@ function send() {
     if (inputMessage.value == "") {
     } else {
         $("#messageWindow").html($("#messageWindow").html()
-            + "<p class='msg_a'>나 : " + inputMessage.value + "</p>");
+            + "<p class='msg_a'>自分 : " + inputMessage.value + "</p>");
     }
     
     /* 메시지 보낼 때 형식 */

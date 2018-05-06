@@ -66,9 +66,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="about">About</a>
+				<a class="companyInfo" value="about">ブルーマインとは？</a>
 				<a class="companyInfo" value="contact">Contact Us</a>
-				<a class="companyInfo" value="help">Help</a>
+				<a class="companyInfo" value="help">ヘルプ</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -140,10 +140,10 @@
 					  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="profilePage"><i class="fa fa-user fa-fw"></i> ユーザープロフィール</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> ログアウト</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -166,10 +166,10 @@
                             <!-- /input-group --> 
                         </li> 
                         <li> 
-                            <a href="goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
+                            <a href="goToMain"><i class="fa fa-desktop fa-fw"></i> メインページ</a> 
                         </li> 
                         <li> 
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline<span class="fa arrow"></span></a> 
+                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> タイムライン<span class="fa arrow"></span></a> 
                             <ul class="nav nav-second-level"> 
                                 <li> 
                                     <a href="#">My Timeline</a> 
@@ -184,10 +184,10 @@
                           <a href="#"><i class="fa fa-edit fa-fw"></i> Board</a> 
                         </li> 
                         <li> 
-                            <a href="#"><i class="fa fa-paste fa-fw"></i> Task</a> 
+                            <a href="#"><i class="fa fa-paste fa-fw"></i> タスク</a> 
                         </li> 
                         <li> 
-                            <a href="inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
+                            <a href="inside/broadcast"><i class="fa fa-comments fa-fw"></i> チャット</a> 
                         </li> 
                        </li>
                     </ul> 

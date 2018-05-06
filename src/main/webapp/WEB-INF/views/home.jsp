@@ -48,8 +48,8 @@
 	
 	<!-- Main Selection -->
 	<div class="selection">
-		<button class="selectBtn" onclick="moveR()">Login</button> <br>
-		<button class="selectBtn" onclick = "popup();">Join</button>
+		<button class="selectBtn" onclick="moveR()">ログイン</button> <br>
+		<button class="selectBtn" onclick = "popup();">会員登録</button>
 	</div>
 	
 	<!-- Login Form -->
@@ -61,7 +61,7 @@
 	  	 <td><input type="text" id="LoginEmail"></td>
 	  	</tr>
 	  	<tr>
-	  	 <td>Password : </td>
+	  	 <td>パスワード : </td>
 	  	 <td><input type="password" id="passwordL"></td>
 	  	</tr>
 	  </table>
@@ -95,8 +95,8 @@
           	<button onclick="mailCheck('join');">Check</button><br>
           	</div>
           	<div class="sendForm">
-			  <a onclick="sendCode()" class="sendCode">인증번호 발송</a><br> 
-			  <div id="showTime"></div><input type="text" id="inputCode" placeholder="인증번호 입력">
+			  <a onclick="sendCode()" class="sendCode">認証番号発送</a><br> 
+			  <div id="showTime"></div><input type="text" id="inputCode" placeholder="認証番号入力">
 			  <a class="next" onclick="checkCode();">Next</a> 
 				<input type="hidden" id="code" value="">
 				<input type="hidden" id="again" value="">
@@ -110,7 +110,7 @@
 			  	<tr>
 			  	  <td>E-mail : </td>
 			  	  <td><input type="text" id="email" value="" readonly="readonly"></td>
-			  	  <td><a onclick="another();" class="another">다른 이메일 고르기</a></td>
+			  	  <td><a onclick="another();" class="another">他のメールアドレス</a></td>
 			  	</tr>  
 				<tr>
 				  <td>Name ： </td>
@@ -125,7 +125,7 @@
 				  <td><input type="password" id="passwordC"></td>
 				</tr>
 				<tr>
-				  <td> Department ： </td>
+				  <td> 部署 ： </td>
 				  <td>
 				  	<select id="department">
 				  	  <c:forEach var="dep" items="${dep_list}">
@@ -135,7 +135,7 @@
 				  </td>
 				</tr>
 				<tr>
-				  <td>Position ：</td>
+				  <td>肩書き ：</td>
 				   <td>
 				  	<select id="position"> 
 				  	  <c:forEach items="${position}" var="position">
@@ -145,7 +145,7 @@
 				  </td>
 				</tr>
 				<tr style="text-align: center;">
-				  <td colspan="3"><a onclick="joinUser()">Join</a></td>
+				  <td colspan="3"><a onclick="joinUser()">会員登録</a></td>
 				</tr>
 			  </table>
 			 </form>

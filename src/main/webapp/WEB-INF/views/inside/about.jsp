@@ -97,9 +97,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="about">About</a>
+				<a class="companyInfo" value="about">ブルーマインとは？</a>
 				<a class="companyInfo" value="contact">Contact Us</a>
-				<a class="companyInfo" value="help">Help</a>
+				<a class="companyInfo" value="help">ヘルプ</a>
             </div>
             <!-- /.navbar-header -->
             <!-- /.navbar-static-side --> 
@@ -112,11 +112,11 @@
 		          <img src="./resources/img/office1.jpg">
 			  </div> 
 			  <div class="back" id="back1">
-			  <h2>시간효율성 증대</h2>
+			  <h2>時間効率性 増大</h2>
 			  <ul>
-			  	<li>개인 스케줄, 회사 스케줄 동시 정리!</li>
-				<li>멀티 태스킹 능력 향상!</li>			  	
-				<li>일정을 체크하며 효율적인 시간 관리!</li>
+			  	<li>個人のスケジュール、 会社のスケジュールを同時に管理!!</li>
+				<li>マルチタスキング能力向上!</li>			  	
+				<li>日程をチェックし効率的な時間管理を可能に!!</li>
 			  </ul>
 			  </div> 
 		  </div>
@@ -126,11 +126,11 @@
 		          <img src="./resources/img/office2.jpg">
 			  </div> 
 			  <div class="back" id="back2">
-			  <h2>체계적인 관리</h2>
+			  <h2>体系的な管理</h2>
 			  <ul>
-			  	<li>다양한 스케줄 동시에 관리!</li>
-			  	<li>간트차트로 데이터 한 눈에 보기!</li>
-			  	<li>알림으로 그때 그때 일정 확인하기!</li>
+			  	<li>色々なスケジュールを同時に管理‼</li>
+			  	<li>ガントチャートでデータを一目で確認!</li>
+			  	<li>アラームでいつでも日程を確認!</li>
 			  </ul>
 			  </div> 
 		  </div>

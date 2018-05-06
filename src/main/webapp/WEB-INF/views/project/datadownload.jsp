@@ -152,9 +152,9 @@ img{
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">About</a>
+				<a class="companyInfo" value="../about">ブルーマインとは？</a>
 				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">Help</a>
+				<a class="companyInfo" value="../help">ヘルプ</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -194,19 +194,19 @@ img{
                             <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
                         </li> 
                         <li> 
-                            <a href="../project/timeline"><i class="fa fa-paper-plane-o fa-fw"></i> Timeline</a> 
+                            <a href="../project/timeline"><i class="fa fa-paper-plane-o fa-fw"></i> タイムライン</a> 
                         </li> 
                         <li> 
-                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> Data Download</a> 
+                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> データダウンロード</a> 
                         </li> 
                         <li> 
-                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> Task</a> 
+                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> タスク</a> 
                         </li>
                         <li> 
-                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> Gantt Chart</a> 
+                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> ガントチャート</a> 
                         </li>  
                         <li> 
-                            <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i> Chats</a> 
+                            <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i> チャット</a> 
                         </li> 
                        </li>
                     </ul> 
@@ -222,7 +222,7 @@ img{
 					<form action="fileUpload" id="fileForm" method="post" enctype="multipart/form-data">
 						<input type="file" multiple="multiple" id="orgFile" name="upload" onchange="submitFile()" size="30">
 						<button style="margin-top: 23px;" class="btn btn-default" type="button" onclick="check()">
-							<i class="fa fa-upload" style="margin-right: 10px;"></i>File Upload
+							<i class="fa fa-upload" style="margin-right: 10px;"></i>ファイルアップロード
 						</button>
 					</form>
 					<span style="float: center;"><input type="text" style="margin-top: 23px;" class="form-control" placeholder="Search..." id="keyword" /></span>					
@@ -233,7 +233,7 @@ img{
 			
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Image Files</h1>
+					<h1 class="page-header">画像ファイル</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -249,7 +249,7 @@ img{
 							</div>
 							<div class="panel-footer" >
 								<div class="btn-group" data-toggle="buttons">
-									<button class="btn btn-default" onclick="location.href='download?originalFile=${i.originalFile}'">다운로드</button>
+									<button class="btn btn-default" onclick="location.href='download?originalFile=${i.originalFile}'">ダウンロード</button>
 								</div>
 							</div>
 						</div>
@@ -263,7 +263,7 @@ img{
 		<div id="page-wrapper" class="user-table">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Text Files</h1>
+					<h1 class="page-header">文書ファイル</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -280,7 +280,7 @@ img{
 							<div class="panel-footer" >
 								<div class="btn-group" data-toggle="buttons">
 									<label class="btn btn-default"> 
-										<a href="download?originalFile=${i.originalFile}">다운로드</a>
+										<a href="download?originalFile=${i.originalFile}">ダウンロード</a>
 									</label>
 								</div>
 							</div>
@@ -295,7 +295,7 @@ img{
 		<div id="page-wrapper" class="user-table">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Mp3 Files</h1>
+					<h1 class="page-header">音源ファイル</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -312,7 +312,7 @@ img{
 							<div class="panel-footer" >
 								<div class="btn-group" data-toggle="buttons">
 									<label class="btn btn-default"> 
-										<a href="download?originalFile=${i.originalFile}">다운로드</a>
+										<a href="download?originalFile=${i.originalFile}">ダウンロード</a>
 									</label>
 								</div>
 							</div>

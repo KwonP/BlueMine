@@ -236,13 +236,12 @@
 					<i class="fa fa-caret-down"></i>
 				  </a>
 					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
-								Profile</a></li>
-						<li><a href="logout"><i class="fa fa-gear fa-fw"></i> Settings</a>
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> ユーザープロフィール</a></li>
+						<li><a href="logout"><i class="fa fa-gear fa-fw"></i> 設定</a>
 						</li>
 						<li class="divider"></li>
 						<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i>
-								Logout</a></li>
+								ログアウト</a></li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
 			</ul>
@@ -303,7 +302,7 @@
 			    	<button class="btn btn-default" id="updateUser">Update Profile</button>
 			    </div>
 			 <div class="form-group" id="imgDiv">
-			 	  <span>[현재 프로필 사진]</span>
+			 	  <span>[現在プロフィール写真]</span>
 			 		<img src="showProfile" id="showImg" class="img-rounded" width="360px">
 			 		<input type="file" id="uploadPf" >
 			 		<a id="pfUpload" onclick="pfUpload()">Update Image</a>
