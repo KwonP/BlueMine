@@ -83,9 +83,6 @@ function menuPage() {
 		var timeLineHead = '<div class="panel-body"><ul class="timeline">';
 		for (var i = 0; i < list.length; i++) {
 			var splitArray = list[i].tl_Content.split('///');
-			if(prj_Num==splitArray[3]){
-				$('#projectName').text(' :: '+splitArray[0]);
-			}
 			//0:프로젝트 이름 , 1:프로젝트 참여인원
 			timeLine += '<li';
 			if (i % 2 == 1) {

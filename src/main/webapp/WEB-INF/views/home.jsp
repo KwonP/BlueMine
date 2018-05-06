@@ -48,8 +48,8 @@
 	
 	<!-- Main Selection -->
 	<div class="selection">
-		<button class="selectBtn" onclick="moveR()">ログイン</button> <br>
-		<button class="selectBtn" onclick = "popup();">会員登録</button>
+		<button class="selectBtn" onclick="moveR()">Login</button> <br>
+		<button class="selectBtn" onclick = "popup();">Join</button>
 	</div>
 	
 	<!-- Login Form -->
@@ -61,7 +61,7 @@
 	  	 <td><input type="text" id="LoginEmail"></td>
 	  	</tr>
 	  	<tr>
-	  	 <td>パスワード : </td>
+	  	 <td>Password : </td>
 	  	 <td><input type="password" id="passwordL"></td>
 	  	</tr>
 	  </table>

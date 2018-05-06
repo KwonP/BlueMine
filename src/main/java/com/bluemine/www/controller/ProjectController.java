@@ -24,7 +24,7 @@ public class ProjectController {
 		// 채팅 페이지 로그아웃
 		String getId = (String)session.getAttribute("loginId");
 		uDao.logOut(getId);
-		PRJList prj=tlDAO.getProjectInfo(prj_Num);
+		PRJList prj = tlDAO.getProjectInfo(prj_Num);
 		session.setAttribute("prjName", prj.getPrj_Name());
 		session.setAttribute("prjNum", prj_Num);
 		System.out.println(prj_Num);

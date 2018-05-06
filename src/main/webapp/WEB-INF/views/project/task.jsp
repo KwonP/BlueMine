@@ -558,6 +558,7 @@ option {
 												</c:if>
 												<c:if test="${gpworkList != null }">
 												</c:if>
+												</c:forEach>
 												<c:forEach var="r" items="${gpworkList}" varStatus="status">
 													<c:if test="${k.gp_Num == r.gp_Num}"></c:if>
 													<c:if test="${r.progress == 0}">
@@ -569,12 +570,6 @@ option {
 																		value="${r.progress}" name="${r.gs_Num}">
 																</div>
 															</td>
-															<td>${r.gs_Name}</td>
-															<td>${r.gs_Content}</td>
-															<td>${r.taskCategory}</td>
-															<td>${r.start_Date}</td>
-															<td>${r.deadLine}</td>
-															<td>${r.gp_Pri}</td>
 														</tr>
 													</c:if>
 													<c:if test="${r.progress == 1}">
@@ -586,29 +581,24 @@ option {
 																		value="${r.progress}" name="${r.gs_Num}">
 																</div>
 															</td>
-															<td>${r.gs_Name}</td>
-															<td>${r.gs_Content}</td>
-															<td>${r.taskCategory}</td>
-															<td>${r.start_Date}</td>
-															<td>${r.deadLine}</td>
-															<td>${r.gp_Pri}</td>
 														</tr>
 													</c:if>
-													<%-- <td>${r.gs_Name}</td>
+													<td>${r.gs_Name}</td>
 													<td>${r.gs_Content}</td>
 													<td>${r.taskCategory}</td>
 													<td>${r.start_Date}</td>
 													<td>${r.deadLine}</td>
-													<td>${r.gp_Pri}</td> --%>
+													<td>${r.gp_Pri}</td>
 												</c:forEach>
 											</c:if>
-
+											
 										<tr>
 											<td class="table">
 												<button class="btn btn-primary"
 													onclick="completeTask(${k.gp_Num})">セーブ</button>
 											</td>
 										</tr>
+										
 									</tbody>
 								</table>
 							</div>
@@ -686,8 +676,7 @@ option {
 																name="gs_Content" id="gs_Content" rows="17"></textarea>
 														</div>
 														<div class="form-group">
-															<button class="btn btn-primary" style="float: right;"
-																onclick="makeTask(${k.gp_Num})">生成</button>
+															<button class="btn btn-primary" style="float: right;" onclick="makeTask(${k.gp_Num})">生成</button>
 														</div>
 													</div>
 													<!-- /.row (nested) -->
@@ -711,6 +700,7 @@ option {
 						<!-- /.panel-body -->
 					</div>
 					<!-- /.panel -->
+				</div>
 				</div>
 			</c:forEach>
 			<!-- /.col-lg-6 -->

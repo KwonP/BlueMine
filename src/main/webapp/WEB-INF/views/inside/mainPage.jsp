@@ -101,9 +101,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">BLUE MINE</a>
-				<a class="companyInfo" value="about">ブルーマインとは？</a>
+				<a class="companyInfo" value="about">About</a>
 				<a class="companyInfo" value="contact">Contact Us</a>
-				<a class="companyInfo" value="help">ヘルプ</a>
+				<a class="companyInfo" value="help">Help</a>
 			</div>
 			<!-- /.navbar-header -->
 
