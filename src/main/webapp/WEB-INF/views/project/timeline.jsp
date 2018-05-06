@@ -282,11 +282,9 @@
         
     }
 	function deleteStep(tl_Num){
-<<<<<<< Updated upstream
-	    if(confirm('当に消しますか。')==true){
-=======
+
 	    if(confirm('本当に消しますか?')==true){
->>>>>>> Stashed changes
+
 	    	deleteTimeLine(tl_Num);
 	    }
 	}

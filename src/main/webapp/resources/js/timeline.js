@@ -74,7 +74,7 @@ function menuPage() {
 	var menuPage = $(this).attr('value');
 	location.href = "../" + menuPage;
 }
-
+   
 	// 타임라인 보여주는 메소드
 	function showList(list) { 
 		page++;

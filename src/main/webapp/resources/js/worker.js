@@ -101,7 +101,7 @@ function postNotifications(list){
 			}
 		}
 		if(showNumber==0){
-			showNotice(list[i]);
+			showNotice(list[i],'../');
 		}
 		
 	}

@@ -97,16 +97,17 @@ public class TimeLineController {
 			logger.info("::프로젝트 정보::"+prj.toString());
 			int projectNum = prj.getPrj_Num();
 			String prj_Name = prj.getPrj_Name();
-			String names = "担当者 : ";
+			String names = "担当者 : "+prj.getPlanner();
 			
 			uList = tlDAO.getUserList(projectNum);
-			for (int j = 0; j < uList.size(); j++) {
+			//영상촬영을 위한 주석처리
+			/*for (int j = 0; j < uList.size(); j++) {
 				if (j == 0) {
 					names += uList.get(j).getName();
 				} else {
 					names += ", " + uList.get(j).getName();
 				}
-			}
+			}*/
 			
 			obj[0] = projectNum; // 프로젝트 번호
 			obj[1] = prj_Name; // 프로젝트 이름
@@ -227,9 +228,8 @@ public class TimeLineController {
 						}
 						
 						while(true) {
-						GP_Work gw = tlDAO.getGP_Work_Gs_Num(list.get(i).getInfo_Num());
-						if(gw==null)break;
-						PJ_Group pg = tlDAO.getPJ_Group_Gp_Num(gw.getGp_Num());
+
+						PJ_Group pg = tlDAO.getPJ_Group_Gp_Num(list.get(i).getInfo_Num());
 						if(pg==null)break;
 						PRJList prj = tlDAO.getProjectInfo(pg.getPrj_Num());
 						if(prj==null)break;
@@ -249,15 +249,6 @@ public class TimeLineController {
 						}
 						
 						
-					}else if(list.get(i).getInfo_Type().equals("prjList")) {
-						ArrayList<UserInfo> uList = tlDAO.getUserList(list.get(i).getInfo_Num());
-						logger.info(loginId+"===="+uList.toString());
-						for(int j=0;j<uList.size();j++) {
-							if(loginId.equals(uList.get(j).getUserId())) {
-								check=false;
-								break;
-							}
-						}
 					}
 					if(check) {
 						list.remove(list.get(i));
