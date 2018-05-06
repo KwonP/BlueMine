@@ -79,14 +79,6 @@ public class TimeLineController {
 		int nowTime = (int) (cal.getTimeInMillis() / 1000);
 		for (int i = 0; i < list.size(); i++) { 
 			
-			//private면 보여주지 않는다.
-			logger.info("Tl_Content : "+list.get(i).getTl_Content());
-			if(list.get(i).getTl_Content().equals("0")) {
-				list.remove(i);
-				i--;
-				continue;
-				
-			}
 			String content = list.get(i).getTl_Content();
 			
 			String [] splitArray = content.split("///"); 
