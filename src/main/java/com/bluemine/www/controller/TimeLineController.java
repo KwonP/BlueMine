@@ -15,6 +15,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.ibatis.session.RowBounds;
 
@@ -306,6 +307,8 @@ public class TimeLineController {
 				}
 				logger.info(list.toString());
 				session.setAttribute("loginId", loginId);
+				
+				
 				return list;
 			}
 			Thread.sleep(500);

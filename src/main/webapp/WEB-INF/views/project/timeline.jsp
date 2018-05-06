@@ -151,7 +151,7 @@
         </nav> 
  
         <div id="page-wrapper"> 
-			<h1>プロジェクト<span id="projectName"></span> [ No.${prjNum} ] </h1>
+			<h1>プロジェクト<span id="projectName"></span> [ ${sessionScope.prjName } ] </h1>
 			<div id="timeLineDiv"></div>
 			<input type="hidden" id="getPrjNum" value="${prjNum}"> <input
 				type="hidden" id="getUserId" value="${loginId}"> <input
