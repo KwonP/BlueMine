@@ -57,7 +57,7 @@ function findClose(){
 }
 // password 메일로 송신
 function sendInfo(){
-	alert('잠시만 기다려 주세요.');
+	alert('少々お待ちください。');
 	var email = $('#findInfo').val();
 	$.ajax({
 		url : "sendInfo",
@@ -65,13 +65,13 @@ function sendInfo(){
 		data : {email : email},
 		success : function(result){
 			if (result == 'ok') {
-				alert('비밀번호 전송이 완료되었습니다.');
+				alert('パスワードの送信が完了しました。');
 			} else {
-				alert('전송에 실패하였습니다. 다시 시도해 주세요.');
+				alert('送信に失敗しました。もう一度やり直してください。');
 			}
 		},
 		error : function(){
-			alert('서버 오류');
+			alert('エラー');
 		}
 	});
 }
@@ -80,35 +80,35 @@ function sendInfo(){
 function mailCheck(value){
 	if (value == 'find') {
 		var findMail = $('#findInfo').val();
-		if (findMail == '') {alert('메일을 입력해 주세요.');return;}
+		if (findMail == '') {alert('メールアドレスを入力してください。');return;}
 		$.ajax({
 			url : 'findMail',
 			type : 'post',
 			data : {findMail : findMail},
 			success : function(result){
 				if (result == 'ok') {
-					alert('일치하는 메일이 있습니다.');
+					alert('一致するデータがあります。');
 					$('.sendInfo').fadeIn(300);
 				} else {
-					alert('일치하는 메일이 없습니다.');
+					alert('一致するデータがありません。');
 				}
 			},
 			error : function(){
-				alert('서버 오류');
+				alert('エラー');
 			}
 		});
 		return;
 	} 
 	var email = $('#emailC').val();
 	if (email == "") {
-		alert('메일을 입력해 주세요.');
+		alert('メールアドレスを入力してください。');
 		return;
 	}
 	
 	/* 이메일 유효성 검사를 위한 정규식 */
 	var regExp = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 	if (!regExp.test(email)) {
-		alert("이메일 형식이 맞지 않습니다.");
+		alert("メールアドレスの形式が一致しません。");
 		return;
 	}
 	
@@ -118,16 +118,16 @@ function mailCheck(value){
 		data : {email : email},
 		success : function(result){
 			if (result == 'available') {
-				alert('사용 가능한 이메일 입니다.');
+				alert('使用可能なメールアドレスです。');
 				$('#email').attr('value',$('#emailC').val());
 				$('.sendForm').fadeIn(1000);
 				$('#again').attr('value',true);
 			} else {
-				alert('이미 사용중인 이메일 입니다.');
+				alert('既に使用されているメールアドレスです。');
 			}
 		},
 		error : function(){
-			alert('서버 ㅇ류');
+			alert('エラー');
 		}
 	});
 
@@ -137,18 +137,18 @@ function mailCheck(value){
 function sendCode(){
 	var check = $('#again').val();
 	if (check == 'false') {
-		alert('이메일을 다시 확인해 주세요');
+		alert('メールアドレスをもう一度確認してください。');
 		return;
 	}
 	var email = $('#emailC').val();
-	alert('잠시만 기다려 주세요.');
+	alert('少々お待ちください。');
 	$.ajax({
 		url : 'sendCode',
 		type : 'post',
 		data : {email : email},
 		success : getCode,
 		error : function(){
-			alert('서버 오류');
+			alert('エラー');
 		}
 	});
 }
@@ -156,7 +156,7 @@ function sendCode(){
 function getCode(code){
 
 	$('#code').attr('value',code);
-	alert('인증번호가 발송되었습니다.');
+	alert('認証番号が送信されました。');
 		
 	var showTime = document.getElementById('showTime');
 	timer = setInterval(codeTimer,1000);
@@ -171,7 +171,7 @@ function getCode(code){
 		setTime--;
 		if(setTime < 0 ){
 			clearInterval(timer);
-			alert('인증 시간이 지났습니다. 다시 시도해 주세요');
+			alert('認証時間を超えました。もう一度やり直してください。');
 			$('#again').attr('value','again');
 		}
 	}
@@ -180,19 +180,19 @@ function getCode(code){
 function checkCode(){
 	var check = $('#again').val();
 	if (check == 'false') {
-		alert('이메일을 다시 확인해 주세요');
+		alert('メールアドレスを確認してください。');
 		return;
 	}
 	if ($('#code').val() == '') {
-		alert('인증번호를 발송해 주세요');
+		alert('認証番号を送信してください。');
 		return;
 	}
 	if (check == 'again') {
-		alert('인증 시간이 지났습니다. 다시 시도해 주세요');
+		alert('認証時間を超えました。もう一度やり直してください。');
 		return;
 	}
 	if ($('#inputCode').val() != $('#code').val()) {
-		alert('인증번호가 맞지 않습니다.');
+		alert('認証時間が一致しません。');
 		return;
 	}
 	clearInterval(timer);
@@ -220,15 +220,15 @@ function joinUser(){
 	var position = $('#position option:selected').text();
 	
 	if (name == "") {
-		alert('이름을 입력해 주세요.');
+		alert('名前を入力してください。');
 		return;
 	}
 	if (password == "") {
-		alert('패스워드를 입력해 주세요.');
+		alert('パスワードを入力してください。');
 		return;
 	}
 	if (password != passwordC) {
-		alert('패스워드가 맞지 않습니다.');
+		alert('パスワードが一致しません。');
 		return ;
 	}
 
@@ -239,12 +239,12 @@ function joinUser(){
 				position:position,alias:alias},
 		success : function(result){
 			if (result == 'ok') {
-				alert('가입이 완료되었습니다 !');
+				alert('登録が完了しました!');
 				location.href = "goToMain";
 			}
 		},
 		error : function(){
-			alert('서버 오류');
+			alert('エラー');
 		}
 	});
 }
@@ -254,11 +254,11 @@ function login(){
 	var email = document.getElementById('LoginEmail').value;
 	var password = document.getElementById('passwordL').value;
 	if (email == "") {
-		alert('이메일을 입력해 주세요.');
+		alert('メールアドレスを入力してください。');
 		return;
 		}
 	if (password == "") {
-		alert('비밀번호를 입력해 주세요');
+		alert('パスワードを入力してください。');
 		return;
 		}
 	
@@ -270,13 +270,13 @@ function login(){
 			if (result == 'login') {
 				location.href = 'goToMain';
 			} else if(result == 'not') {
-				alert('존재하지 않는 이메일 입니다.');
+				alert('存在しないメールアドレスです。');
 			} else {
-				alert('비밀번호가 맞지 않습니다.');
+				alert('パスワードが一致しません。');
 			}
 		},
 		error : function(){
-			alert('서버 오류');
+			alert('エラー');
 		}
 	});
 }

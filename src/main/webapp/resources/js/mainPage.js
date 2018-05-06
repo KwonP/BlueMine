@@ -43,7 +43,7 @@ function check(){
           putAuto(getVal);
        },
        error : function(){
-          alert('서버 오류');
+          alert('エラー');
        }
     });
  }
@@ -116,12 +116,12 @@ function addPrj() {
      	         	$('#planner').val();
      	         },
      	         error: function(e) {
-     	            alert('관계설정 실패');
+     	            alert('エラー');
      	         }
      	      });
      	},
          error: function(e) {
-            alert('생성 실패');
+            alert('エラー');
          }
       });  
 }
@@ -137,14 +137,14 @@ function addGroup(){
         	 prj_Num : prj_Num
         	 ,gp_Name :gp_Name.value},
          success: function(result){
-         	alert('그룹 생성완료');
+         	alert('グループ生成完了');
          	console.log('그룹 번호 : '+result);
          	console.log('gp_Num : '+result);
          	$("#gp_Name").val('');
          	gp_Name.focus();
          },
          error: function(error) {
-            alert('그룹생성 실패');
+            alert('生成失敗');
             console.log(error);
          }
       });

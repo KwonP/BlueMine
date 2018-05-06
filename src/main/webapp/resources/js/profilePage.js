@@ -28,7 +28,7 @@ function pfUpload(){
 			window.location.reload();
 		},
 		error : function(){
-			alert('서버 오류');
+			//alert('서버 오류');
 		}
 	})
 }
@@ -37,15 +37,15 @@ function updateUser(){
 	var password = $('#password').val();
 	var passwordC = $('#passwordC').val();
 	if (name == "") {
-		alert("이름을 입력해 주세요.");
+		alert("名前を入力してください。");
 		return false;
 	}
 	if (password == "") {
-		alert('패스워드를 입력해 주세요.');
+		alert('パスワードを入力してください。');
 		return false;
 	}
 	if (password != passwordC) {
-		alert('비밀번호가 맞지 않습니다.');
+		alert('パスワードが一致しません。');
 		return false;
 	}
 	var updateUser = $('form[name=updateProfile]').serialize();
@@ -55,20 +55,20 @@ function updateUser(){
 		data : updateUser,
 		success : function(result){
 			if (result == "ok") {
-				alert('회원정보가 수정되었습니다.');
+				alert('会員情報が修正されました。');
 				location.href = "goToMain";
 			} else {
-				alert('회원정보 수정에 실패하였습니다.');
+				alert('修正に失敗しました。');
 			}
 		},
 		error : function(){
-			alert('서버 오류');
+			//alert('서버 오류');
 		}
 	})
 	return false;
 }
 function leaveForm(){
-	if (confirm('정말 탈퇴하시겠습니까?')) {
+	if (confirm('本当に退会しますか?')) {
 		$('.passwordCheck').fadeIn(1000);
 		$('#leavePassword').focus();
 	}
@@ -85,14 +85,14 @@ function leaveMember(){
 		data : {password : password},
 		success : function(result){
 			if (result == "ok") {
-				alert('탈퇴되었습니다.');
+				alert('退会しました。');
 				location.href = "./";
 			} else {
-				alert('비밀번호가 맞지 않습니다.');
+				alert('パスワードが違います。');
 			}
 		},
 		error : function(){
-			alert('서버 오류');
+			//alert('서버 오류');
 		}
 	});
 }

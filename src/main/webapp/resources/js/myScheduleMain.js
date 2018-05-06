@@ -73,24 +73,24 @@ function check(){
 	var deadLine = new Date();
 	deadLine.setFullYear(endValue[0],(endValue[1]-1),endValue[2]);
 	if (startDate > deadLine) {
-		alert("시작날짜와 마감날짜를 확인해주세요");
+		alert("開始日と締め切り日を確認してください。");
 		return false;
 	}
 	startDate = $('#startDate').val();
 	deadLine = $('#deadLine').val();
 	var ps_Pri = $('#ps_Pri').val();
 	if (ps_Name == "") {
-		alert('제목을 입력해 주세요.');
+		alert('タイトルを入力してください。');
 		return false;
 	}
 	if (ps_Content == "") {
-		alert('내용을 입력해 주세요.');
+		alert('内容を入力してください。');
 		return false;
 	}
 	return true;
 }
 function delWork(ps_Num){
-	if (confirm('삭제하시겠습니까?')) {
+	if (confirm('削除しますか?')) {
 		$.ajax({
 			url : 'delWork',
 			type : 'post',
@@ -99,14 +99,14 @@ function delWork(ps_Num){
 				window.location.reload();
 			},
 			error : function(){
-				alert('서버 오류');
+				alert('削除エラー');
 			}
 		});
 	}
 }
 function endWork(ps_Num){
 	count = 1;
-	if (confirm('완료하시겠습니까?')) {
+	if (confirm('完了しますか?')) {
 		$.ajax({
 			url : 'endWork',
 			type : 'post',
@@ -115,7 +115,7 @@ function endWork(ps_Num){
 				window.location.reload();
 			},
 			error : function(){
-				alert('서버 오류');
+				alert('エラー');
 			}
 		});
 	}
@@ -219,7 +219,7 @@ function endCklist(loopNum){
 				$("li[value="+loopNum+"]").attr('class','checked');
 			},
 			error : function(){
-				alert('서버 오류');
+				alert('エラー');
 			}
 		});
 	} else {
@@ -231,7 +231,7 @@ function endCklist(loopNum){
 				$("li[value="+loopNum+"]").attr('class','unChecked');
 			},
 			error : function(){
-				alert('서버 오류');
+				alert('エラー');
 			}
 		});
 	}
@@ -288,7 +288,7 @@ function nameLimit(obj, maxByte){
 	    } 
 	 }
 		if (totalByte > maxByte) {
-			alert(maxByte + "자를 초과 입력 할 수 없습니다");
+			alert(maxByte + "字を超えて入力することはできません。");
 			str2 = strValue.substr(0,len);
 			obj.value = str2;
 			titleLimit(obj,maxByte);
@@ -301,7 +301,7 @@ function cancelAdd(){
 }
 function updateList(cl_Num){
 if (count == 1) {
-	alert('현재의 체크리스트 업데이트를 먼저 처리해 주세요.');
+	alert('現在のチェックリストのアップデートを先に行ってください。');
 	return;
 }
 	
@@ -315,7 +315,7 @@ if (count == 1) {
 			getOneInfo(getOne);
 		},
 		error : function(){
-			alert('서버 오류');
+			alert('エラー');
 		}
 	});
 }
@@ -335,13 +335,13 @@ function addOne(){
 			window.location.reload();
 		},
 		error : function(){
-			alert('서버 오류');
+			alert('エラー');
 		}
 	});
 }
 function deleteList(cl_Num){
 	count = 1;
-	if (!confirm('삭제하시겠습니까?')) return;
+	if (!confirm('削除しますか？')) return;
 	$.ajax({
 		url : 'deleteList',
 		type : 'post',
@@ -350,7 +350,7 @@ function deleteList(cl_Num){
 			window.location.reload();
 		},
 		error : function(){
-			alert('서버 오류');
+			alert('エラー');
 		}
 	});
 }
@@ -424,7 +424,7 @@ function updateOne(){
 			window.location.reload();
 		},
 		error : function(){
-			alert('서버 오류');
+			alert('エラー');
 		}
 	});
 }
