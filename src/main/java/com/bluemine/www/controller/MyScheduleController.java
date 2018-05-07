@@ -44,14 +44,14 @@ public class MyScheduleController {
 		System.out.println(getCKList);
 		session.setAttribute("ckList", getCKList);
 		
-		// 오늘 요일 가져오기 (월요일을 체크리스트 초기화)
+/*		// 오늘 요일 가져오기 (월요일을 체크리스트 초기화)
 		Calendar cal = Calendar.getInstance(); 
 		int num = cal.get(Calendar.DAY_OF_WEEK)-1; 
 		if (num == 1) {
 			for (CKList list : getCKList) {
 				myDao.resetLoop(list.getCl_Num());
 			}
-		}
+		}*/
 		cl_show = myDao.showCKList(userId);
 		session.setAttribute("CL_Show", cl_show);
 		return "mySchedule/main";

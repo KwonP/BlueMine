@@ -87,10 +87,10 @@ public class UserInfoController {
 			
 			message.setFrom("springsentmailKim@gmail.com");
 			message.setTo(email);
-			message.setSubject("[회원가입 완료를 위한 인증번호 안내]");
-			String text = "회원가입을 위한 회원님의 인증번호는 ["+code+"]입니다.\n"
-					+ "가입 화면에 활성화된 입력란에 입력해 주시면 가입이 완료됩니다."
-					+ "감사합니다 :)";
+			message.setSubject("「会員加入の認証のためなご案内」");
+			String text = "会員加入ためのお客様の認証番号は ["+code+"]です。\n"
+					+ "加入画面にこの認証番号をいれてから次の加入手続きで移動します。\n"
+					+ "ありがとうございます。:)";
 			message.setText(text);
 			mailSender.send(message);
 			

@@ -115,10 +115,6 @@ public class GanttController {
 			}
 		}
 		
-		
-		for (String string : groupList) {
-			System.out.println(string);
-		}
 		model.addAttribute("startdateList", startdateList); // 날짜 형식 맞춘 String 리스트
 		model.addAttribute("deadlineList", deadlineList); // 날짜 형식 맞춘 String 리스트
 		model.addAttribute("groupList",groupList); // 각 작업들의 그룹이름

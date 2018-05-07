@@ -71,9 +71,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">ブルーマインとは？</a>
+				<a class="companyInfo" value="../about">About</a>
 				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">ヘルプ</a>
+				<a class="companyInfo" value="../help">Help</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -88,7 +88,7 @@
                         <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> ユーザープロフィール</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> ログアウト</a>
+                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

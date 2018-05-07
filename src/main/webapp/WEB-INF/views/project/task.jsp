@@ -171,34 +171,11 @@ option {
 	left: 695px;
 	top: 115px;
 }
-#load{
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		position: fixed;
-		display: block;
-		opacity: 0.8;
-		background: white;
-		z-index: 1010;
-		text-align: center;
-}
-#load > img{
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin-left: -100px;
-  	  	margin-top: -115px;
-		z-index: 100;
-}
 </style>
-<script src="../resources/toastr/toastr.min.js"></script>
-<link href="../resources/toastr/toastr.css" rel="stylesheet">
-<script src="../resources/js/notificationList.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.companyInfo').click(menuPage);
-		$('#load').hide();
 	});
 	function menuPage(){
 		var menuPage = $(this).attr('value');
@@ -220,7 +197,7 @@ option {
 			var deadLine = new Date();
 			deadLine.setFullYear(endValue[0],(endValue[1]-1),endValue[2]);
 			if (startDate > deadLine) {
-				alert("開始日と締め切り日を確認してください。");
+				alert("시작날짜와 마감날짜를 확인해주세요");
 				return false;
 			}
 			startDate = $('#startDate').val();
@@ -284,22 +261,23 @@ option {
 				}
 			},
 			error: function(cnt) {
-				alert('エラー');
+				alert('에러');
 			}				
 		});	 
 	}
 	
 	function completeTask(gp_Num) {
-		$('.' + gp_Num).each(function(i, l){
+		var array = [];
+		$('#' + gp_Num).each(function(i, l){
 			if($(this).prop("checked", true)) {
 				$(this).attr("value", 1);
 				var progress = $(this).val();
-				$('#gg').attr("class", "success");
+				$('#' + gp_Num).attr("class", "success");
 			}
-			else if($(this).prop("checked", false)) {
+			if($(this).prop("checked", false)) {
 				$(this).attr("value", 0);
 				var progress = $(this).val();
-				$('#ff').attr("class", "info");
+				$('#' + gp_Num).attr("class", "info");
 			}
 			
 			$.ajax({
@@ -313,12 +291,12 @@ option {
 				async: false,
 				success: function(str) { 
 					if(str == '1') {
-						alert('成功‼');
+						alert('성공');
 						window.location.reload();
 					}
 				},
 				error: function(cnt) {
-					alert('エラー');
+					alert('에러');
 				}				
 			});	
 		});
@@ -343,7 +321,7 @@ option {
 				}
 			},
 			error: function(cnt) {
-				alert('エラー');
+				alert('에러');
 			}				
 		});	
 		return;
@@ -354,9 +332,7 @@ option {
 </head>
 
 <body>
-<div id="load">
-	<img src="../resources/img/loading.gif" alt="loading">
-</div>
+
 	<div id="wrapper">
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
@@ -368,95 +344,54 @@ option {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">About</a>
-				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">Help</a>
-            </div>
-            <!-- /.navbar-header -->
+				<a class="navbar-brand" href="../goToMain">BLUE MINE</a> <a
+					class="companyInfo" value="../about">About</a> <a
+					class="companyInfo" value="../contact">Contact Us</a> <a
+					class="companyInfo" value="../help">Help</a>
+			</div>
+			<!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="noticeCheck">
-                        <i class="fa fa-bell fa-fw" id="bell"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul id="notificationList" class="dropdown-menu dropdown-alerts">
-                       
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profileImg">
-                      <img src="../showProfile" width="50px">
-					  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../profilePage"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-        <div class="navbar-default sidebar" role="navigation"> 
-                <div class="sidebar-nav navbar-collapse"> 
-                    <ul class="nav" id="side-menu"> 
-                        <li> 
-                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> メイン ページ</a> 
-                        </li> 
-                        <li> 
-                            <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> タイムライン</a> 
-                        </li> 
-                        <li> 
-                          <a href="../data/filePrint"><i class="fa fa-edit fa-fw"></i> データダウンロード</a> 
-                        </li> 
-                        <li> 
-                            <a href="../task/taskMain"><i class="fa fa-paste fa-fw"></i> タスク</a> 
-                        </li>
-                        <li> 
-                            <a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i> ガントチャート</a> 
-                        </li>  
-                        <li> 
-                            <a href="../inside/broadcast"><i class="fa fa-comments fa-fw"></i>チャット</a> 
-                        </li> 
-                       </li>
-                    </ul> 
-                </div> 
-                <!-- /.sidebar-collapse --> 
-            </div> 
-            <!-- /.navbar-static-side --> 
-        </nav> 
+			<ul class="nav navbar-top-links navbar-right">
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" id="noticeCheck"> <i
+						class="fa fa-bell fa-fw" id="bell"></i> <i
+						class="fa fa-caret-down"></i>
+				</a>
+					<ul id="notificationList" class="dropdown-menu dropdown-alerts">
+
+					</ul> <!-- /.dropdown-alerts --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" id="profileImg"> <img
+						src="../showProfile" width="50px"> <i
+						class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="../profilePage"><i class="fa fa-user fa-fw"></i>
+								User Profile</a></li>
+						<li class="divider"></li>
+						<li><a href="../logout"><i class="fa fa-sign-out fa-fw"></i>
+								Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
-						<li class="sidebar-search">
-							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" placeholder="Search...">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div> <!-- /input-group -->
-						</li>
-						<li><a href="goToMain"><i class="fa fa-desktop fa-fw"></i>
-								メインページ</a></li>
+						<li><a href="../goToMain"><i class="fa fa-desktop fa-fw"></i>
+								メイン ページ</a></li>
 						<li><a href="#"><i class="fa fa-paper-plane-o fa-fw"></i>
-								タイムライン<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="#">My Timeline</a></li>
-								<li><a href="#">Company Timeline</a></li>
-							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="#"><i class="fa fa-edit fa-fw"></i> Board</a></li>
-						<li><a href="#"><i class="fa fa-paste fa-fw"></i> タスク</a></li>
-						<li><a href="inside/broadcast"><i
-								class="fa fa-comments fa-fw"></i> チャット</a></li>
+								タイムライン</a></li>
+						<li><a href="../data/filePrint"><i
+								class="fa fa-edit fa-fw"></i> データダウンロード</a></li>
+						<li><a href="../task/taskMain"><i
+								class="fa fa-paste fa-fw"></i> タスク</a></li>
+						<li><a href="../gantt/chart"><i class="fa fa-paste fa-fw"></i>
+								ガントチャート</a></li>
+						<li><a href="../inside/broadcast"><i
+								class="fa fa-comments fa-fw"></i>チャット</a></li>
 						</li>
 					</ul>
 				</div>
@@ -478,17 +413,17 @@ option {
 						</div> <!-- /input-group -->
 					</li>
 					<li><a href="goToMain"><i class="fa fa-desktop fa-fw"></i>
-							Main Page</a></li>
+							メインページ</a></li>
 					<li><a href="#"><i class="fa fa-paper-plane-o fa-fw"></i>
-							Timeline<span class="fa arrow"></span></a>
+							タイムライン<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li><a href="#">My Timeline</a></li>
 							<li><a href="#">Company Timeline</a></li>
 						</ul> <!-- /.nav-second-level --></li>
 					<li><a href="#"><i class="fa fa-edit fa-fw"></i> Board</a></li>
-					<li><a href="#"><i class="fa fa-paste fa-fw"></i> Task</a></li>
+					<li><a href="#"><i class="fa fa-paste fa-fw"></i> タスク</a></li>
 					<li><a href="inside/broadcast"><i
-							class="fa fa-comments fa-fw"></i> Chats</a></li>
+							class="fa fa-comments fa-fw"></i> チャット</a></li>
 					</li>
 				</ul>
 			</div>
@@ -506,106 +441,94 @@ option {
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
-			<!-- /.col-lg-12 -->
-		</div>
-		<!-- /.row -->
-		<c:forEach var="k" items="${pjgroupList}" varStatus="st">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">${k.gp_Name }</div>
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>進行度</th>
-											<!-- private int progress;// 진행도 -->
-											<th>タスクネーム</th>
-											<!-- private String gs_Name;// 그룹 스케줄 이름 -->
-											<th>コンテンツ</th>
-											<!-- private String gs_Content;// 내용 -->
-											<th>カテゴリー</th>
-											<!-- private String taskCategory;//유형 -->
-											<th>開始日</th>
-											<!-- private String start_Date;// 시작일 -->
-											<th>締め切り日</th>
-											<!-- private String deadLine;// 마감일 -->
-											<th>重要度</th>
-											<!-- private int gp_Pri;// 중요도 -->
-										</tr>
-									</thead>
-									<tbody>
-										<!-- 반복 시작 -->
-										<c:if test="${sessionScope.loginId != null}">
-											<c:if test="${gpworkList == null }">
-											</c:if>
-											<c:if test="${gpworkList != null }">
-											</c:if>
-											<c:forEach var="r" items="${gpworkList}" varStatus="status">
-												<c:if test="${k.gp_Num == r.gp_Num}"></c:if>
-												<c:if test="${r.progress == 0}">
-													<tr class="info" id="${r.gp_Num}">
-														<td>
-															<div class="btn-group" data-toggle="buttons">
-																<input type="checkbox"
-																	class="${r.gs_Num} + ${status.count}" id="ff"
-																	value="${r.progress}" name="getNums">
-															</div>
+			<!-- /.row -->
+			<c:forEach var="k" items="${pjgroupList}" varStatus="st">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">${k.gp_Name }</div>
+							<!-- /.panel-heading -->
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>進行度</th>
+												<!-- private int progress;// 진행도 -->
+												<th>タスクネーム</th>
+												<!-- private String gs_Name;// 그룹 스케줄 이름 -->
+												<th>コンテンツ</th>
+												<!-- private String gs_Content;// 내용 -->
+												<th>カテゴリー</th>
+												<!-- private String taskCategory;//유형 -->
+												<th>開始日</th>
+												<!-- private String start_Date;// 시작일 -->
+												<th>締め切り日</th>
+												<!-- private String deadLine;// 마감일 -->
+												<th>重要度</th>
+												<!-- private int gp_Pri;// 중요도 -->
+											</tr>
+										</thead>
+										<tbody>
+											<!-- 반복 시작 -->
+											<c:if test="${sessionScope.loginId != null}">
+												<c:if test="${gpworkList == null }">
+												</c:if>
+												<c:if test="${gpworkList != null }">
+													<c:forEach var="r" items="${gpworkList}" varStatus="status">
+														<c:if test="${k.gp_Num == r.gp_Num}">
+															<c:if test="${r.progress == 0}">
+																<tr class="info" id="${r.gp_Num}">
+																	<td>
+																		<div class="btn-group" data-toggle="buttons">
+																			<input type="checkbox" class="${r.gp_Num}"
+																				value="${r.progress}" name="${r.gs_Num}">
+																		</div>
+																	</td>
+																	<td>${r.gs_Name}</td>
+																	<td>${r.gs_Content}</td>
+																	<td>${r.taskCategory}</td>
+																	<td>${r.start_Date}</td>
+																	<td>${r.deadLine}</td>
+																	<td>${r.gp_Pri}</td>
+																</tr>
+															</c:if>
+
+															<c:if test="${r.progress == 1}">
+																<tr class="success" id="${r.gp_Num}">
+																	<td>
+																		<div class="btn-group" data-toggle="buttons">
+																			<input type="checkbox" class="${r.gp_Num}"
+																				value="${r.progress}" name="${r.gs_Num}">
+																		</div>
+																	</td>
+																	<td>${r.gs_Name}</td>
+																	<td>${r.gs_Content}</td>
+																	<td>${r.taskCategory}</td>
+																	<td>${r.start_Date}</td>
+																	<td>${r.deadLine}</td>
+																	<td>${r.gp_Pri}</td>
+																</tr>
+															</c:if>
+														</c:if>
+													</c:forEach>
+
+
+													<tr>
+														<td class="table">
+															<button class="btn btn-primary"
+																onclick="completeTask(${k.gp_Num})">セーブ</button>
 														</td>
 													</tr>
 												</c:if>
-												<c:if test="${gpworkList != null }">
-												</c:if>
-												</c:forEach>
-												<c:forEach var="r" items="${gpworkList}" varStatus="status">
-													<c:if test="${k.gp_Num == r.gp_Num}"></c:if>
-													<c:if test="${r.progress == 0}">
-														<tr class="info" id="ff">
-															<td>
-																<div class="btn-group" data-toggle="buttons">
-																	<input type="checkbox"
-																		class="${r.gp_Num}"
-																		value="${r.progress}" name="${r.gs_Num}">
-																</div>
-															</td>
-														</tr>
-													</c:if>
-													<c:if test="${r.progress == 1}">
-														<tr class="success" id="gg">
-															<td>
-																<div class="btn-group" data-toggle="buttons">
-																	<input type="checkbox"
-																		class="${r.gp_Num}"
-																		value="${r.progress}" name="${r.gs_Num}">
-																</div>
-															</td>
-														</tr>
-													</c:if>
-													<td>${r.gs_Name}</td>
-													<td>${r.gs_Content}</td>
-													<td>${r.taskCategory}</td>
-													<td>${r.start_Date}</td>
-													<td>${r.deadLine}</td>
-													<td>${r.gp_Pri}</td>
-												</c:forEach>
 											</c:if>
-											
-										<tr>
-											<td class="table">
-												<button class="btn btn-primary"
-													onclick="completeTask(${k.gp_Num})">セーブ</button>
-											</td>
-										</tr>
-										
-									</tbody>
-								</table>
-							</div>
-							<!-- /.table-responsive -->
-							<button class="btn fifth"
-								style="width: 566px; height: 180px; font-size: 50px;"
-								onclick="popup()">+</button>
+										</tbody>
+									</table>
+								</div>
+								<!-- /.table-responsive -->
+								<button class="btn fifth"
+									style="width: 566px; height: 180px; font-size: 50px;"
+									onclick="popup()">+</button>
 
 								<div id="joinPopup" class="white_content"
 									style="width: 800px; height: 673px;">
@@ -621,122 +544,113 @@ option {
 										</div>
 										<!-- /.row -->
 
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="panel panel-default">
-												<div class="panel-heading">タスク</div>
-												<div class="panel-body">
-													<div class="row">
-														<div class="col-lg-6">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="panel panel-default">
+													<div class="panel-heading">タスク</div>
+													<div class="panel-body">
+														<div class="row">
+															<div class="col-lg-6">
+																<div class="form-group">
+																	<label>タイプ</label> <select class="form-control"
+																		name="taskCategory" id="taskCategory">
+																		<option value="問題">問題</option>
+																		<option value="欠陥">欠陥</option>
+																		<option value="テストケース">テストケース</option>
+																		<option value="設計">設計</option>
+																		<option value="開発">開発</option>
+																		<option value="コードレビュー">コードレビュー</option>
+																	</select>
+																</div>
+
+																<div class="form-group">
+																	<label>タイトル</label> <input class="form-control"
+																		name="gs_Name" id="gs_Name" placeholder="Title">
+																</div>
+
+																<div class="form-group">
+																	<label>開始日</label> <input type="text"
+																		class="form-control" name="startDate" id="startDate">
+																</div>
+															</div>
+
 															<div class="form-group">
-																<label>タイプ</label> <select class="form-control"
-																	name="taskCategory" id="taskCategory">
-																	<option value="問題">問題</option>
-																	<option value="欠陥">欠陥</option>
-																	<option value="テストケース">テストケース</option>
-																	<option value="設計">設計</option>
-																	<option value="開発">開発</option>
-																	<option value="コードレビュー">コードレビュー</option>
+																<label>締め切り日</label> <input type="text"
+																	class="form-control" name="deadLine" id="deadLine">
+															</div>
+
+															<div class="form-group">
+																<label>重要度</label> <select class="form-control"
+																	name="gp_Pri" id="gp_Pri">
+																	<option value="4">即</option>
+																	<option value="3">緊急</option>
+																	<option value="2">高</option>
+																	<option value="1">普通</option>
+																	<option value="0">低</option>
 																</select>
 															</div>
 
+														</div>
+														<!-- /.col-lg-6 (nested) -->
+														<div class="col-lg-6">
 															<div class="form-group">
-																<label>タイトル</label> <input class="form-control"
-																	name="gs_Name" id="gs_Name" placeholder="Title">
+																<label>説明</label>
+																<textarea style="resize: none;" class="form-control"
+																	name="gs_Content" id="gs_Content" rows="17"></textarea>
 															</div>
-
 															<div class="form-group">
-																<label>開始日</label> <input type="text"
-																	class="form-control" name="startDate" id="startDate">
+																<button class="btn btn-primary" style="float: right;"
+																	onclick="makeTask(${k.gp_Num})">生成</button>
 															</div>
 														</div>
-
-														<div class="form-group">
-															<label>締め切り日</label> <input type="text"
-																class="form-control" name="deadLine" id="deadLine">
-														</div>
-
-														<div class="form-group">
-															<label>重要度</label> <select class="form-control"
-																name="gp_Pri" id="gp_Pri">
-																<option value="4">即</option>
-																<option value="3">緊急</option>
-																<option value="2">高</option>
-																<option value="1">普通</option>
-																<option value="0">低</option>
-															</select>
-														</div>
-
+														<!-- /.row (nested) -->
 													</div>
-													<!-- /.col-lg-6 (nested) -->
-													<div class="col-lg-6">
-														<div class="form-group">
-															<label>説明</label>
-															<textarea style="resize: none;" class="form-control"
-																name="gs_Content" id="gs_Content" rows="17"></textarea>
-														</div>
-														<div class="form-group">
-															<button class="btn btn-primary" style="float: right;" onclick="makeTask(${k.gp_Num})">生成</button>
-														</div>
-													</div>
-													<!-- /.row (nested) -->
+													<!-- /.panel-body -->
 												</div>
-												<!-- /.panel-body -->
+												<!-- /.panel -->
 											</div>
-											<!-- /.panel -->
+											<!-- /.col-lg-12 -->
 										</div>
-										<!-- /.col-lg-12 -->
+										<!-- /.row -->
+										<!--  </div> -->
+										<!-- /#page-wrapper -->
+
 									</div>
-									<!-- /.row -->
-									<!--  </div> -->
-									<!-- /#page-wrapper -->
-
+									<!-- /#wrapper -->
 								</div>
-								<!-- /#wrapper -->
-							</div>
-							<div id="popupBack" class="black_overlay"></div>
+								<div id="popupBack" class="black_overlay"></div>
 
+							</div>
+							<!-- /.panel-body -->
 						</div>
-						<!-- /.panel-body -->
+						<!-- /.panel -->
 					</div>
-					<!-- /.panel -->
-				</div>
 				</div>
 			</c:forEach>
 			<!-- /.col-lg-6 -->
 
-		<div class="col-lg-4" id="write">
-			<div class="chat-panel panel panel-default">
-				<div class="panel-body">
-					<ul class="chat">
-						<c:if test="${timelineList != null }">
-							<c:forEach var="i" items="${timelineList }">
-								<li class="left clearfix"><span class="chat-img pull-left">
-										<!-- 기본이미지 가지고오기 --> <!-- <img width="500" height="300" src=""/>  -->
-										<img src="../showProfile" class="img-circle" />
-								</span>
-									<div class="chat-body clearfix">
-										<div class="header">
-											<strong class="primary-font">${i.writer }</strong> <small
-												class="pull-right text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i> ${i.w_Date}
-											</small>
-										</div>
-										<p>${i.tl_Content }</p>
-									</div></li>
-							</c:forEach>
-						</c:if>
-					</ul>
-				</div>
-				<!-- /.panel-body -->
-				<div class="panel-footer">
-					<div class="input-group">
-						<input id="btn-input" type="text" class="form-control input-sm"
-							placeholder="Type your message here..." /> <span
-							class="input-group-btn">
-							<button class="btn btn-warning btn-sm" id="btn-chat"
-								onclick="insertReply()">書き込む</button>
-						</span>
+			<div class="col-lg-4" id="write">
+				<div class="chat-panel panel panel-default">
+					<div class="panel-body">
+						<ul class="chat">
+							<c:if test="${timelineList != null }">
+								<c:forEach var="i" items="${timelineList }">
+									<li class="left clearfix"><span class="chat-img pull-left">
+											<!-- 기본이미지 가지고오기 --> <!-- <img width="500" height="300" src=""/>  -->
+											<img src="../showProfile" class="img-circle" />
+									</span>
+										<div class="chat-body clearfix">
+											<div class="header">
+												<strong class="primary-font">${i.writer }</strong> <small
+													class="pull-right text-muted"> <i
+													class="fa fa-clock-o fa-fw"></i> ${i.w_Date}
+												</small>
+											</div>
+											<p>${i.tl_Content }</p>
+										</div></li>
+								</c:forEach>
+							</c:if>
+						</ul>
 					</div>
 					<!-- /.panel-body -->
 					<div class="panel-footer">
@@ -745,7 +659,7 @@ option {
 								placeholder="Type your message here..." /> <span
 								class="input-group-btn">
 								<button class="btn btn-warning btn-sm" id="btn-chat"
-									onclick="insertReply()">WRITE</button>
+									onclick="insertReply()">書き込む</button>
 							</span>
 						</div>
 					</div>
