@@ -233,7 +233,7 @@ img{
 			
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">画像ファイル</h1>
+					<h1 class="page-header">イメージファイル</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
