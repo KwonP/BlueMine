@@ -152,9 +152,9 @@ img{
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">ブルーマインとは？</a>
+				<a class="companyInfo" value="../about">about</a>
 				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">ヘルプ</a>
+				<a class="companyInfo" value="../help">help</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -191,7 +191,7 @@ img{
                 <div class="sidebar-nav navbar-collapse"> 
                     <ul class="nav" id="side-menu"> 
                         <li> 
-                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
+                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> メイン ページ</a> 
                         </li> 
                         <li> 
                             <a href="../project/timeline"><i class="fa fa-paper-plane-o fa-fw"></i> タイムライン</a> 

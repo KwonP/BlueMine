@@ -74,7 +74,7 @@ function menuPage() {
 	var menuPage = $(this).attr('value');
 	location.href = "../" + menuPage;
 }
-   
+
 	// 타임라인 보여주는 메소드
 	function showList(list) { 
 		page++;
@@ -100,7 +100,7 @@ function menuPage() {
 			timeLine += splitArray[0];
 			timeLine += '</h4><input type="hidden" id="writer'+list[i].tl_Num+'" value="'+list[i].writer+'"><p><small class="text-muted"><i class="fa fa-clock-o"></i>';
 			timeLine += list[i].w_Date + '</small>';
-			timeLine += '</p></div><div class="timeline-body"><p id="tlText' + list[i].tl_Num + '">' + splitArray[1];
+			timeLine += '</p></div><div class="timeline-body"><p id="tlText' + list[i].tl_Num + '">' + list[i].writer;
 			timeLine += '' + '</p>';
 			if (list[i].writer == sessionInfo) { //해당 프로젝트 플래너와 접속한 아이디가 같을경우 타임라인 삭제 또는 편집 가능
 				timeLine += '<hr><div class="btn-group"><button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">';

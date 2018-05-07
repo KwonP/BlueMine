@@ -369,9 +369,9 @@ option {
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">ブルーマインとは？</a>
+				<a class="companyInfo" value="../about">About</a>
 				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">ヘルプ</a>
+				<a class="companyInfo" value="../help">Help</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -408,7 +408,7 @@ option {
                 <div class="sidebar-nav navbar-collapse"> 
                     <ul class="nav" id="side-menu"> 
                         <li> 
-                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a> 
+                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> メイン ページ</a> 
                         </li> 
                         <li> 
                             <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i> タイムライン</a> 

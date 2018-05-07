@@ -115,23 +115,9 @@ public class GanttController {
 			}
 		}
 		
-		for (String string : startdateList) {
-			System.out.println(string);
-		}
-		for (String string : deadlineList) {
-			System.out.println(string);
-		}
+		
 		for (String string : groupList) {
 			System.out.println(string);
-		}
-		for (String string : onComList) {
-			System.out.println(string);
-		}
-		for (String string : gsnameList) {
-			System.out.println(string);
-		}
-		for (GP_Work string2 : allGpworkList) {
-			System.out.println(string2);
 		}
 		model.addAttribute("startdateList", startdateList); // 날짜 형식 맞춘 String 리스트
 		model.addAttribute("deadlineList", deadlineList); // 날짜 형식 맞춘 String 리스트

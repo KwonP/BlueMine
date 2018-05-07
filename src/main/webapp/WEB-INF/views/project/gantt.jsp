@@ -165,7 +165,7 @@
 							null ]);
 				}
 			}
-
+			
 			temp1.splice(0, 3);
 			temp2.splice(0, 3);
 			temp3.splice(0, 3);
@@ -244,7 +244,7 @@
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
-	<br><br><br><br><br><br><br>
+	<br><br><br><br>
 	<div id="chart_div"></div>
 
 </body>

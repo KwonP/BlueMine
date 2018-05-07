@@ -113,9 +113,9 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="../goToMain">BLUE MINE</a>
-				<a class="companyInfo" value="../about">ブルーマインとは？</a>
+				<a class="companyInfo" value="../about">About</a>
 				<a class="companyInfo" value="../contact">Contact Us</a>
-				<a class="companyInfo" value="../help">ヘルプ</a>
+				<a class="companyInfo" value="../help">Help</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -287,7 +287,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> Main Page</a>
+                            <a href="../goToMain"><i class="fa fa-desktop fa-fw"></i> メイン ページ</a>
                         </li>
                         <li>
                             <a href="../project/timeline	"><i class="fa fa-paper-plane-o fa-fw"></i> タイムライン</a>
@@ -311,7 +311,7 @@
             <!-- /.navbar-static-side -->
         </nav>
         <div id="page-wrapper">
-        	<div class="chat-panel panel panel-default pull-right" style="width: 1100px;">
+        	<div class="chat-panel panel panel-default pull-right" style="width: 1200px;">
 			<div class="panel-heading">
 				<i class="fa fa-comments fa-fw"></i> チャット
 			</div>
@@ -376,7 +376,7 @@
 </body>
 <script type="text/javascript">
 var textarea = document.getElementById("messageWindow");
-var webSocket = new WebSocket('ws://10.10.12.18:8888/www/broadcasting');
+var webSocket = new WebSocket('ws://10.10.12.233:8888/www/broadcasting');
 var inputMessage = document.getElementById('inputMessage');
 webSocket.onerror = function(event) {
     onError(event)
