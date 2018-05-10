@@ -408,7 +408,7 @@ function onOpen(event) {
     $("#messageWindow").html("チャットに参加しました。"+"<br>");
 }
 function onError(event) {
-    alert(event.data);
+    /* alert(event.data); */
 }
 function send() {
     if (inputMessage.value == "") {

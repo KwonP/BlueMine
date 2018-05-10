@@ -205,7 +205,7 @@ public class TimeLineController {
 					boolean check = true;
 					
 					if(list.get(i).getInfo_Type().equals("gp_Work")) {
-						
+						/*
 						HashMap<String,String> map = new HashMap<>();
 						map.put("id", loginId);
 						map.put("gs_Num", list.get(i).getInfo_Num()+"");
@@ -218,7 +218,7 @@ public class TimeLineController {
 							logger.info("key="+key+" / value="+mapInfo.get(key)); 
 						}
 						}
-						
+						*/
 						while(true) {
 
 						PJ_Group pg = tlDAO.getPJ_Group_Gp_Num(list.get(i).getInfo_Num());
@@ -241,11 +241,11 @@ public class TimeLineController {
 						}
 						
 						
-					}
+					}/*
 					if(check) {
 						list.remove(list.get(i));
 						continue;
-					}
+					}*/
 					DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					try {	
 						
